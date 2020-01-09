@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors | Data Science Masterpiece</title>
+    <link>/authors/</link>
+      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    <description>Authors</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Thu, 09 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Authors</title>
+      <link>/authors/</link>
+    </image>
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/authors/admin/</guid>
+      <description>&lt;h3 id=&#34;about-me&#34;&gt;&lt;strong&gt;About me&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;My name is Nhu Hoang, a Data Scientist with current position as Marketing Portfolio Planning Specialist in Amway Japan and a pursuer of beauty in data and insights. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on using Regression model to predict the Wind power price and learning curve.&lt;/p&gt;
+&lt;p&gt;I own decent foundation and acquired rich experience in Data Science, Machine learning, and analytics within various industries including marketing, digital marketing, and retail. My current focus is tree-based models in applcation of predicting customer behavior.&lt;/p&gt;
+&lt;h3 id=&#34;my-goal&#34;&gt;&lt;strong&gt;My goal&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;I will be pursuing a Data Scientist career which combines of data utilization with business decision making. I want to implant the power of insights derived from data to business decision through turning complex data science models into practical industrial applications, educating and guiding business to obtain the optimal decisions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Robert Ford</title>
+      <link>/authors/robert-ford/</link>
+      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
+      <guid>/authors/robert-ford/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
