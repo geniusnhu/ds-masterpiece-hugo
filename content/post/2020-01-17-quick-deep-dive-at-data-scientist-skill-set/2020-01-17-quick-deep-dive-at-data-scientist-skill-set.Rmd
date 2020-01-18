@@ -56,12 +56,11 @@ A Data scientist' is 's responsibility for many tasks with top 3 are:
 
 ![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/responsibility.png)
 
-
 ### **Programming skills:**
 
 **Python, SQL and R** are all the programming languages that are essential for Data Scientist as they stand in the Top 3 respectively.
 
-![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/PL.png)
+<img src="https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/PL.png" width="300" height="450" >
 
 ### **Machine Learning skills:**
 
@@ -79,7 +78,7 @@ Another interesting thing is that 51% of Data scientists is applying **Boosting 
 
 **Scikit-learn, Keras, Xgboost, TensorFlow and RandomForest libraries** are the top used frameworks given their benefit and convenience.
 
-![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/package.png)
+<img src="https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/package.png" width="300" height="450">
 
 ### **Data Scientist Credential:**
 
