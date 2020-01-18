@@ -54,13 +54,14 @@ A Data scientist' is 's responsibility for many tasks with top 3 are:
 
 * Experiment to **improve company existing Machine learning models**
 
-![DS Responsibility](/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/2020-01-17-quick-deep-dive-at-data-scientist-skill-set_files/responsibility.png)
+![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/responsibility.png)
+
 
 ### **Programming skills:**
 
 **Python, SQL and R** are all the programming languages that are essential for Data Scientist as they stand in the Top 3 respectively.
 
-![Programming skills](/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/2020-01-17-quick-deep-dive-at-data-scientist-skill-set_files/PL.png)
+![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/PL.png)
 
 ### **Machine Learning skills:**
 
@@ -70,7 +71,7 @@ It is not a surprise if all Data Scientists use Machine Learning in their daily 
 
 **Regression** and **Tree-based algorithms** are the models used by Data Scientist. With the long history in statistics and analytics, these models are still being favor in analyzing data. Another advantage of these traditional models is that they are easy to explain to business partner. Other models such as Neuron network, or Deep learning is hard to explain the result. 
 
-![Machine learning algorithms](/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/2020-01-17-quick-deep-dive-at-data-scientist-skill-set_files/ML.png)
+![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/ML.png)
 
 Another interesting thing is that 51% of Data scientists is applying **Boosting method**.
 
@@ -78,7 +79,7 @@ Another interesting thing is that 51% of Data scientists is applying **Boosting 
 
 **Scikit-learn, Keras, Xgboost, TensorFlow and RandomForest libraries** are the top used frameworks given their benefit and convenience.
 
-![ML library](/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/2020-01-17-quick-deep-dive-at-data-scientist-skill-set_files/package.png)
+![](https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/package.png)
 
 ### **Data Scientist Credential:**
 
