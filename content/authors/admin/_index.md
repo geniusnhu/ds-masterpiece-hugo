@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: My interest is Consumer behavior prediction, segmentation, classification; financial analytics and Machine learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries including marketing, digital marketing, and retail.
+bio: My interest is Consumer behavior prediction, segmentation, classification; financial forecasting and Machine learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries including marketing, digital marketing, and retail.
 
 education:
   courses:
@@ -10,7 +10,7 @@ education:
     year: 2018
   - course: Bachelor of International Business Management
     institution: Foreign Trade University
-    year: 2010
+    year: 2014
   - course: Machine Learning
     institution: Standford University. Coursera
     year: 2019

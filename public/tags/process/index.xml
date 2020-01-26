@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Process | Data Science with Nhu Hoang</title>
+    <link>/tags/process/</link>
+      <atom:link href="/tags/process/index.xml" rel="self" type="application/rss+xml" />
+    <description>Process</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Process</title>
+      <link>/tags/process/</link>
+    </image>
+    
+    <item>
+      <title>Practical flow of a Data Science Project</title>
+      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
+      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
+      <description>&lt;p&gt;After 5 years of working in field of Analytics and Data Science in 2 multinational companies, the things that I learned through several failures and achievements are that the real bottleneck of a Data Scientist is the understanding of the data scientist&#39;s consumer rather than the technical side of running the right method.&lt;/p&gt;
+&lt;p&gt;I will try to make this post condense in key points because practical application can vary in various forms and patterns, and it highly depends on the situation of a Data scientist&#39;s work.&lt;/p&gt;
+&lt;h3 id=&#34;1-clarify-business-question&#34;&gt;1. Clarify Business question&lt;/h3&gt;
+&lt;p&gt;During my years in analytics and data science, in addition to technological concept explanation, &lt;strong&gt;business question clarification&lt;/strong&gt; is one of the most difficult tasks when a Data scientist communicates with business partner.&lt;/p&gt;
+&lt;p&gt;The reason is that the business partner always asks very general question such as &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A during summer?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When you hear these questions, can you imagine the right approach or the answer to the case? I am sure that you will be very vague and confused, and if you deliver the result based on this current understanding, it is a high possibility that the business partners will say &lt;em&gt;&amp;ldquo;This is not what I need&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;OMG! How terrible it is when you spent so much effort into this, but no one values it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This is because you did not touch the right pain point!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I know that the common advice is to ask &lt;em&gt;&amp;ldquo;Why&amp;rdquo;&lt;/em&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
+&lt;p&gt;One thing that helped me overcome this difficulty is to &lt;strong&gt;imagine the outcome that I desire&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;2-identify-the-approach-for-the-problem&#34;&gt;2. Identify the approach for the problem&lt;/h3&gt;
+&lt;p&gt;This part is to set the methodology for the analysis.&lt;/p&gt;
+&lt;p&gt;Have you ever faced a situation where you do not know which approach to be used between descriptive analysis, predictive analysis, classification, segmentation, time series forecasting, etc.?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Linear Regression cannot be used to segment customers or&lt;/li&gt;
+&lt;li&gt;Descriptive analysis cannot predict customer churn.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This step seems to be easy but in fact quickly got confused. If the Sales Director asked Data Science team to forecast the &lt;strong&gt;sales for next year&lt;/strong&gt;, and the business need is to get the forecast &lt;strong&gt;based on the amount of budget spending&lt;/strong&gt;, then which model should be used?
+If the business wanted the forecast &lt;strong&gt;based on the market movement&lt;/strong&gt;, which approach is suitable?&lt;/p&gt;
+&lt;p&gt;This is the importance in choosing the right approach for the business question.&lt;/p&gt;
+&lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
+&lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
+&lt;p&gt;Data selection sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, will it need to have the birthday information of the customer if the task is to predict their churn probability?&lt;/p&gt;
+&lt;p&gt;Then, identify the approach to acquire the data. This can be from company&#39;s data warehouse, conducting survey collecting result, or government-owned data&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;What occurs during Data Collection?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the foreseen problems is the &lt;strong&gt;unavailability of data&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This problem is very common in real case in which data is unable to capture at the moment of collection such as &lt;em&gt;the time spent in using a non-digital product&lt;/em&gt;. As a common sense, you will think that you have to get the data. However, you have to consider the consequences of getting data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
+&lt;p&gt;Therefore, the solution for this case is to defer inaccessible data and in case the model requires this data for a better result, you will have more confident to invest in obtaining it.&lt;/p&gt;
+&lt;p&gt;One of the provident ways of getting new features is to change the system of collecting data to acquire the right information needed. The Data scientist team can discuss with data management to get the timestamp that customers log on the page in addition to the browsing/ purchasing data.&lt;/p&gt;
+&lt;p&gt;If the Data scientist is unable to acquire unavailable data through the above way, then think about contacting an outside data owner and prepare the budget.&lt;/p&gt;
+&lt;p&gt;After getting all the data you need, the next step is thing that a Data scientist usually does:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;EDA&lt;/li&gt;
+&lt;li&gt;Data cleaning&lt;/li&gt;
+&lt;li&gt;Validation choosing&lt;/li&gt;
+&lt;li&gt;Feature engineering&lt;/li&gt;
+&lt;li&gt;Model selection/Building&lt;/li&gt;
+&lt;li&gt;Feature selection&lt;/li&gt;
+&lt;li&gt;Model tuning&lt;/li&gt;
+&lt;li&gt;Ensemble&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The order can be flexible and this is the standard progress that I usually do in my project and my job. Sometimes, after tuning and the accuracy does not meet my expectation, I need to go back to the feature engineering step to find other way to deal with features.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,15 +5,15 @@
 # Each configuration section is defined by a name in square brackets (e.g. `[outputs]`).
 
 # Title of your site
-title = "Data Science Masterpiece"
+title = "Data Science with Nhu Hoang"
 
 # The URL of your site.
 # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
-baseurl = "/"
+baseurl = "https://geniusnhu.netlify.com/"
 
 # Enter a copyright notice to display in the site footer.
 # To display a copyright symbol, type `&copy;`. For current year, type `{year}`.
-copyright = ""
+copyright = "Nhu Hoang" 
 
 ############################
 ## Advanced options below ##
@@ -78,9 +78,9 @@ ignoreFiles = ["\\.ipynb$", ".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "
  [[params.social]]
     icon = "linkedin"
     icon_pack = "fa"
-    link = "//linkedin.com/in/USERNAME"
+    link = "//linkedin.com/in/nhu-hoang"
 
  [[params.social]]
     icon = "github"
     icon_pack = "fa"
-    link = "//github.com/USERNAME"
+    link = "//github.com/geniusnhu"

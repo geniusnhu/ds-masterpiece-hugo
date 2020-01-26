@@ -50,12 +50,12 @@ subtitle = ""
  css_class = ""
 +++
 
-Welcome to the **Data Science Masterpiece**. This website was created by me, Nhu Hoang, as a show case for my progress and achievement in Data Science, Machine Learning, Analytics and AI. 
+This website was created by Nhu Hoang, a Data Scientist, Advance Analytics and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
 
-#If you are interested in my work, take a look at my **[Projects](/project)**
+If you are interested in my work, take a look at my **[Posts](/post)**
 
-You can also find interested things in **[News](/news)** or **[Posts](/post)**
+You can also find interested things in **[News](/news)**
 
-If you want to know more about me, screen **[My profile](/authors/admin)** or reach me through directly if you want to get to know me, ask me or advise me anything.
+My profile is **[here](/authors/admin)** for you to take a look; and you can reach me directly in the **Contact** section to ask me or advise me on anything.
 
 **Happy Analyzing! :star2:**
