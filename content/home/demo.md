@@ -8,7 +8,7 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Welcome"
+title = "Welcome to The Hub"
 subtitle = ""
 
 [design]
@@ -52,9 +52,9 @@ subtitle = ""
 
 This website was created by Nhu Hoang, a Data Scientist, Advance Analytics and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
 
-If you are interested in my work, take a look at my **[Posts](/post)**
+If you are interested in my work, take a look at my **[Portfolio](/portfolio)**
 
-You can also find interested things in **[News](/news)**
+You can also find interested things in **[Post](/posts)**
 
 My profile is **[here](/authors/admin)** for you to take a look; and you can reach me directly in the **Contact** section to ask me or advise me on anything.
 

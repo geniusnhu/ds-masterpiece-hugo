@@ -1,66 +1,302 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Publications | Data Science with Nhu Hoang</title>
+    <title>Recent Posts | Data Science Hub</title>
     <link>/publication/</link>
       <atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
-    <description>Publications</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <description>Recent Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Publications</title>
+      <title>Recent Posts</title>
       <link>/publication/</link>
     </image>
     
     <item>
-      <title>An example preprint / working paper</title>
-      <link>/publication/preprint/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/preprint/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&#39;s Markdown slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+      <title>The beauty of Transformer in bringing more applications to life</title>
+      <link>/publication/nlp/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/nlp/</guid>
+      <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
+&lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
+&lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
+&lt;p&gt;To understand &lt;strong&gt;Transformer model&lt;/strong&gt; inclduing BERT, we need to take a look of the progress from &lt;strong&gt;Seq2Seq (sequence to sequence)&lt;/strong&gt; and its evolution to attention and to BERT.&lt;/p&gt;
+&lt;h4 id=&#34;11-seq2seq-model&#34;&gt;1.1 Seq2Seq model:&lt;/h4&gt;
+&lt;p&gt;In NLP, the end that a machine is expected to understand is the meaning of the sentence, not only word by word. &lt;strong&gt;Seq2Seq&lt;/strong&gt; is a technique to train the machine in which it takes a sequence of an item and generates another sequence as output.&lt;/p&gt;
+&lt;p&gt;Within the model, there contains &lt;strong&gt;Encoder&lt;/strong&gt; and &lt;strong&gt;Decoder&lt;/strong&gt;. The &lt;strong&gt;Encoder&lt;/strong&gt; receives the original text and convert the text into a &lt;strong&gt;Context vector&lt;/strong&gt; that the Machine can read. Then, the &lt;strong&gt;Decoder&lt;/strong&gt; does the job of generating a new sequence of items based on the &lt;strong&gt;Context vector&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In Seq2Seq, a sentence does not need to go through both Encoder and Decoder, it can stop at Encoder. Some example of Encoder only is the suggested word &lt;em&gt;&amp;ldquo;message&amp;rdquo;&lt;/em&gt; after you type &lt;em&gt;&amp;ldquo;Thank you for your&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt; or &lt;strong&gt;Context vector&lt;/strong&gt; is a vector of floats representing the input sequence. &lt;strong&gt;&amp;ldquo;Word Embedding&amp;rdquo;&lt;/strong&gt; is the algorithm used to transform text into vector, and the size of vector is usually 265, 512 or 1024 dimensions.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Seq2Seq_visual.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;12-attention&#34;&gt;1.2 Attention&lt;/h4&gt;
+&lt;p&gt;One of the disadvantages of Context in Seq2Seq is the &lt;strong&gt;dealing with long sentences and handling the sequence of output&lt;/strong&gt;. Context is generated by the Word embedding algorithm and the longer the sentence or the paragraph, the bigger the size of vector and the more memory consuming.&lt;/p&gt;
+&lt;p&gt;Moreover, the context in Seq2Seq &lt;strong&gt;was not built to figure out the similarity between words&lt;/strong&gt; because it does not focus on the &lt;strong&gt;relevancy of the words in the sentence&lt;/strong&gt;. This leads to the issue that a sentence in English cannot be translated correctly to Japanese which has the reserve order in sentence structure.&lt;/p&gt;
+&lt;p&gt;The concept of Attention was introduced in &lt;a href=&#34;https://arxiv.org/abs/1409.0473&#34;&gt;Bahdanau et al., 2014&lt;/a&gt; and &lt;a href=&#34;https://arxiv.org/abs/1508.04025&#34;&gt;Luong et al., 2015&lt;/a&gt; in which it takes into account the relevant parts in the sentence.&lt;/p&gt;
+&lt;p&gt;Instead of passing the last hidden state to the &lt;strong&gt;Decoder&lt;/strong&gt;, the Attention model &lt;strong&gt;passes all the hidden states to the Decoder&lt;/strong&gt; with the summary process as below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Give each hidden state a score&lt;/li&gt;
+&lt;li&gt;Use &lt;strong&gt;Softmax function&lt;/strong&gt; to multiply each hidden state. This brings about high Hidden state scores and low hidden state scores or in other word, it generates the probability of each hidden state associating with the input word.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Decoder&lt;/strong&gt; will sum up all the weighted softmax Hidden state vectors into a context vector and concatenate it with its original hidden state vector.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;Attention_Visual.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The advantage of this model is the capability to &lt;strong&gt;choose the decoding word based on the probability of that word in associating with the original input without losing the sequential characteristics of the sentence&lt;/strong&gt;. This has high effectiveness in dealing with translating of common words such as &amp;ldquo;the&amp;rdquo;, &amp;ldquo;his&amp;rdquo;, &amp;ldquo;of&amp;rdquo;, etc. and the sequence of different languages.&lt;/p&gt;
+&lt;h4 id=&#34;13-transformer&#34;&gt;1.3 Transformer:&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Transformer&lt;/strong&gt; is built on the foundation of &lt;strong&gt;Attention&lt;/strong&gt; model. Therefore, &lt;strong&gt;Transformer&lt;/strong&gt; can deal with the relevancy of the sentence rather than converting from word to word in &lt;strong&gt;Seq2Seq&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The biggest difference of &lt;strong&gt;Transformer&lt;/strong&gt; vs &lt;strong&gt;Seq2Seq&lt;/strong&gt; is that instead of generating 1 vector from &lt;strong&gt;Encoder&lt;/strong&gt;, &lt;strong&gt;Transformer&lt;/strong&gt; model uses 3 vectors in order to decide which other parts of the sentence are important (or unimportant) to that word.&lt;/p&gt;
+&lt;p&gt;The below table show more details of the calculation.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Word&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Q vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;K vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Score&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Softmax&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sum&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;First word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q1xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q1xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z1 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q1xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Second word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q2xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q2xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z2 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q2xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Third word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q3xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q3xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z3 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q3xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One example of this model application is the suggestion of relevant words when typing sentence. Gmail can suggest &lt;strong&gt;&amp;ldquo;message&amp;rdquo;, &amp;ldquo;reply&amp;rdquo;, &amp;ldquo;call&amp;rdquo;&lt;/strong&gt; at the same time based on the typed sentence &lt;strong&gt;&amp;ldquo;Thank you for your&lt;/strong&gt;&amp;quot;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a brief introduction on the transition from Seq2Seq to Transformer and how the &lt;strong&gt;Transformer model&lt;/strong&gt; outstands &lt;strong&gt;Seq2Seq&lt;/strong&gt; at the moment.&lt;/p&gt;
+&lt;h3 id=&#34;2-business-applications-of-nlp&#34;&gt;2. Business Applications of NLP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chatbot&lt;/strong&gt;: This is obviously the forefront application of NLP, which can be seen across all industries and companies. Given its popularity, there are several tools to support building a chatbot such as Google DialogFlow, Microsoft LUIS. These tools can be customized based on the user&#39;s needs; however, they can only deal with simple requests.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Machine translation&lt;/strong&gt;: such as Google translate or pocket translator device.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Search engine&lt;/strong&gt;: 5 years ago, when you searched something on search engine, whether you type key words &amp;ldquo;to Tokyo&amp;rdquo; or the whole sentences &amp;ldquo;How to go to Tokyo&amp;rdquo;, the machine would generate quite similar results. However, with the evolution of BERT and Transformer, searching the whole sentence will throw you to a better search result.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Monitoring of brand and product - Sentiment analysis:&lt;/strong&gt; This is the field that I used to analyze during my first job. I used sentiment analysis on big scale online platforms including online forums, social network, brand website and e-commerce sites to understand the reaction of consumers toward a campaign or a brand in order to react promptly toward negative trend related to the brand.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Place to display an advertisement&lt;/strong&gt;: display ads based on context or categorization and make sure that the article is appropriate at the placing place. Honestly saying, I have not seen much of this application around.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Remarketing&lt;/strong&gt;: an online advertisement based on the browsing history of a user to target them with similar advertising product to drive them back the previous interest. This personalized application is a very effective tool in today online market in which thousands of sellers trying to attract each of their customers. Youtube, Facebook or Google are the biggest applicators.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Medical assistant&lt;/strong&gt;: although called &amp;ldquo;assistant&amp;rdquo;, the major task of this service is to transcript the discussion between doctors and patients.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Text generation&lt;/strong&gt;: this is one of the applications of Decoding in NLP, in which the machine will generate a complete article from what it was learnt or summarize a paragraph. As you may know, there are many contradictions about this application, especially the emergence of fake news in recent years. With the completion of this technology, whether the fake news issue continues its expansion or is stopped is still a big question.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Information extraction&lt;/strong&gt;: extract dynamic required information that is sleeping in the database system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resume reviews&lt;/strong&gt;: use NLP to scan the applicants&amp;rsquo; resume to figure out potential candidate for the interview. This application sticks with Amazon big scandal. Amazon used to use this to scan the resume which led to the inequality between male and female with the result preferred male than female. This is due to 0the bias toward male in the training set of the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Voice command&lt;/strong&gt;: an emerging technology in recent years with the appearance of smart device such as Siri in Iphone, Alexa of Amazone, Google home or Cortana of Microsoft.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beside the major technological trends mentioned above, the application trend is heading toward diversity in languages and translation efficacy. Moreover, not only applying NLP alone, there are more applications combining NLP and Voice recognition or Computer Vision.&lt;/p&gt;
+&lt;p&gt;NLP is a powerful Machine Learning area and its application is supporting human&#39;s life even more than we can expect. Therefore, NLP is one of the most used Machine Learning fields by Data Scienctist.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>An example journal article</title>
-      <link>/publication/journal-article/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/journal-article/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&#39;s Markdown slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example conference paper</title>
-      <link>/publication/conference-paper/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/conference-paper/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Slides&lt;/em&gt; button above to demo Academic&#39;s Markdown slides feature.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34;&gt;code and math&lt;/a&gt;.&lt;/p&gt;
+      <title>Practical flow of a Data Science Project</title>
+      <link>/publication/getting-started/</link>
+      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/getting-started/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not considered as an adviser or a consultant for business, but just a normal employee?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is such a common complaint I heard so many times from my friends, especially the junior. I have also struggled with this issue during the first year of my career but then I successfully overcame it. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I think I should share my experience to others so that it will help other Data Scientist achieving a higher reputation for their career.&lt;/p&gt;
+&lt;p&gt;This problem does not only exist in some certain areas but appears everywhere, especially when the scale is tilted toward technical skills rather than keeping balance between &lt;strong&gt;business mindset&lt;/strong&gt; and &lt;strong&gt;technical models&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Even for some senior Data Scientists, this issue is a headache. When I meet others, we spent most of the time talking about a Machine learning models such as RNN, NLP, or advanced and new achievement in applying Data science in the company. However, if I ask them why they decided to use RNN instead of Deep learning and how their model supports the business, they could hardly provide a persuasive reason or they would go with a lengthy explanation on concept, algorithm but forget business aspect.&lt;/p&gt;
+&lt;p&gt;I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;em&gt;understanding the business concept at first before any other activities&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Hence, I wonder whether they really understand how their models contribute to the business.&lt;/p&gt;
+&lt;p&gt;Here I list out a standard flow for starting a data science projects with key point to pay attention to. which I has been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.&lt;/p&gt;
+&lt;p&gt;As mentioned above, this post is written based on my experience. Therefore, adjust them to your own situation, and always remember the key concepts so that you will find the most suitable approach for your own work.&lt;/p&gt;
+&lt;h3 id=&#34;1-first-and-foremost-importance---clarifying-business-question&#34;&gt;1. First and foremost importance - Clarifying Business question&lt;/h3&gt;
+&lt;p&gt;During my years in analytics and data science, in addition to technological concept explanation, &lt;strong&gt;business question clarification&lt;/strong&gt; is one of the most difficult tasks when a Data scientist communicates with business partner.&lt;/p&gt;
+&lt;p&gt;I am sure that you here this everywhere, in many articles, that you will always have to clarify business question.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;But how?&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Working is different with researching, especially a Data Scientist is expected to become a wise man who knows the answer for all questions within the business or at least knows how to get the right answers. Therefore, digging the problem is our job and how to do that is our responsibility.&lt;/p&gt;
+&lt;p&gt;It must be very familiar with you when a sales manager asks you &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or a marketing director: &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When you hear these questions, can you imagine the right approach or the answer to the case? Or you will be very vague and keep asking yourself &lt;em&gt;&amp;ldquo;Is that they want me to do this.&amp;rdquo; or &amp;ldquo;I think they want to know that.&amp;quot;&lt;/em&gt;, and if you deliver the result based on this understanding, &lt;strong&gt;how much confidence you have on your result?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The only one response you will get from them is:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;This is not what I need&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OMG! How terrible it is when you spent so much effort into this, but no one values it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This is because you did not truly understand problem so that you did not touch the right pain point!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I know that the common advice is to ask &lt;em&gt;&amp;ldquo;Why&amp;rdquo;&lt;/em&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
+&lt;p&gt;I usually start by asking about the &lt;strong&gt;background of the question&lt;/strong&gt;, &lt;strong&gt;why and how they come up with the request&lt;/strong&gt;. This is not because I do not understand the business performance but I want to be on the same page with requester and to be able to advise them further on. After asking, many times you will see that the way to deal with the real problem should be different. For example, for the question &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A during summer?&amp;quot;&lt;/em&gt;, the real issue is not to improve the efficacy of the activity but to optimize the budget spending on online promotion in order to increase the purchase rate and new customers. This is the real question that your business partner wants you to help them answer.&lt;/p&gt;
+&lt;p&gt;Then, discuss with the business partner, truly understand on the problem, get alignment on delivery deadline or anything related.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Be a thinker, not a doer!&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-identify-the-approach-for-the-problem&#34;&gt;2. Identify the approach for the problem&lt;/h3&gt;
+&lt;p&gt;This part is to set the methodology for the analysis.&lt;/p&gt;
+&lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
+&lt;p&gt;There are numerous models, analysis approaches that you have already learnt and sometimes you will get lost in whether using which types of descriptive analysis, which models of predictive analysis, classification, segmentation, time series forecasting.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This step seems to be easy but in fact drives you crazy and confused. If the Sales Director asked Data Science team to forecast the &lt;strong&gt;sales for next year&lt;/strong&gt;, and the business need is to get the forecast &lt;strong&gt;based on the amount of budget spending&lt;/strong&gt;, then which model should be used?
+If the business wanted the forecast &lt;strong&gt;based on the market movement&lt;/strong&gt;, which approach is suitable?&lt;/p&gt;
+&lt;p&gt;This is the importance in choosing the right approach for the business question.&lt;/p&gt;
+&lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
+&lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
+&lt;p&gt;Data selection sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, will it need to have the birthday information of the customer if the task is to predict their churn probability?&lt;/p&gt;
+&lt;p&gt;Then, identify the approach to acquire the data. This can be from company&#39;s data warehouse, conducting survey collecting result, or government-owned data&amp;hellip;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;However, what occurs during Data Collection?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are two major problems in this step&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The unavailability of data&lt;/li&gt;
+&lt;li&gt;The bias of training data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;First, let&#39;s look at the &lt;strong&gt;unavailability of data&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;This problem is very common in real case in which data is unable to capture at the moment of collection such as &lt;em&gt;the time spent in using a non-digital product&lt;/em&gt;. As a common sense, you will think that you have to get the data. However, you have to consider the consequences of getting data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
+&lt;p&gt;Therefore, the solution for this case is to defer inaccessible data and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
+&lt;p&gt;On the other hand, one of the provident ways of getting new features is to change the system of collecting data to acquire the right information needed. The Data scientist team can discuss with data management to get the timestamp that customers log on the page in addition to the browsing/ purchasing data.&lt;/p&gt;
+&lt;p&gt;If the Data scientist is unable to acquire unavailable data through the above way, then think about contacting an outside data owner and prepare the budget.&lt;/p&gt;
+&lt;p&gt;Second, the &lt;strong&gt;bias of data&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
+&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is not gender-neutral from the beginning.&lt;/p&gt;
+&lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
+&lt;p&gt;After getting all the data you need, the next step is thing that a Data scientist usually does:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;DS_Flow.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The order can be flexible and this is the standard progress that I usually do in my project and my job. Sometimes, after tuning and the accuracy does not meet my expectation, I need to go back to the feature engineering step to find other way to deal with features.&lt;/p&gt;
+&lt;p&gt;These are the key bottlenecks beside the technical skills that I want to head up for Data Scientist who want to become more than just a Data insight extractor.&lt;/p&gt;
 </description>
     </item>
     

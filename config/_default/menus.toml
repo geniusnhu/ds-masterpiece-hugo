@@ -6,17 +6,17 @@
 [[main]]
   name = "Biography"
   url = "#about"
-  weight = 10
+  weight = 30
 
 [[main]]
   name = "Posts"
-  url = "#posts"
+  url = "#portfolios"
   weight = 20
 
 [[main]]
-  name = "News"
-  url = "#news"
-  weight = 30
+  name = "Portfolio"
+  url = "#posts"
+  weight = 10
 
 #[[main]]
 #  name = "News"
