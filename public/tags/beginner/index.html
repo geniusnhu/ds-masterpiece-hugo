@@ -206,11 +206,47 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
   
-  <link rel="alternate" href="/tags/beginner/index.xml" type="application/rss+xml" title="Data Science Hub">
+  <link rel="alternate" href="/tags/beginner/index.xml" type="application/rss+xml" title="Nhu Hoang">
   
 
   <link rel="manifest" href="/index.webmanifest">
@@ -230,9 +266,9 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Data Science Hub">
+  <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/tags/beginner/">
-  <meta property="og:title" content="Beginner | Data Science Hub">
+  <meta property="og:title" content="Beginner | Nhu Hoang">
   <meta property="og:description" content="Data Science"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
@@ -253,7 +289,7 @@
 
 
 
-  <title>Beginner | Data Science Hub</title>
+  <title>Beginner | Nhu Hoang</title>
 
 </head>
 
@@ -304,7 +340,7 @@
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -317,7 +353,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -511,7 +547,7 @@
     <h2><a href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">Quick deep dive at Data Scientist Skill set</a></h2>
     <div class="article-style">
       
-      Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R'
+      Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R
       
     </div>
   </div>

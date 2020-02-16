@@ -206,11 +206,47 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
   
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Data Science Hub">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Nhu Hoang">
   
 
   <link rel="manifest" href="/index.webmanifest">
@@ -230,9 +266,9 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Data Science Hub">
+  <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/">
-  <meta property="og:title" content="Data Science Hub">
+  <meta property="og:title" content="Nhu Hoang">
   <meta property="og:description" content="Data Science"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
   <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
   
@@ -267,7 +303,7 @@
 
 
 
-  <title>Data Science Hub</title>
+  <title>Nhu Hoang</title>
 
 </head>
 
@@ -318,7 +354,7 @@
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -331,7 +367,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -559,7 +595,7 @@
   
   
 
-  <section id="demo" class="home-section wg-blank dark  bg-image parallax " style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(&#39;/img/headers/bubbles-wide.jpg&#39;);background-size: cover;background-position: center;padding: 20px 0 20px 0;" >
+  <section id="demo" class="home-section wg-blank dark  bg-image parallax " style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(&#39;/img/headers/net.jpg&#39;);background-size: cover;background-position: center;padding: 20px 0 20px 0;" >
     <div class="container">
       
 
@@ -567,11 +603,11 @@
 <div class="row">
   
     <div class="col-lg-12">
-      <h1>Welcome to The Hub</h1>
-      
+      <h1>Welcome to The Hub of Data Science</h1>
+      <p>Owned by Nhu Hoang</p>
       <p>This website was created by Nhu Hoang, a Data Scientist, Advance Analytics and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting</p>
-<p>If you are interested in my work, take a look at my <strong><a href="/portfolio">Portfolio</a></strong></p>
-<p>You can also find interested things in <strong><a href="/posts">Post</a></strong></p>
+<p>If you are interested in my work, take a look at my <strong><a href="/post">Portfolio</a></strong></p>
+<p>You can also find interested things in <strong><a href="/publication">Post</a></strong></p>
 <p>My profile is <strong><a href="/authors/admin">here</a></strong> for you to take a look; and you can reach me directly in the <strong>Contact</strong> section to ask me or advise me on anything.</p>
 <p><strong>Happy Analyzing! 🌟</strong></p>
 
@@ -733,7 +769,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a>, <a href="/categories/analytics/">Analytics</a></span>
   
 
 </div>
@@ -755,7 +791,7 @@
 
   
   <div class="article-style">
-    <p>Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R&rsquo;</p>
+    <p>Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R</p>
   </div>
   
 
@@ -882,7 +918,7 @@
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/nlp/" >The beauty of Transformer in bringing more applications to life</a>
+      <a href="/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/" >The beauty of Transformer in bringing more applications to life</a>
     </h3>
 
     
@@ -947,8 +983,8 @@
     
     
     
-    <a href="/publication/nlp/" >
-      <img src="/publication/nlp/featured_huee254a6cc8e4606bf7287a65e47f653b_34449_150x0_resize_q90_lanczos.jpg" alt="">
+    <a href="/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/" >
+      <img src="/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/featured_huee254a6cc8e4606bf7287a65e47f653b_34449_150x0_resize_q90_lanczos.jpg" alt="">
     </a>
     
   </div>
@@ -980,7 +1016,7 @@
   <div class="media-body">
 
     <h3 class="article-title mb-0 mt-0">
-      <a href="/publication/getting-started/" >Practical flow of a Data Science Project</a>
+      <a href="/publication/practical-flow-of-a-data-science-project/" >Practical flow of a Data Science Project</a>
     </h3>
 
     
@@ -1045,8 +1081,8 @@
     
     
     
-    <a href="/publication/getting-started/" >
-      <img src="/publication/getting-started/featured_hu377c78c1bb7df676531f529f15335e9a_275118_150x0_resize_q90_lanczos.jpg" alt="">
+    <a href="/publication/practical-flow-of-a-data-science-project/" >
+      <img src="/publication/practical-flow-of-a-data-science-project/featured_hu377c78c1bb7df676531f529f15335e9a_275118_150x0_resize_q90_lanczos.jpg" alt="">
     </a>
     
   </div>
@@ -1745,12 +1781,12 @@
           
           
           
-          <a href="/tags/application/" style="font-size:0.7rem">Application</a>
+          <a href="/tags/analytics/" style="font-size:0.7rem">Analytics</a>
         
           
           
           
-          <a href="/tags/beginner/" style="font-size:0.7rem">Beginner</a>
+          <a href="/tags/application/" style="font-size:0.7rem">Application</a>
         
           
           
@@ -1785,7 +1821,7 @@
           
           
           
-          <a href="/tags/skill/" style="font-size:0.7rem">Skill</a>
+          <a href="/tags/skill/" style="font-size:1.204743802857166rem">Skill</a>
         
       </div>
     

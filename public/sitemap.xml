@@ -3,17 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/</loc>
-    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/talk/example/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/talk/</loc>
+    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
@@ -73,7 +73,7 @@
   </url>
   
   <url>
-    <loc>/publication/nlp/</loc>
+    <loc>/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,7 +88,7 @@
   </url>
   
   <url>
-    <loc>/publication/getting-started/</loc>
+    <loc>/publication/practical-flow-of-a-data-science-project/</loc>
     <lastmod>2020-01-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -98,7 +98,12 @@
   </url>
   
   <url>
-    <loc>/tags/beginner/</loc>
+    <loc>/categories/analytics/</loc>
+    <lastmod>2020-01-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/analytics/</loc>
     <lastmod>2020-01-28T00:00:00+00:00</lastmod>
   </url>
   

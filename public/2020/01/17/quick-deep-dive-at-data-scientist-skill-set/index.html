@@ -28,7 +28,7 @@
   
     
   
-  <meta name="description" content="Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R&#39;">
+  <meta name="description" content="Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R">
 
   
   <link rel="alternate" hreflang="en-us" href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">
@@ -206,6 +206,42 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
@@ -227,10 +263,10 @@
   
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="og:site_name" content="Data Science Hub">
+  <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">
-  <meta property="og:title" content="Quick deep dive at Data Scientist Skill set | Data Science Hub">
-  <meta property="og:description" content="Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R&#39;"><meta property="og:image" content="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/featured.jpg">
+  <meta property="og:title" content="Quick deep dive at Data Scientist Skill set | Nhu Hoang">
+  <meta property="og:description" content="Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R"><meta property="og:image" content="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/featured.jpg">
   <meta property="twitter:image" content="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/featured.jpg"><meta property="og:locale" content="en-us">
   
     
@@ -280,13 +316,13 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "Data Science Hub",
+    "name": "Nhu Hoang",
     "logo": {
       "@type": "ImageObject",
       "url": "img//"
     }
   },
-  "description": "Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R'"
+  "description": "Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R"
 }
 </script>
 
@@ -304,7 +340,7 @@
 
 
 
-  <title>Quick deep dive at Data Scientist Skill set | Data Science Hub</title>
+  <title>Quick deep dive at Data Scientist Skill set | Nhu Hoang</title>
 
 </head>
 
@@ -355,7 +391,7 @@
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -368,7 +404,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Data Science Hub</a>
+      <a class="navbar-brand" href="/">Nhu Hoang</a>
     </div>
     
 
@@ -607,7 +643,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a>, <a href="/categories/analytics/">Analytics</a></span>
   
 
 </div>
@@ -643,9 +679,9 @@
 
     <div class="article-style">
       <p>One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:</p>
-<p><strong>What truly are the skills that a Data Scientist needs?</strong></p>
+<p><strong>Frankly saying, what are the skills that a Data Scientist needs?</strong></p>
 <p><strong>What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?</strong></p>
-<p>And many other friends, acquaintances reached out to me for a thought of what to learn to become a Data Scientist.</p>
+<p>Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.</p>
 <p>Actually, I can share some of my experiences with them, but as you've already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.</p>
 <blockquote>
 <p><em>What you learn today will be the old of tomorrow!</em></p>
@@ -690,11 +726,12 @@
     filter(value != &quot;Not employed&quot;,value != &quot;Other&quot;) %&gt;% 
     summarise(count=n()) %&gt;% 
     mutate(perc= prop.table(count))
+}
 </code></pre>
 <hr>
 <p>Now, let's explore the result.</p>
 <h3 id="role-and-responsibilities"><strong>Role and Responsibilities:</strong></h3>
-<p>A Data scientist&rsquo; is &lsquo;s responsibility for many tasks with top 3 are:</p>
+<p>A Data scientist is responsible for many tasks but the Top 3 includes:</p>
 <ul>
 <li>
 <p><strong>Analyzing data</strong> to influence product or to support business decisions</p>
@@ -723,40 +760,43 @@
 <p><strong>Foundation skills</strong></p>
 <ul>
 <li>
-<p>Writing code is an important skill of a good Data scientist. You do not need to be an excellent coder to be a Data scientist but it is dangerous to think that knowing little of coding skill is just enough to work as a Data scientist.</p>
+<p><strong>Writing code</strong> is an important skill of a good Data scientist. Being an excellent coder is not required but preferable to have, especially big companies have the tendency to hire Data Scientist Engineer with coding skill.</p>
 </li>
 <li>
-<p>It is essential to build up your business skills in addition to technical skills. Many data scientists, especially the junior excels at machine learning and coding but is lack of a business point of view so that most of their work does not support the business as the way it should be. Their recommendations were far from what the company is doing and it ended up beating all of their effort. That is the worst thing you want to face in the world of Data science when no one thinks your idea valuable.</p>
+<p>It is essential to <strong>build up your business skills</strong> in addition to technical skills. Many data scientists, especially the junior may excel at machine learning and algorithm but usually cry out for business point of view. Their recommendations are getting off the track from what the company is doing. That is the worst thing you want to face in the world of Data science when no one values your idea..</p>
 </li>
 </ul>
 <p><strong>Specialized skills</strong></p>
 <ul>
 <li>
-<p>Familiar with and expert in Python, SQL and/or R on various online/offline platforms.</p>
+<p>Build expertise in <strong>Python, SQL and/or R</strong> on various online/offline platforms.</p>
 </li>
 <li>
 <p>Fluency in using Local development environments and Intergrated development Environment, including but not limited to Jupyter, RStudio, Pycharm. Try to <strong>learn on job</strong> or <strong>learn on practice</strong>.</p>
 </li>
 <li>
-<p>Strong foundation with practical experience in Linear/Logistics regression, Decision Tree/Random Forest, and Gradient Boosting models. Moreover, besides popular and must known libraries such as Scikit-learn, Keras, Tensorflow, Xgboost is the framework that student should learn at the moment. Working on your own project/cooperating project is a good choice to get practical experience if you have not obtained the chance in a company.</p>
+<p><strong>Strong in foundation and rich in practical experience</strong>. Develop side projects within your interested fields with proper models showcase. The model can be either traditional Linear regression, Decision Tree/Random Forest, or cutting-edge XGBoost, Recurrent Neural Network.</p>
 </li>
 <li>
-<p>Computer Vision and NLP are the booming areas in Data science so it is beneficial to prepare yourself with these skills.</p>
+<p><strong>Enrich your knowledge and application in convenient frameworks</strong> such as Scikit-learn, Keras, Tensorflow, Xgboost. Working on your own project/cooperating project is a good choice to get practical experience if you have not obtained the chance in a company.</p>
 </li>
 <li>
-<p>Although AutoML is a newly emerging field, it will probably become one of the important tools and skills for Data Scientist, including Automated hyperparameter tuning, Data augmentation, Feature engineering/selection and Auto ML pipelines.</p>
+<p><strong>Computer Visio</strong>n and <strong>NLP</strong> are the booming areas in Data science so it is beneficial to prepare yourself with these skills.</p>
 </li>
 <li>
-<p>Skills in working with Big data and Big data products e.g Google Bigquerry, Databricks, Redshift are the must to own.</p>
+<p>Although <strong>AutoML</strong> is a newly emerging field, it will probably become one of the important tools and skills for Data Scientist, including Automated hyperparameter tuning, Data augmentation, Feature engineering/selection and Auto ML pipelines.</p>
 </li>
 <li>
-<p>This is the same with usage of cloud computing skills. In big company, it is a common to work on cloud so if you do not know how to conduct machine learning on cloud, it will become your minus comparing to other candidates.</p>
+<p>Skills in working with <strong>Big data</strong> and Big data products e.g Google Bigquerry, Databricks, Redshift are the must to own.</p>
+</li>
+<li>
+<p>This is the same with usage of <strong>cloud computing skills</strong>. In big company, it is a common to work on cloud so if you do not know how to conduct machine learning on cloud, it will become your minus comparing to other candidates.</p>
 </li>
 </ul>
 <p>And one last important thing: <strong>Always believe in yourself, your choice and never give up</strong></p>
 <h4 id="end-notes">End notes</h4>
 <p>As the big survey focusing on the Data science / Machine Learning areas, it appeared as a great source for me to gain valuable information.</p>
-<p>Beside understanding which typical skills requiring to advance in the Data Science field, I want to turn the dataset into a Salary prediction model and I will update on that in upcoming days.</p>
+<p>Beside understanding which typical skills requiring to advance in the Data Science field, I want to tbuild a model to predict the salary range and I will update on that in upcoming days.</p>
 
     </div>
 
@@ -768,11 +808,13 @@
 
 <div class="article-tags">
   
+  <a class="badge badge-light" href="/tags/analytics/">Analytics</a>
+  
   <a class="badge badge-light" href="/tags/skill/">Skill</a>
   
-  <a class="badge badge-light" href="/tags/beginner/">Beginner</a>
-  
   <a class="badge badge-light" href="/tags/business/">Business</a>
+  
+  <a class="badge badge-light" href="/tags/skill/">Skill</a>
   
 </div>
 

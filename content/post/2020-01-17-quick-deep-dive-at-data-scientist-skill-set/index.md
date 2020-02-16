@@ -3,6 +3,7 @@ authors:
 - admin
 categories:
 - Data Science
+- Analytics
 date: "2020-01-17T00:00:00Z"
 draft: false
 featured: false
@@ -14,21 +15,23 @@ image:
 lastmod: "2020-01-28T00:00:00Z"
 projects: []
 subtitle: 'Skill set that Data Scientist needs to master'
-summary: Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R'
+summary: 'Skill set that Data Scientist needs to master through studying Kaggle survey 2019 using R'
+description: 'Skill set that Data Scientist needs to master'
 tags:
+- Analytics
 - Skill
-- Beginner
 - Business
+- Skill
 title: 'Quick deep dive at Data Scientist Skill set'
 ---
 
 One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:
 
-**What truly are the skills that a Data Scientist needs?**
+**Frankly saying, what are the skills that a Data Scientist needs?**
 
 **What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?**
 
-And many other friends, acquaintances reached out to me for a thought of what to learn to become a Data Scientist. 
+Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.
 
 Actually, I can share some of my experiences with them, but as you've already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.
 
@@ -70,6 +73,7 @@ plot_df_ds <- function (df_draw_ds, columnName1, columnName2) {
     filter(value != "Not employed",value != "Other") %>% 
     summarise(count=n()) %>% 
     mutate(perc= prop.table(count))
+}
 ```
 
 ---
@@ -78,7 +82,7 @@ Now, let's explore the result.
 
 ### **Role and Responsibilities:**
 
-A Data scientist' is 's responsibility for many tasks with top 3 are:
+A Data scientist is responsible for many tasks but the Top 3 includes:
 
 * **Analyzing data** to influence product or to support business decisions
 
@@ -116,25 +120,27 @@ Another interesting thing is that 51% of Data scientists is applying **Boosting 
 
 **Foundation skills**
 
-* Writing code is an important skill of a good Data scientist. You do not need to be an excellent coder to be a Data scientist but it is dangerous to think that knowing little of coding skill is just enough to work as a Data scientist.
+* **Writing code** is an important skill of a good Data scientist. Being an excellent coder is not required but preferable to have, especially big companies have the tendency to hire Data Scientist Engineer with coding skill.
 
-* It is essential to build up your business skills in addition to technical skills. Many data scientists, especially the junior excels at machine learning and coding but is lack of a business point of view so that most of their work does not support the business as the way it should be. Their recommendations were far from what the company is doing and it ended up beating all of their effort. That is the worst thing you want to face in the world of Data science when no one thinks your idea valuable.
+* It is essential to **build up your business skills** in addition to technical skills. Many data scientists, especially the junior may excel at machine learning and algorithm but usually cry out for business point of view. Their recommendations are getting off the track from what the company is doing. That is the worst thing you want to face in the world of Data science when no one values your idea..
 
 **Specialized skills**
 
-* Familiar with and expert in Python, SQL and/or R on various online/offline platforms.
+* Build expertise in **Python, SQL and/or R** on various online/offline platforms.
 
 * Fluency in using Local development environments and Intergrated development Environment, including but not limited to Jupyter, RStudio, Pycharm. Try to **learn on job** or **learn on practice**.
 
-* Strong foundation with practical experience in Linear/Logistics regression, Decision Tree/Random Forest, and Gradient Boosting models. Moreover, besides popular and must known libraries such as Scikit-learn, Keras, Tensorflow, Xgboost is the framework that student should learn at the moment. Working on your own project/cooperating project is a good choice to get practical experience if you have not obtained the chance in a company. 
+* **Strong in foundation and rich in practical experience**. Develop side projects within your interested fields with proper models showcase. The model can be either traditional Linear regression, Decision Tree/Random Forest, or cutting-edge XGBoost, Recurrent Neural Network.
 
-* Computer Vision and NLP are the booming areas in Data science so it is beneficial to prepare yourself with these skills.
+* **Enrich your knowledge and application in convenient frameworks** such as Scikit-learn, Keras, Tensorflow, Xgboost. Working on your own project/cooperating project is a good choice to get practical experience if you have not obtained the chance in a company.
 
-* Although AutoML is a newly emerging field, it will probably become one of the important tools and skills for Data Scientist, including Automated hyperparameter tuning, Data augmentation, Feature engineering/selection and Auto ML pipelines.
+* **Computer Visio**n and **NLP** are the booming areas in Data science so it is beneficial to prepare yourself with these skills.
 
-* Skills in working with Big data and Big data products e.g Google Bigquerry, Databricks, Redshift are the must to own.
+* Although **AutoML** is a newly emerging field, it will probably become one of the important tools and skills for Data Scientist, including Automated hyperparameter tuning, Data augmentation, Feature engineering/selection and Auto ML pipelines.
 
-* This is the same with usage of cloud computing skills. In big company, it is a common to work on cloud so if you do not know how to conduct machine learning on cloud, it will become your minus comparing to other candidates.
+* Skills in working with **Big data** and Big data products e.g Google Bigquerry, Databricks, Redshift are the must to own.
+
+* This is the same with usage of **cloud computing skills**. In big company, it is a common to work on cloud so if you do not know how to conduct machine learning on cloud, it will become your minus comparing to other candidates.
 
 And one last important thing: **Always believe in yourself, your choice and never give up**
 
@@ -142,4 +148,4 @@ And one last important thing: **Always believe in yourself, your choice and neve
 
 As the big survey focusing on the Data science / Machine Learning areas, it appeared as a great source for me to gain valuable information. 
 
-Beside understanding which typical skills requiring to advance in the Data Science field, I want to turn the dataset into a Salary prediction model and I will update on that in upcoming days.
+Beside understanding which typical skills requiring to advance in the Data Science field, I want to tbuild a model to predict the salary range and I will update on that in upcoming days.

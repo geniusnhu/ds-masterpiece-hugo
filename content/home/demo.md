@@ -8,8 +8,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Welcome to The Hub"
-subtitle = ""
+title = "Welcome to The Hub of Data Science"
+subtitle = "Owned by Nhu Hoang"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -29,8 +29,8 @@ subtitle = ""
   # gradient_end = "SkyBlue"
   
   # Background image.
-  image = "headers/bubbles-wide.jpg"  # Name of image in `static/img/`.
-  image_darken = 0.6  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
+  image = "headers/net.jpg"  # Name of image in `static/img/`.
+  image_darken = 0.4  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
   image_size = "cover"  #  Options are `cover` (default), `contain`, or `actual` size.
   image_position = "center"  # Options include `left`, `center` (default), or `right`.
   image_parallax = true  # Use a fun parallax-like fixed background effect? true/false
@@ -52,9 +52,9 @@ subtitle = ""
 
 This website was created by Nhu Hoang, a Data Scientist, Advance Analytics and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
 
-If you are interested in my work, take a look at my **[Portfolio](/portfolio)**
+If you are interested in my work, take a look at my **[Portfolio](/post)**
 
-You can also find interested things in **[Post](/posts)**
+You can also find interested things in **[Post](/publication)**
 
 My profile is **[here](/authors/admin)** for you to take a look; and you can reach me directly in the **Contact** section to ask me or advise me on anything.
 

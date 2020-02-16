@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Recent Posts | Data Science Hub</title>
+    <title>Recent Posts | Nhu Hoang</title>
     <link>/publication/</link>
       <atom:link href="/publication/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent Posts</description>
@@ -14,9 +14,9 @@
     
     <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/publication/nlp/</link>
+      <link>/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/nlp/</guid>
+      <guid>/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
       <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
 &lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
 &lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
@@ -233,65 +233,117 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/publication/getting-started/</link>
+      <link>/publication/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/getting-started/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not considered as an adviser or a consultant for business, but just a normal employee?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This is such a common complaint I heard so many times from my friends, especially the junior. I have also struggled with this issue during the first year of my career but then I successfully overcame it. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I think I should share my experience to others so that it will help other Data Scientist achieving a higher reputation for their career.&lt;/p&gt;
-&lt;p&gt;This problem does not only exist in some certain areas but appears everywhere, especially when the scale is tilted toward technical skills rather than keeping balance between &lt;strong&gt;business mindset&lt;/strong&gt; and &lt;strong&gt;technical models&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Even for some senior Data Scientists, this issue is a headache. When I meet others, we spent most of the time talking about a Machine learning models such as RNN, NLP, or advanced and new achievement in applying Data science in the company. However, if I ask them why they decided to use RNN instead of Deep learning and how their model supports the business, they could hardly provide a persuasive reason or they would go with a lengthy explanation on concept, algorithm but forget business aspect.&lt;/p&gt;
-&lt;p&gt;I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;em&gt;understanding the business concept at first before any other activities&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Hence, I wonder whether they really understand how their models contribute to the business.&lt;/p&gt;
-&lt;p&gt;Here I list out a standard flow for starting a data science projects with key point to pay attention to. which I has been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.&lt;/p&gt;
-&lt;p&gt;As mentioned above, this post is written based on my experience. Therefore, adjust them to your own situation, and always remember the key concepts so that you will find the most suitable approach for your own work.&lt;/p&gt;
+      <guid>/publication/practical-flow-of-a-data-science-project/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
+&lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;
+&lt;p&gt;It is a routine for a Data Scientist to saturate with &lt;strong&gt;technical models&lt;/strong&gt; while understates the role of &lt;strong&gt;business mindset&lt;/strong&gt;. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;strong&gt;understanding the business concept at first before any other activities&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Therefore, I list out below a standard flow for starting a data science projects with key points, which I have been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.
+This post was written based on my experience. Hence, take it as your reference and adjust to your own needs.&lt;/p&gt;
+&lt;hr&gt;
 &lt;h3 id=&#34;1-first-and-foremost-importance---clarifying-business-question&#34;&gt;1. First and foremost importance - Clarifying Business question&lt;/h3&gt;
 &lt;p&gt;During my years in analytics and data science, in addition to technological concept explanation, &lt;strong&gt;business question clarification&lt;/strong&gt; is one of the most difficult tasks when a Data scientist communicates with business partner.&lt;/p&gt;
-&lt;p&gt;I am sure that you here this everywhere, in many articles, that you will always have to clarify business question.&lt;/p&gt;
+&lt;p&gt;I am sure that you catch this phrase everywhere, in numerous articles, warning you to clarify business question in every situation.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;But how?&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Working is different with researching, especially a Data Scientist is expected to become a wise man who knows the answer for all questions within the business or at least knows how to get the right answers. Therefore, digging the problem is our job and how to do that is our responsibility.&lt;/p&gt;
-&lt;p&gt;It must be very familiar with you when a sales manager asks you &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or a marketing director: &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Working and researching are not identical. In business, top people never stop expecting a Data Scientist to become a wise man who knows the answer for all of their questions. Therefore, &lt;strong&gt;digging the problem is our job and how to do that is our responsibility&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It must be very familiar with you when a sales manager asks you &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or a marketing director demands &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&amp;quot;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;When you hear these questions, can you imagine the right approach or the answer to the case? Or you will be very vague and keep asking yourself &lt;em&gt;&amp;ldquo;Is that they want me to do this.&amp;rdquo; or &amp;ldquo;I think they want to know that.&amp;quot;&lt;/em&gt;, and if you deliver the result based on this understanding, &lt;strong&gt;how much confidence you have on your result?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;The only one response you will get from them is:&lt;/p&gt;
+&lt;p&gt;In reality, if you keep it this way, the one and only response you will get from them is:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&amp;ldquo;This is not what I need&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;OMG! How terrible it is when you spent so much effort into this, but no one values it.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;This is because you did not truly understand problem so that you did not touch the right pain point!&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I know that the common advice is to ask &lt;em&gt;&amp;ldquo;Why&amp;rdquo;&lt;/em&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
-&lt;p&gt;I usually start by asking about the &lt;strong&gt;background of the question&lt;/strong&gt;, &lt;strong&gt;why and how they come up with the request&lt;/strong&gt;. This is not because I do not understand the business performance but I want to be on the same page with requester and to be able to advise them further on. After asking, many times you will see that the way to deal with the real problem should be different. For example, for the question &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A during summer?&amp;quot;&lt;/em&gt;, the real issue is not to improve the efficacy of the activity but to optimize the budget spending on online promotion in order to increase the purchase rate and new customers. This is the real question that your business partner wants you to help them answer.&lt;/p&gt;
-&lt;p&gt;Then, discuss with the business partner, truly understand on the problem, get alignment on delivery deadline or anything related.&lt;/p&gt;
+&lt;p&gt;For example, the director wants to know way to improve his marketing activity efficacy, so what does &lt;strong&gt;Efficacy&lt;/strong&gt; mean here? What kind of activity he points to? What are the real pain points? If these concerns are plainly clarified, the request will be interpreted as &lt;em&gt;&amp;ldquo;How to optimize the budget spending on online promotion in order to increase the purchase rate and new customers vs last year&amp;rdquo;&lt;/em&gt;. This will end up with increasing efficacy.&lt;/p&gt;
+&lt;p&gt;One of the common advises is to ask &lt;strong&gt;&amp;ldquo;Why&amp;rdquo;&lt;/strong&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
+&lt;p&gt;What can you do more:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ask about the background of the question&lt;/strong&gt;, why and how they come up with the request after you receive it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&#39;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Engage with other teams in the company&lt;/strong&gt; to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as &lt;em&gt;&amp;ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Think of initiatives and what you can do more&lt;/strong&gt; within your expertise to bring the projects to the next level.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;Be a thinker, not a doer!&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;2-identify-the-approach-for-the-problem&#34;&gt;2. Identify the approach for the problem&lt;/h3&gt;
-&lt;p&gt;This part is to set the methodology for the analysis.&lt;/p&gt;
+&lt;p&gt;This part is to place the methodology for the analysis&lt;/p&gt;
 &lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
-&lt;p&gt;There are numerous models, analysis approaches that you have already learnt and sometimes you will get lost in whether using which types of descriptive analysis, which models of predictive analysis, classification, segmentation, time series forecasting.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This step seems to be easy but in fact drives you crazy and confused. If the Sales Director asked Data Science team to forecast the &lt;strong&gt;sales for next year&lt;/strong&gt;, and the business need is to get the forecast &lt;strong&gt;based on the amount of budget spending&lt;/strong&gt;, then which model should be used?
-If the business wanted the forecast &lt;strong&gt;based on the market movement&lt;/strong&gt;, which approach is suitable?&lt;/p&gt;
-&lt;p&gt;This is the importance in choosing the right approach for the business question.&lt;/p&gt;
+&lt;p&gt;With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/p&gt;
+&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&#39;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&#39;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
+&lt;p&gt;What you can do more:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;It is fundamental to &lt;strong&gt;understand the discrepancy between Descriptive analysis and Predictive analysis&lt;/strong&gt; (many people are still ambiguous between these 2 concepts). An example of descriptive analysis is the relationship between factors; while prescriptive analysis deals with figuring out the future outcomes of that relationship. &lt;em&gt;Descriptive analysis delivers historical insights and prescriptive analysis foresees future values&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Identify the specific type of data&lt;/strong&gt; to assist the problem approach: The target variable and other variables are continuous, categorical or binary.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Understand key problem approaches&lt;/strong&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Binary&lt;/em&gt; (2 possible answers) or &lt;em&gt;Multi-clas&lt;/em&gt;s (more than 2 possible answers) classification;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Regression relationship&lt;/em&gt; (relationship between 2 or more factors) or &lt;em&gt;Regression prediction&lt;/em&gt; (predict future value using regression model);&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Clustering&lt;/em&gt; (cluster unlabeled observation into groups of similar characteristics) or &lt;em&gt;Segmentation&lt;/em&gt; (divide observations into specific groups);&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Trend detection&lt;/em&gt; (historical movement) or &lt;em&gt;Time-series forecasting&lt;/em&gt; (project future value of that movement).&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
 &lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
-&lt;p&gt;Data selection sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, will it need to have the birthday information of the customer if the task is to predict their churn probability?&lt;/p&gt;
-&lt;p&gt;Then, identify the approach to acquire the data. This can be from company&#39;s data warehouse, conducting survey collecting result, or government-owned data&amp;hellip;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;However, what occurs during Data Collection?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;There are two major problems in this step&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&#39;s birthday information for the task of predicting churn probability?&lt;/p&gt;
+&lt;p&gt;Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: &lt;em&gt;Garbage in is Garbage out&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Two major problems that usually occur during Data Collection&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The unavailability of data&lt;/li&gt;
 &lt;li&gt;The bias of training data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;First, let&#39;s look at the &lt;strong&gt;unavailability of data&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;This problem is very common in real case in which data is unable to capture at the moment of collection such as &lt;em&gt;the time spent in using a non-digital product&lt;/em&gt;. As a common sense, you will think that you have to get the data. However, you have to consider the consequences of getting data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
-&lt;p&gt;Therefore, the solution for this case is to defer inaccessible data and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
-&lt;p&gt;On the other hand, one of the provident ways of getting new features is to change the system of collecting data to acquire the right information needed. The Data scientist team can discuss with data management to get the timestamp that customers log on the page in addition to the browsing/ purchasing data.&lt;/p&gt;
-&lt;p&gt;If the Data scientist is unable to acquire unavailable data through the above way, then think about contacting an outside data owner and prepare the budget.&lt;/p&gt;
-&lt;p&gt;Second, the &lt;strong&gt;bias of data&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&#39;s look at the unavailability of data&lt;/h4&gt;
+&lt;p&gt;This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the &lt;em&gt;time spent in cooking at home&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
+&lt;p&gt;Therefore, the solution for this case is to &lt;strong&gt;defer inaccessible data&lt;/strong&gt; and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
+&lt;p&gt;What you can do more if you need more data:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bring along a data request summary&lt;/strong&gt; when you visit the database owner if you need to talk to other parties for this. The summary form should include background of you project, data requirement, your request. This will help smoothing the discussion and the business partner will give the adequate solution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Change the process/method of collecting data&lt;/strong&gt; to acquire the right information needed. Work with database owner or IT team or propose to your up-line a system revision plan for approval.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prepare budget and contact an outside data owner&lt;/strong&gt; if the additional data is vital to improve the model and inaccessible for you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;32-second-the-bias-of-data&#34;&gt;3.2 Second, the bias of data&lt;/h4&gt;
 &lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
-&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is not gender-neutral from the beginning.&lt;/p&gt;
+&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
 &lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
+&lt;p&gt;What you can do more to eliminate the bias:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ensure the statistical distribution of data and its representatives over population&lt;/strong&gt;. For example, if the population is made up of 56% of male and 43% of female and 1% of others, the data distribution must be in similar ratio.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Verify the split of train, validate and test sets&lt;/strong&gt; in prediction models to establish a similar allocation of variable and categories.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Choose the learning model fitting the problem and reduce the skewness&lt;/strong&gt;. Some models can reduce the bias in data including clustering or dimension reduction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Monitor the performance in real data&lt;/strong&gt;. Frequently run statistical test on real data to pick out uncommon case. If the test result shows a statically significant in churn rate among male than female, dig it out. Is it the sudden shift or result of bias?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
 &lt;p&gt;After getting all the data you need, the next step is thing that a Data scientist usually does:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;DS_Flow.jpg&#34;
 style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
