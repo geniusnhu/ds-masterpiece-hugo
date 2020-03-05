@@ -232,6 +232,57 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
     </item>
     
     <item>
+      <title>ARIMA Autoregressive Integrated Moving Average model</title>
+      <link>/publication/arima-autoregressive-intergreated-moving-average/</link>
+      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/arima-autoregressive-intergreated-moving-average/</guid>
+      <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
+&lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
+&lt;p&gt;There are 3 parts in the ARIMA model: &lt;strong&gt;Auto Regressive (AR)&lt;/strong&gt; $p$, &lt;strong&gt;Integrated (I)&lt;/strong&gt; $d$, &lt;strong&gt;Moving Average (MA)&lt;/strong&gt; $q$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Integrated&lt;/strong&gt; (Or stationary): how is your data depend on each other across time. One of the characteristics of Stationary is that the effect of an observation dissipated as time goes on. Therefore, the best long-term predictions for data that has stationary is the historical mean of the series.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;hellip;To get stationary to your data, we need Differencing (or the change from one time period to another)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Auto Regressive&lt;/strong&gt;: deals with previous values of model, or called lags, and there are unlimited number of lags in the model. The basic assumption of this model is that the current series value depends on its previous values. This is the long memory model because the effect slowly dissipates across time. p is preferred as the maximum lag of the data series.
+&amp;hellip; The AR can be denoted as
+$Y_{t}=\omega_{0}+\alpha_{1}Y_{t-1}+\alpha_{2}Y_{t-2}+&amp;hellip;+\xi$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Moving Average&lt;/strong&gt;: deal with &amp;lsquo;shock&amp;rsquo; or error in the model, or how abnormal your current value is compared to the previous values (has some residual effect). This is short memory model because the effect quickly disappears completely.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;p, d, and q are non-negative integers;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$: the order (number of time lags) of the autoregressive model, also called the lag order.&lt;/li&gt;
+&lt;li&gt;$d$: the degree of differencing (the number of times the data have had past values subtracted)&lt;/li&gt;
+&lt;li&gt;$q$: the order of the moving-average model (The size of the moving average window)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A value of 0 can be used for a parameter, which indicates to not use that element of the model. When two out of the three parameters are zeros, the model may be referred to non-zero parameter. For example, $ARIMA (1,0,0)$ is $AR(1)$  (i.e. the ARIMA model is configured to perform the function if a AR model), $ARIMA(0,1,0)$ is $I(1)$, and $ARIMA(0,0,1)$ is $MA(1)$&lt;/p&gt;
+&lt;h2 id=&#34;2-model-evaluation&#34;&gt;2. Model evaluation&lt;/h2&gt;
+&lt;p&gt;There are 2 common measures to evaluate the predicted values with the validation set.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.	Mean Absolute Error (MAE):&lt;/strong&gt;
+&amp;hellip;How far your predicted term to the real value on absolute term. One of the drawbacks of the MAE is because it shows the absolute value so there is no strong evidence and comparison on which the predicted value is actually lower or higher.&lt;/p&gt;
+&lt;p&gt;$MAE=\frac{1}{n}\sum_{i = 1}^{n} |Y_{t}-\hat{Y_{t}}|$&lt;/p&gt;
+&lt;p&gt;can be run with R&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;mean(abs(Yp - Yv))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or in Python&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn import metrics
+metrics.mean_absolute_error(y_test, y_pred)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Mean absolute percentage error (MAPE):&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;hellip; The MAE score shows the absolute value and it is hardly to define whether that number is good or bad, close or far from expectation. This is when MAPE comes in.
+&amp;hellip;MAPE measures how far your predicted term to the real value on absolute percentage term.&lt;/p&gt;
+&lt;p&gt;$MAPE=100\frac{1}{n}\sum_{i = 1}^{n} \frac{|Y_t-\hat{Y_t}|} {\hat{Y_{t}}}$&lt;/p&gt;
+&lt;p&gt;Can compute as&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;100 x mean(abs(Yp - Yv) / Yv )
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Practical flow of a Data Science Project</title>
       <link>/publication/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>

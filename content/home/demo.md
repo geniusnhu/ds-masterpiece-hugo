@@ -8,8 +8,8 @@ headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
-title = "Welcome to The Hub of Data Science"
-subtitle = "Owned by Nhu Hoang"
+title = "Data Science RaceToMaster"
+subtitle = "Ultimate journey to Learn, Develop and Master Data Science"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -50,11 +50,9 @@ subtitle = "Owned by Nhu Hoang"
  css_class = ""
 +++
 
-This website was created by Nhu Hoang, a Data Scientist, Advance Analytics and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
+Developed by a Data Scientist and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
 
-If you are interested in my work, take a look at my **[Portfolio](/post)**
-
-You can also find interested things in **[Post](/publication)**
+If you are interested in my work, take a look at my **[Portfolio](/post)** . You can also find interested things in **[Post](/publication)**
 
 My profile is **[here](/authors/admin)** for you to take a look; and you can reach me directly in the **Contact** section to ask me or advise me on anything.
 

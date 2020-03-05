@@ -21,10 +21,34 @@
     </item>
     
     <item>
+      <title>ARIMA</title>
+      <link>/categories/arima/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/categories/arima/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Data Science</title>
       <link>/categories/data-science/</link>
-      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
       <guid>/categories/data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Forecasting</title>
+      <link>/categories/forecasting/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/categories/forecasting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Time Series</title>
+      <link>/categories/time-series/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/categories/time-series/</guid>
       <description></description>
     </item>
     

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Forecast | Nhu Hoang</title>
+    <link>/tags/forecast/</link>
+      <atom:link href="/tags/forecast/index.xml" rel="self" type="application/rss+xml" />
+    <description>Forecast</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 06 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Forecast</title>
+      <link>/tags/forecast/</link>
+    </image>
+    
+    <item>
+      <title>Comprehensive understanding on Time Series forecasting</title>
+      <link>/2020/02/06/comprehensive-understanding-on-time-series-forecasting/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/2020/02/06/comprehensive-understanding-on-time-series-forecasting/</guid>
+      <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
+&lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
+&lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
+&lt;p&gt;There are 4 components in Time Series: Level, Trend, Seasonality and Noise.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Level&lt;/strong&gt;: the average value of the time series&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trend&lt;/strong&gt;: The movement of the series values from 1 period to another period&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Seasonality&lt;/strong&gt;: The short-term cyclical behavior of the series that can be observed several times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Noise&lt;/strong&gt;: the random variation that results from the measurement of error&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It is not always that we will be able to distinguish the first 3 elements from Noise because they are usually invisble which need some techniques to be noticeable&lt;/p&gt;
+&lt;p&gt;To observe and identify the existence of these components, we can consider.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plot the Time series (this is the best way to detect the characteristics of the series)&lt;/li&gt;
+&lt;li&gt;Zoom in a specify shorter period of time&lt;/li&gt;
+&lt;li&gt;Change scale of the series to observe the trend more clearly&lt;/li&gt;
+&lt;li&gt;Suppress seasonality: aggregate the time series to a bigger time scale (from hourly scale to daily scale, from monthly scale to yearly scale, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used 3-year weekly sales of a Retail store as an illustration.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(&amp;quot;Date&amp;quot;, &amp;quot;Weekly_Sales&amp;quot;, data=Wal_sales)
+plt.hlines(y=Wal_sales.Weekly_Sales.mean(), xmin=0, xmax=len(Wal_sales), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;TS plot.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;With this data, there are obviously 2 peaks which denotes quite a clear &lt;strong&gt;seasonality at the end of year&lt;/strong&gt; (probably Christmas and New year period). There might be other sesonality but it is hard to observe it from the plot. &lt;strong&gt;Auto correlation&lt;/strong&gt; can be used to confirm the seasonality.&lt;/p&gt;
+&lt;h2 id=&#34;3-autocorrelation&#34;&gt;3. Autocorrelation&lt;/h2&gt;
+&lt;p&gt;Autocorrelation describes the &lt;strong&gt;connection between the value of time series  and its neighbors&lt;/strong&gt;. Thus, to compute Autocorrelation, we calculate the correlation of the series with its &lt;strong&gt;lagged versions&lt;/strong&gt;. Lag-n version is produced from the original dataset by moving the series values forward n period. For example, lag-1 is moved forward 1 period, Lag-10 series is moved forward 10 periods.&lt;/p&gt;
+&lt;p&gt;By observing the correlation of the series and its lags, we can confirm the seasonality of the series.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;auto_cor = sales.groupby(&amp;quot;Date&amp;quot;)[&amp;quot;Weekly_Sales&amp;quot;].sum()
+auto_cor = pd.DataFrame(auto_cor)
+auto_cor.columns = [&amp;quot;y&amp;quot;]
+
+# Adding the lag of the target variable from 1 steps back up to 52 (due to a seasonality at the end of the year)
+for i in range(1, 53):
+    auto_cor[&amp;quot;lag_{}&amp;quot;.format(i)] = auto_cor.y.shift(i)
+
+# Compute autocorrelation of the series and its lags
+lag_corr = auto_cor.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&amp;quot;corr&amp;quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind=&#39;bar&#39;)
+plt.grid(True, axis=&#39;y&#39;)
+plt.title(&amp;quot;Autocorrelation&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;Autocorrelation.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Judging from the Autocorrelation plot above, there is a strong positive autocorrelation in lag-52 as well as lag-51 as we expected when observing the time series plot. This implies a &lt;strong&gt;cyclical annual pattern at the end of the year&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The second strong correlation is lag-1, which connotes as the second week of february, or Valentine period.&lt;/li&gt;
+&lt;li&gt;The autocorrelation reveals both &lt;strong&gt;Positive&lt;/strong&gt; and &lt;strong&gt;Negative&lt;/strong&gt; autocorrelation, which implies that the series does not move in the same direction but ups and downs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Autocorrelation can plotted easily through using &lt;em&gt;autocorrelation_plot&lt;/em&gt; function from &lt;em&gt;pandas.plotting&lt;/em&gt; in Python or &lt;em&gt;acf&lt;/em&gt; function from &lt;em&gt;tseries&lt;/em&gt; package in R.&lt;/p&gt;
+&lt;h2 id=&#34;4-forecasting-time-series&#34;&gt;4. Forecasting Time series&lt;/h2&gt;
+&lt;p&gt;There are several methods to forecast Time series.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model-based method through multiple linear regression&lt;/strong&gt; to explore the correlation of the series with other features. Alike other cross-sessional data, model-based method compute the dependence of the time series to other features, but does not take into account the dependence between time series values within different periods.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data-driven method in which learns the pattern from the data itself&lt;/strong&gt; and estimate the next value of the time series in correspondence with its previous values. The data-driven method is important in time series given in the time series context, the values in adjoining period tend to be correlated with each other. Such correlation is denoted as &lt;strong&gt;Autocorrelation&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Combining method by forecasting the future values of the series as well as the future value of residual that generated from the first forecasting model&lt;/strong&gt;, and then combine the result of 2 forecast together. The residual forecast acts as the correct for the first forecast.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ensembles method&lt;/strong&gt; by averaging multiple methods to get the result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;forecasting-using-data-driven-method&#34;&gt;Forecasting using Data-driven method:&lt;/h3&gt;
+&lt;p&gt;ARIMA model is the most frequent choice to compute data-driven forecasting. You can find detail for ARIMA model in this &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;post&lt;/a&gt;. 
+Here I will apply the ARIMA to the data.&lt;/p&gt;
+&lt;p&gt;It is useful to use *:auto_arima**function from &lt;strong&gt;pmdarima&lt;/strong&gt; in Python or &lt;strong&gt;auto.arima&lt;/strong&gt; function from &lt;strong&gt;forecast&lt;/strong&gt; packgage in R.&lt;/p&gt;
+&lt;p&gt;There is one thing to note is that from the Autocorrelation above, there is a clear seasonality at lag 52 so we will need to include this into the ARIMA model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;stepwise_model = pm.auto_arima(Wal_sales.iloc[:,1].values, start_p=1, start_q=1,
+                               max_p=20, max_q=20, m=52,
+                               start_P=0, seasonal=True,
+                               d=1, D=1, trace=True,
+                               error_action=&#39;ignore&#39;,  
+                               suppress_warnings=True, 
+                               stepwise=True)
+print(stepwise_model.aic())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Result&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Performing stepwise search to minimize aic
+Fit ARIMA: (1, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2898.191, BIC=2903.190, Time=0.423 seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2883.839, BIC=2893.839, Time=5.555 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=False); AIC=2907.540, BIC=2910.039, Time=0.371 seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2893.265, BIC=2900.764, Time=0.807 seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2890.759, BIC=2898.258, Time=7.666 seconds
+Fit ARIMA: (2, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2884.464, BIC=2896.963, Time=7.595 seconds
+Fit ARIMA: (1, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2884.895, BIC=2897.394, Time=20.608 seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2883.040, BIC=2893.039, Time=6.410 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 0, 52) (constant=True); AIC=2893.770, BIC=2901.269, Time=5.440 seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2887.816, BIC=2900.315, Time=7.108 seconds
+Fit ARIMA: (1, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2889.929, BIC=2904.928, Time=17.358 seconds
+Total fit time: 79.418 seconds
+2883.039997060003
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This fuction chose the lowest AIC-score model and embed it for further model usage.&lt;/p&gt;
+&lt;p&gt;Split train-test set, train the model and make prediction.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#Split train and test
+train = Wal_sales.iloc[:106,1].values
+test = Wal_sales.iloc[106:,1].values
+# Train the model
+stepwise_model.fit(train)
+
+# Predict test set
+pred = stepwise_model.predict(n_periods=37)
+
+# Reframe the data
+test_pred = Wal_sales.iloc[106:,:2]
+test_pred[&amp;quot;Predict_sales&amp;quot;] = np.array(pred,dtype=&amp;quot;float&amp;quot;)
+
+# Visualize the prediction
+plt.figure(figsize=(12,8))
+plt.plot( &#39;Date&#39;, &#39;Weekly_Sales&#39;, data=Wal_sales, markersize=12, color=&#39;olive&#39;, linewidth=3)
+plt.plot( &#39;Date&#39;, &#39;Predict_sales&#39;, data=test_pred, marker=&#39;&#39;, color=&#39;blue&#39;, linewidth=3)
+plt.title(&amp;quot;Predicted sales vs Actual sales&amp;quot;)
+plt.legend()
+
+print(&amp;quot;MAPE score: &amp;quot;, mean_absolute_percentage_error(test, pred))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;ARIMA_forecast.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In overal, the model seem to work moderately on the data but there is still room to improve further.&lt;/li&gt;
+&lt;li&gt;The MAPE (mean absolute percentage error) score is 5.7%, which is not too high, not too low.&lt;/li&gt;
+&lt;li&gt;The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data&#34;&gt;One question emerged, does this model truly capture the values of the time series data?&lt;/h4&gt;
+&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&#39;s residual with other periods&amp;rsquo; ones.&lt;/p&gt;
+&lt;p&gt;The Residuals of a &lt;strong&gt;good time series forecasting model&lt;/strong&gt; have the following properties:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residuals are &lt;strong&gt;uncorrelated&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Residuals have &lt;strong&gt;zero or nearly-zero mean&lt;/strong&gt; (which means the model is unbiased in any directions)&lt;/li&gt;
+&lt;li&gt;Residuals should have &lt;strong&gt;normal distribution&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Residuals should have &lt;strong&gt;constant variance&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the result is lack of any of the above attributes, the forecasting model can be further improved.&lt;/p&gt;
+&lt;p&gt;Let&#39;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Compute Residual
+train_pred = stepwise_model.predict(n_periods=106)
+r_train = train - train_pred
+r_test = test - pred
+residual = pd.DataFrame(np.concatenate((r_train,r_test)), columns={&amp;quot;y&amp;quot;})
+
+
+# Generate lag of Residuals from 1 step to 52 steps
+# Adding the lag of the target variable from 1 steps back up to 52 
+for i in range(1, 53):
+    residual[&amp;quot;lag_{}&amp;quot;.format(i)] = residual.y.shift(i)
+
+# Compute correlation of the Residual series and its lags
+lag_corr = residual.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&amp;quot;corr&amp;quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Residual Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind=&#39;bar&#39;)
+plt.grid(True, axis=&#39;y&#39;)
+plt.title(&amp;quot;Autocorrelation&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_autocorrelation.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Other criteria:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Residual mean and Distribution
+print(&amp;quot;Residual mean: &amp;quot;,residual.iloc[:,0].mean())
+plt.hist(residual.iloc[:,0], bins=20)
+plt.title(&amp;quot;Residual Distribution&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Residual mean:  -6308833.905274585
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_distribution.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Residual variance
+plt.plot(residual.iloc[:,0])
+plt.title(&amp;quot;Residual&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_variance.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let&#39;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.&lt;/li&gt;
+&lt;li&gt;Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.&lt;/li&gt;
+&lt;li&gt;Residuals should have normal distribution: Not quite a normal distribution&lt;/li&gt;
+&lt;li&gt;Residuals should have constant variance: No as consistent with mean does not equal to 0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hence, the forecasting model has a lot of rooms to improve further by finding the way to capture the correlation in the Residuals, adding the values that is currently staying in residuals to the prediction.&lt;/p&gt;
+&lt;h2 id=&#34;5-data-partitioning&#34;&gt;5. Data partitioning&lt;/h2&gt;
+&lt;p&gt;One of the biggest characteristics of Time series distinguishing it with normal cross-sessional data is the &lt;strong&gt;dependence of the future values with their historical values&lt;/strong&gt;. Therefore, the Data partitioning for Time series cannot be done randomly but instead, trim the series into 2 periods, the earlier to train set and the later to validation set.&lt;/p&gt;
+&lt;p&gt;The below code will help split the tran-test sets with respect to time series structure.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train and test sets in correspondence with Time series data
+def ts_train_test_split(X, y, test_size):
+    test_index = int(len(X)*(1-test_size))
+    
+    X_train = X.iloc[:test_index]
+    y_train = y.iloc[:test_index]
+    X_test = X.iloc[test_index:]
+    y_test = y.iloc[test_index:]
+    
+    return X_train, X_test, y_train, y_test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sales does not only correlated with its own past but also might be affected by other factors such as special occasions (i.e Holiday in this dataset), weekday and weekend, etc&amp;hellip; The method-driven models will be presented in the next article with feature extraction, feature selection.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

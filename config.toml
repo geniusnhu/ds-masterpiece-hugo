@@ -18,6 +18,9 @@ copyright = "Nhu Hoang"
 # Google Analytics tracking
 googleAnalytics = "UA-158640946-1"
 
+# Disqus comment
+disqusShortname = "nhu-hoang"
+
 ############################
 ## Advanced options below ##
 ############################
