@@ -455,35 +455,162 @@ def ts_train_test_split(X, y, test_size):
     </item>
     
     <item>
-      <title>ARIMA Autoregressive Integrated Moving Average model</title>
+      <title>ARIMA Autoregressive Integrated Moving Average model family</title>
       <link>/publication/arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
       <guid>/publication/arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
+&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
 &lt;p&gt;There are 3 parts in the ARIMA model: &lt;strong&gt;Auto Regressive (AR)&lt;/strong&gt; $p$, &lt;strong&gt;Integrated (I)&lt;/strong&gt; $d$, &lt;strong&gt;Moving Average (MA)&lt;/strong&gt; $q$&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Integrated&lt;/strong&gt; (Or stationary): how is your data depend on each other across time. One of the characteristics of Stationary is that the effect of an observation dissipated as time goes on. Therefore, the best long-term predictions for data that has stationary is the historical mean of the series.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&amp;hellip;To get stationary to your data, we need Differencing (or the change from one time period to another)&lt;/p&gt;
-&lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Auto Regressive&lt;/strong&gt;: deals with previous values of model, or called lags, and there are unlimited number of lags in the model. The basic assumption of this model is that the current series value depends on its previous values. This is the long memory model because the effect slowly dissipates across time. p is preferred as the maximum lag of the data series.
-&amp;hellip; The AR can be denoted as
+&lt;p&gt;&lt;strong&gt;Integrated&lt;/strong&gt; (Or stationary): A time series which needs to be differenced to become stationary is the &lt;em&gt;integrated&lt;/em&gt; version of stationary series. One of the characteristics of Stationary is that the effect of an observation dissipated as time goes on. Therefore, the best long-term predictions for data that has stationary is the historical mean of the series.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Auto Regressive&lt;/strong&gt;: is simply defined a the linear or non-linear model between current value of the series with its previous values (so called &lt;strong&gt;lags&lt;/strong&gt;), and there are unlimited number of lags in the model. The basic assumption of this model is that the current series value depends on its previous values. This is the long memory model because the effect slowly dissipates across time. p is preferred as the maximum lag of the data series.
+The AR can be denoted as
 $Y_{t}=\omega_{0}+\alpha_{1}Y_{t-1}+\alpha_{2}Y_{t-2}+&amp;hellip;+\xi$&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Moving Average&lt;/strong&gt;: deal with &amp;lsquo;shock&amp;rsquo; or error in the model, or how abnormal your current value is compared to the previous values (has some residual effect). This is short memory model because the effect quickly disappears completely.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Moving Average&lt;/strong&gt;: deal with &amp;lsquo;shock&amp;rsquo; or error in the model, or how abnormal your current value is compared to the previous values (has some residual effect).
+The MA is denoted as
+$Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;p, d, and q are non-negative integers;&lt;/p&gt;
+&lt;p&gt;$p$, $d$, and $q$ are non-negative integers;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;$p$: the order (number of time lags) of the autoregressive model, also called the lag order.&lt;/li&gt;
-&lt;li&gt;$d$: the degree of differencing (the number of times the data have had past values subtracted)&lt;/li&gt;
-&lt;li&gt;$q$: the order of the moving-average model (The size of the moving average window)&lt;/li&gt;
+&lt;li&gt;$p$: The number of &lt;strong&gt;Autoregressive terms&lt;/strong&gt;. &lt;strong&gt;Autoregressive term&lt;/strong&gt; is the lag of the staionarized series in the forecasting equation.&lt;/li&gt;
+&lt;li&gt;$d$: the degree of differencing (the number of times the data have had past values subtracted).&lt;/li&gt;
+&lt;li&gt;$q$: the order of the moving-average terms (The size of the moving average window) or in order word, the lag of the forecast errors&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;A value of 0 can be used for a parameter, which indicates to not use that element of the model. When two out of the three parameters are zeros, the model may be referred to non-zero parameter. For example, $ARIMA (1,0,0)$ is $AR(1)$  (i.e. the ARIMA model is configured to perform the function if a AR model), $ARIMA(0,1,0)$ is $I(1)$, and $ARIMA(0,0,1)$ is $MA(1)$&lt;/p&gt;
-&lt;h2 id=&#34;2-model-evaluation&#34;&gt;2. Model evaluation&lt;/h2&gt;
+&lt;h2 id=&#34;2-is-the-data-predictable&#34;&gt;2. Is the data predictable?&lt;/h2&gt;
+&lt;p&gt;One of the key important thing to define before fitting ro forecast any sets of data is confirm whether the data is &lt;strong&gt;predictable&lt;/strong&gt; or it is just a &lt;strong&gt;&amp;ldquo;Random Walk&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Random walk&lt;/strong&gt; means the movement of the data is random and cannot be detected. The &lt;strong&gt;Random Walk&lt;/strong&gt; is denoted as $ARIMA(0,1,0)$. If the data is not stationary, Random walk is the simplest model to fit&lt;/p&gt;
+&lt;p&gt;The forecasting equation for Random Walk is:&lt;/p&gt;
+&lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
+&lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
+&lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
+&lt;p&gt;Let&#39;t work with some data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
+data.plot()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;ts_plot.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Distribution&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;ts_dist.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
+&lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
+&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&#39;s Stationarity&lt;/h2&gt;
+&lt;p&gt;It is essential to confirm the data to be stationary or not because this impacts directly to your model selection for the highest accuracy.&lt;/p&gt;
+&lt;p&gt;There are several methods to examine the data. One of the most statistical accurate way is the &lt;strong&gt;Augmented Dicky-Fuller&lt;/strong&gt; method in which it tests the data with 2 hypothesis. The &lt;strong&gt;Null hypothesis&lt;/strong&gt; is not staionary and the &lt;strong&gt;alternative hypothese&lt;/strong&gt; is stationary.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Run test
+series = data.values
+result = adfuller(data)
+print(&#39;ADF Statistic: %f&#39; % result[0])
+print(&#39;p-value: %f&#39; % result[1])
+print(&#39;Critical Values:&#39;)
+for key, value in result[4].items():
+	print(&#39;\t%s: %.3f&#39; % (key, value))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ADF Statistic: -1.557214
+p-value: 0.505043
+Critical Values:
+	1%: -3.492
+	5%: -2.889
+	10%: -2.581
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;p-value is higher than 0.05 so we fail to reject the Null hypothesis which means the data is stationary.&lt;/p&gt;
+&lt;h2 id=&#34;4-differencing-the-data&#34;&gt;4. Differencing the data&lt;/h2&gt;
+&lt;p&gt;Differencing is the methid to stationarize the time series data.&lt;/p&gt;
+&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&#39;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Difference the orginal sales data
+plt.figure(figsize=(15,8));
+train_diff_seasonal = train - train.shift(3)
+plt.plot(train_diff_seasonal)
+
+# Conduct the test
+series = train_diff_seasonal.dropna().values
+result = adfuller(series)
+print(&#39;ADF Statistic: %f&#39; % result[0])
+print(&#39;p-value: %f&#39; % result[1])
+print(&#39;Critical Values:&#39;)
+for key, value in result[4].items():
+	print(&#39;\t%s: %.3f&#39; % (key, value))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ADF Statistic: -3.481334
+p-value: 0.008480
+Critical Values:
+	1%: -3.529
+	5%: -2.904
+	10%: -2.590
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;ts_season_plot.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
+Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
+train = data[:84]
+validation = data[84:108]
+test = data[108:]
+
+# ACF and PACF for orginal data
+series=train.dropna()
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;ACF.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
+Let&#39;s set the parameters for SARIMA&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$ is most probably 3 as this is the last significant lag on the PACF.&lt;/li&gt;
+&lt;li&gt;$d$ should equal 0 as we do not have differencing (only seasonal differencing and this will be reflected later on)&lt;/li&gt;
+&lt;li&gt;$q$ should be around 3&lt;/li&gt;
+&lt;li&gt;$P$ should be 2 as 3th, and 9th lags are somewhat significant on the PACF&lt;/li&gt;
+&lt;li&gt;$D$ should be 1 as we performed seasonal differencing&lt;/li&gt;
+&lt;li&gt;$Q$ is probably 2 as the 3th lag and 9th lag are significant in ACF plot while other 6th and 9th lags are not.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&#39;t assign parameter and do grid search on which comnbination is optimum&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ps = range(3,5)
+d= 0
+qs = range(2,5)
+Ps= range(1,4)
+D=1
+Qs=range(0,3)
+s=6 # annual seasonality
+
+parameters = product(ps,qs,Ps, Qs)
+parameters_list = list(parameters)
+result_table = optimizeSARIMA(parameters_list, d, D, s)
+
+# set the parameters that give the lowest AIC
+p, q, P, Q = result_table.parameters[0]
+
+best_model=sm.tsa.statespace.SARIMAX(data, order=(p, d, q),
+                                     seasonal_order=(P, D, Q, zs)).fit(disp=-1)
+print(best_model.summary())
+
+# Examine the residuals
+# ACF and PACF for orginal data
+plt.plot(best_model.resid)
+
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(best_model.resid, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
+
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.&lt;/p&gt;
+&lt;h2 id=&#34;5-model-evaluation&#34;&gt;5. Model evaluation&lt;/h2&gt;
 &lt;p&gt;There are 2 common measures to evaluate the predicted values with the validation set.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1.	Mean Absolute Error (MAE):&lt;/strong&gt;
 &amp;hellip;How far your predicted term to the real value on absolute term. One of the drawbacks of the MAE is because it shows the absolute value so there is no strong evidence and comparison on which the predicted value is actually lower or higher.&lt;/p&gt;
@@ -496,8 +623,8 @@ $Y_{t}=\omega_{0}+\alpha_{1}Y_{t-1}+\alpha_{2}Y_{t-2}+&amp;hellip;+\xi$&lt;/p&gt
 metrics.mean_absolute_error(y_test, y_pred)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;strong&gt;2. Mean absolute percentage error (MAPE):&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&amp;hellip; The MAE score shows the absolute value and it is hardly to define whether that number is good or bad, close or far from expectation. This is when MAPE comes in.
-&amp;hellip;MAPE measures how far your predicted term to the real value on absolute percentage term.&lt;/p&gt;
+&lt;p&gt;The MAE score shows the absolute value and it is hardly to define whether that number is good or bad, close or far from expectation. This is when MAPE comes in.&lt;/p&gt;
+&lt;p&gt;MAPE measures how far your predicted term to the real value on absolute percentage term.&lt;/p&gt;
 &lt;p&gt;$MAPE=100\frac{1}{n}\sum_{i = 1}^{n} \frac{|Y_t-\hat{Y_t}|} {\hat{Y_{t}}}$&lt;/p&gt;
 &lt;p&gt;Can compute as&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;100 x mean(abs(Yp - Yv) / Yv )
