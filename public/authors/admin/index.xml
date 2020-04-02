@@ -5,12 +5,359 @@
     <link>/authors/admin/</link>
       <atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     <description>Nhu Hoang</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Nhu Hoang</title>
       <link>/authors/admin/</link>
     </image>
+    
+    <item>
+      <title>Useful visualization with source code</title>
+      <link>/publication/useful-visualization-with-source-code/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/useful-visualization-with-source-code/</guid>
+      <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
+&lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
+&lt;h3 id=&#34;bar-chart&#34;&gt;Bar chart&lt;/h3&gt;
+&lt;p&gt;Show trend/values among categorical variables&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ax = data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;, figsize =(8,5))
+positions = (0,1, 2, 3)
+ax.set_xticklabels([&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;], rotation=30)
+ax.set_title(&#39;Sales and number of order&#39;)
+for i in ax.patches:
+    # get_x pulls left or right; get_height pushes up or down
+    ax.text(i.get_x()+.01, i.get_height()+50, \
+            str(round((i.get_height()), 2)), fontsize=12);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;bar_chart.png&#34; alt=&#34;Bar chart: 2 categorical variables with continuous vales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Bar chart: 2 categorical variables with continuous vales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;line-chart-with-2-subplots-for-2-categorical-variables&#34;&gt;Line chart with 2 subplots for 2 categorical variables&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(20,10))
+plt.subplot(221)
+data[data[&#39;type&#39;]==0].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;green&#39;, linewidth=7.0)
+plt.title(&#39;Item Quantity - Product class 0&#39;)
+plt.xlabel(xlabel=&#39;&#39;)
+plt.xticks([]) # delete the x axis tick value
+plt.subplot(222)
+data[data[&#39;type&#39;]==2].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;red&#39;,linewidth=7.0)
+plt.title(&#39;Item Quantity - Product class 2&#39;)
+# Other subplot can continue with plt.subplot(223) ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;line_subplot.png&#34; alt=&#34;Line subplot: 2 categorical variables with continuous vales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Line subplot: 2 categorical variables with continuous vales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;box-plot-distribution-box-plot&#34;&gt;Box plot (distribution box plot)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (10, 8)
+fig, ax = plt.subplots(figsize=fig_dims)
+sns.boxplot(x=&#39;X&#39;, y=&#39;Y&#39;, data=data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;boxplot.png&#34; alt=&#34;Box plot - Distribution vizualization&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Box plot - Distribution vizualization&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;polar-chart&#34;&gt;Polar chart&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.express as px
+data[&#39;Month&#39;] = data[&#39;Date&#39;].dt.month_name()
+fig = px.line_polar(data, theta=&amp;quot;Month&amp;quot;,r=&amp;quot;Weekly_Sales&amp;quot;,
+                    color=&#39;Year&#39;,
+                    line_close=True,template=&amp;quot;plotly_dark&amp;quot;)
+fig.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;polar_plot.png&#34; alt=&#34;Polar chart&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Polar chart&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;2-continuous-with-continuous-variables&#34;&gt;2. Continuous with continuous variables&lt;/h2&gt;
+&lt;h3 id=&#34;scatter-plot&#34;&gt;Scatter plot&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (8,5)
+fig, ax = plt.subplots(figsize=fig_dims)
+abc = data.groupby([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]).agg({&#39;D&#39;:&#39;sum&#39;}).reset_index()
+sns.scatterplot(x=&#39;C&#39;, y=&#39;A&#39;, hue=&#39;B&#39;, data=abc, palette=&amp;quot;Set2&amp;quot;).set(title = &#39;Order throughout a month&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;Scatter plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;mutiple-lines-plot&#34;&gt;Mutiple lines plot&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(data[&#39;line1&#39;], label=&#39;Line 1&#39;)
+plt.plot(data[&#39;line1&#39;], color=&#39;red&#39;, label=&#39;Line 2&#39;)
+plt.legend()
+plt.title(&#39;2 Line plot&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;2_line_plot.png&#34; alt=&#34;Multiple Line plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Multiple Line plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;3-percentage-plot&#34;&gt;3. Percentage plot&lt;/h2&gt;
+&lt;h3 id=&#34;pie-chart&#34;&gt;Pie chart&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = &#39;G1&#39;,&#39;G2&#39;, &#39;G3&#39;,  &#39;G4&#39;
+
+fig1, ax1 = plt.subplots(figsize=(5,5))
+ax1.pie(data.groupby(&#39;ProductClass&#39;).agg({&#39;ItemID&#39;:&#39;count&#39;}), labels=labels, autopct=&#39;%1.1f%%&#39;,
+        shadow=True, startangle=90)
+ax1.axis(&#39;equal&#39;)  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title(&#39;Proportion of each Group&#39;)
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;pie_plot.png&#34; alt=&#34;Pie plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Pie plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;donut-chart-multiple-categorical-variables-with-percentage&#34;&gt;Donut chart (Multiple categorical variables with percentage)&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subgroup_names = &#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;
+labels = &#39;Group 1&#39;,&#39;Group 2&#39;, &#39;Group 3&#39;
+
+# Create colors
+a, b, c=[plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
+fig, ax = plt.subplots(figsize=(5,5))
+ax.axis(&#39;equal&#39;)
+mypie, _ = ax.pie(list(data.groupby([&#39;group&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
+                  radius=1.3, labels=labels, colors=[a(0.6), b(0.6), c(0.6)] , labeldistance=1.05)
+plt.setp( mypie, width=0.3, edgecolor=&#39;white&#39;)
+
+mypie2, _ = ax.pie(list(data.groupby([&#39;group&#39;,&#39;subgroup&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
+                   radius=1.3-0.3, labels=subgroup_names, 
+                   labeldistance=0.8, colors=[a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), b(0.2),c(0.5), 
+                                              c(0.4), c(0.3),c(0.2)])
+plt.setp( mypie2, width=0.4, edgecolor=&#39;white&#39;)
+plt.title(&#39;Proportion of by groups and subgroups&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;donut_chart.png&#34; alt=&#34;Donut chart&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Donut chart&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;4-charts-showing-change&#34;&gt;4. Charts showing change&lt;/h2&gt;
+&lt;h3 id=&#34;bump-chart---change-in-order&#34;&gt;Bump chart - Change in order&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def bumpchart(df, show_rank_axis= True, rank_axis_distance= 1.1, 
+              ax= None, scatter= False, holes= False,
+              line_args= {}, scatter_args= {}, hole_args= {}, number_of_lines=10):
+    
+    if ax is None:
+        left_yaxis= plt.gca()
+    else:
+        left_yaxis = ax
+
+    # Creating the right axis.
+    right_yaxis = left_yaxis.twinx()
+    
+    axes = [left_yaxis, right_yaxis]
+    
+    # Creating the far right axis if show_rank_axis is True
+    if show_rank_axis:
+        far_right_yaxis = left_yaxis.twinx()
+        axes.append(far_right_yaxis)
+    
+    for col in df.columns:
+        y = df[col]
+        x = df.index.values
+        # Plotting blank points on the right axis/axes 
+        # so that they line up with the left axis.
+        for axis in axes[1:]:
+            axis.plot(x, y, alpha= 10)
+
+        left_yaxis.plot(x, y, **line_args, solid_capstyle=&#39;round&#39;)
+        #left_yaxis.annotate(x,xy=(3,1))
+        # Adding scatter plots
+        if scatter:
+            left_yaxis.scatter(x, y, **scatter_args)
+            for x,y in zip(x,y):
+              plt.annotate(col, 
+                          (x,y), 
+                          textcoords=&amp;quot;offset points&amp;quot;, 
+                          xytext=(0,10), 
+                          ha=&#39;center&#39;) 
+            
+            #Adding see-through holes
+            if holes:
+                bg_color = left_yaxis.get_facecolor()
+                left_yaxis.scatter(x, y, color= bg_color, **hole_args)
+
+    # Number of lines
+     
+
+    y_ticks = [*range(1, number_of_lines+1)]
+    
+    # Configuring the axes so that they line up well.
+    for axis in axes:
+        axis.invert_yaxis()
+        axis.set_yticks(y_ticks)
+        axis.set_ylim((number_of_lines + 0.5, 0.5))
+    
+    # Sorting the labels to match the ranks.
+    left_labels = [*range(1, len(df.iloc[0].index))]
+    right_labels = left_labels
+    #left_labels = df.iloc[0].sort_values().index
+    #right_labels = df.iloc[-1].sort_values().index
+    
+    left_yaxis.set_yticklabels(left_labels)
+    right_yaxis.set_yticklabels(right_labels)
+    
+    # Setting the position of the far right axis so that it doesn&#39;t overlap with the right axis
+    if show_rank_axis:
+        far_right_yaxis.spines[&amp;quot;right&amp;quot;].set_position((&amp;quot;axes&amp;quot;, rank_axis_distance))
+    
+    return axes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;bump_chart.png&#34; alt=&#34;Bump chart - Change in order&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Change in order&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;5-other-customization&#34;&gt;5. Other customization&lt;/h2&gt;
+&lt;h3 id=&#34;add-x-axis-label&#34;&gt;Add x axis label&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;,figsize =(8,5))
+positions = (0,1, 2, 3)
+labels = (&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;)
+plt.xticks(positions, labels, rotation=0)
+plt.ylabel(&#39;Sales&#39;, fontsize =12)
+plt.xlabel(&#39;&#39;)
+plt.title(&#39;Sales by year&#39;);;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;custom_x_axis.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Custome x axis tick labels&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;set-legend-label&#34;&gt;Set legend label&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;plt.legend([&#39;Qty by day in week&#39;,&#39;# of daily orders&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Complete guide for Time series Exploration and Visualization</title>
+      <link>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</guid>
+      <description>&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
+&lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Looking at the example figure, there is no &lt;strong&gt;trend&lt;/strong&gt; but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
+&lt;h2 id=&#34;2-confirming-seasonality&#34;&gt;2. Confirming seasonality&lt;/h2&gt;
+&lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
+&lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
+&lt;p&gt;There is a large jump in December, followed by a drop in January.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;seasonal_plot.png&#34; 
+style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
+          &#39;#FE53BB&#39;,  # pink
+          &#39;#F5D300&#39;] # matrix green
+plt.figure(figsize=(10,6))
+w =data.groupby([&#39;Year&#39;,&#39;Month&#39;])[&#39;Weekly_Sales&#39;].sum().reset_index()
+sns.lineplot(&amp;quot;Month&amp;quot;, &amp;quot;Weekly_Sales&amp;quot;, data=w, hue=&#39;Year&#39;, palette=colors,marker=&#39;o&#39;, legend=False)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Seasonal plot: Total sales of Walmart 45 stores in 3 years&#39;,fontsize=20 )
+plt.legend(title=&#39;Year&#39;, loc=&#39;upper left&#39;, labels=[&#39;2010&#39;, &#39;2011&#39;,&#39;2012&#39;],fontsize=&#39;x-large&#39;, title_fontsize=&#39;20&#39;)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
+&lt;p&gt;Boxplot is a great tool to observe the time series pattern.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;sub_seasonal.png&#34; 
+style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotMovingAverage(series, window, plot_intervals=False, scale=1.96, plot_anomalies=False):
+
+    rolling_mean = series.rolling(window=window).mean()
+    
+    plt.figure(figsize=(15,5))
+    plt.title(&amp;quot;Moving average\n window size = {}&amp;quot;.format(window))
+    plt.plot(rolling_mean, &amp;quot;g&amp;quot;, label=&amp;quot;Rolling mean trend&amp;quot;)
+
+    # Plot confidence intervals for smoothed values
+    if plot_intervals:
+        mae = mean_absolute_error(series[window:], rolling_mean[window:])
+        deviation = np.std(series[window:] - rolling_mean[window:])
+        lower_bond = rolling_mean - (mae + scale * deviation)
+        upper_bond = rolling_mean + (mae + scale * deviation)
+        plt.plot(upper_bond, &amp;quot;r--&amp;quot;, label=&amp;quot;Upper Bond / Lower Bond&amp;quot;)
+        plt.plot(lower_bond, &amp;quot;r--&amp;quot;)
+        
+        # Having the intervals, find abnormal values
+        if plot_anomalies:
+            anomalies = pd.DataFrame(index=series.index, columns=series.columns)
+            anomalies[series&amp;lt;lower_bond] = series[series&amp;lt;lower_bond]
+            anomalies[series&amp;gt;upper_bond] = series[series&amp;gt;upper_bond]
+            plt.plot(anomalies, &amp;quot;ro&amp;quot;, markersize=10)
+        
+    plt.plot(series[window:], label=&amp;quot;Actual values&amp;quot;)
+    plt.legend(loc=&amp;quot;upper left&amp;quot;)
+    plt.grid(True)
+    
+plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
+                  plot_anomalies=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;acf--pacf-plots&#34;&gt;ACF / PACF plots&lt;/h3&gt;
+&lt;p&gt;The details of ACF and PACF plot implication can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;ACF / PACF plots&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
+series=train.dropna()
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;actual-vs-predicted-values-plot&#34;&gt;Actual vs Predicted values plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;actual_predicted.png&#34; alt=&#34;Actual vs Predicted values plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Actual vs Predicted values plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotModelResults(model, X_train, X_test, y_train, y_test, plot_intervals=False, plot_anomalies=False):
+
+    prediction = model.predict(X_test)
+    
+    plt.figure(figsize=(12, 8))
+    plt.plot(prediction, &amp;quot;g&amp;quot;, label=&amp;quot;prediction&amp;quot;, linewidth=2.0, color=&amp;quot;blue&amp;quot;)
+    plt.plot(y_test.values, label=&amp;quot;actual&amp;quot;, linewidth=2.0, color=&amp;quot;olive&amp;quot;)
+    
+    if plot_intervals:
+        cv = cross_val_score(model, X_train, y_train, 
+                                    cv=tscv, 
+                                    scoring=&amp;quot;neg_mean_absolute_error&amp;quot;)
+        mae = cv.mean() * (-1)
+        deviation = cv.std()
+        
+        scale = 1
+        lower = prediction - (mae + scale * deviation)
+        upper = prediction + (mae + scale * deviation)
+        
+        plt.plot(lower, &amp;quot;r--&amp;quot;, label=&amp;quot;upper bond / lower bond&amp;quot;, alpha=0.5)
+        plt.plot(upper, &amp;quot;r--&amp;quot;, alpha=0.5)
+        
+        if plot_anomalies:
+            anomalies = np.array([np.NaN]*len(y_test))
+            anomalies[y_test&amp;lt;lower] = y_test[y_test&amp;lt;lower]
+            anomalies[y_test&amp;gt;upper] = y_test[y_test&amp;gt;upper]
+            plt.plot(anomalies, &amp;quot;o&amp;quot;, markersize=10, label = &amp;quot;Anomalies&amp;quot;)
+    
+    error = mean_absolute_percentage_error(y_test,prediction)
+    plt.title(&amp;quot;Mean absolute percentage error {0:.2f}%&amp;quot;.format(error))
+    plt.legend(loc=&amp;quot;best&amp;quot;)
+    plt.tight_layout()
+    plt.grid(True);
+
+plotModelResults(linear, X_train, X_test, y_train, y_test,
+                 plot_intervals=True, plot_anomalies=True)    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
@@ -492,15 +839,19 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 &lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
 &lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
 &lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
-&lt;p&gt;Let&#39;t work with some data.&lt;/p&gt;
+&lt;p&gt;Let&#39;s work with some data.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
 data.plot()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ts_plot.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_plot.png&#34; alt=&#34;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Distribution&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;ts_dist.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_dist.png&#34; alt=&#34;Figure 2: Distribution of time series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 2: Distribution of time series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
 &lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
@@ -548,8 +899,10 @@ Critical Values:
 	5%: -2.904
 	10%: -2.590
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ts_season_plot.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_season_plot.png&#34; alt=&#34;Figure 3: Seasonal differencing with order of 3&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
 Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
@@ -564,8 +917,10 @@ fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
 fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ACF.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF.png&#34; alt=&#34;Figure 4: ACF and PACF of orginal tiem series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 4: ACF and PACF of orginal tiem series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
 Let&#39;s set the parameters for SARIMA&lt;/p&gt;
@@ -577,7 +932,20 @@ Let&#39;s set the parameters for SARIMA&lt;/p&gt;
 &lt;li&gt;$D$ should be 1 as we performed seasonal differencing&lt;/li&gt;
 &lt;li&gt;$Q$ is probably 2 as the 3th lag and 9th lag are significant in ACF plot while other 6th and 9th lags are not.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let&#39;t assign parameter and do grid search on which comnbination is optimum&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is not suggestable to use only ACF and PACF plots to decide the value within ARIMA model. The reason is that ACF and PACF are useful in case either $p$ or $q$ is positive. In a situation that both $p$ and $q$ are positive, these 2 plots will give no value.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The $ARIMA(p,d,0)$ is decided given the following conditions observed from ACF and PACF plots:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $p$ in the PACF, but none beyond lag $p$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For $ARIMA(0,d,q)$:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ps = range(3,5)
 d= 0
 qs = range(2,5)
@@ -607,9 +975,16 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;residual.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;residual.png&#34; alt=&#34;Figure 5: ACF and PACF plots of Residuals&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 5: ACF and PACF plots of Residuals&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.&lt;/p&gt;
+&lt;p&gt;Below is the General process for forecasting using an ARIMA model (Source: &lt;a href=&#34;https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart&#34;&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G.&lt;/a&gt; )&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;arimaflowchart.png&#34; alt=&#34;Figure 6: General process for forecasting using an ARIMA model&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 6: General process for forecasting using an ARIMA model&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h2 id=&#34;5-model-evaluation&#34;&gt;5. Model evaluation&lt;/h2&gt;
 &lt;p&gt;There are 2 common measures to evaluate the predicted values with the validation set.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1.	Mean Absolute Error (MAE):&lt;/strong&gt;
@@ -629,6 +1004,9 @@ metrics.mean_absolute_error(y_test, y_pred)
 &lt;p&gt;Can compute as&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;100 x mean(abs(Yp - Yv) / Yv )
 &lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on March 31, 2020&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     

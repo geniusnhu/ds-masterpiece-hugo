@@ -273,15 +273,19 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 &lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
 &lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
 &lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
-&lt;p&gt;Let&#39;t work with some data.&lt;/p&gt;
+&lt;p&gt;Let&#39;s work with some data.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
 data.plot()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ts_plot.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_plot.png&#34; alt=&#34;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Distribution&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;ts_dist.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_dist.png&#34; alt=&#34;Figure 2: Distribution of time series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 2: Distribution of time series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
 &lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
@@ -329,8 +333,10 @@ Critical Values:
 	5%: -2.904
 	10%: -2.590
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ts_season_plot.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_season_plot.png&#34; alt=&#34;Figure 3: Seasonal differencing with order of 3&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
 Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
@@ -345,8 +351,10 @@ fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
 fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;ACF.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF.png&#34; alt=&#34;Figure 4: ACF and PACF of orginal tiem series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 4: ACF and PACF of orginal tiem series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
 Let&#39;s set the parameters for SARIMA&lt;/p&gt;
@@ -358,7 +366,20 @@ Let&#39;s set the parameters for SARIMA&lt;/p&gt;
 &lt;li&gt;$D$ should be 1 as we performed seasonal differencing&lt;/li&gt;
 &lt;li&gt;$Q$ is probably 2 as the 3th lag and 9th lag are significant in ACF plot while other 6th and 9th lags are not.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let&#39;t assign parameter and do grid search on which comnbination is optimum&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is not suggestable to use only ACF and PACF plots to decide the value within ARIMA model. The reason is that ACF and PACF are useful in case either $p$ or $q$ is positive. In a situation that both $p$ and $q$ are positive, these 2 plots will give no value.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The $ARIMA(p,d,0)$ is decided given the following conditions observed from ACF and PACF plots:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $p$ in the PACF, but none beyond lag $p$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For $ARIMA(0,d,q)$:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ps = range(3,5)
 d= 0
 qs = range(2,5)
@@ -388,9 +409,16 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;residual.png&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;residual.png&#34; alt=&#34;Figure 5: ACF and PACF plots of Residuals&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 5: ACF and PACF plots of Residuals&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.&lt;/p&gt;
+&lt;p&gt;Below is the General process for forecasting using an ARIMA model (Source: &lt;a href=&#34;https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart&#34;&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G.&lt;/a&gt; )&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;arimaflowchart.png&#34; alt=&#34;Figure 6: General process for forecasting using an ARIMA model&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Figure 6: General process for forecasting using an ARIMA model&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h2 id=&#34;5-model-evaluation&#34;&gt;5. Model evaluation&lt;/h2&gt;
 &lt;p&gt;There are 2 common measures to evaluate the predicted values with the validation set.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1.	Mean Absolute Error (MAE):&lt;/strong&gt;
@@ -410,6 +438,9 @@ metrics.mean_absolute_error(y_test, y_pred)
 &lt;p&gt;Can compute as&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;100 x mean(abs(Yp - Yv) / Yv )
 &lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on March 31, 2020&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     

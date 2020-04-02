@@ -13,7 +13,7 @@ image:
   focal_point: ""
   placement: 2
   preview_only: false
-lastmod: "2020-03-06T00:00:00Z"
+lastmod: "2020-03-31T00:00:00Z"
 projects: []
 subtitle: 'ARIMA Autoregressive Integrated Moving Average model'
 summary: 'Comprehensive summary of ARIMA model and how to apply it to forecasting'
@@ -64,24 +64,29 @@ In other word, **Random walk** is the $AR(1)$ model with coefficient $\beta_1=0$
 
 Therefore, to test this hypothesis, we use hypothesis testing with *null hypothesis* $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.
 
-Let't work with some data.
+Let's work with some data.
 ```python
 plt.figure(figsize=(15,8));
 data.plot()
 ```
-<img src="ts_plot.png"
-     style="float: left; margin-right: 10px;" />
+<figure>
+  <img src="ts_plot.png" alt="Figure 1: Weekly Sales of suppermarket A from 2010 to 2019" style="width:100%">
+  <figcaption>Figure 1: Weekly Sales of suppermarket A from 2010 to 2019</figcaption>
+</figure>
      
 Distribution
 
-<img src="ts_dist.png"
-     style="float: left; margin-right: 10px;" />
-     
+<figure>
+  <img src="ts_dist.png" alt="Figure 2: Distribution of time series weekly sales" style="width:100%">
+  <figcaption>Figure 2: Distribution of time series weekly sales</figcaption>
+</figure>
+
 These plots show a high probability that the data is not **Stationary**. 
 
 On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.
 
 SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$
+
 
 ## 3. Confirm the data's Stationarity
 It is essential to confirm the data to be stationary or not because this impacts directly to your model selection for the highest accuracy.
@@ -138,8 +143,10 @@ Critical Values:
 	5%: -2.904
 	10%: -2.590
 ```
-<img src="ts_season_plot.png"
-     style="float: left; margin-right: 10px;" />
+<figure>
+  <img src="ts_season_plot.png" alt="Figure 3: Seasonal differencing with order of 3" style="width:100%">
+  <figcaption>Figure 3: Seasonal differencing with order of 3</figcaption>
+</figure>
 
 The data became stationary with p-value of the test is less than 0.05.
 Let's examine ACF and PACF of the data
@@ -157,8 +164,10 @@ fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
 fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 ```
-<img src="ACF.png"
-     style="float: left; margin-right: 10px;" />
+<figure>
+  <img src="ACF.png" alt="Figure 4: ACF and PACF of orginal tiem series weekly sales" style="width:100%">
+  <figcaption>Figure 4: ACF and PACF of orginal tiem series weekly sales</figcaption>
+</figure>
 
 **Some observation**
 
@@ -171,7 +180,17 @@ Let's set the parameters for SARIMA
 - $D$ should be 1 as we performed seasonal differencing
 - $Q$ is probably 2 as the 3th lag and 9th lag are significant in ACF plot while other 6th and 9th lags are not.
 
-Let't assign parameter and do grid search on which comnbination is optimum
+> It is not suggestable to use only ACF and PACF plots to decide the value within ARIMA model. The reason is that ACF and PACF are useful in case either $p$ or $q$ is positive. In a situation that both $p$ and $q$ are positive, these 2 plots will give no value.
+
+The $ARIMA(p,d,0)$ is decided given the following conditions observed from ACF and PACF plots:
+* ACF is exponentially decaying
+* There is a significant spike at lag $p$ in the PACF, but none beyond lag $p$
+
+For $ARIMA(0,d,q)$:
+* PACF is exponentially decaying
+* There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$
+
+Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)
 
 ```python
 ps = range(3,5)
@@ -203,10 +222,19 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 
 plt.show()
 ```
-<img src="residual.png"
-     style="float: left; margin-right: 10px;" />
+<figure>
+  <img src="residual.png" alt="Figure 5: ACF and PACF plots of Residuals" style="width:100%">
+  <figcaption>Figure 5: ACF and PACF plots of Residuals</figcaption>
+</figure>
 
 Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.
+
+Below is the General process for forecasting using an ARIMA model (Source: [Hyndman, R.J., & Athanasopoulos, G.](https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart) )
+
+<figure>
+  <img src="arimaflowchart.png" alt="Figure 6: General process for forecasting using an ARIMA model" style="width:100%">
+  <figcaption>Figure 6: General process for forecasting using an ARIMA model</figcaption>
+</figure>
 
 ## 5. Model evaluation
 
@@ -240,3 +268,7 @@ Can compute as
 ```
 100 x mean(abs(Yp - Yv) / Yv )
 ```
+---
+*Reference*
+
+*Hyndman, R.J., & Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on March 31, 2020*

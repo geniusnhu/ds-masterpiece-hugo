@@ -5,7 +5,7 @@
     <link>/authors/</link>
       <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Authors</title>
@@ -15,7 +15,7 @@
     <item>
       <title></title>
       <link>/authors/admin/</link>
-      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
       <guid>/authors/admin/</guid>
       <description>&lt;h3 id=&#34;about-me&#34;&gt;&lt;strong&gt;About me&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;My name is Nhu Hoang, a Data Scientist with current position as Marketing Portfolio Planning Specialist in Amway Japan and a pursuer of beauty in data and insights. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on using Regression model to predict the Wind power price and learning curve.&lt;/p&gt;
