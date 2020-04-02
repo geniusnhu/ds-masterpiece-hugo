@@ -739,12 +739,12 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$</p>
 data.plot()
 </code></pre>
 <figure>
-  <img src="ts_plot.png" alt="Figure 1: Weekly Sales of suppermarket A from 2010 to 2019" style="width:100%">
+  <img src="ts_plot.png" alt="Figure 1: Weekly Sales of suppermarket A from 2010 to 2019" style="width:60%">
   <figcaption>Figure 1: Weekly Sales of suppermarket A from 2010 to 2019</figcaption>
 </figure>
 <p>Distribution</p>
 <figure>
-  <img src="ts_dist.png" alt="Figure 2: Distribution of time series weekly sales" style="width:100%">
+  <img src="ts_dist.png" alt="Figure 2: Distribution of time series weekly sales" style="width:60%">
   <figcaption>Figure 2: Distribution of time series weekly sales</figcaption>
 </figure>
 <p>These plots show a high probability that the data is not <strong>Stationary</strong>.</p>
@@ -795,7 +795,7 @@ Critical Values:
 	10%: -2.590
 </code></pre>
 <figure>
-  <img src="ts_season_plot.png" alt="Figure 3: Seasonal differencing with order of 3" style="width:100%">
+  <img src="ts_season_plot.png" alt="Figure 3: Seasonal differencing with order of 3" style="width:60%">
   <figcaption>Figure 3: Seasonal differencing with order of 3</figcaption>
 </figure>
 <p>The data became stationary with p-value of the test is less than 0.05.
@@ -813,7 +813,7 @@ fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 </code></pre>
 <figure>
-  <img src="ACF.png" alt="Figure 4: ACF and PACF of orginal tiem series weekly sales" style="width:100%">
+  <img src="ACF.png" alt="Figure 4: ACF and PACF of orginal tiem series weekly sales" style="width:60%">
   <figcaption>Figure 4: ACF and PACF of orginal tiem series weekly sales</figcaption>
 </figure>
 <p><strong>Some observation</strong></p>
@@ -871,13 +871,13 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 plt.show()
 </code></pre>
 <figure>
-  <img src="residual.png" alt="Figure 5: ACF and PACF plots of Residuals" style="width:100%">
+  <img src="residual.png" alt="Figure 5: ACF and PACF plots of Residuals" style="width:60%">
   <figcaption>Figure 5: ACF and PACF plots of Residuals</figcaption>
 </figure>
 <p>Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.</p>
 <p>Below is the General process for forecasting using an ARIMA model (Source: <a href="https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart">Hyndman, R.J., &amp; Athanasopoulos, G.</a> )</p>
 <figure>
-  <img src="arimaflowchart.png" alt="Figure 6: General process for forecasting using an ARIMA model" style="width:100%">
+  <img src="arimaflowchart.png" alt="Figure 6: General process for forecasting using an ARIMA model" style="width:60%">
   <figcaption>Figure 6: General process for forecasting using an ARIMA model</figcaption>
 </figure>
 <h2 id="5-model-evaluation">5. Model evaluation</h2>

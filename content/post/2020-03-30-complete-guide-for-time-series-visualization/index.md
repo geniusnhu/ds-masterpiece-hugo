@@ -25,7 +25,7 @@ tags:
 - Seasonality
 - Trend
 - Seasonality
-title: 'Complete guide for Time series Exploration and Visualization'
+title: 'Complete guide for Time series Visualization'
 ---
 
 ## 1. Time series patterns
@@ -35,7 +35,7 @@ Time series can be describe as the combination of 3 terms: **Trend**, **Seasonal
 **Trend** is the changeing direction of the series. **Seasonality** occurs when there is a seasonal factor is seen in the series. **Cyclic** is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern. 
 
 <figure>
-  <img src="total_sales.png" alt="" style="width:100%">
+  <img src="total_sales.png" alt="" style="width:60%">
   <figcaption></figcaption>
 </figure>
 
@@ -48,9 +48,10 @@ There are several ways to confirm the seasonlity. Below, I list down vizualizati
 ### Seasonal plot: 
 
 There is a large jump in December, followed by a drop in January.
-
-<img src="seasonal_plot.png" 
-     style="float: left; margin-right: 15px;" />
+<figure>
+  <img src="seasonal_plot.png" alt="" style="width:60%">
+  <figcaption></figcaption>
+</figure>
 
 Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found [here](https://github.com/dhaitz/mplcyberpunk) with heptic neon color)
 
@@ -70,9 +71,10 @@ plt.yticks(fontsize=14);
 ### Seasonal subseries plot
 
 Boxplot is a great tool to observe the time series pattern. 
-
-<img src="sub_seasonal.png" 
-     style="float: left; margin-right: 15px;" />
+<figure>
+  <img src="sub_seasonal.png" alt="" style="width:60%">
+  <figcaption></figcaption>
+</figure>
 
 ### Moving average and Original series plot
 <figure>
@@ -117,7 +119,7 @@ plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
 
 The details of ACF and PACF plot implication can be found [here](https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/)
 <figure>
-  <img src="ACF_PACF.png" alt="ACF / PACF plots" style="width:100%">
+  <img src="ACF_PACF.png" alt="ACF / PACF plots" style="width:60%">
   <figcaption>ACF / PACF plots</figcaption>
 </figure>
 

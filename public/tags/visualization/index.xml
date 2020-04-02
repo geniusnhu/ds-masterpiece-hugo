@@ -19,8 +19,9 @@
       <guid>/publication/useful-visualization-with-source-code/</guid>
       <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
 &lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
-&lt;h3 id=&#34;bar-chart&#34;&gt;Bar chart&lt;/h3&gt;
-&lt;p&gt;Show trend/values among categorical variables&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bar chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Show trend/values among categorical variables.&lt;/p&gt;
+&lt;p&gt;This serves best in case of showing the differene between various categories.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ax = data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;, figsize =(8,5))
 positions = (0,1, 2, 3)
 ax.set_xticklabels([&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;], rotation=30)
@@ -31,10 +32,11 @@ for i in ax.patches:
             str(round((i.get_height()), 2)), fontsize=12);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;bar_chart.png&#34; alt=&#34;Bar chart: 2 categorical variables with continuous vales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;bar_chart.png&#34; alt=&#34;Bar chart: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Bar chart: 2 categorical variables with continuous vales&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;line-chart-with-2-subplots-for-2-categorical-variables&#34;&gt;Line chart with 2 subplots for 2 categorical variables&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Subplots for multiple categorical variables&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Breaking several categories into different subplots will help generating insights, which is related to trend of each category.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(20,10))
 plt.subplot(221)
 data[data[&#39;type&#39;]==0].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;green&#39;, linewidth=7.0)
@@ -47,19 +49,32 @@ plt.title(&#39;Item Quantity - Product class 2&#39;)
 # Other subplot can continue with plt.subplot(223) ...
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;line_subplot.png&#34; alt=&#34;Line subplot: 2 categorical variables with continuous vales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;line_subplot.png&#34; alt=&#34;Line subplot: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Line subplot: 2 categorical variables with continuous vales&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;box-plot-distribution-box-plot&#34;&gt;Box plot (distribution box plot)&lt;/h3&gt;
+&lt;p&gt;This can also be changed to &lt;strong&gt;Mutiple lines plot&lt;/strong&gt; as below&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(data[&#39;line1&#39;], label=&#39;Line 1&#39;)
+plt.plot(data[&#39;line1&#39;], color=&#39;red&#39;, label=&#39;Line 2&#39;)
+plt.legend()
+plt.title(&#39;2 Line plot&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;2_line_plot.png&#34; alt=&#34;Multiple Line plot&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Multiple Line plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Box plot (distribution box plot)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Talking about distribution, boxplot will initiate many insights, especially when it is used to &lt;strong&gt;detect outlier&lt;/strong&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (10, 8)
 fig, ax = plt.subplots(figsize=fig_dims)
 sns.boxplot(x=&#39;X&#39;, y=&#39;Y&#39;, data=data)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;boxplot.png&#34; alt=&#34;Box plot - Distribution vizualization&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;boxplot.png&#34; alt=&#34;Box plot - Distribution vizualization&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Box plot - Distribution vizualization&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;polar-chart&#34;&gt;Polar chart&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Polar chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;THe below &lt;strong&gt;Polar chart&lt;/strong&gt; used to &lt;strong&gt;detech seasonality&lt;/strong&gt; among 12 months. It is clearly seen that the data at November and December observed spike or in orderword, an annual seasonality.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.express as px
 data[&#39;Month&#39;] = data[&#39;Date&#39;].dt.month_name()
 fig = px.line_polar(data, theta=&amp;quot;Month&amp;quot;,r=&amp;quot;Weekly_Sales&amp;quot;,
@@ -68,33 +83,24 @@ fig = px.line_polar(data, theta=&amp;quot;Month&amp;quot;,r=&amp;quot;Weekly_Sal
 fig.show();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;polar_plot.png&#34; alt=&#34;Polar chart&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;polar_plot.png&#34; alt=&#34;Polar chart&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Polar chart&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h2 id=&#34;2-continuous-with-continuous-variables&#34;&gt;2. Continuous with continuous variables&lt;/h2&gt;
-&lt;h3 id=&#34;scatter-plot&#34;&gt;Scatter plot&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Scatter plot&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the most popular type of plot to observe the &lt;strong&gt;relationship&lt;/strong&gt; between 2 variables and sometimes help identify the &lt;strong&gt;correlation&lt;/strong&gt; between features. &lt;code&gt;corr&lt;/code&gt; function is used to get this correlation.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (8,5)
 fig, ax = plt.subplots(figsize=fig_dims)
 abc = data.groupby([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]).agg({&#39;D&#39;:&#39;sum&#39;}).reset_index()
 sns.scatterplot(x=&#39;C&#39;, y=&#39;A&#39;, hue=&#39;B&#39;, data=abc, palette=&amp;quot;Set2&amp;quot;).set(title = &#39;Order throughout a month&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;scatter.png&#34; alt=&#34;Scatter plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;Scatter plot&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;mutiple-lines-plot&#34;&gt;Mutiple lines plot&lt;/h3&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(data[&#39;line1&#39;], label=&#39;Line 1&#39;)
-plt.plot(data[&#39;line1&#39;], color=&#39;red&#39;, label=&#39;Line 2&#39;)
-plt.legend()
-plt.title(&#39;2 Line plot&#39;)
-plt.show()
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;2_line_plot.png&#34; alt=&#34;Multiple Line plot&#34; style=&#34;width:100%&#34;&gt;
-  &lt;figcaption&gt;Multiple Line plot&lt;/figcaption&gt;
-&lt;/figure&gt;
 &lt;h2 id=&#34;3-percentage-plot&#34;&gt;3. Percentage plot&lt;/h2&gt;
-&lt;h3 id=&#34;pie-chart&#34;&gt;Pie chart&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Pie chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There is a controversy that &lt;strong&gt;pie chart&lt;/strong&gt; can hardly do a good job in representing the percentage. However, if the number of catogories are low, aka below 6, Pie chart proves no problem.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = &#39;G1&#39;,&#39;G2&#39;, &#39;G3&#39;,  &#39;G4&#39;
 
 fig1, ax1 = plt.subplots(figsize=(5,5))
@@ -105,10 +111,11 @@ plt.title(&#39;Proportion of each Group&#39;)
 plt.show();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;pie_plot.png&#34; alt=&#34;Pie plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;pie_plot.png&#34; alt=&#34;Pie plot&#34; style=&#34;width:50%&#34;&gt;
   &lt;figcaption&gt;Pie plot&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;donut-chart-multiple-categorical-variables-with-percentage&#34;&gt;Donut chart (Multiple categorical variables with percentage)&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Donut chart (Multiple categorical variables with percentage)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Donut chart&lt;/strong&gt; is the combination of 2 &lt;strong&gt;pie chart&lt;/strong&gt;, the smaller lies within the bigger. This shows the percentage within of the big group as well as the proportion within each subgroup, which provides a transparent distribution of 2 categorical variables within each other.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subgroup_names = &#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;
 labels = &#39;Group 1&#39;,&#39;Group 2&#39;, &#39;Group 3&#39;
 
@@ -128,11 +135,16 @@ plt.setp( mypie2, width=0.4, edgecolor=&#39;white&#39;)
 plt.title(&#39;Proportion of by groups and subgroups&#39;);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;donut_chart.png&#34; alt=&#34;Donut chart&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;donut_chart.png&#34; alt=&#34;Donut chart&#34; style=&#34;width:30%&#34;&gt;
   &lt;figcaption&gt;Donut chart&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;4-charts-showing-change&#34;&gt;4. Charts showing change&lt;/h2&gt;
-&lt;h3 id=&#34;bump-chart---change-in-order&#34;&gt;Bump chart - Change in order&lt;/h3&gt;
+&lt;h2 id=&#34;4-change-in-order-plot&#34;&gt;4. Change in Order plot&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;How the rank changes over time&amp;rdquo; is the question that is answered by the below graph, called &lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;bump_chart.png&#34; alt=&#34;Bump chart - Change in order&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Change in order&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def bumpchart(df, show_rank_axis= True, rank_axis_distance= 1.1, 
               ax= None, scatter= False, holes= False,
               line_args= {}, scatter_args= {}, hole_args= {}, number_of_lines=10):
@@ -203,25 +215,21 @@ plt.title(&#39;Proportion of by groups and subgroups&#39;);
     
     return axes
 &lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;bump_chart.png&#34; alt=&#34;Bump chart - Change in order&#34; style=&#34;width:100%&#34;&gt;
-  &lt;figcaption&gt;Change in order&lt;/figcaption&gt;
-&lt;/figure&gt;
 &lt;h2 id=&#34;5-other-customization&#34;&gt;5. Other customization&lt;/h2&gt;
-&lt;h3 id=&#34;add-x-axis-label&#34;&gt;Add x axis label&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Add x axis tick label&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;,figsize =(8,5))
 positions = (0,1, 2, 3)
 labels = (&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;)
-plt.xticks(positions, labels, rotation=0)
+plt.xticks(positions, labels, rotation=0) #Assign x axis tick labels
 plt.ylabel(&#39;Sales&#39;, fontsize =12)
 plt.xlabel(&#39;&#39;)
 plt.title(&#39;Sales by year&#39;);;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;custom_x_axis.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;custom_x_axis.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Custome x axis tick labels&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h3 id=&#34;set-legend-label&#34;&gt;Set legend label&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Set legend label&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;plt.legend([&#39;Qty by day in week&#39;,&#39;# of daily orders&#39;])
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
@@ -229,15 +237,15 @@ plt.title(&#39;Sales by year&#39;);;
     </item>
     
     <item>
-      <title>Complete guide for Time series Exploration and Visualization</title>
-      <link>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</link>
+      <title>Complete guide for Time series Visualization</title>
+      <link>/2020/03/30/complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</guid>
+      <guid>/2020/03/30/complete-guide-for-time-series-visualization/</guid>
       <description>&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Looking at the example figure, there is no &lt;strong&gt;trend&lt;/strong&gt; but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
@@ -245,8 +253,10 @@ plt.title(&#39;Sales by year&#39;);;
 &lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
 &lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
 &lt;p&gt;There is a large jump in December, followed by a drop in January.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;seasonal_plot.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
           &#39;#FE53BB&#39;,  # pink
@@ -262,8 +272,10 @@ plt.yticks(fontsize=14);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
 &lt;p&gt;Boxplot is a great tool to observe the time series pattern.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;sub_seasonal.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
 &lt;figure&gt;
   &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
@@ -303,7 +315,7 @@ plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
 &lt;h3 id=&#34;acf--pacf-plots&#34;&gt;ACF / PACF plots&lt;/h3&gt;
 &lt;p&gt;The details of ACF and PACF plot implication can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;ACF / PACF plots&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data

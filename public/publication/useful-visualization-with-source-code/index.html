@@ -701,8 +701,9 @@
 
     <div class="article-style"><p>Useful charts created with Python code</p>
 <h2 id="1-continuous-variable-with-categorical-variable">1. Continuous variable with Categorical variable</h2>
-<h3 id="bar-chart">Bar chart</h3>
-<p>Show trend/values among categorical variables</p>
+<p><strong>Bar chart</strong></p>
+<p>Show trend/values among categorical variables.</p>
+<p>This serves best in case of showing the differene between various categories.</p>
 <pre><code class="language-python">ax = data[['x','y']].plot(kind='bar', figsize =(8,5))
 positions = (0,1, 2, 3)
 ax.set_xticklabels([&quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;], rotation=30)
@@ -713,10 +714,11 @@ for i in ax.patches:
             str(round((i.get_height()), 2)), fontsize=12);
 </code></pre>
 <figure>
-  <img src="bar_chart.png" alt="Bar chart: 2 categorical variables with continuous vales" style="width:100%">
+  <img src="bar_chart.png" alt="Bar chart: 2 categorical variables with continuous vales" style="width:60%">
   <figcaption>Bar chart: 2 categorical variables with continuous vales</figcaption>
 </figure>
-<h3 id="line-chart-with-2-subplots-for-2-categorical-variables">Line chart with 2 subplots for 2 categorical variables</h3>
+<p><strong>Subplots for multiple categorical variables</strong></p>
+<p>Breaking several categories into different subplots will help generating insights, which is related to trend of each category.</p>
 <pre><code class="language-python">plt.figure(figsize=(20,10))
 plt.subplot(221)
 data[data['type']==0].groupby('Y')['Quantity'].sum().plot(color='green', linewidth=7.0)
@@ -729,19 +731,32 @@ plt.title('Item Quantity - Product class 2')
 # Other subplot can continue with plt.subplot(223) ...
 </code></pre>
 <figure>
-  <img src="line_subplot.png" alt="Line subplot: 2 categorical variables with continuous vales" style="width:100%">
+  <img src="line_subplot.png" alt="Line subplot: 2 categorical variables with continuous vales" style="width:60%">
   <figcaption>Line subplot: 2 categorical variables with continuous vales</figcaption>
 </figure>
-<h3 id="box-plot-distribution-box-plot">Box plot (distribution box plot)</h3>
+<p>This can also be changed to <strong>Mutiple lines plot</strong> as below</p>
+<pre><code class="language-python">plt.plot(data['line1'], label='Line 1')
+plt.plot(data['line1'], color='red', label='Line 2')
+plt.legend()
+plt.title('2 Line plot')
+plt.show()
+</code></pre>
+<figure>
+  <img src="2_line_plot.png" alt="Multiple Line plot" style="width:60%">
+  <figcaption>Multiple Line plot</figcaption>
+</figure>
+<p><strong>Box plot (distribution box plot)</strong></p>
+<p>Talking about distribution, boxplot will initiate many insights, especially when it is used to <strong>detect outlier</strong>.</p>
 <pre><code class="language-python">fig_dims = (10, 8)
 fig, ax = plt.subplots(figsize=fig_dims)
 sns.boxplot(x='X', y='Y', data=data)
 </code></pre>
 <figure>
-  <img src="boxplot.png" alt="Box plot - Distribution vizualization" style="width:100%">
+  <img src="boxplot.png" alt="Box plot - Distribution vizualization" style="width:60%">
   <figcaption>Box plot - Distribution vizualization</figcaption>
 </figure>
-<h3 id="polar-chart">Polar chart</h3>
+<p><strong>Polar chart</strong></p>
+<p>THe below <strong>Polar chart</strong> used to <strong>detech seasonality</strong> among 12 months. It is clearly seen that the data at November and December observed spike or in orderword, an annual seasonality.</p>
 <pre><code class="language-python">import plotly.express as px
 data['Month'] = data['Date'].dt.month_name()
 fig = px.line_polar(data, theta=&quot;Month&quot;,r=&quot;Weekly_Sales&quot;,
@@ -750,33 +765,24 @@ fig = px.line_polar(data, theta=&quot;Month&quot;,r=&quot;Weekly_Sales&quot;,
 fig.show();
 </code></pre>
 <figure>
-  <img src="polar_plot.png" alt="Polar chart" style="width:100%">
+  <img src="polar_plot.png" alt="Polar chart" style="width:60%">
   <figcaption>Polar chart</figcaption>
 </figure>
 <h2 id="2-continuous-with-continuous-variables">2. Continuous with continuous variables</h2>
-<h3 id="scatter-plot">Scatter plot</h3>
+<p><strong>Scatter plot</strong></p>
+<p>One of the most popular type of plot to observe the <strong>relationship</strong> between 2 variables and sometimes help identify the <strong>correlation</strong> between features. <code>corr</code> function is used to get this correlation.</p>
 <pre><code class="language-python">fig_dims = (8,5)
 fig, ax = plt.subplots(figsize=fig_dims)
 abc = data.groupby(['A','B','C']).agg({'D':'sum'}).reset_index()
 sns.scatterplot(x='C', y='A', hue='B', data=abc, palette=&quot;Set2&quot;).set(title = 'Order throughout a month');
 </code></pre>
 <figure>
-  <img src="scatter.png" alt="Scatter plot" style="width:100%">
+  <img src="scatter.png" alt="Scatter plot" style="width:60%">
   <figcaption></figcaption>
 </figure>
-<h3 id="mutiple-lines-plot">Mutiple lines plot</h3>
-<pre><code class="language-python">plt.plot(data['line1'], label='Line 1')
-plt.plot(data['line1'], color='red', label='Line 2')
-plt.legend()
-plt.title('2 Line plot')
-plt.show()
-</code></pre>
-<figure>
-  <img src="2_line_plot.png" alt="Multiple Line plot" style="width:100%">
-  <figcaption>Multiple Line plot</figcaption>
-</figure>
 <h2 id="3-percentage-plot">3. Percentage plot</h2>
-<h3 id="pie-chart">Pie chart</h3>
+<p><strong>Pie chart</strong></p>
+<p>There is a controversy that <strong>pie chart</strong> can hardly do a good job in representing the percentage. However, if the number of catogories are low, aka below 6, Pie chart proves no problem.</p>
 <pre><code class="language-python">labels = 'G1','G2', 'G3',  'G4'
 
 fig1, ax1 = plt.subplots(figsize=(5,5))
@@ -787,10 +793,11 @@ plt.title('Proportion of each Group')
 plt.show();
 </code></pre>
 <figure>
-  <img src="pie_plot.png" alt="Pie plot" style="width:100%">
+  <img src="pie_plot.png" alt="Pie plot" style="width:50%">
   <figcaption>Pie plot</figcaption>
 </figure>
-<h3 id="donut-chart-multiple-categorical-variables-with-percentage">Donut chart (Multiple categorical variables with percentage)</h3>
+<p><strong>Donut chart (Multiple categorical variables with percentage)</strong></p>
+<p><strong>Donut chart</strong> is the combination of 2 <strong>pie chart</strong>, the smaller lies within the bigger. This shows the percentage within of the big group as well as the proportion within each subgroup, which provides a transparent distribution of 2 categorical variables within each other.</p>
 <pre><code class="language-python">subgroup_names = 'PC0','PC1','PC2','PC0','PC1','PC2','PC3','PC0','PC1','PC2','PC3'
 labels = 'Group 1','Group 2', 'Group 3'
 
@@ -810,11 +817,16 @@ plt.setp( mypie2, width=0.4, edgecolor='white')
 plt.title('Proportion of by groups and subgroups');
 </code></pre>
 <figure>
-  <img src="donut_chart.png" alt="Donut chart" style="width:100%">
+  <img src="donut_chart.png" alt="Donut chart" style="width:30%">
   <figcaption>Donut chart</figcaption>
 </figure>
-<h2 id="4-charts-showing-change">4. Charts showing change</h2>
-<h3 id="bump-chart---change-in-order">Bump chart - Change in order</h3>
+<h2 id="4-change-in-order-plot">4. Change in Order plot</h2>
+<p><strong>Bump chart</strong></p>
+<p>&ldquo;How the rank changes over time&rdquo; is the question that is answered by the below graph, called <strong>Bump chart</strong></p>
+<figure>
+  <img src="bump_chart.png" alt="Bump chart - Change in order" style="width:60%">
+  <figcaption>Change in order</figcaption>
+</figure>
 <pre><code class="language-python">def bumpchart(df, show_rank_axis= True, rank_axis_distance= 1.1, 
               ax= None, scatter= False, holes= False,
               line_args= {}, scatter_args= {}, hole_args= {}, number_of_lines=10):
@@ -885,25 +897,21 @@ plt.title('Proportion of by groups and subgroups');
     
     return axes
 </code></pre>
-<figure>
-  <img src="bump_chart.png" alt="Bump chart - Change in order" style="width:100%">
-  <figcaption>Change in order</figcaption>
-</figure>
 <h2 id="5-other-customization">5. Other customization</h2>
-<h3 id="add-x-axis-label">Add x axis label</h3>
+<p><strong>Add x axis tick label</strong></p>
 <pre><code class="language-python">data[['x','y']].plot(kind='bar',figsize =(8,5))
 positions = (0,1, 2, 3)
 labels = (&quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;)
-plt.xticks(positions, labels, rotation=0)
+plt.xticks(positions, labels, rotation=0) #Assign x axis tick labels
 plt.ylabel('Sales', fontsize =12)
 plt.xlabel('')
 plt.title('Sales by year');;
 </code></pre>
 <figure>
-  <img src="custom_x_axis.png" alt="" style="width:100%">
+  <img src="custom_x_axis.png" alt="" style="width:60%">
   <figcaption>Custome x axis tick labels</figcaption>
 </figure>
-<h3 id="set-legend-label">Set legend label</h3>
+<p><strong>Set legend label</strong></p>
 <pre><code>plt.legend(['Qty by day in week','# of daily orders'])
 </code></pre>
 <p><em>To be updated</em></p>
@@ -1121,7 +1129,7 @@ plt.title('Sales by year');;
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/">Complete guide for Time series Exploration and Visualization</a></li>
+      <li><a href="/2020/03/30/complete-guide-for-time-series-visualization/">Complete guide for Time series Visualization</a></li>
       
       <li><a href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">Quick deep dive at Data Scientist Skill set</a></li>
       

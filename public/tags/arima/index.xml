@@ -278,12 +278,12 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 data.plot()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ts_plot.png&#34; alt=&#34;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ts_plot.png&#34; alt=&#34;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Distribution&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ts_dist.png&#34; alt=&#34;Figure 2: Distribution of time series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ts_dist.png&#34; alt=&#34;Figure 2: Distribution of time series weekly sales&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 2: Distribution of time series weekly sales&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
@@ -334,7 +334,7 @@ Critical Values:
 	10%: -2.590
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ts_season_plot.png&#34; alt=&#34;Figure 3: Seasonal differencing with order of 3&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ts_season_plot.png&#34; alt=&#34;Figure 3: Seasonal differencing with order of 3&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
@@ -352,7 +352,7 @@ fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ACF.png&#34; alt=&#34;Figure 4: ACF and PACF of orginal tiem series weekly sales&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ACF.png&#34; alt=&#34;Figure 4: ACF and PACF of orginal tiem series weekly sales&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 4: ACF and PACF of orginal tiem series weekly sales&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
@@ -410,13 +410,13 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;residual.png&#34; alt=&#34;Figure 5: ACF and PACF plots of Residuals&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;residual.png&#34; alt=&#34;Figure 5: ACF and PACF plots of Residuals&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 5: ACF and PACF plots of Residuals&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.&lt;/p&gt;
 &lt;p&gt;Below is the General process for forecasting using an ARIMA model (Source: &lt;a href=&#34;https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart&#34;&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G.&lt;/a&gt; )&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;arimaflowchart.png&#34; alt=&#34;Figure 6: General process for forecasting using an ARIMA model&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;arimaflowchart.png&#34; alt=&#34;Figure 6: General process for forecasting using an ARIMA model&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;Figure 6: General process for forecasting using an ARIMA model&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h2 id=&#34;5-model-evaluation&#34;&gt;5. Model evaluation&lt;/h2&gt;

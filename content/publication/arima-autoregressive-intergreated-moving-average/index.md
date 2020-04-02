@@ -70,14 +70,14 @@ plt.figure(figsize=(15,8));
 data.plot()
 ```
 <figure>
-  <img src="ts_plot.png" alt="Figure 1: Weekly Sales of suppermarket A from 2010 to 2019" style="width:100%">
+  <img src="ts_plot.png" alt="Figure 1: Weekly Sales of suppermarket A from 2010 to 2019" style="width:60%">
   <figcaption>Figure 1: Weekly Sales of suppermarket A from 2010 to 2019</figcaption>
 </figure>
      
 Distribution
 
 <figure>
-  <img src="ts_dist.png" alt="Figure 2: Distribution of time series weekly sales" style="width:100%">
+  <img src="ts_dist.png" alt="Figure 2: Distribution of time series weekly sales" style="width:60%">
   <figcaption>Figure 2: Distribution of time series weekly sales</figcaption>
 </figure>
 
@@ -144,7 +144,7 @@ Critical Values:
 	10%: -2.590
 ```
 <figure>
-  <img src="ts_season_plot.png" alt="Figure 3: Seasonal differencing with order of 3" style="width:100%">
+  <img src="ts_season_plot.png" alt="Figure 3: Seasonal differencing with order of 3" style="width:60%">
   <figcaption>Figure 3: Seasonal differencing with order of 3</figcaption>
 </figure>
 
@@ -165,7 +165,7 @@ fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
 plt.show()
 ```
 <figure>
-  <img src="ACF.png" alt="Figure 4: ACF and PACF of orginal tiem series weekly sales" style="width:100%">
+  <img src="ACF.png" alt="Figure 4: ACF and PACF of orginal tiem series weekly sales" style="width:60%">
   <figcaption>Figure 4: ACF and PACF of orginal tiem series weekly sales</figcaption>
 </figure>
 
@@ -223,7 +223,7 @@ fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
 plt.show()
 ```
 <figure>
-  <img src="residual.png" alt="Figure 5: ACF and PACF plots of Residuals" style="width:100%">
+  <img src="residual.png" alt="Figure 5: ACF and PACF plots of Residuals" style="width:60%">
   <figcaption>Figure 5: ACF and PACF plots of Residuals</figcaption>
 </figure>
 
@@ -232,7 +232,7 @@ Lag-1 of the residual in PACF still shows the sign of autocorrelation which impl
 Below is the General process for forecasting using an ARIMA model (Source: [Hyndman, R.J., & Athanasopoulos, G.](https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart) )
 
 <figure>
-  <img src="arimaflowchart.png" alt="Figure 6: General process for forecasting using an ARIMA model" style="width:100%">
+  <img src="arimaflowchart.png" alt="Figure 6: General process for forecasting using an ARIMA model" style="width:60%">
   <figcaption>Figure 6: General process for forecasting using an ARIMA model</figcaption>
 </figure>
 

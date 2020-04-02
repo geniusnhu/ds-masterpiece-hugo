@@ -703,7 +703,7 @@
 <p>Time series can be describe as the combination of 3 terms: <strong>Trend</strong>, <strong>Seasonality</strong> and <strong>Cyclic</strong>.</p>
 <p><strong>Trend</strong> is the changeing direction of the series. <strong>Seasonality</strong> occurs when there is a seasonal factor is seen in the series. <strong>Cyclic</strong> is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.</p>
 <figure>
-  <img src="total_sales.png" alt="" style="width:100%">
+  <img src="total_sales.png" alt="" style="width:60%">
   <figcaption></figcaption>
 </figure>
 <p>Looking at the example figure, there is no <strong>trend</strong> but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.</p>
@@ -711,8 +711,10 @@
 <p>There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).</p>
 <h3 id="seasonal-plot">Seasonal plot:</h3>
 <p>There is a large jump in December, followed by a drop in January.</p>
-<p><img src="seasonal_plot.png" 
-style="float: left; margin-right: 15px;" /></p>
+<figure>
+  <img src="seasonal_plot.png" alt="" style="width:60%">
+  <figcaption></figcaption>
+</figure>
 <p>Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found <a href="https://github.com/dhaitz/mplcyberpunk">here</a> with heptic neon color)</p>
 <pre><code class="language-python">colors = ['#08F7FE',  # teal/cyan
           '#FE53BB',  # pink
@@ -728,8 +730,10 @@ plt.yticks(fontsize=14);
 </code></pre>
 <h3 id="seasonal-subseries-plot">Seasonal subseries plot</h3>
 <p>Boxplot is a great tool to observe the time series pattern.</p>
-<p><img src="sub_seasonal.png" 
-style="float: left; margin-right: 15px;" /></p>
+<figure>
+  <img src="sub_seasonal.png" alt="" style="width:60%">
+  <figcaption></figcaption>
+</figure>
 <h3 id="moving-average-and-original-series-plot">Moving average and Original series plot</h3>
 <figure>
   <img src="moving_average.png" alt="" style="width:100%">
@@ -769,7 +773,7 @@ plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
 <h3 id="acf--pacf-plots">ACF / PACF plots</h3>
 <p>The details of ACF and PACF plot implication can be found <a href="https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/">here</a></p>
 <figure>
-  <img src="ACF_PACF.png" alt="ACF / PACF plots" style="width:100%">
+  <img src="ACF_PACF.png" alt="ACF / PACF plots" style="width:60%">
   <figcaption>ACF / PACF plots</figcaption>
 </figure>
 <pre><code class="language-python"># ACF and PACF for time series data
@@ -781,7 +785,7 @@ plt.show()
 </code></pre>
 <h3 id="actual-vs-predicted-values-plot">Actual vs Predicted values plot</h3>
 <figure>
-  <img src="actual_predicted.png" alt="Actual vs Predicted values plot" style="width:100%">
+  <img src="actual_predicted.png" alt="Actual vs Predicted values plot" style="width:60%">
   <figcaption>Actual vs Predicted values plot</figcaption>
 </figure>
 <pre><code class="language-python">def plotModelResults(model, X_train, X_test, y_train, y_test, plot_intervals=False, plot_anomalies=False):

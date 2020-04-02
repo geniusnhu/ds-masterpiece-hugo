@@ -13,15 +13,15 @@
     </image>
     
     <item>
-      <title>Complete guide for Time series Exploration and Visualization</title>
-      <link>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</link>
+      <title>Complete guide for Time series Visualization</title>
+      <link>/2020/03/30/complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</guid>
+      <guid>/2020/03/30/complete-guide-for-time-series-visualization/</guid>
       <description>&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Looking at the example figure, there is no &lt;strong&gt;trend&lt;/strong&gt; but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
@@ -29,8 +29,10 @@
 &lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
 &lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
 &lt;p&gt;There is a large jump in December, followed by a drop in January.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;seasonal_plot.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
           &#39;#FE53BB&#39;,  # pink
@@ -46,8 +48,10 @@ plt.yticks(fontsize=14);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
 &lt;p&gt;Boxplot is a great tool to observe the time series pattern.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;sub_seasonal.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
 &lt;figure&gt;
   &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
@@ -87,7 +91,7 @@ plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
 &lt;h3 id=&#34;acf--pacf-plots&#34;&gt;ACF / PACF plots&lt;/h3&gt;
 &lt;p&gt;The details of ACF and PACF plot implication can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;ACF / PACF plots&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
@@ -144,15 +148,15 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
     </item>
     
     <item>
-      <title>Complete guide for Time series Exploration and Visualization</title>
-      <link>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</link>
+      <title>Complete guide for Time series Visualization</title>
+      <link>/2020/03/30/complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/03/30/complete-guide-for-time-series-exploration-and-visualization/</guid>
+      <guid>/2020/03/30/complete-guide-for-time-series-visualization/</guid>
       <description>&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;Looking at the example figure, there is no &lt;strong&gt;trend&lt;/strong&gt; but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
@@ -160,8 +164,10 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
 &lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
 &lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
 &lt;p&gt;There is a large jump in December, followed by a drop in January.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;seasonal_plot.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
           &#39;#FE53BB&#39;,  # pink
@@ -177,8 +183,10 @@ plt.yticks(fontsize=14);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
 &lt;p&gt;Boxplot is a great tool to observe the time series pattern.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;sub_seasonal.png&#34; 
-style=&#34;float: left; margin-right: 15px;&#34; /&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
 &lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
 &lt;figure&gt;
   &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
@@ -218,7 +226,7 @@ plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
 &lt;h3 id=&#34;acf--pacf-plots&#34;&gt;ACF / PACF plots&lt;/h3&gt;
 &lt;p&gt;The details of ACF and PACF plot implication can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:100%&#34;&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;ACF / PACF plots&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
