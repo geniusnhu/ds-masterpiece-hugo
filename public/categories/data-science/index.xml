@@ -5,7 +5,7 @@
     <link>/categories/data-science/</link>
       <atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
     <description>Data Science</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
       <title>Data Science</title>
@@ -13,22 +13,234 @@
     </image>
     
     <item>
+      <title>Support Vector Machine explanation and application</title>
+      <link>/2020/04/30/support-vector-machine-explanation-and-application/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/2020/04/30/support-vector-machine-explanation-and-application/</guid>
+      <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
+&lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;original-concept&#34;&gt;Original concept&lt;/h2&gt;
+&lt;p&gt;All of this started with the idea of using a line (with 2D dataset) or a hyperplane (more than 3D) to separate the instances into 2 classes, and try to &lt;strong&gt;maximize the distance between the line and the closest instances&lt;/strong&gt;. This distance is denoted as &lt;strong&gt;Margin&lt;/strong&gt;. The below figure illustrates this.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;margin.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Why it needs to maximize this margin? The reason is that a Decision boundary lies right between 2 classes is much better than one that falls nearer at one class than another.&lt;/p&gt;
+&lt;p&gt;However, imagine that there is an &lt;strong&gt;outlier&lt;/strong&gt; of the Orange class and it lies closers to Blue class than its own. If we strictly impose the above concept to this dataset, it will result into the below picture. Now, the margin satisfies the requirement but turns out to be much smaller than the above one. This is called &lt;strong&gt;Hard margin&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;If there is a new Blue class data that falls near this orange instance, that new data will be misclassified as Orange, which in other word, means the model performs worse on new data than on train one (which we never wants to have with our model).&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;soft-margin&#34;&gt;Soft margin&lt;/h2&gt;
+&lt;p&gt;There is one way to solve this, by allowing some misclassification on outliers of train set to maximize the margin on the rest of training data. This concept was named &lt;strong&gt;Soft margin&lt;/strong&gt; or in other word, &lt;strong&gt;Support Vector Machine&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Once there is new data, it will be correctly classified as Blue.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, one question arises. How can we decide the Soft margin? (How do we know which instances to be misclassified in training?).&lt;/p&gt;
+&lt;p&gt;Actually, there is no perfect answer for this. You train the data on several values of margin decides to use the optimal one for your problem. The hyperparameter controls this in VC models in scikit-learn is denoted as $C$. If the model is overfitting, reduce $C$.&lt;/p&gt;
+&lt;p&gt;It is also because that SVM uses only 1 linear line or hyperplane to do the classification job, it is a binary classification solver. In case of multiclass problem, +One-versus-All (or One-versus-Rest) strategy* will be implied.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Therefore, one of the most important rule of SVM algorithm is that it tries to find a good balance between maximizing the margin street, and limiting the Margin violation (misclassification)&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;svm-on-non-linear-dataset&#34;&gt;SVM on non-linear dataset&lt;/h2&gt;
+&lt;p&gt;However, for non-linear separable data, how can we use this trick? Looking at the below illustration, we will need 3 lines to separate the data into 2 classes, and with more complex data, we will need even more. This is computationally inefficient.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;non_linear.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, here comes the &lt;strong&gt;Kernel trick&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of teaching the model on 2D data, the &lt;strong&gt;kernel trick&lt;/strong&gt; will add other features such as polynomial features and then SVM will utilize a hyperplane to split up data into 2 classes. The above data after adding 2-degree polynomial feature will look like this:&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;polynomial_feature.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;After quadratic feature added, instances  are now distintively separated into 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;hr&gt;
+&lt;p&gt;Let&#39;s use data to further understand this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import random
+np.random.seed(42)
+m = 500
+X1 = 2 * np.random.rand(m, 1)
+X2 = (4 + 3 * X1**2 + np.random.randn(m, 1)).ravel()
+X12 = np.column_stack((X1,X2))
+y1 = np.zeros((500))
+X3 = np.random.rand(m, 1)
+X4 = (1 + X1**1 + 2*np.random.randn(m, 1)).ravel()
+X34 = np.column_stack((X3,X4))
+y2 = np.ones((500))
+X = np.concatenate((X12, X34), axis=0)
+y = np.concatenate((y1, y2), axis=0)
+
+def plot_dataset(X, y, axes):
+    plt.plot(X[:, 0][y==0], X[:, 1][y==0], &amp;quot;bs&amp;quot;)
+    plt.plot(X[:, 0][y==1], X[:, 1][y==1], &amp;quot;g^&amp;quot;)
+    plt.axis(axes)
+    plt.grid(True, which=&#39;both&#39;)
+    plt.xlabel(&amp;quot;Feature 1&amp;quot;, fontsize=20)
+    plt.ylabel(&amp;quot;Feature 2&amp;quot;, fontsize=20, rotation=0)
+    
+plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;data_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;polynomial-kernel&#34;&gt;Polynomial kernel&lt;/h2&gt;
+&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;quot;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
+&lt;p&gt;If you have very large dataset, go ahead with $LinearSVC$ because it is faster than $SVC$ in handling big data.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;One thing to remember, always scaling data before training SVM&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;poly_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=0.001))
+])
+poly_kernel_svm_clf.fit(X_train, y_train)
+
+poly_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=10))
+])
+poly_kernel_svm_clf10.fit(X_train, y_train)
+
+# Plot the model overall prediction
+def plot_predictions(model, axes):
+    &amp;quot;&amp;quot;&amp;quot;
+    Vizualize the classification result of the model to see how it
+    corresponds to training data
+    &amp;quot;&amp;quot;&amp;quot;
+    x0s = np.linspace(axes[0], axes[1], 1000)
+    x1s = np.linspace(axes[2], axes[3], 1000)
+    x0, x1 = np.meshgrid(x0s, x1s)
+    X = np.c_[x0.ravel(), x1.ravel()]
+    y_pred = model.predict(X).reshape(x0.shape)
+    y_decision = model.decision_function(X).reshape(x0.shape)
+    plt.contourf(x0, x1, y_pred, cmap=plt.cm.brg, alpha=0.2)
+    plt.contourf(x0, x1, y_decision, cmap=plt.cm.brg, alpha=0.1)
+    
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(poly_kernel_svm_clf, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(poly_kernel_svm_clf10, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=10$&amp;quot;, fontsize=18)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;poly_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&#39;s measure its performance on test set.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
+
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
+    
+    
+0.6459770114942529
+0.8542027171311809
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;gaussian-rbf-kernel&#34;&gt;Gaussian RBF Kernel&lt;/h2&gt;
+&lt;p&gt;Now, I want to try a different kernel with this data, I will use  &lt;strong&gt;Gaussian RBF Kernel&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As my data is not too large, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; does not take much time. However, with a large dataset, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; will consume quite amount of your time.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.33, random_state=42)
+
+# Create pipeline for training
+rbf_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=0.1, C=0.001))
+])
+rbf_kernel_svm_clf.fit(X_train, y_train)
+
+rbf_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=5, C=10))
+])
+rbf_kernel_svm_clf10.fit(X_train, y_train)
+
+# Plot the model overall prediction
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(rbf_kernel_svm_clf, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(rbf_kernel_svm_clf10, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=10$&amp;quot;, fontsize=18)
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;RBF_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;2 values of C seems to produce similar model. Let&#39;s predict test set and evaluate with metrics.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
+
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
+    
+    
+0.8417207792207791
+0.8544599213495534
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As expected, 2 models perform quite equivalent with C = 10 has slightly higher value and also slightly higher than the polynomial kernel model above. We can improve this with tuning hyperparameter, cross validation, add other type of feature transformation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Complete guide for Time series Visualization</title>
       <link>/2020/03/30/complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
       <guid>/2020/03/30/complete-guide-for-time-series-visualization/</guid>
-      <description>&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
+      <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
+&lt;li&gt;It is informative to confirm the &lt;strong&gt;trend, seasonality, cyclic pattern&lt;/strong&gt; as well as &lt;strong&gt;correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Watch out for the &lt;strong&gt;Spurious correlation&lt;/strong&gt;: high correlation is always a trap rather than a prize for data scientist. Many remarks this as &lt;strong&gt;correlation-causation trap&lt;/strong&gt;. If you observe a &lt;strong&gt;trending and/or seasonal time-series&lt;/strong&gt;, be careful with the correlation. Check if the data is a &lt;strong&gt;cummulative sum&lt;/strong&gt; or not. If it is, spurious correlation is more apt to appear.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The below example with plots will give more details on this.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;Looking at the example figure, there is no &lt;strong&gt;trend&lt;/strong&gt; but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
+&lt;p&gt;Looking at the example figure, there is &lt;strong&gt;no trend&lt;/strong&gt; but there is a clear &lt;strong&gt;annual seasonlity&lt;/strong&gt; occured in December. &lt;strong&gt;No cyclic&lt;/strong&gt; as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
 &lt;h2 id=&#34;2-confirming-seasonality&#34;&gt;2. Confirming seasonality&lt;/h2&gt;
 &lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
 &lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
-&lt;p&gt;There is a large jump in December, followed by a drop in January.&lt;/p&gt;
+&lt;p&gt;This gives a better prove to spot seasonality, spike and drop. As seen in the below chart, there is a large jump in December, followed by a drop in January.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
@@ -47,11 +259,45 @@ plt.xticks(fontsize=14)
 plt.yticks(fontsize=14);
 &lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
-&lt;p&gt;Boxplot is a great tool to observe the time series pattern.&lt;/p&gt;
+&lt;p&gt;Next is an another way of showing the &lt;strong&gt;distribution&lt;/strong&gt; of time-series data in each month. Insteading of using histogram (which I considered difficult to understand the insight in time series), I generated &lt;em&gt;box plot&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Of note, the main purpose of this plot is to show the &lt;strong&gt;values changing from one month to another&lt;/strong&gt; as well as &lt;strong&gt;how the value distributed within each month&lt;/strong&gt;.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;Box plot&lt;/em&gt; is strongly recommended in case of &lt;strong&gt;confirming the mean, median of the seasonal period comparing to other periods&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;3-correlation&#34;&gt;3. Correlation&lt;/h2&gt;
+&lt;p&gt;Alike other type of data, &lt;strong&gt;Scatter plot&lt;/strong&gt; stands as the first choice for &lt;strong&gt;identifying the correlation between different time series&lt;/strong&gt;. This is especially the case if one series can be used to explain another series. Below is the correlation of sales and its lag 1.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag = data.copy()
+data_lag[&#39;lag_1&#39;] = data[&#39;Weekly_Sales&#39;].shift(1) # Create lag 1 feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(np.log(data_lag.Weekly_Sales), np.log(data_lag.lag_1), data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Weekly sales vs its 1st lag&#39;,fontsize=20 );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is apparant that the correlation between the original data and its 1&lt;sup&gt;st&lt;/sup&gt; lag is not too strong and there seems some outlier in the top left of the graph.&lt;/p&gt;
+&lt;p&gt;It is also interesting to identify if this &lt;em&gt;correlation actually exists and can we use lag 1 to predict the original series&lt;/em&gt;. &lt;strong&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference&lt;/strong&gt; will give proof for hypothesis.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter_diff.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference disappeared, indicating that lag1 does not appear to predict sales.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag[&#39;lag_1_diff&#39;] = data_lag[&#39;lag_1&#39;].diff() # Create lag 1 difference feature
+data_lag[&#39;diff&#39;] = data_lag[&#39;Weekly_Sales&#39;].diff() # Create difference feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(data_lag[&#39;diff&#39;], data_lag.lag_1_diff, data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;The correlation between original series difference with its 1st lag difference&#39;,fontsize=15);
+&lt;/code&gt;&lt;/pre&gt;
 &lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
 &lt;figure&gt;
   &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
@@ -88,11 +334,16 @@ plt.yticks(fontsize=14);
 plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
                   plot_anomalies=True)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;acf--pacf-plots&#34;&gt;ACF / PACF plots&lt;/h3&gt;
-&lt;p&gt;The details of ACF and PACF plot implication can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;acf--pacf-plots-autocorrelation--partial-autocorrelation-plots&#34;&gt;ACF / PACF plots (Autocorrelation / Partial Autocorrelation plots)&lt;/h3&gt;
+&lt;p&gt;First, talking about &lt;strong&gt;Autocorrelaltion&lt;/strong&gt;, by definition,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Autocorrelation implies how data points at different points in time are linearly related to one another.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;em&gt;blue area&lt;/em&gt; represents the &lt;em&gt;distance that is not significant than 0&lt;/em&gt; or the &lt;strong&gt;critical region&lt;/strong&gt;, in orther word, the correlation points that &lt;strong&gt;fall beyond this area are significantly different than 0&lt;/strong&gt;, and these the points needed our attention. This region is same for both ACF and PACF, which denoted as $ \pm 1.96\sqrt{n}$&lt;/p&gt;
+&lt;p&gt;The details of ACF and PACF plot implication and how to use them for further forecast can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;ACF / PACF plots&lt;/figcaption&gt;
+  &lt;figcaption&gt;ACF shows a significant negativve correlation at lag 3 and no positive correlation, indicating that the series has no correlation with its previous values. &lt;br /&gt; PACF reveals that lag 3, lag 6, lag 9, lag 18 and probably lag 19 are important to the original series&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
 series=train.dropna()
@@ -514,6 +765,11 @@ Let&#39;s set the parameters for SARIMA&lt;/p&gt;
 &lt;li&gt;PACF is exponentially decaying&lt;/li&gt;
 &lt;li&gt;There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$&lt;/li&gt;
 &lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TIP&lt;/strong&gt; 
+The ACF of stationary data should drop to zero quickly. 
+For nonstationary data the value at lag 1 is positive and large.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ps = range(3,5)
 d= 0

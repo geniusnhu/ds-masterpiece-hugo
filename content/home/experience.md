@@ -27,8 +27,8 @@ date_format = "Jan 2006"
   description = """
   Responsibilities include:
   
-  * Financial analytics including marketing portfolio planning, budget forecasting
-  * Marketing analytics including long-term and short-term post campaign evaluation analysis
+  * Portfolio planning: managing business portfolio planning, with specialized in sales performance tracking, forecasting, financial analytics and serve as an advisory for long-term and short-term business strategy development.
+  * Marketing analytics including post campaign evaluation analysis to define paint point, potential improvement area, ignite new segmentation, business opportunity.
   """
 
 [[experience]]
@@ -39,8 +39,9 @@ date_format = "Jan 2006"
   date_start = "2019-08-31"
   date_end = "2018-03-01"
   description = """
-  * Data Analytics - conducted statistical testing, logistic regression in predicting attendant rate of company's event and suggesting improvement, used POS data estimate sales forecast 
-  * Oversea Market development - Explored and initiated new potential through conducting survey, monthly performance tracking
+  * Conducted demand forecasting using statistical models (Hierarchical forecast, ARIMA) and LSTM.
+  * Develop different customer segmentation methods using unsupervised machine learning to improve the forecast, target sufficient consumers and increase their purchase basket. 
+  * Designed tracking monthly dashboard with key KPI, conducted customer survey to gather customer's comment on company product and areas for improvement. Explored and initiated new potential to expand market.
   * Achievement: successfully opened the route for Miyagi seafood and wagyu to Vietnam and Thailand.
   """
   
@@ -52,9 +53,13 @@ date_format = "Jan 2006"
   date_start = "2014-06-23"
   date_end = "2016-08-31"
   description = """
-  * Modeling - identified optimal marketing mix and advised brand portfolio for category through Market Mix model.   
-  * E-commerce portfolio optimization and digital platform development - led holistic analysis of online consumer behavior understanding, pricing scenario to support strategy buildin; conducted A/B test for digital platform optimization; forecasted e-commerce sales based on historical data
-  * Achievement: E-commerce sales increased +200% after 6 months, exceeded KPI 5%
+  * E-commerce portfolio optimization and digital platform development: led holistic analysis of online consumer behavior
+understanding, pricing scenario for forecasting future sales to support strategy building. Conducted A/B test for digital platform
+optimization. Forecast e-commerce sales based on historical data and set KPI and tracked the performance after project launch. 
+  * Sales forecast: Conducting long-term and short-term forecasting, demand forecasting for inventory using statistical models
+(Hierarchical forecast, ARIMA) and LSTM models
+  * Customer segmentation: Optimized customer groups and marketing/sales approach through customer segmentation using
+k-means, kNN, and hierarchical cluster.
   """
 
 +++

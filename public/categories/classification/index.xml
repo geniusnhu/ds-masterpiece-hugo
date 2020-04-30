@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Classification | Nhu Hoang</title>
+    <link>/categories/classification/</link>
+      <atom:link href="/categories/classification/index.xml" rel="self" type="application/rss+xml" />
+    <description>Classification</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Classification</title>
+      <link>/categories/classification/</link>
+    </image>
+    
+    <item>
+      <title>Support Vector Machine explanation and application</title>
+      <link>/2020/04/30/support-vector-machine-explanation-and-application/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/2020/04/30/support-vector-machine-explanation-and-application/</guid>
+      <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
+&lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;original-concept&#34;&gt;Original concept&lt;/h2&gt;
+&lt;p&gt;All of this started with the idea of using a line (with 2D dataset) or a hyperplane (more than 3D) to separate the instances into 2 classes, and try to &lt;strong&gt;maximize the distance between the line and the closest instances&lt;/strong&gt;. This distance is denoted as &lt;strong&gt;Margin&lt;/strong&gt;. The below figure illustrates this.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;margin.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Why it needs to maximize this margin? The reason is that a Decision boundary lies right between 2 classes is much better than one that falls nearer at one class than another.&lt;/p&gt;
+&lt;p&gt;However, imagine that there is an &lt;strong&gt;outlier&lt;/strong&gt; of the Orange class and it lies closers to Blue class than its own. If we strictly impose the above concept to this dataset, it will result into the below picture. Now, the margin satisfies the requirement but turns out to be much smaller than the above one. This is called &lt;strong&gt;Hard margin&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;If there is a new Blue class data that falls near this orange instance, that new data will be misclassified as Orange, which in other word, means the model performs worse on new data than on train one (which we never wants to have with our model).&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;soft-margin&#34;&gt;Soft margin&lt;/h2&gt;
+&lt;p&gt;There is one way to solve this, by allowing some misclassification on outliers of train set to maximize the margin on the rest of training data. This concept was named &lt;strong&gt;Soft margin&lt;/strong&gt; or in other word, &lt;strong&gt;Support Vector Machine&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Once there is new data, it will be correctly classified as Blue.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, one question arises. How can we decide the Soft margin? (How do we know which instances to be misclassified in training?).&lt;/p&gt;
+&lt;p&gt;Actually, there is no perfect answer for this. You train the data on several values of margin decides to use the optimal one for your problem. The hyperparameter controls this in VC models in scikit-learn is denoted as $C$. If the model is overfitting, reduce $C$.&lt;/p&gt;
+&lt;p&gt;It is also because that SVM uses only 1 linear line or hyperplane to do the classification job, it is a binary classification solver. In case of multiclass problem, +One-versus-All (or One-versus-Rest) strategy* will be implied.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Therefore, one of the most important rule of SVM algorithm is that it tries to find a good balance between maximizing the margin street, and limiting the Margin violation (misclassification)&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;svm-on-non-linear-dataset&#34;&gt;SVM on non-linear dataset&lt;/h2&gt;
+&lt;p&gt;However, for non-linear separable data, how can we use this trick? Looking at the below illustration, we will need 3 lines to separate the data into 2 classes, and with more complex data, we will need even more. This is computationally inefficient.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;non_linear.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, here comes the &lt;strong&gt;Kernel trick&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of teaching the model on 2D data, the &lt;strong&gt;kernel trick&lt;/strong&gt; will add other features such as polynomial features and then SVM will utilize a hyperplane to split up data into 2 classes. The above data after adding 2-degree polynomial feature will look like this:&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;polynomial_feature.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;After quadratic feature added, instances  are now distintively separated into 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;hr&gt;
+&lt;p&gt;Let&#39;s use data to further understand this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import random
+np.random.seed(42)
+m = 500
+X1 = 2 * np.random.rand(m, 1)
+X2 = (4 + 3 * X1**2 + np.random.randn(m, 1)).ravel()
+X12 = np.column_stack((X1,X2))
+y1 = np.zeros((500))
+X3 = np.random.rand(m, 1)
+X4 = (1 + X1**1 + 2*np.random.randn(m, 1)).ravel()
+X34 = np.column_stack((X3,X4))
+y2 = np.ones((500))
+X = np.concatenate((X12, X34), axis=0)
+y = np.concatenate((y1, y2), axis=0)
+
+def plot_dataset(X, y, axes):
+    plt.plot(X[:, 0][y==0], X[:, 1][y==0], &amp;quot;bs&amp;quot;)
+    plt.plot(X[:, 0][y==1], X[:, 1][y==1], &amp;quot;g^&amp;quot;)
+    plt.axis(axes)
+    plt.grid(True, which=&#39;both&#39;)
+    plt.xlabel(&amp;quot;Feature 1&amp;quot;, fontsize=20)
+    plt.ylabel(&amp;quot;Feature 2&amp;quot;, fontsize=20, rotation=0)
+    
+plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;data_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;polynomial-kernel&#34;&gt;Polynomial kernel&lt;/h2&gt;
+&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;quot;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
+&lt;p&gt;If you have very large dataset, go ahead with $LinearSVC$ because it is faster than $SVC$ in handling big data.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;One thing to remember, always scaling data before training SVM&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;poly_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=0.001))
+])
+poly_kernel_svm_clf.fit(X_train, y_train)
+
+poly_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=10))
+])
+poly_kernel_svm_clf10.fit(X_train, y_train)
+
+# Plot the model overall prediction
+def plot_predictions(model, axes):
+    &amp;quot;&amp;quot;&amp;quot;
+    Vizualize the classification result of the model to see how it
+    corresponds to training data
+    &amp;quot;&amp;quot;&amp;quot;
+    x0s = np.linspace(axes[0], axes[1], 1000)
+    x1s = np.linspace(axes[2], axes[3], 1000)
+    x0, x1 = np.meshgrid(x0s, x1s)
+    X = np.c_[x0.ravel(), x1.ravel()]
+    y_pred = model.predict(X).reshape(x0.shape)
+    y_decision = model.decision_function(X).reshape(x0.shape)
+    plt.contourf(x0, x1, y_pred, cmap=plt.cm.brg, alpha=0.2)
+    plt.contourf(x0, x1, y_decision, cmap=plt.cm.brg, alpha=0.1)
+    
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(poly_kernel_svm_clf, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(poly_kernel_svm_clf10, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=10$&amp;quot;, fontsize=18)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;poly_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&#39;s measure its performance on test set.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
+
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
+    
+    
+0.6459770114942529
+0.8542027171311809
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;gaussian-rbf-kernel&#34;&gt;Gaussian RBF Kernel&lt;/h2&gt;
+&lt;p&gt;Now, I want to try a different kernel with this data, I will use  &lt;strong&gt;Gaussian RBF Kernel&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As my data is not too large, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; does not take much time. However, with a large dataset, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; will consume quite amount of your time.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.33, random_state=42)
+
+# Create pipeline for training
+rbf_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=0.1, C=0.001))
+])
+rbf_kernel_svm_clf.fit(X_train, y_train)
+
+rbf_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=5, C=10))
+])
+rbf_kernel_svm_clf10.fit(X_train, y_train)
+
+# Plot the model overall prediction
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(rbf_kernel_svm_clf, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(rbf_kernel_svm_clf10, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=10$&amp;quot;, fontsize=18)
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;RBF_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;2 values of C seems to produce similar model. Let&#39;s predict test set and evaluate with metrics.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
+
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
+    
+    
+0.8417207792207791
+0.8544599213495534
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As expected, 2 models perform quite equivalent with C = 10 has slightly higher value and also slightly higher than the polynomial kernel model above. We can improve this with tuning hyperparameter, cross validation, add other type of feature transformation.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

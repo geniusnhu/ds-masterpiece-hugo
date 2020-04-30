@@ -2,10 +2,10 @@
 name = "Rose"
 
 # Optional Google font URL
-google_fonts = "Cutive+Mono|Lora:400,700|Roboto:400,700"
+google_fonts = "Comfortaa:700|Literata:500|Crimson+Pro:500,700"
 
 # Font families
-heading_font = "Lora"
-body_font = "Roboto"
-nav_font = "Lora"
-mono_font = "Cutive Mono"
+heading_font = "Comfortaa"
+body_font = "Crimson+Pro"
+nav_font = "Comfortaa"
+mono_font = "Literata"

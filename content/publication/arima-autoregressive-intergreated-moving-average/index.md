@@ -190,6 +190,10 @@ For $ARIMA(0,d,q)$:
 * PACF is exponentially decaying
 * There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$
 
+> **TIP** 
+The ACF of stationary data should drop to zero quickly. 
+For nonstationary data the value at lag 1 is positive and large.
+
 Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)
 
 ```python

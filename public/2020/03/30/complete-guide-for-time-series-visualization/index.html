@@ -39,10 +39,13 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="#000080">
   
 
   
+  
+  
+  <script src="/js/mathjax-config.js"></script>
   
 
   
@@ -174,9 +177,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -192,7 +195,7 @@
   
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CLiterata:500%7CCrimson+Pro:500,700&display=swap">
   
 
   
@@ -652,7 +655,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    5 min read
   </span>
   
 
@@ -699,18 +702,27 @@
   <div class="article-container">
 
     <div class="article-style">
-      <h2 id="1-time-series-patterns">1. Time series patterns</h2>
+      <p>When visualizing time series data, there are several things to be set in mind:</p>
+<ol>
+<li>Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. <strong>Reshaped data</strong> (aka lag, difference extraction, downsampling, upsampling, etc) is essential.</li>
+<li>It is informative to confirm the <strong>trend, seasonality, cyclic pattern</strong> as well as <strong>correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series</strong>.</li>
+<li>Watch out for the <strong>Spurious correlation</strong>: high correlation is always a trap rather than a prize for data scientist. Many remarks this as <strong>correlation-causation trap</strong>. If you observe a <strong>trending and/or seasonal time-series</strong>, be careful with the correlation. Check if the data is a <strong>cummulative sum</strong> or not. If it is, spurious correlation is more apt to appear.</li>
+</ol>
+<p>The below example with plots will give more details on this.</p>
+<hr>
+<h2 id="1-time-series-patterns">1. Time series patterns</h2>
 <p>Time series can be describe as the combination of 3 terms: <strong>Trend</strong>, <strong>Seasonality</strong> and <strong>Cyclic</strong>.</p>
 <p><strong>Trend</strong> is the changeing direction of the series. <strong>Seasonality</strong> occurs when there is a seasonal factor is seen in the series. <strong>Cyclic</strong> is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.</p>
+<p>The below graph was plot simply with <code>plot</code> function of <code>matplotlib</code>, one of the most common way to observe the series&rsquo; trend, seasonality or cyclic.</p>
 <figure>
   <img src="total_sales.png" alt="" style="width:60%">
   <figcaption></figcaption>
 </figure>
-<p>Looking at the example figure, there is no <strong>trend</strong> but there is a clear annual seasonlity occured in December. No cyclic as there is no pattern with frequency longer than 1 year.</p>
+<p>Looking at the example figure, there is <strong>no trend</strong> but there is a clear <strong>annual seasonlity</strong> occured in December. <strong>No cyclic</strong> as there is no pattern with frequency longer than 1 year.</p>
 <h2 id="2-confirming-seasonality">2. Confirming seasonality</h2>
 <p>There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).</p>
 <h3 id="seasonal-plot">Seasonal plot:</h3>
-<p>There is a large jump in December, followed by a drop in January.</p>
+<p>This gives a better prove to spot seasonality, spike and drop. As seen in the below chart, there is a large jump in December, followed by a drop in January.</p>
 <figure>
   <img src="seasonal_plot.png" alt="" style="width:60%">
   <figcaption></figcaption>
@@ -729,11 +741,45 @@ plt.xticks(fontsize=14)
 plt.yticks(fontsize=14);
 </code></pre>
 <h3 id="seasonal-subseries-plot">Seasonal subseries plot</h3>
-<p>Boxplot is a great tool to observe the time series pattern.</p>
+<p>Next is an another way of showing the <strong>distribution</strong> of time-series data in each month. Insteading of using histogram (which I considered difficult to understand the insight in time series), I generated <em>box plot</em>.</p>
+<p>Of note, the main purpose of this plot is to show the <strong>values changing from one month to another</strong> as well as <strong>how the value distributed within each month</strong>.</p>
 <figure>
   <img src="sub_seasonal.png" alt="" style="width:60%">
   <figcaption></figcaption>
 </figure>
+<p><em>Box plot</em> is strongly recommended in case of <strong>confirming the mean, median of the seasonal period comparing to other periods</strong>.</p>
+<h2 id="3-correlation">3. Correlation</h2>
+<p>Alike other type of data, <strong>Scatter plot</strong> stands as the first choice for <strong>identifying the correlation between different time series</strong>. This is especially the case if one series can be used to explain another series. Below is the correlation of sales and its lag 1.</p>
+<figure>
+  <img src="scatter.png" alt="" style="width:60%">
+  <figcaption></figcaption>
+</figure>
+<pre><code class="language-python">data_lag = data.copy()
+data_lag['lag_1'] = data['Weekly_Sales'].shift(1) # Create lag 1 feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&quot;cyberpunk&quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(np.log(data_lag.Weekly_Sales), np.log(data_lag.lag_1), data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title('Weekly sales vs its 1st lag',fontsize=20 );
+</code></pre>
+<p>It is apparant that the correlation between the original data and its 1<sup>st</sup> lag is not too strong and there seems some outlier in the top left of the graph.</p>
+<p>It is also interesting to identify if this <em>correlation actually exists and can we use lag 1 to predict the original series</em>. <strong>The correlation between the original difference and the 1<sup>st</sup> lag difference</strong> will give proof for hypothesis.</p>
+<figure>
+  <img src="scatter_diff.png" alt="" style="width:60%">
+  <figcaption>The correlation between the original difference and the 1<sup>st</sup> lag difference disappeared, indicating that lag1 does not appear to predict sales.</figcaption>
+</figure>
+<pre><code class="language-python">data_lag['lag_1_diff'] = data_lag['lag_1'].diff() # Create lag 1 difference feature
+data_lag['diff'] = data_lag['Weekly_Sales'].diff() # Create difference feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&quot;cyberpunk&quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(data_lag['diff'], data_lag.lag_1_diff, data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title('The correlation between original series difference with its 1st lag difference',fontsize=15);
+</code></pre>
 <h3 id="moving-average-and-original-series-plot">Moving average and Original series plot</h3>
 <figure>
   <img src="moving_average.png" alt="" style="width:100%">
@@ -770,11 +816,16 @@ plt.yticks(fontsize=14);
 plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
                   plot_anomalies=True)
 </code></pre>
-<h3 id="acf--pacf-plots">ACF / PACF plots</h3>
-<p>The details of ACF and PACF plot implication can be found <a href="https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/">here</a></p>
+<h3 id="acf--pacf-plots-autocorrelation--partial-autocorrelation-plots">ACF / PACF plots (Autocorrelation / Partial Autocorrelation plots)</h3>
+<p>First, talking about <strong>Autocorrelaltion</strong>, by definition,</p>
+<blockquote>
+<p>Autocorrelation implies how data points at different points in time are linearly related to one another.</p>
+</blockquote>
+<p>The <em>blue area</em> represents the <em>distance that is not significant than 0</em> or the <strong>critical region</strong>, in orther word, the correlation points that <strong>fall beyond this area are significantly different than 0</strong>, and these the points needed our attention. This region is same for both ACF and PACF, which denoted as $ \pm 1.96\sqrt{n}$</p>
+<p>The details of ACF and PACF plot implication and how to use them for further forecast can be found <a href="https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/">here</a></p>
 <figure>
   <img src="ACF_PACF.png" alt="ACF / PACF plots" style="width:60%">
-  <figcaption>ACF / PACF plots</figcaption>
+  <figcaption>ACF shows a significant negativve correlation at lag 3 and no positive correlation, indicating that the series has no correlation with its previous values. <br /> PACF reveals that lag 3, lag 6, lag 9, lag 18 and probably lag 19 are important to the original series</figcaption>
 </figure>
 <pre><code class="language-python"># ACF and PACF for time series data
 series=train.dropna()
@@ -847,7 +898,7 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
   
   <a class="badge badge-light" href="/tags/trend/">Trend</a>
   
-  <a class="badge badge-light" href="/tags/seasonality/">Seasonality</a>
+  <a class="badge badge-light" href="/tags/spurious-correlation/">Spurious correlation</a>
   
 </div>
 
@@ -1075,6 +1126,8 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
         
       
 

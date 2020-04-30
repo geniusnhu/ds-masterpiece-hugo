@@ -39,10 +39,13 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="#000080">
   
 
   
+  
+  
+  <script src="/js/mathjax-config.js"></script>
   
 
   
@@ -174,9 +177,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -192,7 +195,7 @@
   
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CLiterata:500%7CCrimson+Pro:500,700&display=swap">
   
 
   
@@ -840,6 +843,11 @@ Let's set the parameters for SARIMA</p>
 <li>PACF is exponentially decaying</li>
 <li>There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$</li>
 </ul>
+<blockquote>
+<p><strong>TIP</strong> 
+The ACF of stationary data should drop to zero quickly. 
+For nonstationary data the value at lag 1 is positive and large.</p>
+</blockquote>
 <p>Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)</p>
 <pre><code class="language-python">ps = range(3,5)
 d= 0
@@ -1135,6 +1143,8 @@ metrics.mean_absolute_error(y_test, y_pred)
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
         
       
 
