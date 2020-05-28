@@ -1,1 +1,3 @@
-Host repo for Website "Data Science Masterpiece"
+Host repo for Website 
+
+https://geniusnhu.netlify.app/
