@@ -5,9 +5,9 @@
     <link>/tags/seasonality/</link>
       <atom:link href="/tags/seasonality/index.xml" rel="self" type="application/rss+xml" />
     <description>Seasonality</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Seasonality</title>
       <link>/tags/seasonality/</link>
     </image>
@@ -21,7 +21,8 @@
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
 &lt;li&gt;It is informative to confirm the &lt;strong&gt;trend, seasonality, cyclic pattern&lt;/strong&gt; as well as &lt;strong&gt;correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Watch out for the &lt;strong&gt;Spurious correlation&lt;/strong&gt;: high correlation is always a trap rather than a prize for data scientist. Many remarks this as &lt;strong&gt;correlation-causation trap&lt;/strong&gt;. If you observe a &lt;strong&gt;trending and/or seasonal time-series&lt;/strong&gt;, be careful with the correlation. Check if the data is a &lt;strong&gt;cummulative sum&lt;/strong&gt; or not. If it is, spurious correlation is more apt to appear.&lt;/li&gt;
+&lt;li&gt;Watch out for the &lt;strong&gt;Spurious correlation&lt;/strong&gt;: high correlation is always a trap rather than a prize for data scientist. Many remarks this as &lt;strong&gt;correlation-causation trap&lt;/strong&gt;
+. If you observe a &lt;strong&gt;trending and/or seasonal time-series&lt;/strong&gt;, be careful with the correlation. Check if the data is a &lt;strong&gt;cummulative sum&lt;/strong&gt; or not. If it is, spurious correlation is more apt to appear.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;The below example with plots will give more details on this.&lt;/p&gt;
 &lt;hr&gt;

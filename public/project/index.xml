@@ -1,35 +1,792 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects | Data Science with Nhu Hoang</title>
+    <title>Recent Posts | Nhu Hoang</title>
     <link>/project/</link>
       <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
-    <description>Projects</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <description>Recent Posts</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>Projects</title>
+      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <title>Recent Posts</title>
       <link>/project/</link>
     </image>
     
     <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/external-project/</guid>
-      <description></description>
+      <title>Useful visualization with source code</title>
+      <link>/project/useful-visualization-with-source-code/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/useful-visualization-with-source-code/</guid>
+      <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
+&lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Bar chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Show trend/values among categorical variables.&lt;/p&gt;
+&lt;p&gt;This serves best in case of showing the differene between various categories.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ax = data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;, figsize =(8,5))
+positions = (0,1, 2, 3)
+ax.set_xticklabels([&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;], rotation=30)
+ax.set_title(&#39;Sales and number of order&#39;)
+for i in ax.patches:
+    # get_x pulls left or right; get_height pushes up or down
+    ax.text(i.get_x()+.01, i.get_height()+50, \
+            str(round((i.get_height()), 2)), fontsize=12);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;bar_chart.png&#34; alt=&#34;Bar chart: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Bar chart: 2 categorical variables with continuous vales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Subplots for multiple categorical variables&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Breaking several categories into different subplots will help generating insights, which is related to trend of each category.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(20,10))
+plt.subplot(221)
+data[data[&#39;type&#39;]==0].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;green&#39;, linewidth=7.0)
+plt.title(&#39;Item Quantity - Product class 0&#39;)
+plt.xlabel(xlabel=&#39;&#39;)
+plt.xticks([]) # delete the x axis tick value
+plt.subplot(222)
+data[data[&#39;type&#39;]==2].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;red&#39;,linewidth=7.0)
+plt.title(&#39;Item Quantity - Product class 2&#39;)
+# Other subplot can continue with plt.subplot(223) ...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;line_subplot.png&#34; alt=&#34;Line subplot: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Line subplot: 2 categorical variables with continuous vales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;This can also be changed to &lt;strong&gt;Mutiple lines plot&lt;/strong&gt; as below&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(data[&#39;line1&#39;], label=&#39;Line 1&#39;)
+plt.plot(data[&#39;line1&#39;], color=&#39;red&#39;, label=&#39;Line 2&#39;)
+plt.legend()
+plt.title(&#39;2 Line plot&#39;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;2_line_plot.png&#34; alt=&#34;Multiple Line plot&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Multiple Line plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Box plot (distribution box plot)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Talking about distribution, boxplot will initiate many insights, especially when it is used to &lt;strong&gt;detect outlier&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (10, 8)
+fig, ax = plt.subplots(figsize=fig_dims)
+sns.boxplot(x=&#39;X&#39;, y=&#39;Y&#39;, data=data)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;boxplot.png&#34; alt=&#34;Box plot - Distribution vizualization&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Box plot - Distribution vizualization&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Polar chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;THe below &lt;strong&gt;Polar chart&lt;/strong&gt; used to &lt;strong&gt;detech seasonality&lt;/strong&gt; among 12 months. It is clearly seen that the data at November and December observed spike or in orderword, an annual seasonality.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.express as px
+data[&#39;Month&#39;] = data[&#39;Date&#39;].dt.month_name()
+fig = px.line_polar(data, theta=&amp;quot;Month&amp;quot;,r=&amp;quot;Weekly_Sales&amp;quot;,
+                    color=&#39;Year&#39;,
+                    line_close=True,template=&amp;quot;plotly_dark&amp;quot;)
+fig.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;polar_plot.png&#34; alt=&#34;Polar chart&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Polar chart&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;2-continuous-with-continuous-variables&#34;&gt;2. Continuous with continuous variables&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Scatter plot&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;One of the most popular type of plot to observe the &lt;strong&gt;relationship&lt;/strong&gt; between 2 variables and sometimes help identify the &lt;strong&gt;correlation&lt;/strong&gt; between features. &lt;code&gt;corr&lt;/code&gt; function is used to get this correlation.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (8,5)
+fig, ax = plt.subplots(figsize=fig_dims)
+abc = data.groupby([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]).agg({&#39;D&#39;:&#39;sum&#39;}).reset_index()
+sns.scatterplot(x=&#39;C&#39;, y=&#39;A&#39;, hue=&#39;B&#39;, data=abc, palette=&amp;quot;Set2&amp;quot;).set(title = &#39;Order throughout a month&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;Scatter plot&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;3-percentage-plot&#34;&gt;3. Percentage plot&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Pie chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There is a controversy that &lt;strong&gt;pie chart&lt;/strong&gt; can hardly do a good job in representing the percentage. However, if the number of catogories are low, aka below 6, Pie chart proves no problem.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = &#39;G1&#39;,&#39;G2&#39;, &#39;G3&#39;,  &#39;G4&#39;
+
+fig1, ax1 = plt.subplots(figsize=(5,5))
+ax1.pie(data.groupby(&#39;ProductClass&#39;).agg({&#39;ItemID&#39;:&#39;count&#39;}), labels=labels, autopct=&#39;%1.1f%%&#39;,
+        shadow=True, startangle=90)
+ax1.axis(&#39;equal&#39;)  # Equal aspect ratio ensures that pie is drawn as a circle.
+plt.title(&#39;Proportion of each Group&#39;)
+plt.show();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;pie_plot.png&#34; alt=&#34;Pie plot&#34; style=&#34;width:50%&#34;&gt;
+  &lt;figcaption&gt;Pie plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Donut chart (Multiple categorical variables with percentage)&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Donut chart&lt;/strong&gt; is the combination of 2 &lt;strong&gt;pie chart&lt;/strong&gt;, the smaller lies within the bigger. This shows the percentage within of the big group as well as the proportion within each subgroup, which provides a transparent distribution of 2 categorical variables within each other.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subgroup_names = &#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;
+labels = &#39;Group 1&#39;,&#39;Group 2&#39;, &#39;Group 3&#39;
+
+# Create colors
+a, b, c=[plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
+fig, ax = plt.subplots(figsize=(5,5))
+ax.axis(&#39;equal&#39;)
+mypie, _ = ax.pie(list(data.groupby([&#39;group&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
+                  radius=1.3, labels=labels, colors=[a(0.6), b(0.6), c(0.6)] , labeldistance=1.05)
+plt.setp( mypie, width=0.3, edgecolor=&#39;white&#39;)
+
+mypie2, _ = ax.pie(list(data.groupby([&#39;group&#39;,&#39;subgroup&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
+                   radius=1.3-0.3, labels=subgroup_names, 
+                   labeldistance=0.8, colors=[a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), b(0.2),c(0.5), 
+                                              c(0.4), c(0.3),c(0.2)])
+plt.setp( mypie2, width=0.4, edgecolor=&#39;white&#39;)
+plt.title(&#39;Proportion of by groups and subgroups&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;donut_chart.png&#34; alt=&#34;Donut chart&#34; style=&#34;width:30%&#34;&gt;
+  &lt;figcaption&gt;Donut chart&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;4-change-in-order-plot&#34;&gt;4. Change in Order plot&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ldquo;How the rank changes over time&amp;rdquo; is the question that is answered by the below graph, called &lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;bump_chart.png&#34; alt=&#34;Bump chart - Change in order&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Change in order&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def bumpchart(df, show_rank_axis= True, rank_axis_distance= 1.1, 
+              ax= None, scatter= False, holes= False,
+              line_args= {}, scatter_args= {}, hole_args= {}, number_of_lines=10):
+    
+    if ax is None:
+        left_yaxis= plt.gca()
+    else:
+        left_yaxis = ax
+
+    # Creating the right axis.
+    right_yaxis = left_yaxis.twinx()
+    
+    axes = [left_yaxis, right_yaxis]
+    
+    # Creating the far right axis if show_rank_axis is True
+    if show_rank_axis:
+        far_right_yaxis = left_yaxis.twinx()
+        axes.append(far_right_yaxis)
+    
+    for col in df.columns:
+        y = df[col]
+        x = df.index.values
+        # Plotting blank points on the right axis/axes 
+        # so that they line up with the left axis.
+        for axis in axes[1:]:
+            axis.plot(x, y, alpha= 10)
+
+        left_yaxis.plot(x, y, **line_args, solid_capstyle=&#39;round&#39;)
+        #left_yaxis.annotate(x,xy=(3,1))
+        # Adding scatter plots
+        if scatter:
+            left_yaxis.scatter(x, y, **scatter_args)
+            for x,y in zip(x,y):
+              plt.annotate(col, 
+                          (x,y), 
+                          textcoords=&amp;quot;offset points&amp;quot;, 
+                          xytext=(0,10), 
+                          ha=&#39;center&#39;) 
+            
+            #Adding see-through holes
+            if holes:
+                bg_color = left_yaxis.get_facecolor()
+                left_yaxis.scatter(x, y, color= bg_color, **hole_args)
+
+    # Number of lines
+     
+
+    y_ticks = [*range(1, number_of_lines+1)]
+    
+    # Configuring the axes so that they line up well.
+    for axis in axes:
+        axis.invert_yaxis()
+        axis.set_yticks(y_ticks)
+        axis.set_ylim((number_of_lines + 0.5, 0.5))
+    
+    # Sorting the labels to match the ranks.
+    left_labels = [*range(1, len(df.iloc[0].index))]
+    right_labels = left_labels
+    #left_labels = df.iloc[0].sort_values().index
+    #right_labels = df.iloc[-1].sort_values().index
+    
+    left_yaxis.set_yticklabels(left_labels)
+    right_yaxis.set_yticklabels(right_labels)
+    
+    # Setting the position of the far right axis so that it doesn&#39;t overlap with the right axis
+    if show_rank_axis:
+        far_right_yaxis.spines[&amp;quot;right&amp;quot;].set_position((&amp;quot;axes&amp;quot;, rank_axis_distance))
+    
+    return axes
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;5-other-customization&#34;&gt;5. Other customization&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Add x axis tick label&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;,figsize =(8,5))
+positions = (0,1, 2, 3)
+labels = (&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;)
+plt.xticks(positions, labels, rotation=0) #Assign x axis tick labels
+plt.ylabel(&#39;Sales&#39;, fontsize =12)
+plt.xlabel(&#39;&#39;)
+plt.title(&#39;Sales by year&#39;);;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;custom_x_axis.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Custome x axis tick labels&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Set legend label&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;plt.legend([&#39;Qty by day in week&#39;,&#39;# of daily orders&#39;])
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
-      <title>Internal Project</title>
-      <link>/project/internal-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/internal-project/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+      <title>The beauty of Transformer in bringing more applications to life</title>
+      <link>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
+      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
+      <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
+&lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
+&lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
+&lt;p&gt;To understand &lt;strong&gt;Transformer model&lt;/strong&gt; inclduing BERT, we need to take a look of the progress from &lt;strong&gt;Seq2Seq (sequence to sequence)&lt;/strong&gt; and its evolution to attention and to BERT.&lt;/p&gt;
+&lt;h4 id=&#34;11-seq2seq-model&#34;&gt;1.1 Seq2Seq model:&lt;/h4&gt;
+&lt;p&gt;In NLP, the end that a machine is expected to understand is the meaning of the sentence, not only word by word. &lt;strong&gt;Seq2Seq&lt;/strong&gt; is a technique to train the machine in which it takes a sequence of an item and generates another sequence as output.&lt;/p&gt;
+&lt;p&gt;Within the model, there contains &lt;strong&gt;Encoder&lt;/strong&gt; and &lt;strong&gt;Decoder&lt;/strong&gt;. The &lt;strong&gt;Encoder&lt;/strong&gt; receives the original text and convert the text into a &lt;strong&gt;Context vector&lt;/strong&gt; that the Machine can read. Then, the &lt;strong&gt;Decoder&lt;/strong&gt; does the job of generating a new sequence of items based on the &lt;strong&gt;Context vector&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In Seq2Seq, a sentence does not need to go through both Encoder and Decoder, it can stop at Encoder. Some example of Encoder only is the suggested word &lt;em&gt;&amp;ldquo;message&amp;rdquo;&lt;/em&gt; after you type &lt;em&gt;&amp;ldquo;Thank you for your&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt; or &lt;strong&gt;Context vector&lt;/strong&gt; is a vector of floats representing the input sequence. &lt;strong&gt;&amp;ldquo;Word Embedding&amp;rdquo;&lt;/strong&gt; is the algorithm used to transform text into vector, and the size of vector is usually 265, 512 or 1024 dimensions.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Seq2Seq_visual.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;h4 id=&#34;12-attention&#34;&gt;1.2 Attention&lt;/h4&gt;
+&lt;p&gt;One of the disadvantages of Context in Seq2Seq is the &lt;strong&gt;dealing with long sentences and handling the sequence of output&lt;/strong&gt;. Context is generated by the Word embedding algorithm and the longer the sentence or the paragraph, the bigger the size of vector and the more memory consuming.&lt;/p&gt;
+&lt;p&gt;Moreover, the context in Seq2Seq &lt;strong&gt;was not built to figure out the similarity between words&lt;/strong&gt; because it does not focus on the &lt;strong&gt;relevancy of the words in the sentence&lt;/strong&gt;. This leads to the issue that a sentence in English cannot be translated correctly to Japanese which has the reserve order in sentence structure.&lt;/p&gt;
+&lt;p&gt;The concept of Attention was introduced in &lt;a href=&#34;https://arxiv.org/abs/1409.0473&#34;&gt;Bahdanau et al., 2014&lt;/a&gt; and &lt;a href=&#34;https://arxiv.org/abs/1508.04025&#34;&gt;Luong et al., 2015&lt;/a&gt; in which it takes into account the relevant parts in the sentence.&lt;/p&gt;
+&lt;p&gt;Instead of passing the last hidden state to the &lt;strong&gt;Decoder&lt;/strong&gt;, the Attention model &lt;strong&gt;passes all the hidden states to the Decoder&lt;/strong&gt; with the summary process as below:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Give each hidden state a score&lt;/li&gt;
+&lt;li&gt;Use &lt;strong&gt;Softmax function&lt;/strong&gt; to multiply each hidden state. This brings about high Hidden state scores and low hidden state scores or in other word, it generates the probability of each hidden state associating with the input word.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;Decoder&lt;/strong&gt; will sum up all the weighted softmax Hidden state vectors into a context vector and concatenate it with its original hidden state vector.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;Attention_Visual.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The advantage of this model is the capability to &lt;strong&gt;choose the decoding word based on the probability of that word in associating with the original input without losing the sequential characteristics of the sentence&lt;/strong&gt;. This has high effectiveness in dealing with translating of common words such as &amp;ldquo;the&amp;rdquo;, &amp;ldquo;his&amp;rdquo;, &amp;ldquo;of&amp;rdquo;, etc. and the sequence of different languages.&lt;/p&gt;
+&lt;h4 id=&#34;13-transformer&#34;&gt;1.3 Transformer:&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Transformer&lt;/strong&gt; is built on the foundation of &lt;strong&gt;Attention&lt;/strong&gt; model. Therefore, &lt;strong&gt;Transformer&lt;/strong&gt; can deal with the relevancy of the sentence rather than converting from word to word in &lt;strong&gt;Seq2Seq&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The biggest difference of &lt;strong&gt;Transformer&lt;/strong&gt; vs &lt;strong&gt;Seq2Seq&lt;/strong&gt; is that instead of generating 1 vector from &lt;strong&gt;Encoder&lt;/strong&gt;, &lt;strong&gt;Transformer&lt;/strong&gt; model uses 3 vectors in order to decide which other parts of the sentence are important (or unimportant) to that word.&lt;/p&gt;
+&lt;p&gt;The below table show more details of the calculation.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Word&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Q vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;K vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V vector&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Score&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Softmax&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sum&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;First word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q1xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q1xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z1 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q1xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q1xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Second word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q2xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q2xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z2 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q2xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q2xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;Third word&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;I&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S1=Q3xK1/8xV1&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;love&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S2=Q3xK2/8xV2&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Z3 = S1+S2+S3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;data&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Q3xK3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;S3=Q3xK3/8xV3&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One example of this model application is the suggestion of relevant words when typing sentence. Gmail can suggest &lt;strong&gt;&amp;ldquo;message&amp;rdquo;, &amp;ldquo;reply&amp;rdquo;, &amp;ldquo;call&amp;rdquo;&lt;/strong&gt; at the same time based on the typed sentence &lt;strong&gt;&amp;ldquo;Thank you for your&lt;/strong&gt;&amp;quot;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is a brief introduction on the transition from Seq2Seq to Transformer and how the &lt;strong&gt;Transformer model&lt;/strong&gt; outstands &lt;strong&gt;Seq2Seq&lt;/strong&gt; at the moment.&lt;/p&gt;
+&lt;h3 id=&#34;2-business-applications-of-nlp&#34;&gt;2. Business Applications of NLP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Chatbot&lt;/strong&gt;: This is obviously the forefront application of NLP, which can be seen across all industries and companies. Given its popularity, there are several tools to support building a chatbot such as Google DialogFlow, Microsoft LUIS. These tools can be customized based on the user&#39;s needs; however, they can only deal with simple requests.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Machine translation&lt;/strong&gt;: such as Google translate or pocket translator device.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Search engine&lt;/strong&gt;: 5 years ago, when you searched something on search engine, whether you type key words &amp;ldquo;to Tokyo&amp;rdquo; or the whole sentences &amp;ldquo;How to go to Tokyo&amp;rdquo;, the machine would generate quite similar results. However, with the evolution of BERT and Transformer, searching the whole sentence will throw you to a better search result.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Monitoring of brand and product - Sentiment analysis:&lt;/strong&gt; This is the field that I used to analyze during my first job. I used sentiment analysis on big scale online platforms including online forums, social network, brand website and e-commerce sites to understand the reaction of consumers toward a campaign or a brand in order to react promptly toward negative trend related to the brand.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Place to display an advertisement&lt;/strong&gt;: display ads based on context or categorization and make sure that the article is appropriate at the placing place. Honestly saying, I have not seen much of this application around.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Remarketing&lt;/strong&gt;: an online advertisement based on the browsing history of a user to target them with similar advertising product to drive them back the previous interest. This personalized application is a very effective tool in today online market in which thousands of sellers trying to attract each of their customers. Youtube, Facebook or Google are the biggest applicators.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Medical assistant&lt;/strong&gt;: although called &amp;ldquo;assistant&amp;rdquo;, the major task of this service is to transcript the discussion between doctors and patients.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Text generation&lt;/strong&gt;: this is one of the applications of Decoding in NLP, in which the machine will generate a complete article from what it was learnt or summarize a paragraph. As you may know, there are many contradictions about this application, especially the emergence of fake news in recent years. With the completion of this technology, whether the fake news issue continues its expansion or is stopped is still a big question.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Information extraction&lt;/strong&gt;: extract dynamic required information that is sleeping in the database system.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Resume reviews&lt;/strong&gt;: use NLP to scan the applicants&amp;rsquo; resume to figure out potential candidate for the interview. This application sticks with Amazon big scandal. Amazon used to use this to scan the resume which led to the inequality between male and female with the result preferred male than female. This is due to 0the bias toward male in the training set of the model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Voice command&lt;/strong&gt;: an emerging technology in recent years with the appearance of smart device such as Siri in Iphone, Alexa of Amazone, Google home or Cortana of Microsoft.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Beside the major technological trends mentioned above, the application trend is heading toward diversity in languages and translation efficacy. Moreover, not only applying NLP alone, there are more applications combining NLP and Voice recognition or Computer Vision.&lt;/p&gt;
+&lt;p&gt;NLP is a powerful Machine Learning area and its application is supporting human&#39;s life even more than we can expect. Therefore, NLP is one of the most used Machine Learning fields by Data Scienctist.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ARIMA Autoregressive Integrated Moving Average model family</title>
+      <link>/project/arima-autoregressive-intergreated-moving-average/</link>
+      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/project/arima-autoregressive-intergreated-moving-average/</guid>
+      <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
+&lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
+&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
+&lt;p&gt;There are 3 parts in the ARIMA model: &lt;strong&gt;Auto Regressive (AR)&lt;/strong&gt; $p$, &lt;strong&gt;Integrated (I)&lt;/strong&gt; $d$, &lt;strong&gt;Moving Average (MA)&lt;/strong&gt; $q$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Integrated&lt;/strong&gt; (Or stationary): A time series which needs to be differenced to become stationary is the &lt;em&gt;integrated&lt;/em&gt; version of stationary series. One of the characteristics of Stationary is that the effect of an observation dissipated as time goes on. Therefore, the best long-term predictions for data that has stationary is the historical mean of the series.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Auto Regressive&lt;/strong&gt;: is simply defined a the linear or non-linear model between current value of the series with its previous values (so called &lt;strong&gt;lags&lt;/strong&gt;), and there are unlimited number of lags in the model. The basic assumption of this model is that the current series value depends on its previous values. This is the long memory model because the effect slowly dissipates across time. p is preferred as the maximum lag of the data series.
+The AR can be denoted as
+$Y_{t}=\omega_{0}+\alpha_{1}Y_{t-1}+\alpha_{2}Y_{t-2}+&amp;hellip;+\xi$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Moving Average&lt;/strong&gt;: deal with &amp;lsquo;shock&amp;rsquo; or error in the model, or how abnormal your current value is compared to the previous values (has some residual effect).
+The MA is denoted as
+$Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$p$, $d$, and $q$ are non-negative integers;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$: The number of &lt;strong&gt;Autoregressive terms&lt;/strong&gt;. &lt;strong&gt;Autoregressive term&lt;/strong&gt; is the lag of the staionarized series in the forecasting equation.&lt;/li&gt;
+&lt;li&gt;$d$: the degree of differencing (the number of times the data have had past values subtracted).&lt;/li&gt;
+&lt;li&gt;$q$: the order of the moving-average terms (The size of the moving average window) or in order word, the lag of the forecast errors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A value of 0 can be used for a parameter, which indicates to not use that element of the model. When two out of the three parameters are zeros, the model may be referred to non-zero parameter. For example, $ARIMA (1,0,0)$ is $AR(1)$  (i.e. the ARIMA model is configured to perform the function if a AR model), $ARIMA(0,1,0)$ is $I(1)$, and $ARIMA(0,0,1)$ is $MA(1)$&lt;/p&gt;
+&lt;h2 id=&#34;2-is-the-data-predictable&#34;&gt;2. Is the data predictable?&lt;/h2&gt;
+&lt;p&gt;One of the key important thing to define before fitting ro forecast any sets of data is confirm whether the data is &lt;strong&gt;predictable&lt;/strong&gt; or it is just a &lt;strong&gt;&amp;ldquo;Random Walk&amp;rdquo;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Random walk&lt;/strong&gt; means the movement of the data is random and cannot be detected. The &lt;strong&gt;Random Walk&lt;/strong&gt; is denoted as $ARIMA(0,1,0)$. If the data is not stationary, Random walk is the simplest model to fit&lt;/p&gt;
+&lt;p&gt;The forecasting equation for Random Walk is:&lt;/p&gt;
+&lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
+&lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
+&lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
+&lt;p&gt;Let&#39;s work with some data.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
+data.plot()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_plot.png&#34; alt=&#34;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 1: Weekly Sales of suppermarket A from 2010 to 2019&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Distribution&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_dist.png&#34; alt=&#34;Figure 2: Distribution of time series weekly sales&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 2: Distribution of time series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
+&lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
+&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&#39;s Stationarity&lt;/h2&gt;
+&lt;p&gt;It is essential to confirm the data to be stationary or not because this impacts directly to your model selection for the highest accuracy.&lt;/p&gt;
+&lt;p&gt;There are several methods to examine the data. One of the most statistical accurate way is the &lt;strong&gt;Augmented Dicky-Fuller&lt;/strong&gt; method in which it tests the data with 2 hypothesis. The &lt;strong&gt;Null hypothesis&lt;/strong&gt; is not staionary and the &lt;strong&gt;alternative hypothese&lt;/strong&gt; is stationary.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Run test
+series = data.values
+result = adfuller(data)
+print(&#39;ADF Statistic: %f&#39; % result[0])
+print(&#39;p-value: %f&#39; % result[1])
+print(&#39;Critical Values:&#39;)
+for key, value in result[4].items():
+	print(&#39;\t%s: %.3f&#39; % (key, value))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ADF Statistic: -1.557214
+p-value: 0.505043
+Critical Values:
+	1%: -3.492
+	5%: -2.889
+	10%: -2.581
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;p-value is higher than 0.05 so we fail to reject the Null hypothesis which means the data is stationary.&lt;/p&gt;
+&lt;h2 id=&#34;4-differencing-the-data&#34;&gt;4. Differencing the data&lt;/h2&gt;
+&lt;p&gt;Differencing is the methid to stationarize the time series data.&lt;/p&gt;
+&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&#39;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Difference the orginal sales data
+plt.figure(figsize=(15,8));
+train_diff_seasonal = train - train.shift(3)
+plt.plot(train_diff_seasonal)
+
+# Conduct the test
+series = train_diff_seasonal.dropna().values
+result = adfuller(series)
+print(&#39;ADF Statistic: %f&#39; % result[0])
+print(&#39;p-value: %f&#39; % result[1])
+print(&#39;Critical Values:&#39;)
+for key, value in result[4].items():
+	print(&#39;\t%s: %.3f&#39; % (key, value))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;ADF Statistic: -3.481334
+p-value: 0.008480
+Critical Values:
+	1%: -3.529
+	5%: -2.904
+	10%: -2.590
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ts_season_plot.png&#34; alt=&#34;Figure 3: Seasonal differencing with order of 3&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
+Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
+train = data[:84]
+validation = data[84:108]
+test = data[108:]
+
+# ACF and PACF for orginal data
+series=train.dropna()
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF.png&#34; alt=&#34;Figure 4: ACF and PACF of orginal tiem series weekly sales&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 4: ACF and PACF of orginal tiem series weekly sales&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
+Let&#39;s set the parameters for SARIMA&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;$p$ is most probably 3 as this is the last significant lag on the PACF.&lt;/li&gt;
+&lt;li&gt;$d$ should equal 0 as we do not have differencing (only seasonal differencing and this will be reflected later on)&lt;/li&gt;
+&lt;li&gt;$q$ should be around 3&lt;/li&gt;
+&lt;li&gt;$P$ should be 2 as 3th, and 9th lags are somewhat significant on the PACF&lt;/li&gt;
+&lt;li&gt;$D$ should be 1 as we performed seasonal differencing&lt;/li&gt;
+&lt;li&gt;$Q$ is probably 2 as the 3th lag and 9th lag are significant in ACF plot while other 6th and 9th lags are not.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is not suggestable to use only ACF and PACF plots to decide the value within ARIMA model. The reason is that ACF and PACF are useful in case either $p$ or $q$ is positive. In a situation that both $p$ and $q$ are positive, these 2 plots will give no value.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The $ARIMA(p,d,0)$ is decided given the following conditions observed from ACF and PACF plots:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $p$ in the PACF, but none beyond lag $p$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;For $ARIMA(0,d,q)$:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PACF is exponentially decaying&lt;/li&gt;
+&lt;li&gt;There is a significant spike at lag $q$ in the PACF, but none beyond lag $q$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;TIP&lt;/strong&gt; 
+The ACF of stationary data should drop to zero quickly. 
+For nonstationary data the value at lag 1 is positive and large.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Another way to have an idea for which $p$ and $q$ values in $ARIMA$ model are opt to be used is through grid search with assigned parameter to identify the optimal comnbination based on score (aka AIC and BIC)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ps = range(3,5)
+d= 0
+qs = range(2,5)
+Ps= range(1,4)
+D=1
+Qs=range(0,3)
+s=6 # annual seasonality
+
+parameters = product(ps,qs,Ps, Qs)
+parameters_list = list(parameters)
+result_table = optimizeSARIMA(parameters_list, d, D, s)
+
+# set the parameters that give the lowest AIC
+p, q, P, Q = result_table.parameters[0]
+
+best_model=sm.tsa.statespace.SARIMAX(data, order=(p, d, q),
+                                     seasonal_order=(P, D, Q, zs)).fit(disp=-1)
+print(best_model.summary())
+
+# Examine the residuals
+# ACF and PACF for orginal data
+plt.plot(best_model.resid)
+
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(best_model.resid, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(best_model.resid, lags=None, ax=ax[1])
+
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;residual.png&#34; alt=&#34;Figure 5: ACF and PACF plots of Residuals&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 5: ACF and PACF plots of Residuals&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Lag-1 of the residual in PACF still shows the sign of autocorrelation which implies that it needs more adjustment with the model.&lt;/p&gt;
+&lt;p&gt;Below is the General process for forecasting using an ARIMA model (Source: &lt;a href=&#34;https://otexts.com/fpp2/arima-r.html#fig:arimaflowchart&#34;&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G.&lt;/a&gt; )&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;arimaflowchart.png&#34; alt=&#34;Figure 6: General process for forecasting using an ARIMA model&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Figure 6: General process for forecasting using an ARIMA model&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;5-model-evaluation&#34;&gt;5. Model evaluation&lt;/h2&gt;
+&lt;p&gt;There are 2 common measures to evaluate the predicted values with the validation set.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.	Mean Absolute Error (MAE):&lt;/strong&gt;
+&amp;hellip;How far your predicted term to the real value on absolute term. One of the drawbacks of the MAE is because it shows the absolute value so there is no strong evidence and comparison on which the predicted value is actually lower or higher.&lt;/p&gt;
+&lt;p&gt;$MAE=\frac{1}{n}\sum_{i = 1}^{n} |Y_{t}-\hat{Y_{t}}|$&lt;/p&gt;
+&lt;p&gt;can be run with R&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;mean(abs(Yp - Yv))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;or in Python&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn import metrics
+metrics.mean_absolute_error(y_test, y_pred)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;2. Mean absolute percentage error (MAPE):&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The MAE score shows the absolute value and it is hardly to define whether that number is good or bad, close or far from expectation. This is when MAPE comes in.&lt;/p&gt;
+&lt;p&gt;MAPE measures how far your predicted term to the real value on absolute percentage term.&lt;/p&gt;
+&lt;p&gt;$MAPE=100\frac{1}{n}\sum_{i = 1}^{n} \frac{|Y_t-\hat{Y_t}|} {\hat{Y_{t}}}$&lt;/p&gt;
+&lt;p&gt;Can compute as&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;100 x mean(abs(Yp - Yv) / Yv )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on March 31, 2020&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Practical flow of a Data Science Project</title>
+      <link>/project/practical-flow-of-a-data-science-project/</link>
+      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/project/practical-flow-of-a-data-science-project/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
+&lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;
+&lt;p&gt;It is a routine for a Data Scientist to saturate with &lt;strong&gt;technical models&lt;/strong&gt; while understates the role of &lt;strong&gt;business mindset&lt;/strong&gt;. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;strong&gt;understanding the business concept at first before any other activities&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Therefore, I list out below a standard flow for starting a data science projects with key points, which I have been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.
+This post was written based on my experience. Hence, take it as your reference and adjust to your own needs.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;1-first-and-foremost-importance---clarifying-business-question&#34;&gt;1. First and foremost importance - Clarifying Business question&lt;/h3&gt;
+&lt;p&gt;During my years in analytics and data science, in addition to technological concept explanation, &lt;strong&gt;business question clarification&lt;/strong&gt; is one of the most difficult tasks when a Data scientist communicates with business partner.&lt;/p&gt;
+&lt;p&gt;I am sure that you catch this phrase everywhere, in numerous articles, warning you to clarify business question in every situation.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;But how?&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Working and researching are not identical. In business, top people never stop expecting a Data Scientist to become a wise man who knows the answer for all of their questions. Therefore, &lt;strong&gt;digging the problem is our job and how to do that is our responsibility&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;It must be very familiar with you when a sales manager asks you &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or a marketing director demands &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;When you hear these questions, can you imagine the right approach or the answer to the case? Or you will be very vague and keep asking yourself &lt;em&gt;&amp;ldquo;Is that they want me to do this.&amp;rdquo; or &amp;ldquo;I think they want to know that.&amp;quot;&lt;/em&gt;, and if you deliver the result based on this understanding, &lt;strong&gt;how much confidence you have on your result?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In reality, if you keep it this way, the one and only response you will get from them is:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&amp;ldquo;This is not what I need&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;OMG! How terrible it is when you spent so much effort into this, but no one values it.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;This is because you did not truly understand problem so that you did not touch the right pain point!&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For example, the director wants to know way to improve his marketing activity efficacy, so what does &lt;strong&gt;Efficacy&lt;/strong&gt; mean here? What kind of activity he points to? What are the real pain points? If these concerns are plainly clarified, the request will be interpreted as &lt;em&gt;&amp;ldquo;How to optimize the budget spending on online promotion in order to increase the purchase rate and new customers vs last year&amp;rdquo;&lt;/em&gt;. This will end up with increasing efficacy.&lt;/p&gt;
+&lt;p&gt;One of the common advises is to ask &lt;strong&gt;&amp;ldquo;Why&amp;rdquo;&lt;/strong&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
+&lt;p&gt;What can you do more:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ask about the background of the question&lt;/strong&gt;, why and how they come up with the request after you receive it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&#39;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Engage with other teams in the company&lt;/strong&gt; to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as &lt;em&gt;&amp;ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&amp;quot;&lt;/em&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Think of initiatives and what you can do more&lt;/strong&gt; within your expertise to bring the projects to the next level.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Be a thinker, not a doer!&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-identify-the-approach-for-the-problem&#34;&gt;2. Identify the approach for the problem&lt;/h3&gt;
+&lt;p&gt;This part is to place the methodology for the analysis&lt;/p&gt;
+&lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
+&lt;p&gt;With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/p&gt;
+&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&#39;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&#39;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
+&lt;p&gt;What you can do more:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;It is fundamental to &lt;strong&gt;understand the discrepancy between Descriptive analysis and Predictive analysis&lt;/strong&gt; (many people are still ambiguous between these 2 concepts). An example of descriptive analysis is the relationship between factors; while prescriptive analysis deals with figuring out the future outcomes of that relationship. &lt;em&gt;Descriptive analysis delivers historical insights and prescriptive analysis foresees future values&lt;/em&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Identify the specific type of data&lt;/strong&gt; to assist the problem approach: The target variable and other variables are continuous, categorical or binary.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Understand key problem approaches&lt;/strong&gt;:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Binary&lt;/em&gt; (2 possible answers) or &lt;em&gt;Multi-clas&lt;/em&gt;s (more than 2 possible answers) classification;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Regression relationship&lt;/em&gt; (relationship between 2 or more factors) or &lt;em&gt;Regression prediction&lt;/em&gt; (predict future value using regression model);&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Clustering&lt;/em&gt; (cluster unlabeled observation into groups of similar characteristics) or &lt;em&gt;Segmentation&lt;/em&gt; (divide observations into specific groups);&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Trend detection&lt;/em&gt; (historical movement) or &lt;em&gt;Time-series forecasting&lt;/em&gt; (project future value of that movement).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
+&lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&#39;s birthday information for the task of predicting churn probability?&lt;/p&gt;
+&lt;p&gt;Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: &lt;em&gt;Garbage in is Garbage out&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Two major problems that usually occur during Data Collection&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The unavailability of data&lt;/li&gt;
+&lt;li&gt;The bias of training data&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&#39;s look at the unavailability of data&lt;/h4&gt;
+&lt;p&gt;This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the &lt;em&gt;time spent in cooking at home&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
+&lt;p&gt;Therefore, the solution for this case is to &lt;strong&gt;defer inaccessible data&lt;/strong&gt; and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
+&lt;p&gt;What you can do more if you need more data:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Bring along a data request summary&lt;/strong&gt; when you visit the database owner if you need to talk to other parties for this. The summary form should include background of you project, data requirement, your request. This will help smoothing the discussion and the business partner will give the adequate solution.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Change the process/method of collecting data&lt;/strong&gt; to acquire the right information needed. Work with database owner or IT team or propose to your up-line a system revision plan for approval.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Prepare budget and contact an outside data owner&lt;/strong&gt; if the additional data is vital to improve the model and inaccessible for you.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;32-second-the-bias-of-data&#34;&gt;3.2 Second, the bias of data&lt;/h4&gt;
+&lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
+&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
+&lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
+&lt;p&gt;What you can do more to eliminate the bias:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Ensure the statistical distribution of data and its representatives over population&lt;/strong&gt;. For example, if the population is made up of 56% of male and 43% of female and 1% of others, the data distribution must be in similar ratio.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Verify the split of train, validate and test sets&lt;/strong&gt; in prediction models to establish a similar allocation of variable and categories.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Choose the learning model fitting the problem and reduce the skewness&lt;/strong&gt;. Some models can reduce the bias in data including clustering or dimension reduction.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Monitor the performance in real data&lt;/strong&gt;. Frequently run statistical test on real data to pick out uncommon case. If the test result shows a statically significant in churn rate among male than female, dig it out. Is it the sudden shift or result of bias?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;After getting all the data you need, the next step is thing that a Data scientist usually does:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;DS_Flow.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The order can be flexible and this is the standard progress that I usually do in my project and my job. Sometimes, after tuning and the accuracy does not meet my expectation, I need to go back to the feature engineering step to find other way to deal with features.&lt;/p&gt;
+&lt;p&gt;These are the key bottlenecks beside the technical skills that I want to head up for Data Scientist who want to become more than just a Data insight extractor.&lt;/p&gt;
 </description>
     </item>
     

@@ -48,12 +48,12 @@
   </url>
   
   <url>
-    <loc>/tags/support-vector-machine/</loc>
+    <loc>/categories/support-vector-machine/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/support-vector-machine/</loc>
+    <loc>/tags/support-vector-machine/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -78,7 +78,7 @@
   </url>
   
   <url>
-    <loc>/publication/</loc>
+    <loc>/project/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -88,7 +88,7 @@
   </url>
   
   <url>
-    <loc>/publication/useful-visualization-with-source-code/</loc>
+    <loc>/project/useful-visualization-with-source-code/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -153,22 +153,27 @@
   </url>
   
   <url>
-    <loc>/tags/natural-language-processing/</loc>
+    <loc>/tags/nlp/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/publication/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
+    <loc>/categories/nlp/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/arima/</loc>
-    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
+    <loc>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
+    <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/arima/</loc>
+    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/arima/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -188,7 +193,7 @@
   </url>
   
   <url>
-    <loc>/publication/arima-autoregressive-intergreated-moving-average/</loc>
+    <loc>/project/arima-autoregressive-intergreated-moving-average/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -203,7 +208,7 @@
   </url>
   
   <url>
-    <loc>/publication/practical-flow-of-a-data-science-project/</loc>
+    <loc>/project/practical-flow-of-a-data-science-project/</loc>
     <lastmod>2020-01-26T00:00:00+00:00</lastmod>
   </url>
   

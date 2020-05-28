@@ -39,10 +39,13 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="#101073">
   
 
   
+  
+  
+  <script src="/js/mathjax-config.js"></script>
   
 
   
@@ -174,9 +177,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -192,7 +195,7 @@
   
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CLiterata:500%7CCrimson+Pro:500,700&display=swap">
   
 
   
@@ -206,16 +209,52 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
   
-  <link rel="alternate" href="/project/index.xml" type="application/rss+xml" title="Data Science with Nhu Hoang">
+  <link rel="alternate" href="/project/index.xml" type="application/rss+xml" title="Nhu Hoang">
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_192x192_fill_lanczos_center_2.png">
 
   <link rel="canonical" href="/project/">
 
@@ -230,30 +269,56 @@
   
   <meta property="twitter:card" content="summary">
   
-  <meta property="og:site_name" content="Data Science with Nhu Hoang">
+  <meta property="twitter:site" content="@nhu_hoang">
+  <meta property="twitter:creator" content="@nhu_hoang">
+  
+  <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/project/">
-  <meta property="og:title" content="Projects | Data Science with Nhu Hoang">
-  <meta property="og:description" content="Data Science"><meta property="og:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
-  <meta property="twitter:image" content="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="en-us">
+  <meta property="og:title" content="Recent Posts | Nhu Hoang">
+  <meta property="og:description" content="Data Science"><meta property="og:image" content="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png">
+  <meta property="twitter:image" content="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png"><meta property="og:locale" content="en-us">
   
-    <meta property="og:updated_time" content="2016-04-27T00:00:00&#43;00:00">
+    <meta property="og:updated_time" content="2020-04-02T00:00:00&#43;00:00">
   
-
-  
-
-
-
-
-  
-
 
   
 
 
 
 
+  
 
-  <title>Projects | Data Science with Nhu Hoang</title>
+
+  
+
+
+
+
+
+  <title>Recent Posts | Nhu Hoang</title>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
 
 </head>
 
@@ -298,13 +363,15 @@
 
 
 
+  
+
 
 <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
   <div class="container">
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Data Science with Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -317,7 +384,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Data Science with Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -352,7 +419,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#about"><span>Biography</span></a>
+          <a class="nav-link " href="/#posts"><span>Portfolio</span></a>
         </li>
 
         
@@ -381,7 +448,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#posts"><span>Posts</span></a>
+          <a class="nav-link " href="/#portfolios"><span>Posts</span></a>
         </li>
 
         
@@ -410,7 +477,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#projects"><span>News</span></a>
+          <a class="nav-link " href="/#about"><span>About</span></a>
         </li>
 
         
@@ -440,6 +507,28 @@
 
         <li class="nav-item">
           <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
         </li>
 
         
@@ -493,7 +582,7 @@
     
   
 <div class="universal-wrapper pt-3">
-  <h1>Projects</h1>
+  <h1>Recent Posts</h1>
 
   
 
@@ -508,19 +597,37 @@
   
   
   <div>
-    <h2><a href="/project/external-project/">External Project</a></h2>
+    <h2><a href="/project/useful-visualization-with-source-code/">Useful visualization with source code</a></h2>
     <div class="article-style">
       
-      An example of linking directly to an external project website using `external_link`.
+      All visualization with code: bar chart, line chart, pie chart, violin chart, scatter chart, donut chart and customization
       
     </div>
   </div>
   
   <div>
-    <h2><a href="/project/internal-project/">Internal Project</a></h2>
+    <h2><a href="/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/">The beauty of Transformer in bringing more applications to life</a></h2>
     <div class="article-style">
       
-      An example of using the in-built project page.
+      What is Transformer in today NLP outlook and how does Natural Language Processing contribute to our life
+      
+    </div>
+  </div>
+  
+  <div>
+    <h2><a href="/project/arima-autoregressive-intergreated-moving-average/">ARIMA Autoregressive Integrated Moving Average model family</a></h2>
+    <div class="article-style">
+      
+      Comprehensive summary of ARIMA model and how to apply it to forecasting
+      
+    </div>
+  </div>
+  
+  <div>
+    <h2><a href="/project/practical-flow-of-a-data-science-project/">Practical flow of a Data Science Project</a></h2>
+    <div class="article-style">
+      
+      Overcome Data Scientist bottle neck in conducting a Data Science Project in real business context to become a valuable employee'
       
     </div>
   </div>
@@ -547,6 +654,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
         
       
 
@@ -609,6 +718,8 @@
 
     
     
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
 
     
     
@@ -650,7 +761,7 @@
   
 
   <p class="powered-by">
-    Nhu Hoang &middot; 
+    © 2019 Nhu Hoang<br/>Served by <a href="https://geniusnhu.netlify.app/">Netlify</a> &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
@@ -666,6 +777,27 @@
     </span>
     
   </p>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "nhu-hoang" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 </footer>
 
   </div>

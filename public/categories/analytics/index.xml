@@ -5,18 +5,18 @@
     <link>/categories/analytics/</link>
       <atom:link href="/categories/analytics/index.xml" rel="self" type="application/rss+xml" />
     <description>Analytics</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>Nhu Hoang</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Analytics</title>
       <link>/categories/analytics/</link>
     </image>
     
     <item>
       <title>Useful visualization with source code</title>
-      <link>/publication/useful-visualization-with-source-code/</link>
+      <link>/project/useful-visualization-with-source-code/</link>
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/useful-visualization-with-source-code/</guid>
+      <guid>/project/useful-visualization-with-source-code/</guid>
       <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
 &lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Bar chart&lt;/strong&gt;&lt;/p&gt;

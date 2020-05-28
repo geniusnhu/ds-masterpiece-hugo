@@ -39,7 +39,7 @@
   
   
   
-  <meta name="theme-color" content="#000080">
+  <meta name="theme-color" content="#101073">
   
 
   
@@ -251,8 +251,8 @@
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_192x192_fill_lanczos_center_2.png">
 
   <link rel="canonical" href="/2020/03/30/complete-guide-for-time-series-visualization/">
 
@@ -265,6 +265,9 @@
   
   
   <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@nhu_hoang">
+  <meta property="twitter:creator" content="@nhu_hoang">
   
   <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/2020/03/30/complete-guide-for-time-series-visualization/">
@@ -411,13 +414,15 @@
 
 
 
+  
+
 
 <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
   <div class="container">
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -430,7 +435,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -523,7 +528,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#about"><span>Biography</span></a>
+          <a class="nav-link " href="/#about"><span>About</span></a>
         </li>
 
         
@@ -553,6 +558,28 @@
 
         <li class="nav-item">
           <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
         </li>
 
         
@@ -662,6 +689,9 @@
   
   
   
+  <span class="middot-divider"></span>
+  <a href="/2020/03/30/complete-guide-for-time-series-visualization/#disqus_thread"></a>
+  
 
   
   
@@ -706,7 +736,8 @@
 <ol>
 <li>Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. <strong>Reshaped data</strong> (aka lag, difference extraction, downsampling, upsampling, etc) is essential.</li>
 <li>It is informative to confirm the <strong>trend, seasonality, cyclic pattern</strong> as well as <strong>correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series</strong>.</li>
-<li>Watch out for the <strong>Spurious correlation</strong>: high correlation is always a trap rather than a prize for data scientist. Many remarks this as <strong>correlation-causation trap</strong>. If you observe a <strong>trending and/or seasonal time-series</strong>, be careful with the correlation. Check if the data is a <strong>cummulative sum</strong> or not. If it is, spurious correlation is more apt to appear.</li>
+<li>Watch out for the <strong>Spurious correlation</strong>: high correlation is always a trap rather than a prize for data scientist. Many remarks this as <strong>correlation-causation trap</strong>
+. If you observe a <strong>trending and/or seasonal time-series</strong>, be careful with the correlation. Check if the data is a <strong>cummulative sum</strong> or not. If it is, spurious correlation is more apt to appear.</li>
 </ol>
 <p>The below example with plots will give more details on this.</p>
 <hr>
@@ -1024,8 +1055,8 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
 
     <div class="media-body">
       <h5 class="card-title"><a href="/">Nhu Anh Quynh Hoang</a></h5>
-      <h6 class="card-subtitle">Data Scientist at heart</h6>
-      <p class="card-text">My interest is Consumer behavior prediction, segmentation, classification; financial forecasting and Machine learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries including marketing, digital marketing, and retail.</p>
+      <h6 class="card-subtitle">Data Scientist / Portfolio Planning Specialist - Amway Japan</h6>
+      <p class="card-text">My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deeep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.</p>
       <ul class="network-icon" aria-hidden="true">
   
     
@@ -1079,6 +1110,23 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
       </a>
     </li>
   
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://medium.com/@hoanganhquynhnhu" target="_blank" rel="noopener">
+        <i class="fab fa-medium"></i>
+      </a>
+    </li>
+  
 </ul>
 
     </div>
@@ -1087,8 +1135,37 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
 
 
 
+<section id="comments">
+  
+    
+
+  
+</section>
 
 
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/2020/04/30/support-vector-machine-explanation-and-application/" rel="next">Support Vector Machine explanation and application</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/2020/02/06/comprehensive-understanding-on-time-series-forecasting/" rel="prev">Comprehensive understanding on Time Series forecasting</a>
+  </div>
+  
+</div>
+
+</div>
 
 
 
@@ -1190,6 +1267,8 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
 
     
     
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
 
     
     
@@ -1231,7 +1310,7 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
   
 
   <p class="powered-by">
-    Nhu Hoang &middot; 
+    © 2019 Nhu Hoang<br/>Served by <a href="https://geniusnhu.netlify.app/">Netlify</a> &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

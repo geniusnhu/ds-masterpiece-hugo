@@ -2,7 +2,7 @@
 # A Recent Blog Posts section created with the Pages widget.
 # This section displays recent blog posts from `content/portfolio/`.
 
-widget = "pages"  # See https://sourcethemes.com/academic/docs/page-builder/
+widget = "portfolio"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
 weight = 30  # Order that this section will appear.
@@ -12,31 +12,41 @@ subtitle = ""
 
 [content]
   # Page type to display. E.g. post, talk, or publication.
-  page_type = "publication"
+  page_type = "project"
   
-  # Choose how much pages you would like to display (0 = all pages)
-  count = 3
+  # Default filter index (e.g. 0 corresponds to the first `[[filter_button]]` instance below).
+  filter_default = 0
   
-  # Choose how many pages you would like to offset by
-  offset = 0
+  [[content.filter_button]]
+    name = "All"
+    tag = "*"
+  
+  [[content.filter_button]]
+    name = "Data Science"
+    tag = "Data Science"
+  
+  [[content.filter_button]]
+    name = "NLP"
+    tag = "NLP"
 
-  # Page order. Descending (desc) or ascending (asc) date.
-  order = "desc"
+  [[content.filter_button]]
+    name = "Deep learning"
+    tag = "Deep learning"
 
-  # Filter posts by a taxonomy term.
-  [content.filters]
-    tag = ""
-    category = ""
-    publication_type = ""
-    exclude_featured = false
-  
+  [[content.filter_button]]
+    name = "Visualization"
+    tag = "Visualization"
+
 [design]
+  # Choose how many columns the section has. Valid values: 1 or 2.
+  columns = "2"
+  
   # Toggle between the various page layout types.
   #   1 = List
   #   2 = Compact
   #   3 = Card
   #   4 = Citation (publication only)
-  view = 5
+  view = 3
   
 [design.background]
   # Apply a background color, gradient, or image.

@@ -31,7 +31,8 @@ title: 'Complete guide for Time series Visualization'
 When visualizing time series data, there are several things to be set in mind:
 1. Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. **Reshaped data** (aka lag, difference extraction, downsampling, upsampling, etc) is essential.
 2. It is informative to confirm the **trend, seasonality, cyclic pattern** as well as **correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series**.
-3. Watch out for the **Spurious correlation**: high correlation is always a trap rather than a prize for data scientist. Many remarks this as **correlation-causation trap**. If you observe a **trending and/or seasonal time-series**, be careful with the correlation. Check if the data is a **cummulative sum** or not. If it is, spurious correlation is more apt to appear. 
+3. Watch out for the **Spurious correlation**: high correlation is always a trap rather than a prize for data scientist. Many remarks this as **correlation-causation trap**
+. If you observe a **trending and/or seasonal time-series**, be careful with the correlation. Check if the data is a **cummulative sum** or not. If it is, spurious correlation is more apt to appear. 
 
 The below example with plots will give more details on this.
 

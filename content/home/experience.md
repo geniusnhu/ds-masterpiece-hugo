@@ -27,22 +27,21 @@ date_format = "Jan 2006"
   description = """
   Responsibilities include:
   
-  * Portfolio planning: managing business portfolio planning, with specialized in sales performance tracking, forecasting, financial analytics and serve as an advisory for long-term and short-term business strategy development.
-  * Marketing analytics including post campaign evaluation analysis to define paint point, potential improvement area, ignite new segmentation, business opportunity.
+  * Portfolio planning: managing business portfolio planning, sales performance tracking, forecasting, financial analytics and serve as an advisory for long-term and short-term business strategy development.
+  * Marketing analytics including post campaign evaluation, KPI reporting.
   """
 
 [[experience]]
   title = "Marketing and Sales Department - Oversea Market Specialist"
   company = "Senkon Logistics Co., Ltd"
   company_url = ""
-  location = "Sendai"
-  date_start = "2019-08-31"
-  date_end = "2018-03-01"
+  location = "Sendai, Japan"
+  date_start = "2018-03-01"
+  date_end = "2019-08-31"
   description = """
   * Conducted demand forecasting using statistical models (Hierarchical forecast, ARIMA) and LSTM.
   * Develop different customer segmentation methods using unsupervised machine learning to improve the forecast, target sufficient consumers and increase their purchase basket. 
   * Designed tracking monthly dashboard with key KPI, conducted customer survey to gather customer's comment on company product and areas for improvement. Explored and initiated new potential to expand market.
-  * Achievement: successfully opened the route for Miyagi seafood and wagyu to Vietnam and Thailand.
   """
   
 [[experience]]
@@ -53,9 +52,8 @@ date_format = "Jan 2006"
   date_start = "2014-06-23"
   date_end = "2016-08-31"
   description = """
-  * E-commerce portfolio optimization and digital platform development: led holistic analysis of online consumer behavior
-understanding, pricing scenario for forecasting future sales to support strategy building. Conducted A/B test for digital platform
-optimization. Forecast e-commerce sales based on historical data and set KPI and tracked the performance after project launch. 
+  * Modeling: identified optimal marketing mix through Market Mix Model (combination of segmentation and forecasting); applied model's result in supporting strategic product marketing and sales plan of portfolio.
+  * E-commerce portfolio optimization and digital platform development: led holistic analysis of online consumer behavior understanding, pricing scenario for forecasting future sales to support strategy building. Conducted A/B test for digital platform optimization. Forecast e-commerce sales based on historical data and set KPI and tracked the performance after project launch.
   * Sales forecast: Conducting long-term and short-term forecasting, demand forecasting for inventory using statistical models
 (Hierarchical forecast, ARIMA) and LSTM models
   * Customer segmentation: Optimized customer groups and marketing/sales approach through customer segmentation using

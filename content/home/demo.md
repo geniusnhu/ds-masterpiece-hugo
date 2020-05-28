@@ -9,7 +9,7 @@ active = true  # Activate this widget? true/false
 weight = 10  # Order that this section will appear.
 
 title = "Data Science RaceToMaster"
-subtitle = "Ultimate journey to Learn, Develop and Master Data Science"
+subtitle = ""
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
@@ -30,7 +30,7 @@ subtitle = "Ultimate journey to Learn, Develop and Master Data Science"
   
   # Background image.
   image = "headers/net.jpg"  # Name of image in `static/img/`.
-  image_darken = 0.4  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
+  image_darken = 0.2  # Darken the image? Range 0-1 where 0 is transparent and 1 is opaque.
   image_size = "cover"  #  Options are `cover` (default), `contain`, or `actual` size.
   image_position = "center"  # Options include `left`, `center` (default), or `right`.
   image_parallax = true  # Use a fun parallax-like fixed background effect? true/false
@@ -50,10 +50,10 @@ subtitle = "Ultimate journey to Learn, Develop and Master Data Science"
  css_class = ""
 +++
 
-Developed by a Data Scientist and Machine Learning developer specialized in Marketing Analytics, Consumer behavior prediction, and Forecasting
+Hey, I'm Nhu! 
 
-If you are interested in my work, take a look at my **[Portfolio](/post)** . You can also find interested things in **[Post](/publication)**
+I am a Data Scientist and Machine Learning developer specialized in Time series forecasting, Consumer behavior segmentation, and Machine learning developer. If you are interested in my work, take a look at my **[Portfolio](/post)**. You can also find interested things in **[Post](/publication)**
 
-My profile is **[here](/authors/admin)** for you to take a look; and you can reach me directly in the **Contact** section to ask me or advise me on anything.
+My lifelong interest with Data and Machine learning led me to pursue Machine learning and become Data Scientist with expertise on Time series, Retail optimization and further develop to Deep Learning developer.
 
 **Happy Analyzing! :star2:**
