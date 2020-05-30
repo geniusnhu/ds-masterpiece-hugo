@@ -5,7 +5,7 @@
     <link>/tags/</link>
       <atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <description>Tags</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Tags</title>
@@ -15,7 +15,7 @@
     <item>
       <title>Application</title>
       <link>/tags/application/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
       <guid>/tags/application/</guid>
       <description></description>
     </item>
@@ -23,8 +23,16 @@
     <item>
       <title>Classification</title>
       <link>/tags/classification/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
       <guid>/tags/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>/tags/deep-learning/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <guid>/tags/deep-learning/</guid>
       <description></description>
     </item>
     
@@ -61,10 +69,10 @@
     </item>
     
     <item>
-      <title>Forecast</title>
-      <link>/tags/forecast/</link>
+      <title>Forecasting</title>
+      <link>/tags/forecasting/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/tags/forecast/</guid>
+      <guid>/tags/forecasting/</guid>
       <description></description>
     </item>
     
@@ -145,14 +153,6 @@
       <link>/tags/business/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
       <guid>/tags/business/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Forecasting</title>
-      <link>/tags/forecasting/</link>
-      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/tags/forecasting/</guid>
       <description></description>
     </item>
     

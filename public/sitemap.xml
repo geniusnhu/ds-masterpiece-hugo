@@ -4,47 +4,67 @@
   
   <url>
     <loc>/authors/admin/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/application/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/authors/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/classification/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/classification/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/data-science/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/deep-learning/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/deep-learning/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -63,17 +83,12 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/analytics/</loc>
+    <loc>/tags/analytics/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/analytics/</loc>
+    <loc>/categories/analytics/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -93,12 +108,12 @@
   </url>
   
   <url>
-    <loc>/categories/visualization/</loc>
+    <loc>/tags/visualization/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/visualization/</loc>
+    <loc>/categories/visualization/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -108,8 +123,8 @@
   </url>
   
   <url>
-    <loc>/tags/forecast/</loc>
-    <lastmod>2020-03-30T00:00:00+00:00</lastmod>
+    <loc>/tags/forecasting/</loc>
+    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -168,12 +183,12 @@
   </url>
   
   <url>
-    <loc>/tags/arima/</loc>
+    <loc>/categories/arima/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/arima/</loc>
+    <loc>/tags/arima/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -200,11 +215,6 @@
   <url>
     <loc>/tags/business/</loc>
     <lastmod>2020-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/forecasting/</loc>
-    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>

@@ -53,8 +53,8 @@ description = "Data Science"
 # Enable source code highlighting? true/false
 # Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
 highlight = true
-highlight_languages = ["r", "python"]  # Add support for highlighting additional languages
-highlight_style = ""  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
+highlight_languages = ["markdown","r", "python"]  # Add support for highlighting additional languages
+highlight_style = "agate"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
 
 # Enable LaTeX math rendering? true/false
 #   If false, you can enable math on a per page basis as needed.
@@ -97,7 +97,7 @@ directions = ""
 
 # Office hours
 # A list of your office hours. To remove, set to an empty list `[]`.
-office_hours = []
+office_hours = ["Email for details"]
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
 appointment_url = ""

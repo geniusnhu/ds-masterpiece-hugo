@@ -21,7 +21,7 @@ summary: 'Denote characteristics of the Time series and forecast its future valu
 description: 'Comprehensive understanding on Time Series, Denote characteristics of the Time series and forecast its future values using Retail sales data as example code'
 tags:
 - Time series
-- Forecast
+- Forecasting
 - Retail sales
 - ARIMA
 title: 'Comprehensive understanding on Time Series forecasting'

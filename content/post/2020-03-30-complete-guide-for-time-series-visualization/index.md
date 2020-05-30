@@ -20,7 +20,7 @@ summary: 'Exploring Time series with visualization and identify neccessary trend
 description: 'Exploring Time series with visualization and identify neccessary trend, seasonality, cyclic in order to prepare for time series forecast'
 tags:
 - Time series
-- Forecast
+- Forecasting
 - Visualization
 - Seasonality
 - Trend

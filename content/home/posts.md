@@ -11,10 +11,16 @@ subtitle = ""
 [content]
   # Page type to display. E.g. project.
   page_type = "post"
+  
+  # Choose how much pages you would like to display (0 = all pages)
+  count = 3
+  
+  # Page order. Descending (desc) or ascending (asc) date.
+  order = "desc"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
-  columns = "2"
+  columns = "1"
 
   # Toggle between the various page layout types.
   #   1 = List
