@@ -25,7 +25,7 @@ tags:
 title: 'Speed up training and improve performance in deep neural net'
 ---
 
-Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to improve the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let's discuss it here! 
+Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let's discuss it here! 
 
 *Performance summary is shown at the end of the post for Classification & Regression examples*
 
@@ -33,15 +33,15 @@ Training a large and deep neural network is a time and computation consuming tas
 
 ## 1. Applying Initialization 
 
-Initialization is one of the first technique using to fasten the training time of Neuron Network (it also helps improve performance). Let's briefly explain its importance. In Artificial Neural Network (ANN), there are several connections between different neurons in the net. One neuron in the current layer connects to several neurons in the next layer and is attached to numerous ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one. 
+Initialization is one of the first technique used to fasten the training time of Neuron Network (as well as improve performance). Let's briefly explain its importance. In Artificial Neural Network (ANN), there are numerous connections between different neurons. One neuron in the current layer connects to several neurons in the next layer and is attached to various ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one. 
 
-However, one problem with the ANN is that if the weights aren't specify from the beginning of training, the weight can be either too small or too large which makes it too tiny or too massive to use further across the network. In other word, the network will fall into **Vanishing Gradients** or **Exploding Gradients** problems.
+However, one problem with the ANN is that if the weights aren't specified from the beginning of training, the connection weights can be either too small or too large which makes them too tiny or too massive to use further in the network. In other words, the network will fall into **Vanishing Gradients** or **Exploding Gradients** problems.
 
-So if the weights are set at a suitable random values at the beginning of the training, these problem can be avoided. This technique was proposed by [Glorot and Bengio](http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf), which then significantly lifted these unstable problems. This initialization strategy is called *Xavier initialization* or *Glorot initialization*.
+So if the weights are set at suitable random values from the beginning of the training, these problem can be avoided. This technique was proposed by [Glorot and Bengio](http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf), which then significantly lifted these unstable problems. This initialization strategy is called *Xavier initialization* or *Glorot initialization*.
 
-In this technique, the connection weight between neurons will be initialized randomly using normal distribution with $mean=0$ and variance $\sigma^2 = \frac{2}{fan_{in}+fan_{out}}$ , in which $fan_{in}$ is the number of input neurons and $fan_{out}$ is the number of output neurons.
+In this strategy, the connection weights between neurons are initialized randomly using the Normal distribution with $mean=0$ and variance $\sigma^2 = \frac{2}{fan_{in}+fan_{out}}$ , in which $fan_{in}$ is the number of input neurons and $fan_{out}$ is the number of output neurons.
 
-There are 3 popular initialization techniques: **Glorot** (used by default in Keras), **He** and **LeCun**. 
+There are 2 other popular initialization techniques beside **Glorot** (used in Keras as default): **He** and **LeCun**. 
 
 Let's examine different initialization techniques' effect on model performance and training time with ```fashion MNIST``` dataset.
 
@@ -58,10 +58,10 @@ plt.show()
 ```
 <figure>
   <img src="fashion_set.png" alt="" style="width:80%">
-  <figcaption>Fashion MNIST consists of image on 10 types of fashion</figcaption>
+  <figcaption>Here is the example of Fashion MNIST, in which the predictors are a set of values in the shape of [28,28] representing the image; and the target value is 10 types of cloth and shoes (denoted from 0 to 9)</figcaption>
 </figure>
 
-First, let's go with the default setting of Keras on a network constituting 5 hidden layers with 300, 100, 50, 50, 50 neurons respectively.
+First, let's start with the default setting of Keras on a network consisting of 5 hidden layers and 300, 100, 50, 50, 50 neurons each.
 
 ```python
 tf.random.set_seed(50)
@@ -88,9 +88,9 @@ Epoch 20/20
 1688/1688 [==============================] - 5s 3ms/step - loss: 0.4185 - accuracy: 0.8526 - val_loss: 0.4256 - val_accuracy: 0.8518
 --- 99.03307843208313 seconds ---
 ```
-Train set reached 85.26% accuracy and Val set reached 85.18% within 99.3 seconds. If ```activation ='relu'``` is not set, the accuracis 85.32% and  84.95% respectively with 104.5 seconds needed to train on. 
+The train set reached 85.26% accuracy and Val set reached 85.18% within 99.3 seconds. If ```activation ='relu'``` is not set (i.e. no Activation function in the hidden layers), the accuracy is 85.32% and 84.95% respectively with 104.5 seconds needed to train on.
 
-Comparing this with weight initialization to all Zeros and All Ones:
+Comparing this with weight initialization to all Zeros and all Ones:
 ```python
 # Zeros initialization
 Epoch 20/20
@@ -102,9 +102,9 @@ Epoch 20/20
 1688/1688 [==============================] - 3s 2ms/step - loss: 2.3026 - accuracy: 0.1008 - val_loss: 2.3028 - val_accuracy: 0.0925
 --- 67.2280786037445 seconds ---
 ```
-The performance in both cases is much worse and actually the model stops improving from 5th epoch.
+The performance in both cases is much worse and actually the model stopped improving from 5th epoch.
 
-Another Initialization that can be considered to use is ```He```. Initialize this by adding ```kernel_initializer="he_normal"``` to the hidden layers.
+Another Initialization that can be considered to use is ```He Initialization```,  enabling in Keras by adding ```kernel_initializer="he_normal"``` argument to the hidden layers.
 
 Result
 ```python
@@ -118,9 +118,9 @@ The accuracy actually improved but the running time was half a second slower tha
 There are also discussions about the performance of **normal distribution** and **uniform distribution** in initialization technique, but there is indeed no one shows better performance than the other one. The result of ```init = keras.initializers.VarianceScaling(scale=2.,mode='fan_avg',distribution='uniform')``` does not improve for this data set (Train set accuracy: 87.05%, Val set: 86.27% and took 100.82 seconds to run)
 
 ## 2. Get along with the right Activation function
-Choosing an unfit activation function is one of the reason leading to poor model performance. ```sigmoid``` might be a good choice but I prefer to use ```SELU```, ```ReLU``` or its variants instead.
+Choosing an unfit activation function is one of the reasons leading to poor model performance. ```sigmoid``` might be a good choice but I prefer to use **SELU, ReLU, or its variants** instead.
 
-Let's talk about ReLU first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of large learning rate. 
+Let's talk about **ReLU** first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of a large learning rate. 
 
 <figure>
   <img src="relu_and_lrelu.png" alt="" style="width:100%">
@@ -182,14 +182,14 @@ Epoch 19/20
 ```
 **SELU** seems to achieve slightly better performance over ReLU and its variants but the speed is slower (as expected).
 
-{{< hl >}}**If the NN performs relatively well at low learning rate, ReLU is the optimal choice given the fastest training time. In case of deep NN, SELU is the excellent choice.**{{< /hl >}}
+{{< hl >}}**If the NN performs relatively well at a low learning rate, ReLU is an optimal choice given the fastest training time. In case of the deep NN, SELU is an excellent try.**{{< /hl >}}
 
 Detailed explanation about these activations can be found in here: [ReLU](http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf), [LeakyReLU, Randomized LeakyReLU](https://arxiv.org/abs/1505.00853) and [SELU](https://arxiv.org/abs/1706.02515)
 
 ## 3. Batch Normalization
 To ensure Vanishing/Exploding Gradients problems do not happen again during training (as Initialization and Activation function can help reduce these issues at the beginning of the training), **Batch Normalization** is implemented.
 
-Basically, **Batch Normalization** zeros centers and normalizes each input, then scales and shifts the result using 1 parameter vector for scaling and 1 for shifting. This technique evaluates the $mean$ and $standard deviation$ of the input over the current mini-batch and repeats this calculation across all mini-batches of the training set. $\mu$ and $\sigma$ are estimated during training but only used after training.
+**Batch Normalization** zeros centers and normalizes each input, then scales and shifts the result using 1 parameter vector for scaling and 1 for shifting. This technique evaluates the $mean$ and $standard deviation$ of the input over the current mini-batch and repeats this calculation across all mini-batches of the training set. $\mu$ and $\sigma$ are estimated during training but only used after training.
 
 The vector of input means $\mu$ and vector of input standard devition $\sigma$ will become non-trainable parameters (i.e. untouchable by backpropagation) and be used to compute the moving averages at the end of the training. Subsequently, these final parameters will be used to normalize new data to make prediction.
 
