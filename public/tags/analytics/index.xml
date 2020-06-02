@@ -14,9 +14,9 @@
     
     <item>
       <title>Useful visualization with source code</title>
-      <link>/project/useful-visualization-with-source-code/</link>
+      <link>/2020/04/02/useful-visualization-with-source-code/</link>
       <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/useful-visualization-with-source-code/</guid>
+      <guid>/2020/04/02/useful-visualization-with-source-code/</guid>
       <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
 &lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Bar chart&lt;/strong&gt;&lt;/p&gt;

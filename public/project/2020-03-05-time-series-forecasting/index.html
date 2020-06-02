@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nhu Anh Quynh Hoang">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Denote characteristics of the Time series and forecast its future values using Retail sales data as example code">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/project/2020-03-05-time-series-forecasting/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#01395e">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CWork+Sans&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="/project/2020-03-05-time-series-forecasting/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@nhu_hoang">
+  <meta property="twitter:creator" content="@nhu_hoang">
+  
+  <meta property="og:site_name" content="Nhu Hoang">
+  <meta property="og:url" content="/project/2020-03-05-time-series-forecasting/">
+  <meta property="og:title" content="Comprehensive understanding on Time Series forecasting | Nhu Hoang">
+  <meta property="og:description" content="Denote characteristics of the Time series and forecast its future values using Retail sales data as example code"><meta property="og:image" content="/project/2020-03-05-time-series-forecasting/featured.jpg">
+  <meta property="twitter:image" content="/project/2020-03-05-time-series-forecasting/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-02-06T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2020-02-14T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "/project/2020-03-05-time-series-forecasting/"
+  },
+  "headline": "Comprehensive understanding on Time Series forecasting",
+  
+  "image": [
+    "/project/2020-03-05-time-series-forecasting/featured.jpg"
+  ],
+  
+  "datePublished": "2020-02-06T00:00:00Z",
+  "dateModified": "2020-02-14T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nhu Anh Quynh Hoang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nhu Hoang",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "img//"
+    }
+  },
+  "description": "Denote characteristics of the Time series and forecast its future values using Retail sales data as example code"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Comprehensive understanding on Time Series forecasting | Nhu Hoang</title>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#portfolios"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts/News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Experience/Skill</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<div class="article-container pt-3">
+  <h1>Comprehensive understanding on Time Series forecasting</h1>
+
+  
+  <p class="page-subtitle">Reveal the proper forecasting method with Time series, denote characteristics of the Time series and forecast its future values using Retail sales data as example code</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  
+  <span><a href="/authors/admin/">Nhu Anh Quynh Hoang</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+          Last updated on
+      
+    
+    Feb 14, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/project/2020-03-05-time-series-forecasting/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a>, <a href="/categories/time-series/">Time Series</a>, <a href="/categories/forecasting/">Forecasting</a>, <a href="/categories/arima/">ARIMA</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 748px; max-height: 438px;">
+  <div style="position: relative">
+    <img src="/project/2020-03-05-time-series-forecasting/featured.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="1-what-is-time-series">1. What is Time Series</h2>
+<p>Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.</p>
+<h2 id="2-what-makes-up-time-series">2. What makes up Time Series</h2>
+<p>There are 4 components in Time Series: Level, Trend, Seasonality and Noise.</p>
+<ul>
+<li><strong>Level</strong>: the average value of the time series</li>
+<li><strong>Trend</strong>: The movement of the series values from 1 period to another period</li>
+<li><strong>Seasonality</strong>: The short-term cyclical behavior of the series that can be observed several times</li>
+<li><strong>Noise</strong>: the random variation that results from the measurement of error</li>
+</ul>
+<p>It is not always that we will be able to distinguish the first 3 elements from Noise because they are usually invisble which need some techniques to be noticeable</p>
+<p>To observe and identify the existence of these components, we can consider.</p>
+<ul>
+<li>Plot the Time series (this is the best way to detect the characteristics of the series)</li>
+<li>Zoom in a specify shorter period of time</li>
+<li>Change scale of the series to observe the trend more clearly</li>
+<li>Suppress seasonality: aggregate the time series to a bigger time scale (from hourly scale to daily scale, from monthly scale to yearly scale, etc.)</li>
+</ul>
+<p>I used 3-year weekly sales of a Retail store as an illustration.</p>
+<pre><code class="language-python">plt.plot(&quot;Date&quot;, &quot;Weekly_Sales&quot;, data=Wal_sales)
+plt.hlines(y=Wal_sales.Weekly_Sales.mean(), xmin=0, xmax=len(Wal_sales), linestyles='dashed')
+</code></pre>
+<p><img src="TS plot.png"
+style="float: left; margin-right: 10px;" /></p>
+<p>With this data, there are obviously 2 peaks which denotes quite a clear <strong>seasonality at the end of year</strong> (probably Christmas and New year period). There might be other sesonality but it is hard to observe it from the plot. <strong>Auto correlation</strong> can be used to confirm the seasonality.</p>
+<h2 id="3-autocorrelation">3. Autocorrelation</h2>
+<p>Autocorrelation describes the <strong>connection between the value of time series  and its neighbors</strong>. Thus, to compute Autocorrelation, we calculate the correlation of the series with its <strong>lagged versions</strong>. Lag-n version is produced from the original dataset by moving the series values forward n period. For example, lag-1 is moved forward 1 period, Lag-10 series is moved forward 10 periods.</p>
+<p>By observing the correlation of the series and its lags, we can confirm the seasonality of the series.</p>
+<pre><code class="language-python">auto_cor = sales.groupby(&quot;Date&quot;)[&quot;Weekly_Sales&quot;].sum()
+auto_cor = pd.DataFrame(auto_cor)
+auto_cor.columns = [&quot;y&quot;]
+
+# Adding the lag of the target variable from 1 steps back up to 52 (due to a seasonality at the end of the year)
+for i in range(1, 53):
+    auto_cor[&quot;lag_{}&quot;.format(i)] = auto_cor.y.shift(i)
+
+# Compute autocorrelation of the series and its lags
+lag_corr = auto_cor.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&quot;corr&quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind='bar')
+plt.grid(True, axis='y')
+plt.title(&quot;Autocorrelation&quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles='dashed')
+</code></pre>
+<p><img src="Autocorrelation.png"
+style="float: left; margin-right: 10px;" /></p>
+<ul>
+<li>Judging from the Autocorrelation plot above, there is a strong positive autocorrelation in lag-52 as well as lag-51 as we expected when observing the time series plot. This implies a <strong>cyclical annual pattern at the end of the year</strong>.</li>
+<li>The second strong correlation is lag-1, which connotes as the second week of february, or Valentine period.</li>
+<li>The autocorrelation reveals both <strong>Positive</strong> and <strong>Negative</strong> autocorrelation, which implies that the series does not move in the same direction but ups and downs.</li>
+</ul>
+<p>Autocorrelation can plotted easily through using <em>autocorrelation_plot</em> function from <em>pandas.plotting</em> in Python or <em>acf</em> function from <em>tseries</em> package in R.</p>
+<h2 id="4-forecasting-time-series">4. Forecasting Time series</h2>
+<p>There are several methods to forecast Time series.</p>
+<ul>
+<li><strong>Model-based method through multiple linear regression</strong> to explore the correlation of the series with other features. Alike other cross-sessional data, model-based method compute the dependence of the time series to other features, but does not take into account the dependence between time series values within different periods.</li>
+<li><strong>Data-driven method in which learns the pattern from the data itself</strong> and estimate the next value of the time series in correspondence with its previous values. The data-driven method is important in time series given in the time series context, the values in adjoining period tend to be correlated with each other. Such correlation is denoted as <strong>Autocorrelation</strong>.</li>
+<li><strong>Combining method by forecasting the future values of the series as well as the future value of residual that generated from the first forecasting model</strong>, and then combine the result of 2 forecast together. The residual forecast acts as the correct for the first forecast.</li>
+<li><strong>Ensembles method</strong> by averaging multiple methods to get the result</li>
+</ul>
+<h3 id="forecasting-using-data-driven-method">Forecasting using Data-driven method:</h3>
+<p>ARIMA model is the most frequent choice to compute data-driven forecasting. You can find detail for ARIMA model in this <a href="https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/">post</a>. 
+Here I will apply the ARIMA to the data.</p>
+<p>It is useful to use *:auto_arima**function from <strong>pmdarima</strong> in Python or <strong>auto.arima</strong> function from <strong>forecast</strong> packgage in R.</p>
+<p>There is one thing to note is that from the Autocorrelation above, there is a clear seasonality at lag 52 so we will need to include this into the ARIMA model.</p>
+<pre><code class="language-python">stepwise_model = pm.auto_arima(Wal_sales.iloc[:,1].values, start_p=1, start_q=1,
+                               max_p=20, max_q=20, m=52,
+                               start_P=0, seasonal=True,
+                               d=1, D=1, trace=True,
+                               error_action='ignore',  
+                               suppress_warnings=True, 
+                               stepwise=True)
+print(stepwise_model.aic())
+</code></pre>
+<p><em>Result</em></p>
+<pre><code>Performing stepwise search to minimize aic
+Fit ARIMA: (1, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2898.191, BIC=2903.190, Time=0.423 seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2883.839, BIC=2893.839, Time=5.555 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=False); AIC=2907.540, BIC=2910.039, Time=0.371 seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2893.265, BIC=2900.764, Time=0.807 seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2890.759, BIC=2898.258, Time=7.666 seconds
+Fit ARIMA: (2, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2884.464, BIC=2896.963, Time=7.595 seconds
+Fit ARIMA: (1, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2884.895, BIC=2897.394, Time=20.608 seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2883.040, BIC=2893.039, Time=6.410 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 0, 52) (constant=True); AIC=2893.770, BIC=2901.269, Time=5.440 seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2887.816, BIC=2900.315, Time=7.108 seconds
+Fit ARIMA: (1, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2889.929, BIC=2904.928, Time=17.358 seconds
+Total fit time: 79.418 seconds
+2883.039997060003
+</code></pre>
+<p>This fuction chose the lowest AIC-score model and embed it for further model usage.</p>
+<p>Split train-test set, train the model and make prediction.</p>
+<pre><code class="language-python">#Split train and test
+train = Wal_sales.iloc[:106,1].values
+test = Wal_sales.iloc[106:,1].values
+# Train the model
+stepwise_model.fit(train)
+
+# Predict test set
+pred = stepwise_model.predict(n_periods=37)
+
+# Reframe the data
+test_pred = Wal_sales.iloc[106:,:2]
+test_pred[&quot;Predict_sales&quot;] = np.array(pred,dtype=&quot;float&quot;)
+
+# Visualize the prediction
+plt.figure(figsize=(12,8))
+plt.plot( 'Date', 'Weekly_Sales', data=Wal_sales, markersize=12, color='olive', linewidth=3)
+plt.plot( 'Date', 'Predict_sales', data=test_pred, marker='', color='blue', linewidth=3)
+plt.title(&quot;Predicted sales vs Actual sales&quot;)
+plt.legend()
+
+print(&quot;MAPE score: &quot;, mean_absolute_percentage_error(test, pred))
+</code></pre>
+<p><img src="ARIMA_forecast.jpg"
+style="float: left; margin-right: 10px;" /></p>
+<ul>
+<li>In overal, the model seem to work moderately on the data but there is still room to improve further.</li>
+<li>The MAPE (mean absolute percentage error) score is 5.7%, which is not too high, not too low.</li>
+<li>The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.</li>
+</ul>
+<h4 id="one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data">One question emerged, does this model truly capture the values of the time series data?</h4>
+<p>It is helpful to take a look at the <strong>Residual</strong> of the model (or the <strong>diference between predicted values and actual values</strong>). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period's residual with other periods&rsquo; ones.</p>
+<p>The Residuals of a <strong>good time series forecasting model</strong> have the following properties:</p>
+<ul>
+<li>Residuals are <strong>uncorrelated</strong></li>
+<li>Residuals have <strong>zero or nearly-zero mean</strong> (which means the model is unbiased in any directions)</li>
+<li>Residuals should have <strong>normal distribution</strong></li>
+<li>Residuals should have <strong>constant variance</strong></li>
+</ul>
+<p>If the result is lack of any of the above attributes, the forecasting model can be further improved.</p>
+<p>Let's compute the Residuals Autocorrelation and judge the result.</p>
+<pre><code class="language-python"># Compute Residual
+train_pred = stepwise_model.predict(n_periods=106)
+r_train = train - train_pred
+r_test = test - pred
+residual = pd.DataFrame(np.concatenate((r_train,r_test)), columns={&quot;y&quot;})
+
+
+# Generate lag of Residuals from 1 step to 52 steps
+# Adding the lag of the target variable from 1 steps back up to 52 
+for i in range(1, 53):
+    residual[&quot;lag_{}&quot;.format(i)] = residual.y.shift(i)
+
+# Compute correlation of the Residual series and its lags
+lag_corr = residual.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&quot;corr&quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Residual Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind='bar')
+plt.grid(True, axis='y')
+plt.title(&quot;Autocorrelation&quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles='dashed')
+</code></pre>
+<p><img src="residual_autocorrelation.png"
+style="float: left; margin-right: 10px;" /></p>
+<p>Other criteria:</p>
+<pre><code class="language-python"># Residual mean and Distribution
+print(&quot;Residual mean: &quot;,residual.iloc[:,0].mean())
+plt.hist(residual.iloc[:,0], bins=20)
+plt.title(&quot;Residual Distribution&quot;)
+</code></pre>
+<pre><code>Residual mean:  -6308833.905274585
+</code></pre>
+<p><img src="residual_distribution.png"
+style="float: left; margin-right: 10px;" /></p>
+<pre><code class="language-python"># Residual variance
+plt.plot(residual.iloc[:,0])
+plt.title(&quot;Residual&quot;)
+plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles='dashed')
+</code></pre>
+<p><img src="residual_variance.png"
+style="float: left; margin-right: 10px;" /></p>
+<p>Let's judge the Autocorrelation of Residual based on the following criteria:</p>
+<ul>
+<li>Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.</li>
+<li>Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.</li>
+<li>Residuals should have normal distribution: Not quite a normal distribution</li>
+<li>Residuals should have constant variance: No as consistent with mean does not equal to 0.</li>
+</ul>
+<p>Hence, the forecasting model has a lot of rooms to improve further by finding the way to capture the correlation in the Residuals, adding the values that is currently staying in residuals to the prediction.</p>
+<h2 id="5-data-partitioning">5. Data partitioning</h2>
+<p>One of the biggest characteristics of Time series distinguishing it with normal cross-sessional data is the <strong>dependence of the future values with their historical values</strong>. Therefore, the Data partitioning for Time series cannot be done randomly but instead, trim the series into 2 periods, the earlier to train set and the later to validation set.</p>
+<p>The below code will help split the tran-test sets with respect to time series structure.</p>
+<pre><code class="language-python"># Split train and test sets in correspondence with Time series data
+def ts_train_test_split(X, y, test_size):
+    test_index = int(len(X)*(1-test_size))
+    
+    X_train = X.iloc[:test_index]
+    y_train = y.iloc[:test_index]
+    X_test = X.iloc[test_index:]
+    y_test = y.iloc[test_index:]
+    
+    return X_train, X_test, y_train, y_test
+</code></pre>
+<p>Sales does not only correlated with its own past but also might be affected by other factors such as special occasions (i.e Holiday in this dataset), weekday and weekend, etc&hellip; The method-driven models will be presented in the next article with feature extraction, feature selection.</p>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/time-series/">Time series</a>
+  
+  <a class="badge badge-light" href="/tags/forecasting/">Forecasting</a>
+  
+  <a class="badge badge-light" href="/tags/retail-sales/">Retail sales</a>
+  
+  <a class="badge badge-light" href="/tags/arima/">ARIMA</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/project/2020-03-05-time-series-forecasting/&amp;text=Comprehensive%20understanding%20on%20Time%20Series%20forecasting" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/project/2020-03-05-time-series-forecasting/&amp;t=Comprehensive%20understanding%20on%20Time%20Series%20forecasting" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Comprehensive%20understanding%20on%20Time%20Series%20forecasting&amp;body=/project/2020-03-05-time-series-forecasting/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/project/2020-03-05-time-series-forecasting/&amp;title=Comprehensive%20understanding%20on%20Time%20Series%20forecasting" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Comprehensive%20understanding%20on%20Time%20Series%20forecasting%20/project/2020-03-05-time-series-forecasting/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=/project/2020-03-05-time-series-forecasting/&amp;title=Comprehensive%20understanding%20on%20Time%20Series%20forecasting" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hueadf2c06d268c6c318a52f80e38ba7bf_8103393_250x250_fill_q90_lanczos_center.JPG" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="/">Nhu Anh Quynh Hoang</a></h5>
+      <h6 class="card-subtitle">Data Scientist / Portfolio Planning Specialist - Amway Japan</h6>
+      <p class="card-text">My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nhu-hoang/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/geniusnhu" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://medium.com/@hoanganhquynhnhu" target="_blank" rel="noopener">
+        <i class="fab fa-medium"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+
+  
+</section>
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/project/complete-guide-for-time-series-visualization/" rel="next">Complete guide for Time series Visualization</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/project/2020-01-26-arima-autoregressive-intergreated-moving-average/" rel="prev">ARIMA Autoregressive Integrated Moving Average model family</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/2020-01-26-arima-autoregressive-intergreated-moving-average/">ARIMA Autoregressive Integrated Moving Average model family</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.3/mermaid.min.js" integrity="" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.a0d331bcd05dbe8b31e244f796710f08.js"></script>
+
+    
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+  <p class="powered-by">
+    
+      <a href="/privacy/">Privacy Policy</a>
+    
+    
+       &middot; 
+      <a href="/terms/">Terms</a>
+    
+  </p>
+  
+
+  <p class="powered-by">
+    © 2019 Nhu Hoang<br/>Served by <a href="https://geniusnhu.netlify.app/">Netlify</a> &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "nhu-hoang" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

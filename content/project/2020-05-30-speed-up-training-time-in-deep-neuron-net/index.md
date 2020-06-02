@@ -16,10 +16,11 @@ image:
 lastmod: "2020-05-30T00:00:00Z"
 projects: []
 subtitle: 'Speed up training and improve performance in deep neural net. Part 1: Initialization, Activation function and Batch Normalization/Gradient Clipping'
-summary: 'Discussion of 5 popular techniques to speed up training in deep neuron net (Initialization, Activation function and Batch Normalization/Gradient Clipping)'
-description: 'Discussion of 5 popular techniques to speed up training and improve performance in deep neural net (Initialization, Activation function and Batch Normalization/Gradient Clipping)'
+summary: 'Discussion of 5 popular techniques to speed up training in deep neural net (Initialization, Activation function and Batch Normalization/Gradient Clipping) using TensoFlow'
+description: 'Discussion of 5 popular techniques to speed up training and improve performance in deep neural net (Initialization, Activation function and Batch Normalization/Gradient Clipping) using TensoFlow'
 tags:
-- Deep Learning
+- Deep learning
+- Data Science
 - Classification
 - Application
 title: 'Speed up training and improve performance in deep neural net'

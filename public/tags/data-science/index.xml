@@ -5,7 +5,7 @@
     <link>/tags/data-science/</link>
       <atom:link href="/tags/data-science/index.xml" rel="self" type="application/rss+xml" />
     <description>Data Science</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Data Science</title>
@@ -13,10 +13,536 @@
     </image>
     
     <item>
+      <title>Speed up training and improve performance in deep neural net</title>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
+      <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-applying-initialization&#34;&gt;1. Applying Initialization&lt;/h2&gt;
+&lt;p&gt;Initialization is one of the first technique used to fasten the training time of Neuron Network (as well as improve performance). Let&#39;s briefly explain its importance. In Artificial Neural Network (ANN), there are numerous connections between different neurons. One neuron in the current layer connects to several neurons in the next layer and is attached to various ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one.&lt;/p&gt;
+&lt;p&gt;However, one problem with the ANN is that if the weights aren&#39;t specified from the beginning of training, the connection weights can be either too small or too large which makes them too tiny or too massive to use further in the network. In other words, the network will fall into &lt;strong&gt;Vanishing Gradients&lt;/strong&gt; or &lt;strong&gt;Exploding Gradients&lt;/strong&gt; problems.&lt;/p&gt;
+&lt;p&gt;So if the weights are set at suitable random values from the beginning of the training, these problem can be avoided. This technique was proposed by &lt;a href=&#34;http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf&#34;&gt;Glorot and Bengio&lt;/a&gt;, which then significantly lifted these unstable problems. This initialization strategy is called &lt;em&gt;Xavier initialization&lt;/em&gt; or &lt;em&gt;Glorot initialization&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In this strategy, the connection weights between neurons are initialized randomly using the Normal distribution with $mean=0$ and variance $\sigma^2 = \frac{2}{fan_{in}+fan_{out}}$ , in which $fan_{in}$ is the number of input neurons and $fan_{out}$ is the number of output neurons.&lt;/p&gt;
+&lt;p&gt;There are 2 other popular initialization techniques beside &lt;strong&gt;Glorot&lt;/strong&gt; (used in Keras as default): &lt;strong&gt;He&lt;/strong&gt; and &lt;strong&gt;LeCun&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let&#39;s examine different initialization techniques&amp;rsquo; effect on model performance and training time with &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(10, 10))
+for row in range(5):
+  for col in range(5):
+    index = 5 * row + col
+    plt.subplot(5, 5, index + 1)
+    plt.imshow(X_train_full[index], cmap=&amp;quot;binary&amp;quot;, interpolation=&amp;quot;nearest&amp;quot;)
+    plt.axis(&#39;off&#39;)
+    plt.title(y_train_full[index], fontsize=12)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;fashion_set.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Here is the example of Fashion MNIST, in which the predictors are a set of values in the shape of [28,28] representing the image; and the target value is 10 types of cloth and shoes (denoted from 0 to 9)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;First, let&#39;s start with the default setting of Keras on a network consisting of 5 hidden layers and 300, 100, 50, 50, 50 neurons each.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.random.set_seed(50)
+np.random.seed(50)
+
+model_default = keras.models.Sequential()
+model_default.add(keras.layers.Flatten(input_shape=[28, 28]))
+for n_layers in (300, 100, 50, 50, 50):
+  model_default.add(keras.layers.Dense(n_layers, activation =&#39;relu&#39;))
+model_default.add(keras.layers.Dense(10, activation=&#39;softmax&#39;))
+    
+model_default.compile(loss=&amp;quot;sparse_categorical_crossentropy&amp;quot;,
+                      optimizer=keras.optimizers.SGD(lr=1e-3),
+                      metrics=[&amp;quot;accuracy&amp;quot;])
+
+start_time = time.time()
+history = model_default.fit(X_train_full, y_train_full, epochs=20, validation_split=0.1)
+print(&amp;quot;--- %s seconds ---&amp;quot; % (time.time() - start_time))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.4185 - accuracy: 0.8526 - val_loss: 0.4256 - val_accuracy: 0.8518
+--- 99.03307843208313 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The train set reached 85.26% accuracy and Val set reached 85.18% within 99.3 seconds. If &lt;code&gt;activation =&#39;relu&#39;&lt;/code&gt; is not set (i.e. no Activation function in the hidden layers), the accuracy is 85.32% and 84.95% respectively with 104.5 seconds needed to train on.&lt;/p&gt;
+&lt;p&gt;Comparing this with weight initialization to all Zeros and all Ones:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Zeros initialization
+Epoch 20/20
+1688/1688 [==============================] - 3s 2ms/step - loss: 2.3026 - accuracy: 0.1008 - val_loss: 2.3028 - val_accuracy: 0.0925
+--- 69.43926930427551 seconds ---
+
+# Ones initialization
+Epoch 20/20
+1688/1688 [==============================] - 3s 2ms/step - loss: 2.3026 - accuracy: 0.1008 - val_loss: 2.3028 - val_accuracy: 0.0925
+--- 67.2280786037445 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The performance in both cases is much worse and actually the model stopped improving from 5th epoch.&lt;/p&gt;
+&lt;p&gt;Another Initialization that can be considered to use is &lt;code&gt;He Initialization&lt;/code&gt;,  enabling in Keras by adding &lt;code&gt;kernel_initializer=&amp;quot;he_normal&amp;quot;&lt;/code&gt; argument to the hidden layers.&lt;/p&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3780 - accuracy: 0.8672 - val_loss: 0.3924 - val_accuracy: 0.8637
+--- 99.76096153259277 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The accuracy actually improved but the running time was half a second slower than &lt;strong&gt;Glorot Initialization&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are also discussions about the performance of &lt;strong&gt;normal distribution&lt;/strong&gt; and &lt;strong&gt;uniform distribution&lt;/strong&gt; in initialization technique, but there is indeed no one shows better performance than the other one. The result of &lt;code&gt;init = keras.initializers.VarianceScaling(scale=2.,mode=&#39;fan_avg&#39;,distribution=&#39;uniform&#39;)&lt;/code&gt; does not improve for this data set (Train set accuracy: 87.05%, Val set: 86.27% and took 100.82 seconds to run)&lt;/p&gt;
+&lt;h2 id=&#34;2-get-along-with-the-right-activation-function&#34;&gt;2. Get along with the right Activation function&lt;/h2&gt;
+&lt;p&gt;Choosing an unfit activation function is one of the reasons leading to poor model performance. &lt;code&gt;sigmoid&lt;/code&gt; might be a good choice but I prefer to use &lt;strong&gt;SELU, ReLU, or its variants&lt;/strong&gt; instead.&lt;/p&gt;
+&lt;p&gt;Let&#39;s talk about &lt;strong&gt;ReLU&lt;/strong&gt; first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of a large learning rate.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;relu_and_lrelu.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;ReLU, Leaky ReLU and SELU&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Some of the solutions for this problem is to use alternative versions of ReLU: &lt;strong&gt;LeakyReLU, Randomized LeakyReLU or Scaled ReLU (SELU)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With &lt;strong&gt;LeakyReLU&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if x&amp;gt;0:
+  return x
+else:
+  return ax
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;in which a is $\alpha$, the slope of the $x$ given $x&amp;lt;0$. $\alpha$ is usually set at 0.01, serving as a small leak (that&#39;s why this technique is called LeakyReLU). Using $\alpha$ helps to stop the dying problem (i.e. slope=0).&lt;/p&gt;
+&lt;p&gt;In case of &lt;strong&gt;Randomized LeakyReLU&lt;/strong&gt;, $\alpha$ is selected randomly given a range. This method can reduce the Overfitting issue but requires more running time due to extra computation.&lt;/p&gt;
+&lt;p&gt;One of the outperformed activation function for DNN is &lt;strong&gt;Scaled ReLU (SELU)&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if x&amp;gt;0:
+  return Lambda*x
+else:
+  return Lambda*(alpha*exp(x)-alpha)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this function, each layer outputs&amp;rsquo; mean is 0 and standard deviation is 1. Note when using this activation function:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;It must be used with &lt;code&gt;kernel_initializer=&amp;quot;lecun_normal&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The input features must be standardized&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The NN&#39;s architecture must be sequential&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&#39;s try different Activation functions on the &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;p&gt;Result of &lt;strong&gt;LeakyReLU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3791 - accuracy: 0.8670 - val_loss: 0.3910 - val_accuracy: 0.8615
+--- 101.87710905075073 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result of &lt;strong&gt;Randomized LeakyReLU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 6s 3ms/step - loss: 0.3779 - accuracy: 0.8667 - val_loss: 0.3918 - val_accuracy: 0.8630
+--- 113.58738899230957 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result of &lt;strong&gt;SELU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 19/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3526 - accuracy: 0.8763 - val_loss: 0.3755 - val_accuracy: 0.8647
+--- 106.25733232498169 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;SELU&lt;/strong&gt; seems to achieve slightly better performance over ReLU and its variants but the speed is slower (as expected).&lt;/p&gt;
+&lt;span class=&#34;markup-quote&#34;&gt;&lt;strong&gt;If the NN performs relatively well at a low learning rate, ReLU is an optimal choice given the fastest training time. In case of the deep NN, SELU is an excellent try.&lt;/strong&gt;&lt;/span&gt;
+&lt;p&gt;Detailed explanation about these activations can be found in here: &lt;a href=&#34;http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf&#34;&gt;ReLU&lt;/a&gt;, &lt;a href=&#34;https://arxiv.org/abs/1505.00853&#34;&gt;LeakyReLU, Randomized LeakyReLU&lt;/a&gt; and &lt;a href=&#34;https://arxiv.org/abs/1706.02515&#34;&gt;SELU&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-batch-normalization&#34;&gt;3. Batch Normalization&lt;/h2&gt;
+&lt;p&gt;To ensure Vanishing/Exploding Gradients problems do not happen again during training (as Initialization and Activation function can help reduce these issues at the beginning of the training), &lt;strong&gt;Batch Normalization&lt;/strong&gt; is implemented.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Batch Normalization&lt;/strong&gt; zeros centers and normalizes each input, then scales and shifts the result using 1 parameter vector for scaling and 1 for shifting. This technique evaluates the $mean$ and $standard deviation$ of the input over the current mini-batch and repeats this calculation across all mini-batches of the training set. $\mu$ and $\sigma$ are estimated during training but only used after training.&lt;/p&gt;
+&lt;p&gt;The vector of input means $\mu$ and vector of input standard devition $\sigma$ will become non-trainable parameters (i.e. untouchable by backpropagation) and be used to compute the moving averages at the end of the training. Subsequently, these final parameters will be used to normalize new data to make prediction.&lt;/p&gt;
+&lt;p&gt;If using &lt;strong&gt;Batch Normalization&lt;/strong&gt;, the input data will not need to be standardized prior training.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.random.set_seed(50)
+np.random.seed(50)
+
+model_default = keras.models.Sequential()
+model_default.add(keras.layers.Flatten(input_shape=[28, 28]))
+for n_layers in (300, 100, 50, 50, 50):
+  model_default.add(keras.layers.BatchNormalization())
+  model_default.add(keras.layers.Dense(n_layers, activation =&#39;relu&#39;, kernel_initializer=&amp;quot;he_normal&amp;quot;))
+model_default.add(keras.layers.Dense(10, activation=&#39;softmax&#39;))
+    
+model_default.compile(loss=&amp;quot;sparse_categorical_crossentropy&amp;quot;,
+                      optimizer=keras.optimizers.SGD(lr=1e-3),
+                      metrics=[&amp;quot;accuracy&amp;quot;])
+
+start_time = time.time()
+history = model_default.fit(X_train_full, y_train_full, epochs=20, validation_split=0.1)
+print(&amp;quot;--- %s seconds ---&amp;quot; % (time.time() - start_time))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 8s 5ms/step - loss: 0.3799 - accuracy: 0.8645 - val_loss: 0.3571 - val_accuracy: 0.8685
+--- 167.6186249256134 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Obviously, training is slower in &lt;strong&gt;Batch Normalization&lt;/strong&gt; given more computations during training but in contrast, in &lt;strong&gt;Batch Normalization&lt;/strong&gt;, the model convergences faster so fewer epoches are needed to reach the same performance.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    Batch Normalization is strictly implemented in Recurrent NN
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;4-gradient-clipping&#34;&gt;4. Gradient Clipping&lt;/h2&gt;
+&lt;p&gt;As &lt;strong&gt;Batch Normalization&lt;/strong&gt; is recommended not to use with Recurrent NN, &lt;strong&gt;Gradient Clipping&lt;/strong&gt; is the alternative choice for RNN.&lt;/p&gt;
+&lt;p&gt;Details about &lt;a href=&#34;https://arxiv.org/abs/1211.5063&#34;&gt;Gradient Clipping&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary-of-the-result-of-classification-task-with-fashion-mnist-dataset&#34;&gt;Summary of the result of Classification task with Fashion MNIST dataset&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Initialization&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Train set accuracy&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Val set accuracy&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Zeros/Ones&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10.08%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.25%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;69.43/67.22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.32%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;84.95%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;104.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.26%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.18%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;99.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.72%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.37%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;99.76&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Uniform  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;87.05%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.27%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;100.82&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.7%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.15%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;101.87&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.67%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.3%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;113.58&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LeCun&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;87.63%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.47%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;106.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.45%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.85%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;167.618&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;summary-of-the-result-of-regression-task-with-california-housing-dataset&#34;&gt;Summary of the result of Regression task with California housing dataset&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Initialization&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Train set MSE&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Val set MSE&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3985&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3899&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3779&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3819&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.19&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.48&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10.71&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LeCun&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3423&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.326&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.4365&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.5728&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;13.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;MSE of Train and Validation set&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;MSE.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;regression_BN.png&#34; alt=&#34;&#34; style=&#34;width:35%&#34;&gt;
+  &lt;figcaption&gt;Fashion MNIST consists of image on 10 types of fashion&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    These performances are subject to change depending on the dataset and NN&#39;s architecture
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;final-thoughts-on-this-part-&#34;&gt;Final thoughts on this part 🔆&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Glorot Initialization is the good starting point for most of the cases. He Initialization technique sometimes performs better than Glorot (slower in the above Classification example while faster in Regression example).&lt;/li&gt;
+&lt;li&gt;ReLU or Leaky ReLU are great choices if running time is the priority.&lt;/li&gt;
+&lt;li&gt;ReLU should be avoided if high Learning rate is used.&lt;/li&gt;
+&lt;li&gt;SELU is the good choice for complex dataset and deep neural network but might be traded off by running time. However, if the NN&#39;s architecture does not allow &lt;em&gt;self-normalization&lt;/em&gt;, use ELU instead of SELU.&lt;/li&gt;
+&lt;li&gt;SELU and Batch Normalization cannot be applied in RNN. Gradient Clipping is the alternative strategy for Batch Normalization in RNN.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-transfer-learning&#34;&gt;5. Transfer Learning&lt;/h2&gt;
+&lt;p&gt;Another important technique too improve the performance of DNN is &lt;strong&gt;Transfer Learning&lt;/strong&gt;, using pretrained layers to train similar new task. There is much to say about this technique and it will be covered in another post.&lt;/p&gt;
+&lt;p&gt;Source code can be accessed &lt;a href=&#34;https://github.com/geniusnhu/DNN-Improvement/blob/master/Improve_DNN_performance.ipynb&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Glorot, X., &amp;amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. PMLR&lt;/li&gt;
+&lt;li&gt;He, K., Zhang, X., Ren,S., &amp;amp; Sun, J. (2015). Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. In Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)&lt;/li&gt;
+&lt;li&gt;Geron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. O&#39;Reilly Media, Inc.,&lt;/li&gt;
+&lt;li&gt;Xu, B., Wang, N., Chen, T., &amp;amp; Li, M. (2015). Empirical Evaluation of Rectified Activations in Convolutional Network. Retrieved from &lt;a href=&#34;https://arxiv.org/abs/1505.00853&#34;&gt;https://arxiv.org/abs/1505.00853&lt;/a&gt; on May 5, 2020.&lt;/li&gt;
+&lt;li&gt;Klambauer, G., Unterthiner, T., Mayr, A., &amp;amp; Hochreiter, S. (2017). Self-Normalizing Neural Networks. Advances in Neural Information Processing Systems 30 (NIPS 2017)&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Complete guide for Time series Visualization</title>
+      <link>/project/complete-guide-for-time-series-visualization/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/project/complete-guide-for-time-series-visualization/</guid>
+      <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
+&lt;li&gt;It is informative to confirm the &lt;strong&gt;trend, seasonality, cyclic pattern&lt;/strong&gt; as well as &lt;strong&gt;correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Watch out for the &lt;strong&gt;Spurious correlation&lt;/strong&gt;: high correlation is always a trap rather than a prize for data scientist. Many remarks this as &lt;strong&gt;correlation-causation trap&lt;/strong&gt;
+. If you observe a &lt;strong&gt;trending and/or seasonal time-series&lt;/strong&gt;, be careful with the correlation. Check if the data is a &lt;strong&gt;cummulative sum&lt;/strong&gt; or not. If it is, spurious correlation is more apt to appear.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The below example with plots will give more details on this.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
+&lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Looking at the example figure, there is &lt;strong&gt;no trend&lt;/strong&gt; but there is a clear &lt;strong&gt;annual seasonlity&lt;/strong&gt; occured in December. &lt;strong&gt;No cyclic&lt;/strong&gt; as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
+&lt;h2 id=&#34;2-confirming-seasonality&#34;&gt;2. Confirming seasonality&lt;/h2&gt;
+&lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
+&lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
+&lt;p&gt;This gives a better prove to spot seasonality, spike and drop. As seen in the below chart, there is a large jump in December, followed by a drop in January.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
+          &#39;#FE53BB&#39;,  # pink
+          &#39;#F5D300&#39;] # matrix green
+plt.figure(figsize=(10,6))
+w =data.groupby([&#39;Year&#39;,&#39;Month&#39;])[&#39;Weekly_Sales&#39;].sum().reset_index()
+sns.lineplot(&amp;quot;Month&amp;quot;, &amp;quot;Weekly_Sales&amp;quot;, data=w, hue=&#39;Year&#39;, palette=colors,marker=&#39;o&#39;, legend=False)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Seasonal plot: Total sales of Walmart 45 stores in 3 years&#39;,fontsize=20 )
+plt.legend(title=&#39;Year&#39;, loc=&#39;upper left&#39;, labels=[&#39;2010&#39;, &#39;2011&#39;,&#39;2012&#39;],fontsize=&#39;x-large&#39;, title_fontsize=&#39;20&#39;)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
+&lt;p&gt;Next is an another way of showing the &lt;strong&gt;distribution&lt;/strong&gt; of time-series data in each month. Insteading of using histogram (which I considered difficult to understand the insight in time series), I generated &lt;em&gt;box plot&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Of note, the main purpose of this plot is to show the &lt;strong&gt;values changing from one month to another&lt;/strong&gt; as well as &lt;strong&gt;how the value distributed within each month&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;Box plot&lt;/em&gt; is strongly recommended in case of &lt;strong&gt;confirming the mean, median of the seasonal period comparing to other periods&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;3-correlation&#34;&gt;3. Correlation&lt;/h2&gt;
+&lt;p&gt;Alike other type of data, &lt;strong&gt;Scatter plot&lt;/strong&gt; stands as the first choice for &lt;strong&gt;identifying the correlation between different time series&lt;/strong&gt;. This is especially the case if one series can be used to explain another series. Below is the correlation of sales and its lag 1.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag = data.copy()
+data_lag[&#39;lag_1&#39;] = data[&#39;Weekly_Sales&#39;].shift(1) # Create lag 1 feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(np.log(data_lag.Weekly_Sales), np.log(data_lag.lag_1), data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Weekly sales vs its 1st lag&#39;,fontsize=20 );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is apparant that the correlation between the original data and its 1&lt;sup&gt;st&lt;/sup&gt; lag is not too strong and there seems some outlier in the top left of the graph.&lt;/p&gt;
+&lt;p&gt;It is also interesting to identify if this &lt;em&gt;correlation actually exists and can we use lag 1 to predict the original series&lt;/em&gt;. &lt;strong&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference&lt;/strong&gt; will give proof for hypothesis.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter_diff.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference disappeared, indicating that lag1 does not appear to predict sales.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag[&#39;lag_1_diff&#39;] = data_lag[&#39;lag_1&#39;].diff() # Create lag 1 difference feature
+data_lag[&#39;diff&#39;] = data_lag[&#39;Weekly_Sales&#39;].diff() # Create difference feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(data_lag[&#39;diff&#39;], data_lag.lag_1_diff, data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;The correlation between original series difference with its 1st lag difference&#39;,fontsize=15);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotMovingAverage(series, window, plot_intervals=False, scale=1.96, plot_anomalies=False):
+
+    rolling_mean = series.rolling(window=window).mean()
+    
+    plt.figure(figsize=(15,5))
+    plt.title(&amp;quot;Moving average\n window size = {}&amp;quot;.format(window))
+    plt.plot(rolling_mean, &amp;quot;g&amp;quot;, label=&amp;quot;Rolling mean trend&amp;quot;)
+
+    # Plot confidence intervals for smoothed values
+    if plot_intervals:
+        mae = mean_absolute_error(series[window:], rolling_mean[window:])
+        deviation = np.std(series[window:] - rolling_mean[window:])
+        lower_bond = rolling_mean - (mae + scale * deviation)
+        upper_bond = rolling_mean + (mae + scale * deviation)
+        plt.plot(upper_bond, &amp;quot;r--&amp;quot;, label=&amp;quot;Upper Bond / Lower Bond&amp;quot;)
+        plt.plot(lower_bond, &amp;quot;r--&amp;quot;)
+        
+        # Having the intervals, find abnormal values
+        if plot_anomalies:
+            anomalies = pd.DataFrame(index=series.index, columns=series.columns)
+            anomalies[series&amp;lt;lower_bond] = series[series&amp;lt;lower_bond]
+            anomalies[series&amp;gt;upper_bond] = series[series&amp;gt;upper_bond]
+            plt.plot(anomalies, &amp;quot;ro&amp;quot;, markersize=10)
+        
+    plt.plot(series[window:], label=&amp;quot;Actual values&amp;quot;)
+    plt.legend(loc=&amp;quot;upper left&amp;quot;)
+    plt.grid(True)
+    
+plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
+                  plot_anomalies=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;acf--pacf-plots-autocorrelation--partial-autocorrelation-plots&#34;&gt;ACF / PACF plots (Autocorrelation / Partial Autocorrelation plots)&lt;/h3&gt;
+&lt;p&gt;First, talking about &lt;strong&gt;Autocorrelaltion&lt;/strong&gt;, by definition,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Autocorrelation implies how data points at different points in time are linearly related to one another.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;em&gt;blue area&lt;/em&gt; represents the &lt;em&gt;distance that is not significant than 0&lt;/em&gt; or the &lt;strong&gt;critical region&lt;/strong&gt;, in orther word, the correlation points that &lt;strong&gt;fall beyond this area are significantly different than 0&lt;/strong&gt;, and these the points needed our attention. This region is same for both ACF and PACF, which denoted as $ \pm 1.96\sqrt{n}$&lt;/p&gt;
+&lt;p&gt;The details of ACF and PACF plot implication and how to use them for further forecast can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;ACF shows a significant negativve correlation at lag 3 and no positive correlation, indicating that the series has no correlation with its previous values. &lt;br /&gt; PACF reveals that lag 3, lag 6, lag 9, lag 18 and probably lag 19 are important to the original series&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
+series=train.dropna()
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;actual-vs-predicted-values-plot&#34;&gt;Actual vs Predicted values plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;actual_predicted.png&#34; alt=&#34;Actual vs Predicted values plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Actual vs Predicted values plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotModelResults(model, X_train, X_test, y_train, y_test, plot_intervals=False, plot_anomalies=False):
+
+    prediction = model.predict(X_test)
+    
+    plt.figure(figsize=(12, 8))
+    plt.plot(prediction, &amp;quot;g&amp;quot;, label=&amp;quot;prediction&amp;quot;, linewidth=2.0, color=&amp;quot;blue&amp;quot;)
+    plt.plot(y_test.values, label=&amp;quot;actual&amp;quot;, linewidth=2.0, color=&amp;quot;olive&amp;quot;)
+    
+    if plot_intervals:
+        cv = cross_val_score(model, X_train, y_train, 
+                                    cv=tscv, 
+                                    scoring=&amp;quot;neg_mean_absolute_error&amp;quot;)
+        mae = cv.mean() * (-1)
+        deviation = cv.std()
+        
+        scale = 1
+        lower = prediction - (mae + scale * deviation)
+        upper = prediction + (mae + scale * deviation)
+        
+        plt.plot(lower, &amp;quot;r--&amp;quot;, label=&amp;quot;upper bond / lower bond&amp;quot;, alpha=0.5)
+        plt.plot(upper, &amp;quot;r--&amp;quot;, alpha=0.5)
+        
+        if plot_anomalies:
+            anomalies = np.array([np.NaN]*len(y_test))
+            anomalies[y_test&amp;lt;lower] = y_test[y_test&amp;lt;lower]
+            anomalies[y_test&amp;gt;upper] = y_test[y_test&amp;gt;upper]
+            plt.plot(anomalies, &amp;quot;o&amp;quot;, markersize=10, label = &amp;quot;Anomalies&amp;quot;)
+    
+    error = mean_absolute_percentage_error(y_test,prediction)
+    plt.title(&amp;quot;Mean absolute percentage error {0:.2f}%&amp;quot;.format(error))
+    plt.legend(loc=&amp;quot;best&amp;quot;)
+    plt.tight_layout()
+    plt.grid(True);
+
+plotModelResults(linear, X_train, X_test, y_train, y_test,
+                 plot_intervals=True, plot_anomalies=True)    
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
+      <link>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
+      <guid>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
       <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
 &lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
 &lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
@@ -233,9 +759,9 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
     
     <item>
       <title>ARIMA Autoregressive Integrated Moving Average model family</title>
-      <link>/project/arima-autoregressive-intergreated-moving-average/</link>
+      <link>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/arima-autoregressive-intergreated-moving-average/</guid>
+      <guid>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
 &lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
@@ -447,9 +973,9 @@ metrics.mean_absolute_error(y_test, y_pred)
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/project/practical-flow-of-a-data-science-project/</link>
+      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/practical-flow-of-a-data-science-project/</guid>
+      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
 &lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;

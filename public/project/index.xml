@@ -5,7 +5,7 @@
     <link>/project/</link>
       <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 02 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Recent Posts</title>
@@ -13,453 +13,962 @@
     </image>
     
     <item>
-      <title>Useful visualization with source code</title>
-      <link>/project/useful-visualization-with-source-code/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/useful-visualization-with-source-code/</guid>
-      <description>&lt;p&gt;Useful charts created with Python code&lt;/p&gt;
-&lt;h2 id=&#34;1-continuous-variable-with-categorical-variable&#34;&gt;1. Continuous variable with Categorical variable&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Bar chart&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Show trend/values among categorical variables.&lt;/p&gt;
-&lt;p&gt;This serves best in case of showing the differene between various categories.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;ax = data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;, figsize =(8,5))
-positions = (0,1, 2, 3)
-ax.set_xticklabels([&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;], rotation=30)
-ax.set_title(&#39;Sales and number of order&#39;)
-for i in ax.patches:
-    # get_x pulls left or right; get_height pushes up or down
-    ax.text(i.get_x()+.01, i.get_height()+50, \
-            str(round((i.get_height()), 2)), fontsize=12);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;bar_chart.png&#34; alt=&#34;Bar chart: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Bar chart: 2 categorical variables with continuous vales&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Subplots for multiple categorical variables&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Breaking several categories into different subplots will help generating insights, which is related to trend of each category.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(20,10))
-plt.subplot(221)
-data[data[&#39;type&#39;]==0].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;green&#39;, linewidth=7.0)
-plt.title(&#39;Item Quantity - Product class 0&#39;)
-plt.xlabel(xlabel=&#39;&#39;)
-plt.xticks([]) # delete the x axis tick value
-plt.subplot(222)
-data[data[&#39;type&#39;]==2].groupby(&#39;Y&#39;)[&#39;Quantity&#39;].sum().plot(color=&#39;red&#39;,linewidth=7.0)
-plt.title(&#39;Item Quantity - Product class 2&#39;)
-# Other subplot can continue with plt.subplot(223) ...
-&lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;line_subplot.png&#34; alt=&#34;Line subplot: 2 categorical variables with continuous vales&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Line subplot: 2 categorical variables with continuous vales&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;This can also be changed to &lt;strong&gt;Mutiple lines plot&lt;/strong&gt; as below&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(data[&#39;line1&#39;], label=&#39;Line 1&#39;)
-plt.plot(data[&#39;line1&#39;], color=&#39;red&#39;, label=&#39;Line 2&#39;)
-plt.legend()
-plt.title(&#39;2 Line plot&#39;)
+      <title>Speed up training and improve performance in deep neural net</title>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
+      <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-applying-initialization&#34;&gt;1. Applying Initialization&lt;/h2&gt;
+&lt;p&gt;Initialization is one of the first technique used to fasten the training time of Neuron Network (as well as improve performance). Let&#39;s briefly explain its importance. In Artificial Neural Network (ANN), there are numerous connections between different neurons. One neuron in the current layer connects to several neurons in the next layer and is attached to various ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one.&lt;/p&gt;
+&lt;p&gt;However, one problem with the ANN is that if the weights aren&#39;t specified from the beginning of training, the connection weights can be either too small or too large which makes them too tiny or too massive to use further in the network. In other words, the network will fall into &lt;strong&gt;Vanishing Gradients&lt;/strong&gt; or &lt;strong&gt;Exploding Gradients&lt;/strong&gt; problems.&lt;/p&gt;
+&lt;p&gt;So if the weights are set at suitable random values from the beginning of the training, these problem can be avoided. This technique was proposed by &lt;a href=&#34;http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf&#34;&gt;Glorot and Bengio&lt;/a&gt;, which then significantly lifted these unstable problems. This initialization strategy is called &lt;em&gt;Xavier initialization&lt;/em&gt; or &lt;em&gt;Glorot initialization&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;In this strategy, the connection weights between neurons are initialized randomly using the Normal distribution with $mean=0$ and variance $\sigma^2 = \frac{2}{fan_{in}+fan_{out}}$ , in which $fan_{in}$ is the number of input neurons and $fan_{out}$ is the number of output neurons.&lt;/p&gt;
+&lt;p&gt;There are 2 other popular initialization techniques beside &lt;strong&gt;Glorot&lt;/strong&gt; (used in Keras as default): &lt;strong&gt;He&lt;/strong&gt; and &lt;strong&gt;LeCun&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Let&#39;s examine different initialization techniques&amp;rsquo; effect on model performance and training time with &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(10, 10))
+for row in range(5):
+  for col in range(5):
+    index = 5 * row + col
+    plt.subplot(5, 5, index + 1)
+    plt.imshow(X_train_full[index], cmap=&amp;quot;binary&amp;quot;, interpolation=&amp;quot;nearest&amp;quot;)
+    plt.axis(&#39;off&#39;)
+    plt.title(y_train_full[index], fontsize=12)
 plt.show()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;2_line_plot.png&#34; alt=&#34;Multiple Line plot&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Multiple Line plot&lt;/figcaption&gt;
+  &lt;img src=&#34;fashion_set.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Here is the example of Fashion MNIST, in which the predictors are a set of values in the shape of [28,28] representing the image; and the target value is 10 types of cloth and shoes (denoted from 0 to 9)&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Box plot (distribution box plot)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Talking about distribution, boxplot will initiate many insights, especially when it is used to &lt;strong&gt;detect outlier&lt;/strong&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (10, 8)
-fig, ax = plt.subplots(figsize=fig_dims)
-sns.boxplot(x=&#39;X&#39;, y=&#39;Y&#39;, data=data)
+&lt;p&gt;First, let&#39;s start with the default setting of Keras on a network consisting of 5 hidden layers and 300, 100, 50, 50, 50 neurons each.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.random.set_seed(50)
+np.random.seed(50)
+
+model_default = keras.models.Sequential()
+model_default.add(keras.layers.Flatten(input_shape=[28, 28]))
+for n_layers in (300, 100, 50, 50, 50):
+  model_default.add(keras.layers.Dense(n_layers, activation =&#39;relu&#39;))
+model_default.add(keras.layers.Dense(10, activation=&#39;softmax&#39;))
+    
+model_default.compile(loss=&amp;quot;sparse_categorical_crossentropy&amp;quot;,
+                      optimizer=keras.optimizers.SGD(lr=1e-3),
+                      metrics=[&amp;quot;accuracy&amp;quot;])
+
+start_time = time.time()
+history = model_default.fit(X_train_full, y_train_full, epochs=20, validation_split=0.1)
+print(&amp;quot;--- %s seconds ---&amp;quot; % (time.time() - start_time))
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.4185 - accuracy: 0.8526 - val_loss: 0.4256 - val_accuracy: 0.8518
+--- 99.03307843208313 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The train set reached 85.26% accuracy and Val set reached 85.18% within 99.3 seconds. If &lt;code&gt;activation =&#39;relu&#39;&lt;/code&gt; is not set (i.e. no Activation function in the hidden layers), the accuracy is 85.32% and 84.95% respectively with 104.5 seconds needed to train on.&lt;/p&gt;
+&lt;p&gt;Comparing this with weight initialization to all Zeros and all Ones:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Zeros initialization
+Epoch 20/20
+1688/1688 [==============================] - 3s 2ms/step - loss: 2.3026 - accuracy: 0.1008 - val_loss: 2.3028 - val_accuracy: 0.0925
+--- 69.43926930427551 seconds ---
+
+# Ones initialization
+Epoch 20/20
+1688/1688 [==============================] - 3s 2ms/step - loss: 2.3026 - accuracy: 0.1008 - val_loss: 2.3028 - val_accuracy: 0.0925
+--- 67.2280786037445 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The performance in both cases is much worse and actually the model stopped improving from 5th epoch.&lt;/p&gt;
+&lt;p&gt;Another Initialization that can be considered to use is &lt;code&gt;He Initialization&lt;/code&gt;,  enabling in Keras by adding &lt;code&gt;kernel_initializer=&amp;quot;he_normal&amp;quot;&lt;/code&gt; argument to the hidden layers.&lt;/p&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3780 - accuracy: 0.8672 - val_loss: 0.3924 - val_accuracy: 0.8637
+--- 99.76096153259277 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The accuracy actually improved but the running time was half a second slower than &lt;strong&gt;Glorot Initialization&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;There are also discussions about the performance of &lt;strong&gt;normal distribution&lt;/strong&gt; and &lt;strong&gt;uniform distribution&lt;/strong&gt; in initialization technique, but there is indeed no one shows better performance than the other one. The result of &lt;code&gt;init = keras.initializers.VarianceScaling(scale=2.,mode=&#39;fan_avg&#39;,distribution=&#39;uniform&#39;)&lt;/code&gt; does not improve for this data set (Train set accuracy: 87.05%, Val set: 86.27% and took 100.82 seconds to run)&lt;/p&gt;
+&lt;h2 id=&#34;2-get-along-with-the-right-activation-function&#34;&gt;2. Get along with the right Activation function&lt;/h2&gt;
+&lt;p&gt;Choosing an unfit activation function is one of the reasons leading to poor model performance. &lt;code&gt;sigmoid&lt;/code&gt; might be a good choice but I prefer to use &lt;strong&gt;SELU, ReLU, or its variants&lt;/strong&gt; instead.&lt;/p&gt;
+&lt;p&gt;Let&#39;s talk about &lt;strong&gt;ReLU&lt;/strong&gt; first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of a large learning rate.&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;boxplot.png&#34; alt=&#34;Box plot - Distribution vizualization&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Box plot - Distribution vizualization&lt;/figcaption&gt;
+  &lt;img src=&#34;relu_and_lrelu.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;ReLU, Leaky ReLU and SELU&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Polar chart&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;THe below &lt;strong&gt;Polar chart&lt;/strong&gt; used to &lt;strong&gt;detech seasonality&lt;/strong&gt; among 12 months. It is clearly seen that the data at November and December observed spike or in orderword, an annual seasonality.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import plotly.express as px
-data[&#39;Month&#39;] = data[&#39;Date&#39;].dt.month_name()
-fig = px.line_polar(data, theta=&amp;quot;Month&amp;quot;,r=&amp;quot;Weekly_Sales&amp;quot;,
-                    color=&#39;Year&#39;,
-                    line_close=True,template=&amp;quot;plotly_dark&amp;quot;)
-fig.show();
+&lt;p&gt;Some of the solutions for this problem is to use alternative versions of ReLU: &lt;strong&gt;LeakyReLU, Randomized LeakyReLU or Scaled ReLU (SELU)&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;With &lt;strong&gt;LeakyReLU&lt;/strong&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if x&amp;gt;0:
+  return x
+else:
+  return ax
 &lt;/code&gt;&lt;/pre&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;polar_plot.png&#34; alt=&#34;Polar chart&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Polar chart&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;h2 id=&#34;2-continuous-with-continuous-variables&#34;&gt;2. Continuous with continuous variables&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Scatter plot&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;One of the most popular type of plot to observe the &lt;strong&gt;relationship&lt;/strong&gt; between 2 variables and sometimes help identify the &lt;strong&gt;correlation&lt;/strong&gt; between features. &lt;code&gt;corr&lt;/code&gt; function is used to get this correlation.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;fig_dims = (8,5)
-fig, ax = plt.subplots(figsize=fig_dims)
-abc = data.groupby([&#39;A&#39;,&#39;B&#39;,&#39;C&#39;]).agg({&#39;D&#39;:&#39;sum&#39;}).reset_index()
-sns.scatterplot(x=&#39;C&#39;, y=&#39;A&#39;, hue=&#39;B&#39;, data=abc, palette=&amp;quot;Set2&amp;quot;).set(title = &#39;Order throughout a month&#39;);
+&lt;p&gt;in which a is $\alpha$, the slope of the $x$ given $x&amp;lt;0$. $\alpha$ is usually set at 0.01, serving as a small leak (that&#39;s why this technique is called LeakyReLU). Using $\alpha$ helps to stop the dying problem (i.e. slope=0).&lt;/p&gt;
+&lt;p&gt;In case of &lt;strong&gt;Randomized LeakyReLU&lt;/strong&gt;, $\alpha$ is selected randomly given a range. This method can reduce the Overfitting issue but requires more running time due to extra computation.&lt;/p&gt;
+&lt;p&gt;One of the outperformed activation function for DNN is &lt;strong&gt;Scaled ReLU (SELU)&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if x&amp;gt;0:
+  return Lambda*x
+else:
+  return Lambda*(alpha*exp(x)-alpha)
 &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this function, each layer outputs&amp;rsquo; mean is 0 and standard deviation is 1. Note when using this activation function:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;It must be used with &lt;code&gt;kernel_initializer=&amp;quot;lecun_normal&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The input features must be standardized&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The NN&#39;s architecture must be sequential&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&#39;s try different Activation functions on the &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;p&gt;Result of &lt;strong&gt;LeakyReLU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3791 - accuracy: 0.8670 - val_loss: 0.3910 - val_accuracy: 0.8615
+--- 101.87710905075073 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result of &lt;strong&gt;Randomized LeakyReLU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 6s 3ms/step - loss: 0.3779 - accuracy: 0.8667 - val_loss: 0.3918 - val_accuracy: 0.8630
+--- 113.58738899230957 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result of &lt;strong&gt;SELU&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 19/20
+1688/1688 [==============================] - 5s 3ms/step - loss: 0.3526 - accuracy: 0.8763 - val_loss: 0.3755 - val_accuracy: 0.8647
+--- 106.25733232498169 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;SELU&lt;/strong&gt; seems to achieve slightly better performance over ReLU and its variants but the speed is slower (as expected).&lt;/p&gt;
+&lt;span class=&#34;markup-quote&#34;&gt;&lt;strong&gt;If the NN performs relatively well at a low learning rate, ReLU is an optimal choice given the fastest training time. In case of the deep NN, SELU is an excellent try.&lt;/strong&gt;&lt;/span&gt;
+&lt;p&gt;Detailed explanation about these activations can be found in here: &lt;a href=&#34;http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf&#34;&gt;ReLU&lt;/a&gt;, &lt;a href=&#34;https://arxiv.org/abs/1505.00853&#34;&gt;LeakyReLU, Randomized LeakyReLU&lt;/a&gt; and &lt;a href=&#34;https://arxiv.org/abs/1706.02515&#34;&gt;SELU&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-batch-normalization&#34;&gt;3. Batch Normalization&lt;/h2&gt;
+&lt;p&gt;To ensure Vanishing/Exploding Gradients problems do not happen again during training (as Initialization and Activation function can help reduce these issues at the beginning of the training), &lt;strong&gt;Batch Normalization&lt;/strong&gt; is implemented.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Batch Normalization&lt;/strong&gt; zeros centers and normalizes each input, then scales and shifts the result using 1 parameter vector for scaling and 1 for shifting. This technique evaluates the $mean$ and $standard deviation$ of the input over the current mini-batch and repeats this calculation across all mini-batches of the training set. $\mu$ and $\sigma$ are estimated during training but only used after training.&lt;/p&gt;
+&lt;p&gt;The vector of input means $\mu$ and vector of input standard devition $\sigma$ will become non-trainable parameters (i.e. untouchable by backpropagation) and be used to compute the moving averages at the end of the training. Subsequently, these final parameters will be used to normalize new data to make prediction.&lt;/p&gt;
+&lt;p&gt;If using &lt;strong&gt;Batch Normalization&lt;/strong&gt;, the input data will not need to be standardized prior training.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.random.set_seed(50)
+np.random.seed(50)
+
+model_default = keras.models.Sequential()
+model_default.add(keras.layers.Flatten(input_shape=[28, 28]))
+for n_layers in (300, 100, 50, 50, 50):
+  model_default.add(keras.layers.BatchNormalization())
+  model_default.add(keras.layers.Dense(n_layers, activation =&#39;relu&#39;, kernel_initializer=&amp;quot;he_normal&amp;quot;))
+model_default.add(keras.layers.Dense(10, activation=&#39;softmax&#39;))
+    
+model_default.compile(loss=&amp;quot;sparse_categorical_crossentropy&amp;quot;,
+                      optimizer=keras.optimizers.SGD(lr=1e-3),
+                      metrics=[&amp;quot;accuracy&amp;quot;])
+
+start_time = time.time()
+history = model_default.fit(X_train_full, y_train_full, epochs=20, validation_split=0.1)
+print(&amp;quot;--- %s seconds ---&amp;quot; % (time.time() - start_time))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Result&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
+Epoch 20/20
+1688/1688 [==============================] - 8s 5ms/step - loss: 0.3799 - accuracy: 0.8645 - val_loss: 0.3571 - val_accuracy: 0.8685
+--- 167.6186249256134 seconds ---
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Obviously, training is slower in &lt;strong&gt;Batch Normalization&lt;/strong&gt; given more computations during training but in contrast, in &lt;strong&gt;Batch Normalization&lt;/strong&gt;, the model convergences faster so fewer epoches are needed to reach the same performance.&lt;/p&gt;
+&lt;div class=&#34;alert alert-warning&#34;&gt;
+  &lt;div&gt;
+    Batch Normalization is strictly implemented in Recurrent NN
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id=&#34;4-gradient-clipping&#34;&gt;4. Gradient Clipping&lt;/h2&gt;
+&lt;p&gt;As &lt;strong&gt;Batch Normalization&lt;/strong&gt; is recommended not to use with Recurrent NN, &lt;strong&gt;Gradient Clipping&lt;/strong&gt; is the alternative choice for RNN.&lt;/p&gt;
+&lt;p&gt;Details about &lt;a href=&#34;https://arxiv.org/abs/1211.5063&#34;&gt;Gradient Clipping&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;summary-of-the-result-of-classification-task-with-fashion-mnist-dataset&#34;&gt;Summary of the result of Classification task with Fashion MNIST dataset&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Initialization&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Train set accuracy&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Val set accuracy&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Zeros/Ones&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10.08%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.25%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;69.43/67.22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.32%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;84.95%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;104.5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.26%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;85.18%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;99.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.72%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.37%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;99.76&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Uniform  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;87.05%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.27%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;100.82&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.7%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.15%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;101.87&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.67%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.3%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;113.58&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LeCun&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;87.63%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.47%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;106.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.45%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;86.85%&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;167.618&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;summary-of-the-result-of-regression-task-with-california-housing-dataset&#34;&gt;Summary of the result of Regression task with California housing dataset&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Initialization&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Train set MSE&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Val set MSE&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3985&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3899&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3779&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3819&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.19&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.48&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;10.71&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LeCun&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.3423&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.326&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9.38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.4365&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;0.5728&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;13.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;MSE of Train and Validation set&lt;/p&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;scatter.png&#34; alt=&#34;Scatter plot&#34; style=&#34;width:60%&#34;&gt;
+  &lt;img src=&#34;MSE.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;3-percentage-plot&#34;&gt;3. Percentage plot&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Pie chart&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;There is a controversy that &lt;strong&gt;pie chart&lt;/strong&gt; can hardly do a good job in representing the percentage. However, if the number of catogories are low, aka below 6, Pie chart proves no problem.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;labels = &#39;G1&#39;,&#39;G2&#39;, &#39;G3&#39;,  &#39;G4&#39;
+&lt;figure&gt;
+  &lt;img src=&#34;regression_BN.png&#34; alt=&#34;&#34; style=&#34;width:35%&#34;&gt;
+  &lt;figcaption&gt;Fashion MNIST consists of image on 10 types of fashion&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    These performances are subject to change depending on the dataset and NN&#39;s architecture
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;final-thoughts-on-this-part-&#34;&gt;Final thoughts on this part 🔆&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Glorot Initialization is the good starting point for most of the cases. He Initialization technique sometimes performs better than Glorot (slower in the above Classification example while faster in Regression example).&lt;/li&gt;
+&lt;li&gt;ReLU or Leaky ReLU are great choices if running time is the priority.&lt;/li&gt;
+&lt;li&gt;ReLU should be avoided if high Learning rate is used.&lt;/li&gt;
+&lt;li&gt;SELU is the good choice for complex dataset and deep neural network but might be traded off by running time. However, if the NN&#39;s architecture does not allow &lt;em&gt;self-normalization&lt;/em&gt;, use ELU instead of SELU.&lt;/li&gt;
+&lt;li&gt;SELU and Batch Normalization cannot be applied in RNN. Gradient Clipping is the alternative strategy for Batch Normalization in RNN.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;5-transfer-learning&#34;&gt;5. Transfer Learning&lt;/h2&gt;
+&lt;p&gt;Another important technique too improve the performance of DNN is &lt;strong&gt;Transfer Learning&lt;/strong&gt;, using pretrained layers to train similar new task. There is much to say about this technique and it will be covered in another post.&lt;/p&gt;
+&lt;p&gt;Source code can be accessed &lt;a href=&#34;https://github.com/geniusnhu/DNN-Improvement/blob/master/Improve_DNN_performance.ipynb&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;Reference:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Glorot, X., &amp;amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. PMLR&lt;/li&gt;
+&lt;li&gt;He, K., Zhang, X., Ren,S., &amp;amp; Sun, J. (2015). Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. In Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)&lt;/li&gt;
+&lt;li&gt;Geron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. O&#39;Reilly Media, Inc.,&lt;/li&gt;
+&lt;li&gt;Xu, B., Wang, N., Chen, T., &amp;amp; Li, M. (2015). Empirical Evaluation of Rectified Activations in Convolutional Network. Retrieved from &lt;a href=&#34;https://arxiv.org/abs/1505.00853&#34;&gt;https://arxiv.org/abs/1505.00853&lt;/a&gt; on May 5, 2020.&lt;/li&gt;
+&lt;li&gt;Klambauer, G., Unterthiner, T., Mayr, A., &amp;amp; Hochreiter, S. (2017). Self-Normalizing Neural Networks. Advances in Neural Information Processing Systems 30 (NIPS 2017)&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Support Vector Machine explanation and application</title>
+      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
+      <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
+&lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;original-concept&#34;&gt;Original concept&lt;/h2&gt;
+&lt;p&gt;All of this started with the idea of using a line (with 2D dataset) or a hyperplane (more than 3D) to separate the instances into 2 classes, and try to &lt;strong&gt;maximize the distance between the line and the closest instances&lt;/strong&gt;. This distance is denoted as &lt;strong&gt;Margin&lt;/strong&gt;. The below figure illustrates this.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;margin.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Why it needs to maximize this margin? The reason is that a Decision boundary lies right between 2 classes is much better than one that falls nearer at one class than another.&lt;/p&gt;
+&lt;p&gt;However, imagine that there is an &lt;strong&gt;outlier&lt;/strong&gt; of the Orange class and it lies closers to Blue class than its own. If we strictly impose the above concept to this dataset, it will result into the below picture. Now, the margin satisfies the requirement but turns out to be much smaller than the above one. This is called &lt;strong&gt;Hard margin&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;If there is a new Blue class data that falls near this orange instance, that new data will be misclassified as Orange, which in other word, means the model performs worse on new data than on train one (which we never wants to have with our model).&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;hard_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;soft-margin&#34;&gt;Soft margin&lt;/h2&gt;
+&lt;p&gt;There is one way to solve this, by allowing some misclassification on outliers of train set to maximize the margin on the rest of training data. This concept was named &lt;strong&gt;Soft margin&lt;/strong&gt; or in other word, &lt;strong&gt;Support Vector Machine&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin1.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Once there is new data, it will be correctly classified as Blue.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;soft_margin2.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, one question arises. How can we decide the Soft margin? (How do we know which instances to be misclassified in training?).&lt;/p&gt;
+&lt;p&gt;Actually, there is no perfect answer for this. You train the data on several values of margin decides to use the optimal one for your problem. The hyperparameter controls this in VC models in scikit-learn is denoted as $C$. If the model is overfitting, reduce $C$.&lt;/p&gt;
+&lt;p&gt;It is also because that SVM uses only 1 linear line or hyperplane to do the classification job, it is a binary classification solver. In case of multiclass problem, +One-versus-All (or One-versus-Rest) strategy* will be implied.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Therefore, one of the most important rule of SVM algorithm is that it tries to find a good balance between maximizing the margin street, and limiting the Margin violation (misclassification)&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;svm-on-non-linear-dataset&#34;&gt;SVM on non-linear dataset&lt;/h2&gt;
+&lt;p&gt;However, for non-linear separable data, how can we use this trick? Looking at the below illustration, we will need 3 lines to separate the data into 2 classes, and with more complex data, we will need even more. This is computationally inefficient.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;non_linear.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Then, here comes the &lt;strong&gt;Kernel trick&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Instead of teaching the model on 2D data, the &lt;strong&gt;kernel trick&lt;/strong&gt; will add other features such as polynomial features and then SVM will utilize a hyperplane to split up data into 2 classes. The above data after adding 2-degree polynomial feature will look like this:&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;polynomial_feature.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;After quadratic feature added, instances  are now distintively separated into 2 classes&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;hr&gt;
+&lt;p&gt;Let&#39;s use data to further understand this.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import random
+np.random.seed(42)
+m = 500
+X1 = 2 * np.random.rand(m, 1)
+X2 = (4 + 3 * X1**2 + np.random.randn(m, 1)).ravel()
+X12 = np.column_stack((X1,X2))
+y1 = np.zeros((500))
+X3 = np.random.rand(m, 1)
+X4 = (1 + X1**1 + 2*np.random.randn(m, 1)).ravel()
+X34 = np.column_stack((X3,X4))
+y2 = np.ones((500))
+X = np.concatenate((X12, X34), axis=0)
+y = np.concatenate((y1, y2), axis=0)
 
-fig1, ax1 = plt.subplots(figsize=(5,5))
-ax1.pie(data.groupby(&#39;ProductClass&#39;).agg({&#39;ItemID&#39;:&#39;count&#39;}), labels=labels, autopct=&#39;%1.1f%%&#39;,
-        shadow=True, startangle=90)
-ax1.axis(&#39;equal&#39;)  # Equal aspect ratio ensures that pie is drawn as a circle.
-plt.title(&#39;Proportion of each Group&#39;)
+def plot_dataset(X, y, axes):
+    plt.plot(X[:, 0][y==0], X[:, 1][y==0], &amp;quot;bs&amp;quot;)
+    plt.plot(X[:, 0][y==1], X[:, 1][y==1], &amp;quot;g^&amp;quot;)
+    plt.axis(axes)
+    plt.grid(True, which=&#39;both&#39;)
+    plt.xlabel(&amp;quot;Feature 1&amp;quot;, fontsize=20)
+    plt.ylabel(&amp;quot;Feature 2&amp;quot;, fontsize=20, rotation=0)
+    
+plot_dataset(X, y, [-1.5, 2.5, -1, 1.5])
 plt.show();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;pie_plot.png&#34; alt=&#34;Pie plot&#34; style=&#34;width:50%&#34;&gt;
-  &lt;figcaption&gt;Pie plot&lt;/figcaption&gt;
+  &lt;img src=&#34;data_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Donut chart (Multiple categorical variables with percentage)&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Donut chart&lt;/strong&gt; is the combination of 2 &lt;strong&gt;pie chart&lt;/strong&gt;, the smaller lies within the bigger. This shows the percentage within of the big group as well as the proportion within each subgroup, which provides a transparent distribution of 2 categorical variables within each other.&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;subgroup_names = &#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;,&#39;PC0&#39;,&#39;PC1&#39;,&#39;PC2&#39;,&#39;PC3&#39;
-labels = &#39;Group 1&#39;,&#39;Group 2&#39;, &#39;Group 3&#39;
+&lt;h2 id=&#34;polynomial-kernel&#34;&gt;Polynomial kernel&lt;/h2&gt;
+&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;quot;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
+&lt;p&gt;If you have very large dataset, go ahead with $LinearSVC$ because it is faster than $SVC$ in handling big data.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;One thing to remember, always scaling data before training SVM&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;poly_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=0.001))
+])
+poly_kernel_svm_clf.fit(X_train, y_train)
 
-# Create colors
-a, b, c=[plt.cm.Blues, plt.cm.Reds, plt.cm.Greens]
-fig, ax = plt.subplots(figsize=(5,5))
-ax.axis(&#39;equal&#39;)
-mypie, _ = ax.pie(list(data.groupby([&#39;group&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
-                  radius=1.3, labels=labels, colors=[a(0.6), b(0.6), c(0.6)] , labeldistance=1.05)
-plt.setp( mypie, width=0.3, edgecolor=&#39;white&#39;)
+poly_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;poly&amp;quot;, degree=3, coef0=1, C=10))
+])
+poly_kernel_svm_clf10.fit(X_train, y_train)
 
-mypie2, _ = ax.pie(list(data.groupby([&#39;group&#39;,&#39;subgroup&#39;]).agg({&#39;Order&#39;:&#39;nunique&#39;}).Quantity), 
-                   radius=1.3-0.3, labels=subgroup_names, 
-                   labeldistance=0.8, colors=[a(0.5), a(0.4), a(0.3), b(0.5), b(0.4), b(0.3), b(0.2),c(0.5), 
-                                              c(0.4), c(0.3),c(0.2)])
-plt.setp( mypie2, width=0.4, edgecolor=&#39;white&#39;)
-plt.title(&#39;Proportion of by groups and subgroups&#39;);
+# Plot the model overall prediction
+def plot_predictions(model, axes):
+    &amp;quot;&amp;quot;&amp;quot;
+    Vizualize the classification result of the model to see how it
+    corresponds to training data
+    &amp;quot;&amp;quot;&amp;quot;
+    x0s = np.linspace(axes[0], axes[1], 1000)
+    x1s = np.linspace(axes[2], axes[3], 1000)
+    x0, x1 = np.meshgrid(x0s, x1s)
+    X = np.c_[x0.ravel(), x1.ravel()]
+    y_pred = model.predict(X).reshape(x0.shape)
+    y_decision = model.decision_function(X).reshape(x0.shape)
+    plt.contourf(x0, x1, y_pred, cmap=plt.cm.brg, alpha=0.2)
+    plt.contourf(x0, x1, y_decision, cmap=plt.cm.brg, alpha=0.1)
+    
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(poly_kernel_svm_clf, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(poly_kernel_svm_clf10, [-0.25,2.25,-5,20])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$degree=3, C=10$&amp;quot;, fontsize=18)
+plt.show()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;donut_chart.png&#34; alt=&#34;Donut chart&#34; style=&#34;width:30%&#34;&gt;
-  &lt;figcaption&gt;Donut chart&lt;/figcaption&gt;
+  &lt;img src=&#34;poly_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;h2 id=&#34;4-change-in-order-plot&#34;&gt;4. Change in Order plot&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&amp;ldquo;How the rank changes over time&amp;rdquo; is the question that is answered by the below graph, called &lt;strong&gt;Bump chart&lt;/strong&gt;&lt;/p&gt;
-&lt;figure&gt;
-  &lt;img src=&#34;bump_chart.png&#34; alt=&#34;Bump chart - Change in order&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Change in order&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def bumpchart(df, show_rank_axis= True, rank_axis_distance= 1.1, 
-              ax= None, scatter= False, holes= False,
-              line_args= {}, scatter_args= {}, hole_args= {}, number_of_lines=10):
-    
-    if ax is None:
-        left_yaxis= plt.gca()
-    else:
-        left_yaxis = ax
+&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&#39;s measure its performance on test set.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
 
-    # Creating the right axis.
-    right_yaxis = left_yaxis.twinx()
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
     
-    axes = [left_yaxis, right_yaxis]
     
-    # Creating the far right axis if show_rank_axis is True
-    if show_rank_axis:
-        far_right_yaxis = left_yaxis.twinx()
-        axes.append(far_right_yaxis)
-    
-    for col in df.columns:
-        y = df[col]
-        x = df.index.values
-        # Plotting blank points on the right axis/axes 
-        # so that they line up with the left axis.
-        for axis in axes[1:]:
-            axis.plot(x, y, alpha= 10)
-
-        left_yaxis.plot(x, y, **line_args, solid_capstyle=&#39;round&#39;)
-        #left_yaxis.annotate(x,xy=(3,1))
-        # Adding scatter plots
-        if scatter:
-            left_yaxis.scatter(x, y, **scatter_args)
-            for x,y in zip(x,y):
-              plt.annotate(col, 
-                          (x,y), 
-                          textcoords=&amp;quot;offset points&amp;quot;, 
-                          xytext=(0,10), 
-                          ha=&#39;center&#39;) 
-            
-            #Adding see-through holes
-            if holes:
-                bg_color = left_yaxis.get_facecolor()
-                left_yaxis.scatter(x, y, color= bg_color, **hole_args)
-
-    # Number of lines
-     
-
-    y_ticks = [*range(1, number_of_lines+1)]
-    
-    # Configuring the axes so that they line up well.
-    for axis in axes:
-        axis.invert_yaxis()
-        axis.set_yticks(y_ticks)
-        axis.set_ylim((number_of_lines + 0.5, 0.5))
-    
-    # Sorting the labels to match the ranks.
-    left_labels = [*range(1, len(df.iloc[0].index))]
-    right_labels = left_labels
-    #left_labels = df.iloc[0].sort_values().index
-    #right_labels = df.iloc[-1].sort_values().index
-    
-    left_yaxis.set_yticklabels(left_labels)
-    right_yaxis.set_yticklabels(right_labels)
-    
-    # Setting the position of the far right axis so that it doesn&#39;t overlap with the right axis
-    if show_rank_axis:
-        far_right_yaxis.spines[&amp;quot;right&amp;quot;].set_position((&amp;quot;axes&amp;quot;, rank_axis_distance))
-    
-    return axes
+0.6459770114942529
+0.8542027171311809
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;5-other-customization&#34;&gt;5. Other customization&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Add x axis tick label&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data[[&#39;x&#39;,&#39;y&#39;]].plot(kind=&#39;bar&#39;,figsize =(8,5))
-positions = (0,1, 2, 3)
-labels = (&amp;quot;2015&amp;quot;, &amp;quot;2016&amp;quot;, &amp;quot;2017&amp;quot;, &amp;quot;2018&amp;quot;)
-plt.xticks(positions, labels, rotation=0) #Assign x axis tick labels
-plt.ylabel(&#39;Sales&#39;, fontsize =12)
-plt.xlabel(&#39;&#39;)
-plt.title(&#39;Sales by year&#39;);;
+&lt;h2 id=&#34;gaussian-rbf-kernel&#34;&gt;Gaussian RBF Kernel&lt;/h2&gt;
+&lt;p&gt;Now, I want to try a different kernel with this data, I will use  &lt;strong&gt;Gaussian RBF Kernel&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;As my data is not too large, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; does not take much time. However, with a large dataset, &lt;em&gt;Gaussian RBF Kernel&lt;/em&gt; will consume quite amount of your time.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y,test_size=0.33, random_state=42)
+
+# Create pipeline for training
+rbf_kernel_svm_clf = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=0.1, C=0.001))
+])
+rbf_kernel_svm_clf.fit(X_train, y_train)
+
+rbf_kernel_svm_clf10 = Pipeline([
+	(&amp;quot;scaler&amp;quot;, StandardScaler()),
+	(&amp;quot;svm_clf&amp;quot;, SVC(kernel=&amp;quot;rbf&amp;quot;, gamma=5, C=10))
+])
+rbf_kernel_svm_clf10.fit(X_train, y_train)
+
+# Plot the model overall prediction
+fig, axes = plt.subplots(ncols=2, figsize=(10.5, 4), sharey=True)
+plt.sca(axes[0])
+plot_predictions(rbf_kernel_svm_clf, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=0.001$&amp;quot;, fontsize=18)
+
+plt.sca(axes[1])
+plot_predictions(rbf_kernel_svm_clf10, [-1.5, 2.5, -1, 1.5])
+plot_dataset(X_train, y_train)
+plt.title(r&amp;quot;$gamma=5, C=10$&amp;quot;, fontsize=18)
+plt.show();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;figure&gt;
-  &lt;img src=&#34;custom_x_axis.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
-  &lt;figcaption&gt;Custome x axis tick labels&lt;/figcaption&gt;
+  &lt;img src=&#34;RBF_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Set legend label&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;plt.legend([&#39;Qty by day in week&#39;,&#39;# of daily orders&#39;])
+&lt;p&gt;2 values of C seems to produce similar model. Let&#39;s predict test set and evaluate with metrics.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
+model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
+
+for model in model_list:
+    y_pred = model.predict(X_test)
+    print(f1_score(y_test, y_pred, average=&#39;weighted&#39;))
+    
+    
+0.8417207792207791
+0.8544599213495534
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As expected, 2 models perform quite equivalent with C = 10 has slightly higher value and also slightly higher than the polynomial kernel model above. We can improve this with tuning hyperparameter, cross validation, add other type of feature transformation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Complete guide for Time series Visualization</title>
+      <link>/project/complete-guide-for-time-series-visualization/</link>
+      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>/project/complete-guide-for-time-series-visualization/</guid>
+      <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
+&lt;li&gt;It is informative to confirm the &lt;strong&gt;trend, seasonality, cyclic pattern&lt;/strong&gt; as well as &lt;strong&gt;correlation among the series itself (Self-correlation/Autocorrelation) and the series with other series&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Watch out for the &lt;strong&gt;Spurious correlation&lt;/strong&gt;: high correlation is always a trap rather than a prize for data scientist. Many remarks this as &lt;strong&gt;correlation-causation trap&lt;/strong&gt;
+. If you observe a &lt;strong&gt;trending and/or seasonal time-series&lt;/strong&gt;, be careful with the correlation. Check if the data is a &lt;strong&gt;cummulative sum&lt;/strong&gt; or not. If it is, spurious correlation is more apt to appear.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The below example with plots will give more details on this.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
+&lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Looking at the example figure, there is &lt;strong&gt;no trend&lt;/strong&gt; but there is a clear &lt;strong&gt;annual seasonlity&lt;/strong&gt; occured in December. &lt;strong&gt;No cyclic&lt;/strong&gt; as there is no pattern with frequency longer than 1 year.&lt;/p&gt;
+&lt;h2 id=&#34;2-confirming-seasonality&#34;&gt;2. Confirming seasonality&lt;/h2&gt;
+&lt;p&gt;There are several ways to confirm the seasonlity. Below, I list down vizualization approaches (which is prefered by non-technical people).&lt;/p&gt;
+&lt;h3 id=&#34;seasonal-plot&#34;&gt;Seasonal plot:&lt;/h3&gt;
+&lt;p&gt;This gives a better prove to spot seasonality, spike and drop. As seen in the below chart, there is a large jump in December, followed by a drop in January.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;seasonal_plot.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Code can be found below (I am using the new Cyberpunk of Matplotlib, can be found &lt;a href=&#34;https://github.com/dhaitz/mplcyberpunk&#34;&gt;here&lt;/a&gt; with heptic neon color)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;colors = [&#39;#08F7FE&#39;,  # teal/cyan
+          &#39;#FE53BB&#39;,  # pink
+          &#39;#F5D300&#39;] # matrix green
+plt.figure(figsize=(10,6))
+w =data.groupby([&#39;Year&#39;,&#39;Month&#39;])[&#39;Weekly_Sales&#39;].sum().reset_index()
+sns.lineplot(&amp;quot;Month&amp;quot;, &amp;quot;Weekly_Sales&amp;quot;, data=w, hue=&#39;Year&#39;, palette=colors,marker=&#39;o&#39;, legend=False)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Seasonal plot: Total sales of Walmart 45 stores in 3 years&#39;,fontsize=20 )
+plt.legend(title=&#39;Year&#39;, loc=&#39;upper left&#39;, labels=[&#39;2010&#39;, &#39;2011&#39;,&#39;2012&#39;],fontsize=&#39;x-large&#39;, title_fontsize=&#39;20&#39;)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;seasonal-subseries-plot&#34;&gt;Seasonal subseries plot&lt;/h3&gt;
+&lt;p&gt;Next is an another way of showing the &lt;strong&gt;distribution&lt;/strong&gt; of time-series data in each month. Insteading of using histogram (which I considered difficult to understand the insight in time series), I generated &lt;em&gt;box plot&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Of note, the main purpose of this plot is to show the &lt;strong&gt;values changing from one month to another&lt;/strong&gt; as well as &lt;strong&gt;how the value distributed within each month&lt;/strong&gt;.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sub_seasonal.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;Box plot&lt;/em&gt; is strongly recommended in case of &lt;strong&gt;confirming the mean, median of the seasonal period comparing to other periods&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;3-correlation&#34;&gt;3. Correlation&lt;/h2&gt;
+&lt;p&gt;Alike other type of data, &lt;strong&gt;Scatter plot&lt;/strong&gt; stands as the first choice for &lt;strong&gt;identifying the correlation between different time series&lt;/strong&gt;. This is especially the case if one series can be used to explain another series. Below is the correlation of sales and its lag 1.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag = data.copy()
+data_lag[&#39;lag_1&#39;] = data[&#39;Weekly_Sales&#39;].shift(1) # Create lag 1 feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(np.log(data_lag.Weekly_Sales), np.log(data_lag.lag_1), data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;Weekly sales vs its 1st lag&#39;,fontsize=20 );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It is apparant that the correlation between the original data and its 1&lt;sup&gt;st&lt;/sup&gt; lag is not too strong and there seems some outlier in the top left of the graph.&lt;/p&gt;
+&lt;p&gt;It is also interesting to identify if this &lt;em&gt;correlation actually exists and can we use lag 1 to predict the original series&lt;/em&gt;. &lt;strong&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference&lt;/strong&gt; will give proof for hypothesis.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;scatter_diff.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;The correlation between the original difference and the 1&lt;sup&gt;st&lt;/sup&gt; lag difference disappeared, indicating that lag1 does not appear to predict sales.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;data_lag[&#39;lag_1_diff&#39;] = data_lag[&#39;lag_1&#39;].diff() # Create lag 1 difference feature
+data_lag[&#39;diff&#39;] = data_lag[&#39;Weekly_Sales&#39;].diff() # Create difference feature
+data_lag.dropna(inplace=True) 
+
+plt.style.use(&amp;quot;cyberpunk&amp;quot;)
+plt.figure(figsize=(10,6))
+sns.scatterplot(data_lag[&#39;diff&#39;], data_lag.lag_1_diff, data =data_lag)
+mplcyberpunk.make_lines_glow()
+plt.title(&#39;The correlation between original series difference with its 1st lag difference&#39;,fontsize=15);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;moving-average-and-original-series-plot&#34;&gt;Moving average and Original series plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;moving_average.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotMovingAverage(series, window, plot_intervals=False, scale=1.96, plot_anomalies=False):
+
+    rolling_mean = series.rolling(window=window).mean()
+    
+    plt.figure(figsize=(15,5))
+    plt.title(&amp;quot;Moving average\n window size = {}&amp;quot;.format(window))
+    plt.plot(rolling_mean, &amp;quot;g&amp;quot;, label=&amp;quot;Rolling mean trend&amp;quot;)
+
+    # Plot confidence intervals for smoothed values
+    if plot_intervals:
+        mae = mean_absolute_error(series[window:], rolling_mean[window:])
+        deviation = np.std(series[window:] - rolling_mean[window:])
+        lower_bond = rolling_mean - (mae + scale * deviation)
+        upper_bond = rolling_mean + (mae + scale * deviation)
+        plt.plot(upper_bond, &amp;quot;r--&amp;quot;, label=&amp;quot;Upper Bond / Lower Bond&amp;quot;)
+        plt.plot(lower_bond, &amp;quot;r--&amp;quot;)
+        
+        # Having the intervals, find abnormal values
+        if plot_anomalies:
+            anomalies = pd.DataFrame(index=series.index, columns=series.columns)
+            anomalies[series&amp;lt;lower_bond] = series[series&amp;lt;lower_bond]
+            anomalies[series&amp;gt;upper_bond] = series[series&amp;gt;upper_bond]
+            plt.plot(anomalies, &amp;quot;ro&amp;quot;, markersize=10)
+        
+    plt.plot(series[window:], label=&amp;quot;Actual values&amp;quot;)
+    plt.legend(loc=&amp;quot;upper left&amp;quot;)
+    plt.grid(True)
+    
+plotMovingAverage(series, window, plot_intervals=True, scale=1.96,
+                  plot_anomalies=True)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;acf--pacf-plots-autocorrelation--partial-autocorrelation-plots&#34;&gt;ACF / PACF plots (Autocorrelation / Partial Autocorrelation plots)&lt;/h3&gt;
+&lt;p&gt;First, talking about &lt;strong&gt;Autocorrelaltion&lt;/strong&gt;, by definition,&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Autocorrelation implies how data points at different points in time are linearly related to one another.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The &lt;em&gt;blue area&lt;/em&gt; represents the &lt;em&gt;distance that is not significant than 0&lt;/em&gt; or the &lt;strong&gt;critical region&lt;/strong&gt;, in orther word, the correlation points that &lt;strong&gt;fall beyond this area are significantly different than 0&lt;/strong&gt;, and these the points needed our attention. This region is same for both ACF and PACF, which denoted as $ \pm 1.96\sqrt{n}$&lt;/p&gt;
+&lt;p&gt;The details of ACF and PACF plot implication and how to use them for further forecast can be found &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;ACF_PACF.png&#34; alt=&#34;ACF / PACF plots&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;ACF shows a significant negativve correlation at lag 3 and no positive correlation, indicating that the series has no correlation with its previous values. &lt;br /&gt; PACF reveals that lag 3, lag 6, lag 9, lag 18 and probably lag 19 are important to the original series&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# ACF and PACF for time series data
+series=train.dropna()
+fig, ax = plt.subplots(2,1, figsize=(10,8))
+fig = sm.graphics.tsa.plot_acf(series, lags=None, ax=ax[0])
+fig = sm.graphics.tsa.plot_pacf(series, lags=None, ax=ax[1])
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;actual-vs-predicted-values-plot&#34;&gt;Actual vs Predicted values plot&lt;/h3&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;actual_predicted.png&#34; alt=&#34;Actual vs Predicted values plot&#34; style=&#34;width:100%&#34;&gt;
+  &lt;figcaption&gt;Actual vs Predicted values plot&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def plotModelResults(model, X_train, X_test, y_train, y_test, plot_intervals=False, plot_anomalies=False):
+
+    prediction = model.predict(X_test)
+    
+    plt.figure(figsize=(12, 8))
+    plt.plot(prediction, &amp;quot;g&amp;quot;, label=&amp;quot;prediction&amp;quot;, linewidth=2.0, color=&amp;quot;blue&amp;quot;)
+    plt.plot(y_test.values, label=&amp;quot;actual&amp;quot;, linewidth=2.0, color=&amp;quot;olive&amp;quot;)
+    
+    if plot_intervals:
+        cv = cross_val_score(model, X_train, y_train, 
+                                    cv=tscv, 
+                                    scoring=&amp;quot;neg_mean_absolute_error&amp;quot;)
+        mae = cv.mean() * (-1)
+        deviation = cv.std()
+        
+        scale = 1
+        lower = prediction - (mae + scale * deviation)
+        upper = prediction + (mae + scale * deviation)
+        
+        plt.plot(lower, &amp;quot;r--&amp;quot;, label=&amp;quot;upper bond / lower bond&amp;quot;, alpha=0.5)
+        plt.plot(upper, &amp;quot;r--&amp;quot;, alpha=0.5)
+        
+        if plot_anomalies:
+            anomalies = np.array([np.NaN]*len(y_test))
+            anomalies[y_test&amp;lt;lower] = y_test[y_test&amp;lt;lower]
+            anomalies[y_test&amp;gt;upper] = y_test[y_test&amp;gt;upper]
+            plt.plot(anomalies, &amp;quot;o&amp;quot;, markersize=10, label = &amp;quot;Anomalies&amp;quot;)
+    
+    error = mean_absolute_percentage_error(y_test,prediction)
+    plt.title(&amp;quot;Mean absolute percentage error {0:.2f}%&amp;quot;.format(error))
+    plt.legend(loc=&amp;quot;best&amp;quot;)
+    plt.tight_layout()
+    plt.grid(True);
+
+plotModelResults(linear, X_train, X_test, y_train, y_test,
+                 plot_intervals=True, plot_anomalies=True)    
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;em&gt;To be updated&lt;/em&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
-      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
-      <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
-&lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
-&lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
-&lt;p&gt;To understand &lt;strong&gt;Transformer model&lt;/strong&gt; inclduing BERT, we need to take a look of the progress from &lt;strong&gt;Seq2Seq (sequence to sequence)&lt;/strong&gt; and its evolution to attention and to BERT.&lt;/p&gt;
-&lt;h4 id=&#34;11-seq2seq-model&#34;&gt;1.1 Seq2Seq model:&lt;/h4&gt;
-&lt;p&gt;In NLP, the end that a machine is expected to understand is the meaning of the sentence, not only word by word. &lt;strong&gt;Seq2Seq&lt;/strong&gt; is a technique to train the machine in which it takes a sequence of an item and generates another sequence as output.&lt;/p&gt;
-&lt;p&gt;Within the model, there contains &lt;strong&gt;Encoder&lt;/strong&gt; and &lt;strong&gt;Decoder&lt;/strong&gt;. The &lt;strong&gt;Encoder&lt;/strong&gt; receives the original text and convert the text into a &lt;strong&gt;Context vector&lt;/strong&gt; that the Machine can read. Then, the &lt;strong&gt;Decoder&lt;/strong&gt; does the job of generating a new sequence of items based on the &lt;strong&gt;Context vector&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;In Seq2Seq, a sentence does not need to go through both Encoder and Decoder, it can stop at Encoder. Some example of Encoder only is the suggested word &lt;em&gt;&amp;ldquo;message&amp;rdquo;&lt;/em&gt; after you type &lt;em&gt;&amp;ldquo;Thank you for your&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Context&lt;/strong&gt; or &lt;strong&gt;Context vector&lt;/strong&gt; is a vector of floats representing the input sequence. &lt;strong&gt;&amp;ldquo;Word Embedding&amp;rdquo;&lt;/strong&gt; is the algorithm used to transform text into vector, and the size of vector is usually 265, 512 or 1024 dimensions.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;Seq2Seq_visual.jpg&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;12-attention&#34;&gt;1.2 Attention&lt;/h4&gt;
-&lt;p&gt;One of the disadvantages of Context in Seq2Seq is the &lt;strong&gt;dealing with long sentences and handling the sequence of output&lt;/strong&gt;. Context is generated by the Word embedding algorithm and the longer the sentence or the paragraph, the bigger the size of vector and the more memory consuming.&lt;/p&gt;
-&lt;p&gt;Moreover, the context in Seq2Seq &lt;strong&gt;was not built to figure out the similarity between words&lt;/strong&gt; because it does not focus on the &lt;strong&gt;relevancy of the words in the sentence&lt;/strong&gt;. This leads to the issue that a sentence in English cannot be translated correctly to Japanese which has the reserve order in sentence structure.&lt;/p&gt;
-&lt;p&gt;The concept of Attention was introduced in &lt;a href=&#34;https://arxiv.org/abs/1409.0473&#34;&gt;Bahdanau et al., 2014&lt;/a&gt; and &lt;a href=&#34;https://arxiv.org/abs/1508.04025&#34;&gt;Luong et al., 2015&lt;/a&gt; in which it takes into account the relevant parts in the sentence.&lt;/p&gt;
-&lt;p&gt;Instead of passing the last hidden state to the &lt;strong&gt;Decoder&lt;/strong&gt;, the Attention model &lt;strong&gt;passes all the hidden states to the Decoder&lt;/strong&gt; with the summary process as below:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Give each hidden state a score&lt;/li&gt;
-&lt;li&gt;Use &lt;strong&gt;Softmax function&lt;/strong&gt; to multiply each hidden state. This brings about high Hidden state scores and low hidden state scores or in other word, it generates the probability of each hidden state associating with the input word.&lt;/li&gt;
-&lt;li&gt;The &lt;strong&gt;Decoder&lt;/strong&gt; will sum up all the weighted softmax Hidden state vectors into a context vector and concatenate it with its original hidden state vector.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;Attention_Visual.jpg&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The advantage of this model is the capability to &lt;strong&gt;choose the decoding word based on the probability of that word in associating with the original input without losing the sequential characteristics of the sentence&lt;/strong&gt;. This has high effectiveness in dealing with translating of common words such as &amp;ldquo;the&amp;rdquo;, &amp;ldquo;his&amp;rdquo;, &amp;ldquo;of&amp;rdquo;, etc. and the sequence of different languages.&lt;/p&gt;
-&lt;h4 id=&#34;13-transformer&#34;&gt;1.3 Transformer:&lt;/h4&gt;
-&lt;p&gt;&lt;strong&gt;Transformer&lt;/strong&gt; is built on the foundation of &lt;strong&gt;Attention&lt;/strong&gt; model. Therefore, &lt;strong&gt;Transformer&lt;/strong&gt; can deal with the relevancy of the sentence rather than converting from word to word in &lt;strong&gt;Seq2Seq&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;The biggest difference of &lt;strong&gt;Transformer&lt;/strong&gt; vs &lt;strong&gt;Seq2Seq&lt;/strong&gt; is that instead of generating 1 vector from &lt;strong&gt;Encoder&lt;/strong&gt;, &lt;strong&gt;Transformer&lt;/strong&gt; model uses 3 vectors in order to decide which other parts of the sentence are important (or unimportant) to that word.&lt;/p&gt;
-&lt;p&gt;The below table show more details of the calculation.&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Word&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Q vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;K vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;V vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Score&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Softmax&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Sum&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;First word&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q1xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q1xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z1 = S1+S2+S3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q1xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Second word&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q2xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q2xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z2 = S1+S2+S3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q2xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;Third word&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;td&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q3xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q3xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z3 = S1+S2+S3&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q3xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;One example of this model application is the suggestion of relevant words when typing sentence. Gmail can suggest &lt;strong&gt;&amp;ldquo;message&amp;rdquo;, &amp;ldquo;reply&amp;rdquo;, &amp;ldquo;call&amp;rdquo;&lt;/strong&gt; at the same time based on the typed sentence &lt;strong&gt;&amp;ldquo;Thank you for your&lt;/strong&gt;&amp;quot;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;This is a brief introduction on the transition from Seq2Seq to Transformer and how the &lt;strong&gt;Transformer model&lt;/strong&gt; outstands &lt;strong&gt;Seq2Seq&lt;/strong&gt; at the moment.&lt;/p&gt;
-&lt;h3 id=&#34;2-business-applications-of-nlp&#34;&gt;2. Business Applications of NLP&lt;/h3&gt;
+      <title>Comprehensive understanding on Time Series forecasting</title>
+      <link>/project/2020-03-05-time-series-forecasting/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      <guid>/project/2020-03-05-time-series-forecasting/</guid>
+      <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
+&lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
+&lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
+&lt;p&gt;There are 4 components in Time Series: Level, Trend, Seasonality and Noise.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Chatbot&lt;/strong&gt;: This is obviously the forefront application of NLP, which can be seen across all industries and companies. Given its popularity, there are several tools to support building a chatbot such as Google DialogFlow, Microsoft LUIS. These tools can be customized based on the user&#39;s needs; however, they can only deal with simple requests.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Machine translation&lt;/strong&gt;: such as Google translate or pocket translator device.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Search engine&lt;/strong&gt;: 5 years ago, when you searched something on search engine, whether you type key words &amp;ldquo;to Tokyo&amp;rdquo; or the whole sentences &amp;ldquo;How to go to Tokyo&amp;rdquo;, the machine would generate quite similar results. However, with the evolution of BERT and Transformer, searching the whole sentence will throw you to a better search result.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Monitoring of brand and product - Sentiment analysis:&lt;/strong&gt; This is the field that I used to analyze during my first job. I used sentiment analysis on big scale online platforms including online forums, social network, brand website and e-commerce sites to understand the reaction of consumers toward a campaign or a brand in order to react promptly toward negative trend related to the brand.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Place to display an advertisement&lt;/strong&gt;: display ads based on context or categorization and make sure that the article is appropriate at the placing place. Honestly saying, I have not seen much of this application around.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Remarketing&lt;/strong&gt;: an online advertisement based on the browsing history of a user to target them with similar advertising product to drive them back the previous interest. This personalized application is a very effective tool in today online market in which thousands of sellers trying to attract each of their customers. Youtube, Facebook or Google are the biggest applicators.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Medical assistant&lt;/strong&gt;: although called &amp;ldquo;assistant&amp;rdquo;, the major task of this service is to transcript the discussion between doctors and patients.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Text generation&lt;/strong&gt;: this is one of the applications of Decoding in NLP, in which the machine will generate a complete article from what it was learnt or summarize a paragraph. As you may know, there are many contradictions about this application, especially the emergence of fake news in recent years. With the completion of this technology, whether the fake news issue continues its expansion or is stopped is still a big question.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Information extraction&lt;/strong&gt;: extract dynamic required information that is sleeping in the database system.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Resume reviews&lt;/strong&gt;: use NLP to scan the applicants&amp;rsquo; resume to figure out potential candidate for the interview. This application sticks with Amazon big scandal. Amazon used to use this to scan the resume which led to the inequality between male and female with the result preferred male than female. This is due to 0the bias toward male in the training set of the model.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Voice command&lt;/strong&gt;: an emerging technology in recent years with the appearance of smart device such as Siri in Iphone, Alexa of Amazone, Google home or Cortana of Microsoft.&lt;/p&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Level&lt;/strong&gt;: the average value of the time series&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trend&lt;/strong&gt;: The movement of the series values from 1 period to another period&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Seasonality&lt;/strong&gt;: The short-term cyclical behavior of the series that can be observed several times&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Noise&lt;/strong&gt;: the random variation that results from the measurement of error&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Beside the major technological trends mentioned above, the application trend is heading toward diversity in languages and translation efficacy. Moreover, not only applying NLP alone, there are more applications combining NLP and Voice recognition or Computer Vision.&lt;/p&gt;
-&lt;p&gt;NLP is a powerful Machine Learning area and its application is supporting human&#39;s life even more than we can expect. Therefore, NLP is one of the most used Machine Learning fields by Data Scienctist.&lt;/p&gt;
+&lt;p&gt;It is not always that we will be able to distinguish the first 3 elements from Noise because they are usually invisble which need some techniques to be noticeable&lt;/p&gt;
+&lt;p&gt;To observe and identify the existence of these components, we can consider.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Plot the Time series (this is the best way to detect the characteristics of the series)&lt;/li&gt;
+&lt;li&gt;Zoom in a specify shorter period of time&lt;/li&gt;
+&lt;li&gt;Change scale of the series to observe the trend more clearly&lt;/li&gt;
+&lt;li&gt;Suppress seasonality: aggregate the time series to a bigger time scale (from hourly scale to daily scale, from monthly scale to yearly scale, etc.)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I used 3-year weekly sales of a Retail store as an illustration.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.plot(&amp;quot;Date&amp;quot;, &amp;quot;Weekly_Sales&amp;quot;, data=Wal_sales)
+plt.hlines(y=Wal_sales.Weekly_Sales.mean(), xmin=0, xmax=len(Wal_sales), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;TS plot.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;With this data, there are obviously 2 peaks which denotes quite a clear &lt;strong&gt;seasonality at the end of year&lt;/strong&gt; (probably Christmas and New year period). There might be other sesonality but it is hard to observe it from the plot. &lt;strong&gt;Auto correlation&lt;/strong&gt; can be used to confirm the seasonality.&lt;/p&gt;
+&lt;h2 id=&#34;3-autocorrelation&#34;&gt;3. Autocorrelation&lt;/h2&gt;
+&lt;p&gt;Autocorrelation describes the &lt;strong&gt;connection between the value of time series  and its neighbors&lt;/strong&gt;. Thus, to compute Autocorrelation, we calculate the correlation of the series with its &lt;strong&gt;lagged versions&lt;/strong&gt;. Lag-n version is produced from the original dataset by moving the series values forward n period. For example, lag-1 is moved forward 1 period, Lag-10 series is moved forward 10 periods.&lt;/p&gt;
+&lt;p&gt;By observing the correlation of the series and its lags, we can confirm the seasonality of the series.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;auto_cor = sales.groupby(&amp;quot;Date&amp;quot;)[&amp;quot;Weekly_Sales&amp;quot;].sum()
+auto_cor = pd.DataFrame(auto_cor)
+auto_cor.columns = [&amp;quot;y&amp;quot;]
+
+# Adding the lag of the target variable from 1 steps back up to 52 (due to a seasonality at the end of the year)
+for i in range(1, 53):
+    auto_cor[&amp;quot;lag_{}&amp;quot;.format(i)] = auto_cor.y.shift(i)
+
+# Compute autocorrelation of the series and its lags
+lag_corr = auto_cor.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&amp;quot;corr&amp;quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind=&#39;bar&#39;)
+plt.grid(True, axis=&#39;y&#39;)
+plt.title(&amp;quot;Autocorrelation&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;Autocorrelation.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Judging from the Autocorrelation plot above, there is a strong positive autocorrelation in lag-52 as well as lag-51 as we expected when observing the time series plot. This implies a &lt;strong&gt;cyclical annual pattern at the end of the year&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;The second strong correlation is lag-1, which connotes as the second week of february, or Valentine period.&lt;/li&gt;
+&lt;li&gt;The autocorrelation reveals both &lt;strong&gt;Positive&lt;/strong&gt; and &lt;strong&gt;Negative&lt;/strong&gt; autocorrelation, which implies that the series does not move in the same direction but ups and downs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Autocorrelation can plotted easily through using &lt;em&gt;autocorrelation_plot&lt;/em&gt; function from &lt;em&gt;pandas.plotting&lt;/em&gt; in Python or &lt;em&gt;acf&lt;/em&gt; function from &lt;em&gt;tseries&lt;/em&gt; package in R.&lt;/p&gt;
+&lt;h2 id=&#34;4-forecasting-time-series&#34;&gt;4. Forecasting Time series&lt;/h2&gt;
+&lt;p&gt;There are several methods to forecast Time series.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model-based method through multiple linear regression&lt;/strong&gt; to explore the correlation of the series with other features. Alike other cross-sessional data, model-based method compute the dependence of the time series to other features, but does not take into account the dependence between time series values within different periods.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data-driven method in which learns the pattern from the data itself&lt;/strong&gt; and estimate the next value of the time series in correspondence with its previous values. The data-driven method is important in time series given in the time series context, the values in adjoining period tend to be correlated with each other. Such correlation is denoted as &lt;strong&gt;Autocorrelation&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Combining method by forecasting the future values of the series as well as the future value of residual that generated from the first forecasting model&lt;/strong&gt;, and then combine the result of 2 forecast together. The residual forecast acts as the correct for the first forecast.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Ensembles method&lt;/strong&gt; by averaging multiple methods to get the result&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;forecasting-using-data-driven-method&#34;&gt;Forecasting using Data-driven method:&lt;/h3&gt;
+&lt;p&gt;ARIMA model is the most frequent choice to compute data-driven forecasting. You can find detail for ARIMA model in this &lt;a href=&#34;https://geniusnhu.netlify.com/publication/arima-autoregressive-intergreated-moving-average/&#34;&gt;post&lt;/a&gt;. 
+Here I will apply the ARIMA to the data.&lt;/p&gt;
+&lt;p&gt;It is useful to use *:auto_arima**function from &lt;strong&gt;pmdarima&lt;/strong&gt; in Python or &lt;strong&gt;auto.arima&lt;/strong&gt; function from &lt;strong&gt;forecast&lt;/strong&gt; packgage in R.&lt;/p&gt;
+&lt;p&gt;There is one thing to note is that from the Autocorrelation above, there is a clear seasonality at lag 52 so we will need to include this into the ARIMA model.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;stepwise_model = pm.auto_arima(Wal_sales.iloc[:,1].values, start_p=1, start_q=1,
+                               max_p=20, max_q=20, m=52,
+                               start_P=0, seasonal=True,
+                               d=1, D=1, trace=True,
+                               error_action=&#39;ignore&#39;,  
+                               suppress_warnings=True, 
+                               stepwise=True)
+print(stepwise_model.aic())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Result&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Performing stepwise search to minimize aic
+Fit ARIMA: (1, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2898.191, BIC=2903.190, Time=0.423 seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2883.839, BIC=2893.839, Time=5.555 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(0, 1, 0, 52) (constant=False); AIC=2907.540, BIC=2910.039, Time=0.371 seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 0, 52) (constant=True); AIC=2893.265, BIC=2900.764, Time=0.807 seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(0, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (1, 1, 0)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2890.759, BIC=2898.258, Time=7.666 seconds
+Fit ARIMA: (2, 1, 0)x(1, 1, 0, 52) (constant=True); AIC=2884.464, BIC=2896.963, Time=7.595 seconds
+Fit ARIMA: (1, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2884.895, BIC=2897.394, Time=20.608 seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 0, 52) (constant=True); AIC=2883.040, BIC=2893.039, Time=6.410 seconds
+Fit ARIMA: (0, 1, 1)x(0, 1, 0, 52) (constant=True); AIC=2893.770, BIC=2901.269, Time=5.440 seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 0, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(1, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 1)x(2, 1, 1, 52) (constant=True); AIC=nan, BIC=nan, Time=nan seconds
+Fit ARIMA: (0, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2887.816, BIC=2900.315, Time=7.108 seconds
+Fit ARIMA: (1, 1, 2)x(1, 1, 0, 52) (constant=True); AIC=2889.929, BIC=2904.928, Time=17.358 seconds
+Total fit time: 79.418 seconds
+2883.039997060003
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This fuction chose the lowest AIC-score model and embed it for further model usage.&lt;/p&gt;
+&lt;p&gt;Split train-test set, train the model and make prediction.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#Split train and test
+train = Wal_sales.iloc[:106,1].values
+test = Wal_sales.iloc[106:,1].values
+# Train the model
+stepwise_model.fit(train)
+
+# Predict test set
+pred = stepwise_model.predict(n_periods=37)
+
+# Reframe the data
+test_pred = Wal_sales.iloc[106:,:2]
+test_pred[&amp;quot;Predict_sales&amp;quot;] = np.array(pred,dtype=&amp;quot;float&amp;quot;)
+
+# Visualize the prediction
+plt.figure(figsize=(12,8))
+plt.plot( &#39;Date&#39;, &#39;Weekly_Sales&#39;, data=Wal_sales, markersize=12, color=&#39;olive&#39;, linewidth=3)
+plt.plot( &#39;Date&#39;, &#39;Predict_sales&#39;, data=test_pred, marker=&#39;&#39;, color=&#39;blue&#39;, linewidth=3)
+plt.title(&amp;quot;Predicted sales vs Actual sales&amp;quot;)
+plt.legend()
+
+print(&amp;quot;MAPE score: &amp;quot;, mean_absolute_percentage_error(test, pred))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;ARIMA_forecast.jpg&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;In overal, the model seem to work moderately on the data but there is still room to improve further.&lt;/li&gt;
+&lt;li&gt;The MAPE (mean absolute percentage error) score is 5.7%, which is not too high, not too low.&lt;/li&gt;
+&lt;li&gt;The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data&#34;&gt;One question emerged, does this model truly capture the values of the time series data?&lt;/h4&gt;
+&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&#39;s residual with other periods&amp;rsquo; ones.&lt;/p&gt;
+&lt;p&gt;The Residuals of a &lt;strong&gt;good time series forecasting model&lt;/strong&gt; have the following properties:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residuals are &lt;strong&gt;uncorrelated&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Residuals have &lt;strong&gt;zero or nearly-zero mean&lt;/strong&gt; (which means the model is unbiased in any directions)&lt;/li&gt;
+&lt;li&gt;Residuals should have &lt;strong&gt;normal distribution&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Residuals should have &lt;strong&gt;constant variance&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If the result is lack of any of the above attributes, the forecasting model can be further improved.&lt;/p&gt;
+&lt;p&gt;Let&#39;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Compute Residual
+train_pred = stepwise_model.predict(n_periods=106)
+r_train = train - train_pred
+r_test = test - pred
+residual = pd.DataFrame(np.concatenate((r_train,r_test)), columns={&amp;quot;y&amp;quot;})
+
+
+# Generate lag of Residuals from 1 step to 52 steps
+# Adding the lag of the target variable from 1 steps back up to 52 
+for i in range(1, 53):
+    residual[&amp;quot;lag_{}&amp;quot;.format(i)] = residual.y.shift(i)
+
+# Compute correlation of the Residual series and its lags
+lag_corr = residual.corr()
+lag_corr = lag_corr.iloc[1:,0]
+lag_corr.columns = [&amp;quot;corr&amp;quot;]
+order = lag_corr.abs().sort_values(ascending = False)
+lag_corr = lag_corr[order.index]
+
+# Plot the Residual Autocorrelation
+plt.figure(figsize=(12, 6))
+lag_corr.plot(kind=&#39;bar&#39;)
+plt.grid(True, axis=&#39;y&#39;)
+plt.title(&amp;quot;Autocorrelation&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(lag_corr), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_autocorrelation.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Other criteria:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Residual mean and Distribution
+print(&amp;quot;Residual mean: &amp;quot;,residual.iloc[:,0].mean())
+plt.hist(residual.iloc[:,0], bins=20)
+plt.title(&amp;quot;Residual Distribution&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;Residual mean:  -6308833.905274585
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_distribution.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Residual variance
+plt.plot(residual.iloc[:,0])
+plt.title(&amp;quot;Residual&amp;quot;)
+plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles=&#39;dashed&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;residual_variance.png&#34;
+style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let&#39;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.&lt;/li&gt;
+&lt;li&gt;Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.&lt;/li&gt;
+&lt;li&gt;Residuals should have normal distribution: Not quite a normal distribution&lt;/li&gt;
+&lt;li&gt;Residuals should have constant variance: No as consistent with mean does not equal to 0.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Hence, the forecasting model has a lot of rooms to improve further by finding the way to capture the correlation in the Residuals, adding the values that is currently staying in residuals to the prediction.&lt;/p&gt;
+&lt;h2 id=&#34;5-data-partitioning&#34;&gt;5. Data partitioning&lt;/h2&gt;
+&lt;p&gt;One of the biggest characteristics of Time series distinguishing it with normal cross-sessional data is the &lt;strong&gt;dependence of the future values with their historical values&lt;/strong&gt;. Therefore, the Data partitioning for Time series cannot be done randomly but instead, trim the series into 2 periods, the earlier to train set and the later to validation set.&lt;/p&gt;
+&lt;p&gt;The below code will help split the tran-test sets with respect to time series structure.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train and test sets in correspondence with Time series data
+def ts_train_test_split(X, y, test_size):
+    test_index = int(len(X)*(1-test_size))
+    
+    X_train = X.iloc[:test_index]
+    y_train = y.iloc[:test_index]
+    X_test = X.iloc[test_index:]
+    y_test = y.iloc[test_index:]
+    
+    return X_train, X_test, y_train, y_test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sales does not only correlated with its own past but also might be affected by other factors such as special occasions (i.e Holiday in this dataset), weekday and weekend, etc&amp;hellip; The method-driven models will be presented in the next article with feature extraction, feature selection.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>ARIMA Autoregressive Integrated Moving Average model family</title>
-      <link>/project/arima-autoregressive-intergreated-moving-average/</link>
+      <link>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/arima-autoregressive-intergreated-moving-average/</guid>
+      <guid>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
 &lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
@@ -666,127 +1175,6 @@ metrics.mean_absolute_error(y_test, y_pred)
 &lt;hr&gt;
 &lt;p&gt;&lt;em&gt;Reference&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Hyndman, R.J., &amp;amp; Athanasopoulos, G. (2018) Forecasting: principles and practice, 2nd edition, OTexts: Melbourne, Australia. OTexts.com/fpp2. Accessed on March 31, 2020&lt;/em&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Practical flow of a Data Science Project</title>
-      <link>/project/practical-flow-of-a-data-science-project/</link>
-      <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/practical-flow-of-a-data-science-project/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
-&lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;
-&lt;p&gt;It is a routine for a Data Scientist to saturate with &lt;strong&gt;technical models&lt;/strong&gt; while understates the role of &lt;strong&gt;business mindset&lt;/strong&gt;. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;strong&gt;understanding the business concept at first before any other activities&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Therefore, I list out below a standard flow for starting a data science projects with key points, which I have been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.
-This post was written based on my experience. Hence, take it as your reference and adjust to your own needs.&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&#34;1-first-and-foremost-importance---clarifying-business-question&#34;&gt;1. First and foremost importance - Clarifying Business question&lt;/h3&gt;
-&lt;p&gt;During my years in analytics and data science, in addition to technological concept explanation, &lt;strong&gt;business question clarification&lt;/strong&gt; is one of the most difficult tasks when a Data scientist communicates with business partner.&lt;/p&gt;
-&lt;p&gt;I am sure that you catch this phrase everywhere, in numerous articles, warning you to clarify business question in every situation.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;But how?&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Working and researching are not identical. In business, top people never stop expecting a Data Scientist to become a wise man who knows the answer for all of their questions. Therefore, &lt;strong&gt;digging the problem is our job and how to do that is our responsibility&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;It must be very familiar with you when a sales manager asks you &lt;em&gt;&amp;ldquo;I want to know why sales declined?&amp;quot;&lt;/em&gt; or a marketing director demands &lt;em&gt;&amp;ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&amp;quot;&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;When you hear these questions, can you imagine the right approach or the answer to the case? Or you will be very vague and keep asking yourself &lt;em&gt;&amp;ldquo;Is that they want me to do this.&amp;rdquo; or &amp;ldquo;I think they want to know that.&amp;quot;&lt;/em&gt;, and if you deliver the result based on this understanding, &lt;strong&gt;how much confidence you have on your result?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;In reality, if you keep it this way, the one and only response you will get from them is:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&amp;ldquo;This is not what I need&amp;rdquo;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;OMG! How terrible it is when you spent so much effort into this, but no one values it.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;This is because you did not truly understand problem so that you did not touch the right pain point!&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;For example, the director wants to know way to improve his marketing activity efficacy, so what does &lt;strong&gt;Efficacy&lt;/strong&gt; mean here? What kind of activity he points to? What are the real pain points? If these concerns are plainly clarified, the request will be interpreted as &lt;em&gt;&amp;ldquo;How to optimize the budget spending on online promotion in order to increase the purchase rate and new customers vs last year&amp;rdquo;&lt;/em&gt;. This will end up with increasing efficacy.&lt;/p&gt;
-&lt;p&gt;One of the common advises is to ask &lt;strong&gt;&amp;ldquo;Why&amp;rdquo;&lt;/strong&gt; in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.&lt;/p&gt;
-&lt;p&gt;What can you do more:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Ask about the background of the question&lt;/strong&gt;, why and how they come up with the request after you receive it.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&#39;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Engage with other teams in the company&lt;/strong&gt; to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as &lt;em&gt;&amp;ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&amp;quot;&lt;/em&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Think of initiatives and what you can do more&lt;/strong&gt; within your expertise to bring the projects to the next level.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;Be a thinker, not a doer!&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;2-identify-the-approach-for-the-problem&#34;&gt;2. Identify the approach for the problem&lt;/h3&gt;
-&lt;p&gt;This part is to place the methodology for the analysis&lt;/p&gt;
-&lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
-&lt;p&gt;With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/p&gt;
-&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&#39;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&#39;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
-&lt;p&gt;What you can do more:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;It is fundamental to &lt;strong&gt;understand the discrepancy between Descriptive analysis and Predictive analysis&lt;/strong&gt; (many people are still ambiguous between these 2 concepts). An example of descriptive analysis is the relationship between factors; while prescriptive analysis deals with figuring out the future outcomes of that relationship. &lt;em&gt;Descriptive analysis delivers historical insights and prescriptive analysis foresees future values&lt;/em&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Identify the specific type of data&lt;/strong&gt; to assist the problem approach: The target variable and other variables are continuous, categorical or binary.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Understand key problem approaches&lt;/strong&gt;:&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;em&gt;Binary&lt;/em&gt; (2 possible answers) or &lt;em&gt;Multi-clas&lt;/em&gt;s (more than 2 possible answers) classification;&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Regression relationship&lt;/em&gt; (relationship between 2 or more factors) or &lt;em&gt;Regression prediction&lt;/em&gt; (predict future value using regression model);&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Clustering&lt;/em&gt; (cluster unlabeled observation into groups of similar characteristics) or &lt;em&gt;Segmentation&lt;/em&gt; (divide observations into specific groups);&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;Trend detection&lt;/em&gt; (historical movement) or &lt;em&gt;Time-series forecasting&lt;/em&gt; (project future value of that movement).&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
-&lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&#39;s birthday information for the task of predicting churn probability?&lt;/p&gt;
-&lt;p&gt;Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: &lt;em&gt;Garbage in is Garbage out&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Two major problems that usually occur during Data Collection&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The unavailability of data&lt;/li&gt;
-&lt;li&gt;The bias of training data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&#39;s look at the unavailability of data&lt;/h4&gt;
-&lt;p&gt;This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the &lt;em&gt;time spent in cooking at home&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
-&lt;p&gt;Therefore, the solution for this case is to &lt;strong&gt;defer inaccessible data&lt;/strong&gt; and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
-&lt;p&gt;What you can do more if you need more data:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Bring along a data request summary&lt;/strong&gt; when you visit the database owner if you need to talk to other parties for this. The summary form should include background of you project, data requirement, your request. This will help smoothing the discussion and the business partner will give the adequate solution.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Change the process/method of collecting data&lt;/strong&gt; to acquire the right information needed. Work with database owner or IT team or propose to your up-line a system revision plan for approval.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Prepare budget and contact an outside data owner&lt;/strong&gt; if the additional data is vital to improve the model and inaccessible for you.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h4 id=&#34;32-second-the-bias-of-data&#34;&gt;3.2 Second, the bias of data&lt;/h4&gt;
-&lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
-&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
-&lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
-&lt;p&gt;What you can do more to eliminate the bias:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Ensure the statistical distribution of data and its representatives over population&lt;/strong&gt;. For example, if the population is made up of 56% of male and 43% of female and 1% of others, the data distribution must be in similar ratio.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Verify the split of train, validate and test sets&lt;/strong&gt; in prediction models to establish a similar allocation of variable and categories.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Choose the learning model fitting the problem and reduce the skewness&lt;/strong&gt;. Some models can reduce the bias in data including clustering or dimension reduction.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Monitor the performance in real data&lt;/strong&gt;. Frequently run statistical test on real data to pick out uncommon case. If the test result shows a statically significant in churn rate among male than female, dig it out. Is it the sudden shift or result of bias?&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt;After getting all the data you need, the next step is thing that a Data scientist usually does:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;DS_Flow.jpg&#34;
-style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;The order can be flexible and this is the standard progress that I usually do in my project and my job. Sometimes, after tuning and the accuracy does not meet my expectation, I need to go back to the feature engineering step to find other way to deal with features.&lt;/p&gt;
-&lt;p&gt;These are the key bottlenecks beside the technical skills that I want to head up for Data Scientist who want to become more than just a Data insight extractor.&lt;/p&gt;
 </description>
     </item>
     

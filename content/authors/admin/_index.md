@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deeep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.
+bio: My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.
 
 education:
   courses:
@@ -47,4 +47,4 @@ user_groups:
 ### **About me**
 I'm Nhu Hoang, Data Scientist and Marketing Portfolio Planning Specialist in Amway Japan. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on using Regression model to predict the Wind power price and improve the learning curve. 
 
-I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus is time series forecasting and tree-based models in applcation of predicting customer behavior.
+I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus is time series forecasting and tree-based models in application of predicting customer behavior.

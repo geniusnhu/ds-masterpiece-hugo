@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Deep Learning | Nhu Hoang</title>
+    <title>Deep learning | Nhu Hoang</title>
     <link>/tags/deep-learning/</link>
       <atom:link href="/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
-    <description>Deep Learning</description>
+    <description>Deep learning</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
-      <title>Deep Learning</title>
+      <title>Deep learning</title>
       <link>/tags/deep-learning/</link>
     </image>
     
     <item>
       <title>Speed up training and improve performance in deep neural net</title>
-      <link>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</link>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</guid>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
       <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;

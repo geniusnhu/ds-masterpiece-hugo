@@ -14,9 +14,9 @@
     
     <item>
       <title>Speed up training and improve performance in deep neural net</title>
-      <link>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</link>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</guid>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
       <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -356,9 +356,9 @@ Epoch 20/20
     
     <item>
       <title>Support Vector Machine explanation and application</title>
-      <link>/2020/04/30/support-vector-machine-explanation-and-application/</link>
+      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/04/30/support-vector-machine-explanation-and-application/</guid>
+      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
       <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
 &lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
@@ -559,9 +559,9 @@ for model in model_list:
     
     <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
+      <link>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
+      <guid>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
       <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
 &lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
 &lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;

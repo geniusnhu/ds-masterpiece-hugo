@@ -14,9 +14,9 @@
     
     <item>
       <title>Speed up training and improve performance in deep neural net</title>
-      <link>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</link>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</guid>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
       <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -356,9 +356,9 @@ Epoch 20/20
     
     <item>
       <title>Support Vector Machine explanation and application</title>
-      <link>/2020/04/30/support-vector-machine-explanation-and-application/</link>
+      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/04/30/support-vector-machine-explanation-and-application/</guid>
+      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
       <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
 &lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;

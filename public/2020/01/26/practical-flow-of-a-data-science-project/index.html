@@ -28,7 +28,7 @@
   
     
   
-  <meta name="description" content="Practical flow in conducting a Data Science Project in real business context&#39;">
+  <meta name="description" content="Overcome Data Scientist bottle neck in conducting a Data Science Project in real business context to become a valuable employee&#39;">
 
   
   <link rel="alternate" hreflang="en-us" href="/2020/01/26/practical-flow-of-a-data-science-project/">
@@ -39,10 +39,13 @@
   
   
   
-  <meta name="theme-color" content="#2962ff">
+  <meta name="theme-color" content="#01395e">
   
 
   
+  
+  
+  <script src="/js/mathjax-config.js"></script>
   
 
   
@@ -62,10 +65,8 @@
     
       
       
-        
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" crossorigin="anonymous" title="hl-light">
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-dark" disabled>
       
     
 
@@ -174,9 +175,9 @@
 
       
       
-        
-      
 
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
       
     
       
@@ -192,7 +193,7 @@
   
   
   
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CWork+Sans&display=swap">
   
 
   
@@ -206,14 +207,50 @@
 
 
 
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
   
 
 
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_192x192_fill_lanczos_center_2.png">
 
   <link rel="canonical" href="/2020/01/26/practical-flow-of-a-data-science-project/">
 
@@ -227,10 +264,13 @@
   
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="og:site_name" content="Data Science Nhu Hoang">
+  <meta property="twitter:site" content="@nhu_hoang">
+  <meta property="twitter:creator" content="@nhu_hoang">
+  
+  <meta property="og:site_name" content="Nhu Hoang">
   <meta property="og:url" content="/2020/01/26/practical-flow-of-a-data-science-project/">
-  <meta property="og:title" content="Practical flow of a Data Science Project | Data Science Nhu Hoang">
-  <meta property="og:description" content="Practical flow in conducting a Data Science Project in real business context&#39;"><meta property="og:image" content="/2020/01/26/practical-flow-of-a-data-science-project/featured.jpg">
+  <meta property="og:title" content="Practical flow of a Data Science Project | Nhu Hoang">
+  <meta property="og:description" content="Overcome Data Scientist bottle neck in conducting a Data Science Project in real business context to become a valuable employee&#39;"><meta property="og:image" content="/2020/01/26/practical-flow-of-a-data-science-project/featured.jpg">
   <meta property="twitter:image" content="/2020/01/26/practical-flow-of-a-data-science-project/featured.jpg"><meta property="og:locale" content="en-us">
   
     
@@ -280,13 +320,13 @@
   
   "publisher": {
     "@type": "Organization",
-    "name": "Data Science Nhu Hoang",
+    "name": "Nhu Hoang",
     "logo": {
       "@type": "ImageObject",
       "url": "img//"
     }
   },
-  "description": "Practical flow in conducting a Data Science Project in real business context'"
+  "description": "Overcome Data Scientist bottle neck in conducting a Data Science Project in real business context to become a valuable employee'"
 }
 </script>
 
@@ -304,7 +344,30 @@
 
 
 
-  <title>Practical flow of a Data Science Project | Data Science Nhu Hoang</title>
+  <title>Practical flow of a Data Science Project | Nhu Hoang</title>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
 
 </head>
 
@@ -349,13 +412,15 @@
 
 
 
+  
+
 
 <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
   <div class="container">
 
     
     <div class="d-none d-lg-inline-flex">
-      <a class="navbar-brand" href="/">Data Science Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -368,7 +433,7 @@
 
     
     <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
-      <a class="navbar-brand" href="/">Data Science Nhu Hoang</a>
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_2.png" alt="Nhu Hoang"></a>
     </div>
     
 
@@ -403,7 +468,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#posts"><span>Portfolio</span></a>
+          <a class="nav-link " href="/#about"><span>About</span></a>
         </li>
 
         
@@ -432,7 +497,7 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#portfolios"><span>Posts</span></a>
+          <a class="nav-link " href="/#portfolios"><span>Portfolio</span></a>
         </li>
 
         
@@ -461,7 +526,36 @@
         
 
         <li class="nav-item">
-          <a class="nav-link " href="/#about"><span>Biography</span></a>
+          <a class="nav-link " href="/#posts"><span>Posts/News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Experience/Skill</span></a>
         </li>
 
         
@@ -496,6 +590,28 @@
         
         
 
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
       
 
         
@@ -509,10 +625,6 @@
       </li>
       
 
-      
-      <li class="nav-item">
-        <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
-      </li>
       
 
       
@@ -554,7 +666,7 @@
   <h1>Practical flow of a Data Science Project</h1>
 
   
-  <p class="page-subtitle">Practical flow of a Data Science Project</p>
+  <p class="page-subtitle">How does a valuable Data Scientist look like?</p>
   
 
   
@@ -593,12 +705,15 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    9 min read
   </span>
   
 
   
   
+  
+  <span class="middot-divider"></span>
+  <a href="/2020/01/26/practical-flow-of-a-data-science-project/#disqus_thread"></a>
   
 
   
@@ -628,7 +743,7 @@
 </div>
 
 
-<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 960px; max-height: 373px;">
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1010px; max-height: 464px;">
   <div style="position: relative">
     <img src="/2020/01/26/practical-flow-of-a-data-science-project/featured.jpg" alt="" class="featured-image">
     
@@ -640,50 +755,119 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>After 5 years of working in field of Analytics and Data Science in 2 multinational companies, the things that I learned through several failures and achievements are that the real bottleneck of a Data Scientist is the understanding of the data scientist's consumer rather than the technical side of running the right method.</p>
-<p>I will try to make this post condense in key points because practical application can vary in various forms and patterns, and it highly depends on the situation of a Data scientist's work.</p>
-<h3 id="1-clarify-business-question">1. Clarify Business question</h3>
+      <p><strong>Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other's requests?</strong></p>
+<p>This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real <strong>bottleneck</strong> of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.</p>
+<p>Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.</p>
+<p>It is a routine for a Data Scientist to saturate with <strong>technical models</strong> while understates the role of <strong>business mindset</strong>. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of <strong>understanding the business concept at first before any other activities</strong>.</p>
+<p>Therefore, I list out below a standard flow for starting a data science projects with key points, which I have been applying throughout 4 years working for 2 multinational companies as a data analyst and data scientist.
+This post was written based on my experience. Hence, take it as your reference and adjust to your own needs.</p>
+<hr>
+<h3 id="1-first-and-foremost-importance---clarifying-business-question">1. First and foremost importance - Clarifying Business question</h3>
 <p>During my years in analytics and data science, in addition to technological concept explanation, <strong>business question clarification</strong> is one of the most difficult tasks when a Data scientist communicates with business partner.</p>
-<p>The reason is that the business partner always asks very general question such as <em>&ldquo;I want to know why sales declined?&quot;</em> or <em>&ldquo;How to increase the efficiency of the promotion activity for brand A during summer?&quot;</em></p>
-<p>When you hear these questions, can you imagine the right approach or the answer to the case? I am sure that you will be very vague and confused, and if you deliver the result based on this current understanding, it is a high possibility that the business partners will say <em>&ldquo;This is not what I need&rdquo;</em>.</p>
+<p>I am sure that you catch this phrase everywhere, in numerous articles, warning you to clarify business question in every situation.</p>
+<blockquote>
+<p><strong>But how?</strong></p>
+</blockquote>
+<p>Working and researching are not identical. In business, top people never stop expecting a Data Scientist to become a wise man who knows the answer for all of their questions. Therefore, <strong>digging the problem is our job and how to do that is our responsibility</strong>.</p>
+<p>It must be very familiar with you when a sales manager asks you <em>&ldquo;I want to know why sales declined?&quot;</em> or a marketing director demands <em>&ldquo;How to increase the efficiency of the promotion activity for brand A on our website?&quot;</em></p>
+<p>When you hear these questions, can you imagine the right approach or the answer to the case? Or you will be very vague and keep asking yourself <em>&ldquo;Is that they want me to do this.&rdquo; or &ldquo;I think they want to know that.&quot;</em>, and if you deliver the result based on this understanding, <strong>how much confidence you have on your result?</strong></p>
+<p>In reality, if you keep it this way, the one and only response you will get from them is:</p>
+<p><strong>&ldquo;This is not what I need&rdquo;</strong></p>
 <p>OMG! How terrible it is when you spent so much effort into this, but no one values it.</p>
 <blockquote>
-<p><strong>This is because you did not touch the right pain point!</strong></p>
+<p><strong>This is because you did not truly understand problem so that you did not touch the right pain point!</strong></p>
 </blockquote>
-<p>I know that the common advice is to ask <em>&ldquo;Why&rdquo;</em> in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.</p>
-<p>One thing that helped me overcome this difficulty is to <strong>imagine the outcome that I desire</strong>.</p>
+<p>For example, the director wants to know way to improve his marketing activity efficacy, so what does <strong>Efficacy</strong> mean here? What kind of activity he points to? What are the real pain points? If these concerns are plainly clarified, the request will be interpreted as <em>&ldquo;How to optimize the budget spending on online promotion in order to increase the purchase rate and new customers vs last year&rdquo;</em>. This will end up with increasing efficacy.</p>
+<p>One of the common advises is to ask <strong>&ldquo;Why&rdquo;</strong> in order to dig into the real problems. However, this solution is not applicable all times because the business partners might not know why for all of your questions.</p>
+<p>What can you do more:</p>
+<ol>
+<li>
+<p><strong>Ask about the background of the question</strong>, why and how they come up with the request after you receive it.</p>
+</li>
+<li>
+<p><strong>Be sure that the request is your responsibility to answer</strong>. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp; Responsibility of each team and know when to jump in and when to leap out. However, don't ever say <em>&ldquo;This is not my job. Ask BI&rdquo;</em>. Instead, show them that you know everything about company and data <em>&ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&rdquo;</em>.</p>
+</li>
+<li>
+<p><strong>Engage with other teams in the company</strong> to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as <em>&ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&quot;</em> or <em>&ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&quot;</em></p>
+</li>
+<li>
+<p><strong>Think of initiatives and what you can do more</strong> within your expertise to bring the projects to the next level.</p>
+</li>
+</ol>
+<p><strong>Be a thinker, not a doer!</strong></p>
 <h3 id="2-identify-the-approach-for-the-problem">2. Identify the approach for the problem</h3>
-<p>This part is to set the methodology for the analysis.</p>
-<p>Have you ever faced a situation where you do not know which approach to be used between descriptive analysis, predictive analysis, classification, segmentation, time series forecasting, etc.?</p>
+<p>This part is to place the methodology for the analysis</p>
+<p>This step requires a broad knowledge on either <strong>statistical models</strong> or <strong>machine learning</strong> approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.</p>
+<p>With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.</p>
+<p>At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to <strong>forecast the sales for next year based on the amount of budget spending while putting online appearance as company's focus</strong>, then which approach/model should be used? If the business wanted the <strong>forecast based on the market movement with the outlook of maintaining the current company's leadership position</strong>, which approach is correct?</p>
+<p>What you can do more:</p>
+<ol>
+<li>
+<p>It is fundamental to <strong>understand the discrepancy between Descriptive analysis and Predictive analysis</strong> (many people are still ambiguous between these 2 concepts). An example of descriptive analysis is the relationship between factors; while prescriptive analysis deals with figuring out the future outcomes of that relationship. <em>Descriptive analysis delivers historical insights and prescriptive analysis foresees future values</em>.</p>
+</li>
+<li>
+<p><strong>Identify the specific type of data</strong> to assist the problem approach: The target variable and other variables are continuous, categorical or binary.</p>
+</li>
+<li>
+<p><strong>Understand key problem approaches</strong>:</p>
+</li>
+</ol>
 <ul>
-<li>Linear Regression cannot be used to segment customers or</li>
-<li>Descriptive analysis cannot predict customer churn.</li>
+<li><em>Binary</em> (2 possible answers) or <em>Multi-clas</em>s (more than 2 possible answers) classification;</li>
+<li><em>Regression relationship</em> (relationship between 2 or more factors) or <em>Regression prediction</em> (predict future value using regression model);</li>
+<li><em>Clustering</em> (cluster unlabeled observation into groups of similar characteristics) or <em>Segmentation</em> (divide observations into specific groups);</li>
+<li><em>Trend detection</em> (historical movement) or <em>Time-series forecasting</em> (project future value of that movement).</li>
 </ul>
-<p>This step seems to be easy but in fact quickly got confused. If the Sales Director asked Data Science team to forecast the <strong>sales for next year</strong>, and the business need is to get the forecast <strong>based on the amount of budget spending</strong>, then which model should be used?
-If the business wanted the forecast <strong>based on the market movement</strong>, which approach is suitable?</p>
-<p>This is the importance in choosing the right approach for the business question.</p>
 <h3 id="3-acquire-the-appropriate-data">3. Acquire the appropriate data</h3>
 <p>After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.</p>
-<p>Data selection sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, will it need to have the birthday information of the customer if the task is to predict their churn probability?</p>
-<p>Then, identify the approach to acquire the data. This can be from company's data warehouse, conducting survey collecting result, or government-owned data&hellip;</p>
-<p><strong>What occurs during Data Collection?</strong></p>
-<p>One of the foreseen problems is the <strong>unavailability of data</strong>.</p>
-<p>This problem is very common in real case in which data is unable to capture at the moment of collection such as <em>the time spent in using a non-digital product</em>. As a common sense, you will think that you have to get the data. However, you have to consider the consequences of getting data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.</p>
-<p>Therefore, the solution for this case is to defer inaccessible data and in case the model requires this data for a better result, you will have more confident to invest in obtaining it.</p>
-<p>One of the provident ways of getting new features is to change the system of collecting data to acquire the right information needed. The Data scientist team can discuss with data management to get the timestamp that customers log on the page in addition to the browsing/ purchasing data.</p>
-<p>If the Data scientist is unable to acquire unavailable data through the above way, then think about contacting an outside data owner and prepare the budget.</p>
-<p>After getting all the data you need, the next step is thing that a Data scientist usually does:</p>
+<p><strong>Data selection</strong> sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer's birthday information for the task of predicting churn probability?</p>
+<p>Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: <em>Garbage in is Garbage out</em>.</p>
+<p><strong>Two major problems that usually occur during Data Collection</strong></p>
 <ul>
-<li>EDA</li>
-<li>Data cleaning</li>
-<li>Validation choosing</li>
-<li>Feature engineering</li>
-<li>Model selection/Building</li>
-<li>Feature selection</li>
-<li>Model tuning</li>
-<li>Ensemble</li>
+<li>The unavailability of data</li>
+<li>The bias of training data</li>
 </ul>
+<h4 id="31-first-lets-look-at-the-unavailability-of-data">3.1 First, let's look at the unavailability of data</h4>
+<p>This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the <em>time spent in cooking at home</em>.</p>
+<p>As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.</p>
+<p>Therefore, the solution for this case is to <strong>defer inaccessible data</strong> and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.</p>
+<p>What you can do more if you need more data:</p>
+<ol>
+<li>
+<p><strong>Bring along a data request summary</strong> when you visit the database owner if you need to talk to other parties for this. The summary form should include background of you project, data requirement, your request. This will help smoothing the discussion and the business partner will give the adequate solution.</p>
+</li>
+<li>
+<p><strong>Change the process/method of collecting data</strong> to acquire the right information needed. Work with database owner or IT team or propose to your up-line a system revision plan for approval.</p>
+</li>
+<li>
+<p><strong>Prepare budget and contact an outside data owner</strong> if the additional data is vital to improve the model and inaccessible for you.</p>
+</li>
+</ol>
+<h4 id="32-second-the-bias-of-data">3.2 Second, the bias of data</h4>
+<p>This problem is serious especially <strong>when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction</strong> when comparing to the real world.</p>
+<p>One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate's resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is <strong>not gender-neutral</strong> from the beginning.</p>
+<p>Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.</p>
+<p>What you can do more to eliminate the bias:</p>
+<ol>
+<li>
+<p><strong>Ensure the statistical distribution of data and its representatives over population</strong>. For example, if the population is made up of 56% of male and 43% of female and 1% of others, the data distribution must be in similar ratio.</p>
+</li>
+<li>
+<p><strong>Verify the split of train, validate and test sets</strong> in prediction models to establish a similar allocation of variable and categories.</p>
+</li>
+<li>
+<p><strong>Choose the learning model fitting the problem and reduce the skewness</strong>. Some models can reduce the bias in data including clustering or dimension reduction.</p>
+</li>
+<li>
+<p><strong>Monitor the performance in real data</strong>. Frequently run statistical test on real data to pick out uncommon case. If the test result shows a statically significant in churn rate among male than female, dig it out. Is it the sudden shift or result of bias?</p>
+</li>
+</ol>
+<hr>
+<p>After getting all the data you need, the next step is thing that a Data scientist usually does:</p>
+<p><img src="DS_Flow.jpg"
+style="float: left; margin-right: 10px;" /></p>
 <p>The order can be flexible and this is the standard progress that I usually do in my project and my job. Sometimes, after tuning and the accuracy does not meet my expectation, I need to go back to the feature engineering step to find other way to deal with features.</p>
+<p>These are the key bottlenecks beside the technical skills that I want to head up for Data Scientist who want to become more than just a Data insight extractor.</p>
 
     </div>
 
@@ -698,6 +882,8 @@ If the business wanted the forecast <strong>based on the market movement</strong
   <a class="badge badge-light" href="/tags/process/">Process</a>
   
   <a class="badge badge-light" href="/tags/business/">Business</a>
+  
+  <a class="badge badge-light" href="/tags/data-science/">Data Science</a>
   
 </div>
 
@@ -818,13 +1004,13 @@ If the business wanted the forecast <strong>based on the market movement</strong
   <div class="media author-card content-widget-hr">
     
       
-      <img class="portrait mr-3" src="/authors/admin/avatar_hu6a3e1909338aab76a89db8a31cb94a9e_2179125_250x250_fill_q90_lanczos_center.JPG" alt="Avatar">
+      <img class="portrait mr-3" src="/authors/admin/avatar_hueadf2c06d268c6c318a52f80e38ba7bf_8103393_250x250_fill_q90_lanczos_center.JPG" alt="Avatar">
     
 
     <div class="media-body">
       <h5 class="card-title"><a href="/">Nhu Anh Quynh Hoang</a></h5>
-      <h6 class="card-subtitle">Data Scientist at heart</h6>
-      <p class="card-text">My interest is Consumer behavior prediction, segmentation, classification; financial forecasting and Machine learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries including marketing, digital marketing, and retail.</p>
+      <h6 class="card-subtitle">Data Scientist / Portfolio Planning Specialist - Amway Japan</h6>
+      <p class="card-text">My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.</p>
       <ul class="network-icon" aria-hidden="true">
   
     
@@ -878,6 +1064,23 @@ If the business wanted the forecast <strong>based on the market movement</strong
       </a>
     </li>
   
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://medium.com/@hoanganhquynhnhu" target="_blank" rel="noopener">
+        <i class="fab fa-medium"></i>
+      </a>
+    </li>
+  
 </ul>
 
     </div>
@@ -886,8 +1089,37 @@ If the business wanted the forecast <strong>based on the market movement</strong
 
 
 
+<section id="comments">
+  
+    
+
+  
+</section>
 
 
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Next</div>
+    <a href="/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/" rel="next">The beauty of Transformer in bringing more applications to life</a>
+  </div>
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/" rel="prev">Quick deep dive at Data Scientist Skill set</a>
+  </div>
+  
+</div>
+
+</div>
 
 
 
@@ -897,7 +1129,9 @@ If the business wanted the forecast <strong>based on the market movement</strong
     <h3>Related</h3>
     <ul>
       
-      <li><a href="/publication/getting-started/">Practical flow of a Data Science Project</a></li>
+      <li><a href="/project/2020-01-26-arima-autoregressive-intergreated-moving-average/">ARIMA Autoregressive Integrated Moving Average model family</a></li>
+      
+      <li><a href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">Quick deep dive at Data Scientist Skill set</a></li>
       
     </ul>
   </div>
@@ -919,12 +1153,18 @@ If the business wanted the forecast <strong>based on the market movement</strong
       <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
 
       
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.3/mermaid.min.js" integrity="" crossorigin="anonymous" title="mermaid"></script>
+      
 
       
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
         
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/markdown.min.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
         
       
 
@@ -987,6 +1227,8 @@ If the business wanted the forecast <strong>based on the market movement</strong
 
     
     
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
 
     
     
@@ -1007,10 +1249,6 @@ If the business wanted the forecast <strong>based on the market movement</strong
     
 
 
-
-
-
-
   
   
   <div class="container">
@@ -1028,7 +1266,7 @@ If the business wanted the forecast <strong>based on the market movement</strong
   
 
   <p class="powered-by">
-    Nhu Hoang &middot; 
+    © 2019 Nhu Hoang<br/>Served by <a href="https://geniusnhu.netlify.app/">Netlify</a> &middot; 
 
     Powered by the
     <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
@@ -1044,6 +1282,27 @@ If the business wanted the forecast <strong>based on the market movement</strong
     </span>
     
   </p>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "nhu-hoang" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 </footer>
 
   </div>

@@ -23,12 +23,12 @@
   </url>
   
   <url>
-    <loc>/tags/classification/</loc>
+    <loc>/categories/classification/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/classification/</loc>
+    <loc>/tags/classification/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,12 +38,7 @@
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/deep-learning/</loc>
+    <loc>/tags/data-science/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -53,12 +48,22 @@
   </url>
   
   <url>
+    <loc>/tags/deep-learning/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</loc>
+    <loc>/project/</loc>
+    <lastmod>2020-05-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -78,7 +83,7 @@
   </url>
   
   <url>
-    <loc>/2020/04/30/support-vector-machine-explanation-and-application/</loc>
+    <loc>/project/2020-04-30-support-vector-machine-explanation-and-application/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -93,7 +98,7 @@
   </url>
   
   <url>
-    <loc>/project/</loc>
+    <loc>/post/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -103,7 +108,7 @@
   </url>
   
   <url>
-    <loc>/project/useful-visualization-with-source-code/</loc>
+    <loc>/2020/04/02/useful-visualization-with-source-code/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -118,7 +123,7 @@
   </url>
   
   <url>
-    <loc>/2020/03/30/complete-guide-for-time-series-visualization/</loc>
+    <loc>/project/complete-guide-for-time-series-visualization/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -153,11 +158,6 @@
   </url>
   
   <url>
-    <loc>/tags/data-science/</loc>
-    <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/machine-learning/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
@@ -178,7 +178,7 @@
   </url>
   
   <url>
-    <loc>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
+    <loc>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
   </url>
   
@@ -193,7 +193,7 @@
   </url>
   
   <url>
-    <loc>/2020/02/06/comprehensive-understanding-on-time-series-forecasting/</loc>
+    <loc>/project/2020-03-05-time-series-forecasting/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -208,7 +208,7 @@
   </url>
   
   <url>
-    <loc>/project/arima-autoregressive-intergreated-moving-average/</loc>
+    <loc>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>/project/practical-flow-of-a-data-science-project/</loc>
+    <loc>/2020/01/26/practical-flow-of-a-data-science-project/</loc>
     <lastmod>2020-01-26T00:00:00+00:00</lastmod>
   </url>
   

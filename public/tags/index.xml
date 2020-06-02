@@ -29,7 +29,15 @@
     </item>
     
     <item>
-      <title>Deep Learning</title>
+      <title>Data Science</title>
+      <link>/tags/data-science/</link>
+      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <guid>/tags/data-science/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Deep learning</title>
       <link>/tags/deep-learning/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
       <guid>/tags/deep-learning/</guid>
@@ -105,14 +113,6 @@
       <link>/tags/concept/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
       <guid>/tags/concept/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Data Science</title>
-      <link>/tags/data-science/</link>
-      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/tags/data-science/</guid>
       <description></description>
     </item>
     

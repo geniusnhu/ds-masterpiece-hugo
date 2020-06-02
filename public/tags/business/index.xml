@@ -14,9 +14,9 @@
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/project/practical-flow-of-a-data-science-project/</link>
+      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/practical-flow-of-a-data-science-project/</guid>
+      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
 &lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;

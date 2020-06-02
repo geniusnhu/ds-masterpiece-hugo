@@ -14,9 +14,9 @@
     
     <item>
       <title>Speed up training and improve performance in deep neural net</title>
-      <link>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</link>
+      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/05/30/speed-up-training-and-improve-performance-in-deep-neural-net/</guid>
+      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
       <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -356,9 +356,9 @@ Epoch 20/20
     
     <item>
       <title>Support Vector Machine explanation and application</title>
-      <link>/2020/04/30/support-vector-machine-explanation-and-application/</link>
+      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/04/30/support-vector-machine-explanation-and-application/</guid>
+      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
       <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
 &lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
@@ -559,9 +559,9 @@ for model in model_list:
     
     <item>
       <title>Complete guide for Time series Visualization</title>
-      <link>/2020/03/30/complete-guide-for-time-series-visualization/</link>
+      <link>/project/complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/03/30/complete-guide-for-time-series-visualization/</guid>
+      <guid>/project/complete-guide-for-time-series-visualization/</guid>
       <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
@@ -743,9 +743,9 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
     
     <item>
       <title>Comprehensive understanding on Time Series forecasting</title>
-      <link>/2020/02/06/comprehensive-understanding-on-time-series-forecasting/</link>
+      <link>/project/2020-03-05-time-series-forecasting/</link>
       <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/02/06/comprehensive-understanding-on-time-series-forecasting/</guid>
+      <guid>/project/2020-03-05-time-series-forecasting/</guid>
       <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
 &lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
 &lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
@@ -966,9 +966,9 @@ def ts_train_test_split(X, y, test_size):
     
     <item>
       <title>ARIMA Autoregressive Integrated Moving Average model family</title>
-      <link>/project/arima-autoregressive-intergreated-moving-average/</link>
+      <link>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/arima-autoregressive-intergreated-moving-average/</guid>
+      <guid>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
 &lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
@@ -1180,9 +1180,9 @@ metrics.mean_absolute_error(y_test, y_pred)
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/project/practical-flow-of-a-data-science-project/</link>
+      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/practical-flow-of-a-data-science-project/</guid>
+      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
 &lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;

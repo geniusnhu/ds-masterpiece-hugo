@@ -14,9 +14,9 @@
     
     <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
+      <link>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
+      <guid>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
       <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
 &lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
 &lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;

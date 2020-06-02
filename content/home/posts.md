@@ -3,9 +3,9 @@
 widget = "pages"  # See https://sourcethemes.com/academic/docs/page-builder/
 headless = true  # This file represents a page section.
 active = true  # Activate this widget? true/false
-weight = 20  # Order that this section will appear.
+weight = 30  # Order that this section will appear.
 
-title = "Portfolio"
+title = "Recent Posts"
 subtitle = ""
 
 [content]
@@ -13,21 +13,21 @@ subtitle = ""
   page_type = "post"
   
   # Choose how much pages you would like to display (0 = all pages)
-  count = 3
+  count = 10
   
   # Page order. Descending (desc) or ascending (asc) date.
   order = "desc"
 
 [design]
   # Choose how many columns the section has. Valid values: 1 or 2.
-  columns = "1"
+  columns = "2"
 
   # Toggle between the various page layout types.
   #   1 = List
   #   2 = Compact
   #   3 = Card
   #   5 = Showcase
-  view = 5
+  view = 1
 
   # For Showcase view, flip alternate rows?
   flip_alt_rows = true
