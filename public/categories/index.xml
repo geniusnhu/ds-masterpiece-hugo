@@ -5,7 +5,7 @@
     <link>/categories/</link>
       <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 30 May 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
       <title>Categories</title>
@@ -13,17 +13,9 @@
     </image>
     
     <item>
-      <title>Classification</title>
-      <link>/categories/classification/</link>
-      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/classification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Data Science</title>
       <link>/categories/data-science/</link>
-      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
       <guid>/categories/data-science/</guid>
       <description></description>
     </item>
@@ -31,8 +23,16 @@
     <item>
       <title>Deep learning</title>
       <link>/categories/deep-learning/</link>
-      <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
       <guid>/categories/deep-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Classification</title>
+      <link>/categories/classification/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/categories/classification/</guid>
       <description></description>
     </item>
     

@@ -14,9 +14,9 @@
     
     <item>
       <title>Complete guide for Time series Visualization</title>
-      <link>/project/complete-guide-for-time-series-visualization/</link>
+      <link>/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/project/complete-guide-for-time-series-visualization/</guid>
+      <guid>/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
       <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;

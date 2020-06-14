@@ -4,7 +4,6 @@ authors:
 categories:
 - Data Science
 - Deep learning
-- Classification
 date: "2020-05-30T00:00:00Z"
 draft: false
 featured: false
@@ -21,8 +20,11 @@ description: 'Discussion of 5 popular techniques to speed up training and improv
 tags:
 - Deep learning
 - Data Science
-- Classification
-- Application
+- Initialization
+- Activation function
+- Batch Normalization
+- Tensorflow
+- Hyperparameter tuning
 title: 'Speed up training and improve performance in deep neural net'
 ---
 

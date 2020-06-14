@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Optimization | Nhu Hoang</title>
+    <link>/tags/optimization/</link>
+      <atom:link href="/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
+    <description>Optimization</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <title>Optimization</title>
+      <link>/tags/optimization/</link>
+    </image>
+    
+    <item>
+      <title>Improve deep neural network training speed and performance with Optimization</title>
+      <link>/project/2020-06-14-optimization-and-neural-network-performance/</link>
+      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>/project/2020-06-14-optimization-and-neural-network-performance/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://geniusnhu.netlify.app/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/&#34;&gt;Part 1: Initialization, Activation function and Batch Normalization/Gradient Clipping&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Part 2: Optimizer&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Training a deep neural network is an extremely time-consuming task especially with complex problems. Using a faster optimizer for the network is an efficient way to speed up the training speed, rather than simply using the regular Gradient Descent optimizer. Below, I will discuss and show training results/speed of 5 popular Optimizer approaches: &lt;strong&gt;Gradient Descent with momentum and Nesterov Accelerated Gradient, AdaGrad, RMSProp, Adam, and Nadam optimizer&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;One of the dangers of using inappropriate optimizers is that the model takes a long time to converge to a global minimum or it will be stuck at a local minimum, resulting in a worse model. Therefore, knowing which Optimizer suits mostly on the problem will save you tons of training hours.
+The main purpose of tuning Optimizer is to speed up the training speed but it also helps to improve the model&#39;s performance.&lt;/p&gt;
+&lt;h2 id=&#34;1-gradient-descent&#34;&gt;1. Gradient Descent&lt;/h2&gt;
+&lt;p&gt;Computing the gradient of the associated cost function with regard to each theta and getting the gradient vector pointing uphill, then going in the opposite direction with the vector direction (downhill) using the below equation:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$\theta_{next step} = \theta - \eta*  \nabla_{\theta}J(\theta)$&lt;/p&gt;
+&lt;p&gt;$\theta$: weight of the model&lt;/p&gt;
+&lt;p&gt;$\eta$: learning rate&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Therefore, the speed of &lt;strong&gt;Gradient Descent&lt;/strong&gt; optimizer depends solely on the learning rate parameter ($\eta$). With a small learning rate, GD will take small and unchanged steps downward on a gentle surface, and a bit faster steps on a steep surface. Consequently, in a large neural network, it repeats millions of slow steps until it reaches the global minimum (or gets lost in the local minimum). Therefore, the runtime becomes extremely slow.&lt;/p&gt;
+&lt;p&gt;Result of training with Fashion MNIST dataset using &lt;strong&gt;SGD&lt;/strong&gt;:&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;SGD.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Firgure 1: Loss and accuracy of model using SGD with learning rate 0.001&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The loss declined gradually and will be closer and closer to global minimum after several more epochs.&lt;/p&gt;
+&lt;p&gt;There are other versions of Gradient Descent such as &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; (running on a full dataset), &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; (running on random subsets of a dataset), &lt;strong&gt;Stochastic Gradient Descent - SGD&lt;/strong&gt; (picking a random instance at each step), and all have pros and cons. &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; can reach the global minimum at a terribly slow pace. &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; gets to the global minimum faster than BGD but it is easier to get stuck in the local minimum, and &lt;strong&gt;SGD&lt;/strong&gt; is usually harder to get to the global minimum compared to the other two.&lt;/p&gt;
+&lt;h2 id=&#34;2-momentum-optimization&#34;&gt;2. Momentum Optimization&lt;/h2&gt;
+&lt;p&gt;Let&#39;s imagine, when a ball rolls from the summit, downward the sloping side to the foot of the hill, it will start slowly then increase the speed as the momentum picks up and eventually reaches a fast pace toward the minimum. This is how &lt;strong&gt;Momentum Optimization&lt;/strong&gt; works. This is enabled by adding a momentum vector m and update the theta parameter with this new weight from &lt;em&gt;momentum vector&lt;/em&gt; $m$&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$m$ ← $\beta m - \eta * \nabla_{\theta}J(\theta)$&lt;/p&gt;
+&lt;p&gt;$\theta_{next step}$ ← $\theta + m$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Gradient descent&lt;/em&gt; does not take into account the previous gradients. By adding the &lt;em&gt;momentum vector&lt;/em&gt;, it updates the weight $m$ after each iteration. The momentum $\beta$ is the parameter controls how fast the terminal velocity is, which is typically set at 0.9 but it should be tuned from 0.5 to 0.99. As a result, &lt;strong&gt;Momentum Optimizer&lt;/strong&gt; converges better and faster than &lt;em&gt;SGD&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Implement Momentum optimizer in Tensorflow
+optimizer=keras.optimizers.SGD(lr=0.001, momentum=0.99)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;SDG_momentum.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Figure 2: Loss and accuracy of models using SGD compared to momentum optimizer&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Momentum&lt;/strong&gt; converges faster and eventually reaches a better result than &lt;em&gt;SGD&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;3-nesterov-accelerated-gradient&#34;&gt;3. Nesterov Accelerated Gradient&lt;/h2&gt;
+&lt;p&gt;Another variation of &lt;em&gt;Momentum Optimizer&lt;/em&gt; is &lt;strong&gt;Nesterov Accelerated Gradient - NAG&lt;/strong&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$m$ ← $\beta m - \eta * \nabla_{\theta}J(\theta + \beta m)$&lt;/p&gt;
+&lt;p&gt;$\theta_{next step}$ ← $\theta + m$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The gradient of the cost function is measured at location $\theta + \beta m$ (instead of $\theta$ in the original momentum optimization). The reason behind this is that momentum optimization has already pointed toward the right direction, so we should use a slightly ahead location (an approximately next position of the $\theta$) to moderately accelerating the speed of convergence.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Implement Nesterov Accelerated Gradient optimizer in Tensorflow
+optimizer=keras.optimizers.SGD(lr=0.001, momentum=0.9,nesterov=True
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;NAG_momentum.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Figure 3: Loss and accuracy of models using momentum compared to Nesterov Accelerated Gradient optimizer&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;NAG&lt;/strong&gt; showed only a slightly better result than original &lt;em&gt;Momentum&lt;/em&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;4-adagrad&#34;&gt;4. AdaGrad&lt;/h2&gt;
+&lt;p&gt;One of the &lt;em&gt;Adaptive learning rate methods&lt;/em&gt;, in which the algorithm goes faster down the steep slopes than the gentle slopes.
+&lt;strong&gt;AdaGrad&lt;/strong&gt; performs well in a simple quadratic problem but not in training a neural network because it tends to slow down a bit too fast and stops before reaching the global minimum. Due to this drawback, I do not usually use &lt;strong&gt;AdaGrad&lt;/strong&gt; for Neural Network but instead apply &lt;strong&gt;RMSProp&lt;/strong&gt;, an alternative of &lt;strong&gt;AdaGrad&lt;/strong&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;5-rmsprop---root-mean-square-prop&#34;&gt;5. RMSProp - Root Mean Square Prop&lt;/h2&gt;
+&lt;p&gt;This is one of the most frequently used optimizers, which continues the idea of &lt;em&gt;Adagrad&lt;/em&gt; in trying to minimize the vertical movement and updating the model in a horizontal direction toward the global minimum.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Adagrad&lt;/em&gt; sums the gradients from the first iteration and that is why it usually never converges to the global minimum, while &lt;strong&gt;RMSProp&lt;/strong&gt; accumulates the gradients from the previous iterations:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$s$ ← $\beta s - (1-\beta) \nabla_{\theta}J(\theta)^2$&lt;/p&gt;
+&lt;p&gt;$\theta_{nextstep}$ ← $\theta + \frac{\eta \nabla_{\theta}J(\theta)}{\sqrt{s + \epsilon}}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$\beta$: decay rate, typically set at 0.9&lt;/p&gt;
+&lt;p&gt;$s$: exponential average square of past gradients&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Implement RMSProp optimizer in Tensorflow
+optimizer=keras.optimizers.RMSprop(lr=0.001, rho=0.9)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;adagrad_rmsprop.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Figure 4: Loss and accuracy of models using RMSProp compared to Adagrad optimizer&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;RMSProp&lt;/strong&gt; converges better than &lt;em&gt;Adagrad&lt;/em&gt; which is lost at a plateau.&lt;/p&gt;
+&lt;h2 id=&#34;6-adam&#34;&gt;6. Adam&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Adam optimizer&lt;/strong&gt; is the combination of &lt;em&gt;Momentum&lt;/em&gt; and &lt;em&gt;RMSProp&lt;/em&gt; optimizers. In other words, it takes into account both the exponential decay average of past gradients and the exponential decay average of past squared gradients.&lt;/p&gt;
+&lt;p&gt;With these characteristics, &lt;strong&gt;Adam&lt;/strong&gt; is suitable for handling sparse gradients on complex problems with complex data and a large number of features.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$m$ ← $\beta_1 m - (1-\beta_1) \nabla_{\theta}J(\theta)$&lt;/p&gt;
+&lt;p&gt;$s$ ← $\beta_2 s - (1-\beta_2) \nabla_{\theta}J(\theta)$&lt;/p&gt;
+&lt;p&gt;$\hat{m}$ ← $\frac{m}{1-\beta_1^T}$&lt;/p&gt;
+&lt;p&gt;$\hat{s}$ ← $\frac{s}{1-\beta_2^T}$&lt;/p&gt;
+&lt;p&gt;$\theta_{nextstep}$ ← $\theta + \frac{\eta \hat{m}}{\sqrt{\hat{s} + \epsilon}}$&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;$\eta$: learning rate&lt;/p&gt;
+&lt;p&gt;$s$: exponential average square of past gradients&lt;/p&gt;
+&lt;p&gt;$m$: momentum vector&lt;/p&gt;
+&lt;p&gt;$\beta_1$: momentum decay, typlically set at 0.9&lt;/p&gt;
+&lt;p&gt;$\beta_2$: scaling decay, typlically set at 0.999&lt;/p&gt;
+&lt;p&gt;$\epsilon$: smoothing term&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Implement Adam optimizer in Tensorflow
+optimizer=keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;adagrad_rmsprop_adam.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Figure 5: Loss and accuracy of models using Adagrad, RMSProp, and Adam&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;7-nadam&#34;&gt;7. Nadam&lt;/h2&gt;
+&lt;p&gt;Another variation of &lt;em&gt;Adam&lt;/em&gt; is &lt;strong&gt;Nadam&lt;/strong&gt; (using &lt;em&gt;Adam optimizer with Nesterov technique&lt;/em&gt;), resulting in a little faster training time than &lt;em&gt;Adam&lt;/em&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Implement Nadam optimizer in Tensorflow
+optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;rmsprop_adam_nadam.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Figure 6: Loss and accuracy of models using RMSProp, Adam and Nadam&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;Adagrad, RMSProp, Ada, Nadam, and Adamax&lt;/strong&gt; are &lt;em&gt;Adaptive learning rate algorithms&lt;/em&gt;, which require less tuning on hyperparameters. In case the performance of the model does not meet your expectation, you can try to change back to &lt;strong&gt;Momentum optimizer&lt;/strong&gt; or &lt;strong&gt;Nesterov Accelerated Gradient&lt;/strong&gt;.&lt;/p&gt;
+&lt;h1 id=&#34;final-words-&#34;&gt;Final words 🤘&lt;/h1&gt;
+&lt;p&gt;In conclusion, most of the time, &lt;em&gt;Adaptive learning rate algorithms&lt;/em&gt; outperform &lt;em&gt;Gradient descent&lt;/em&gt; and its variants in terms of speed, especially in a deep neural network. However, &lt;em&gt;Adaptive learning rate algorithms&lt;/em&gt; do not ensure an absolute convergence to the global minimum.&lt;/p&gt;
+&lt;p&gt;If your model is not too complex with a small number of features, and training time is not your priority, using &lt;strong&gt;Momentum&lt;/strong&gt;, &lt;strong&gt;Nesterov Accelerated Gradient&lt;/strong&gt; or &lt;strong&gt;SGD&lt;/strong&gt; is the optimal starting point, then tune the learning rate, activation functions, change Initialization technique to improve the model rather than using &lt;strong&gt;Adaptive learning rate Optimizers&lt;/strong&gt; because the later ones hinder the risk of not converging to the global minimum.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;summary.png&#34; alt=&#34;&#34; style=&#34;width:110%&#34;&gt;
+  &lt;figcaption&gt;Figure 7: Summary model performance on training loss of different optimization techniques&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;Regular SGD or regular Gradient Descent takes much more time to converge to the global minimum. Adagrad often stops too early before reaching the global minimum so in time it becomes the worse optimizer.&lt;/li&gt;
+&lt;li&gt;With the Fashion MNIST dataset, Adam/Nadam eventually performs better than RMSProp and Momentum/Nesterov Accelerated Gradient. This depends on the model, usually, Nadam outperforms Adam but sometimes RMSProp gives the best performance.&lt;/li&gt;
+&lt;li&gt;With my experience, I found out that Momentum, RMSProp, and Adam (or Nadam) should be the first try of the model.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Optimizer&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Training speed&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Converge quality&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Note&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Gradient Descent / SGD&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Medium for simple model&lt;br&gt;Slow for complex model&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Risk of converging to local minimum.&lt;br&gt;Can be controled by assigning the correct learning rate&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Momentum&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Nesterov Accelerated&lt;br&gt;Gradient&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AdaGrad&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Usually miss global minimum&lt;br&gt;due to early stopping&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for simple quadratic problem, not NN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RMSProp&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for complex NN&lt;br&gt;Need to tune Decay rate for better performance&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Adam&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Nadam&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;p&gt;This article was originally published in &lt;a href=&#34;https://towardsdatascience.com/full-review-on-optimizing-neural-network-training-with-optimizer-9c1acc4dbe78&#34;&gt;Towards Data Science&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Source code: &lt;a href=&#34;https://github.com/geniusnhu/DNN-Improvement/blob/master/Tuning_Optimizer.ipynb&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
