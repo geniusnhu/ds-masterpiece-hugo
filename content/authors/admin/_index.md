@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: My interest is Time series forecasting, Customer segmentation, classification; Machine learning and Deep learning. I earned Master Degree in Interdisciplinary Studies from Tohoku University and have decent experience in various industries.
+bio: Specialized in Time series forecast, Recommendation system; Machine learning and Deep learning. Exploiting is my gut and exploring is my drive. 
 
 education:
   courses:
@@ -16,15 +16,16 @@ education:
     year: 2019
 email: ""
 interests:
+- Recommendation system
 - Time series forecasting
-- Consumer clustering, segmentation, classification
+- Embedding, Deep learning
 - Machine learning
-- Deep learning, Recurrent Neuron Network
-name: Nhu Anh Quynh Hoang
+- Recurrent Neuron Network, Sequencial models
+name: Nhu Hoang
 organizations:
 - name: Download completed CV here
   url: "files/cv.pdf"
-role: Data Scientist / Portfolio Planning Specialist - Amway Japan
+role: Data Scientist at White Narwhal Japan
 social:
 - icon: envelope
   icon_pack: fas
@@ -45,6 +46,6 @@ user_groups:
 ---
 
 ### **About me**
-I'm Nhu Hoang, Data Scientist and Marketing Portfolio Planning Specialist in Amway Japan. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on using Regression model to predict the Wind power price and improve the learning curve. 
+I'm Nhu Hoang, Data Scientist at White Narwhal Japan with specialized in recommendation system, deep learning and other SOTA fields. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on forecasting Wind power price using MLP and improving the learning curve. 
 
-I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus is time series forecasting and tree-based models in application of predicting customer behavior.
+I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus are Recommendation system, Deep learning and machine learning models.

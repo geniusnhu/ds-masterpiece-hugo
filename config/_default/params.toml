@@ -44,7 +44,7 @@ local_business_type = ""
 org_name = ""
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = "Data Science"
+description = "Data Science, Machine learning, Deep learning, Recommendation system"
 
 ############################
 ## Site Features
@@ -86,11 +86,11 @@ phone = ""
 
 # Address
 # For country_code, use the 2-letter ISO code (see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2 )
-address = {city = "Tokyo", postcode = "114-0031", country = "Japan"}
+address = {city = "Tokyo", postcode = "132-0035", country = "Japan"}
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {}
+coordinates = {latitude = "35.706477934549824", longitude = "139.8422602231978"}
 
 # Directions for visitors to locate you.
 directions = ""
@@ -107,7 +107,7 @@ appointment_url = ""
 contact_links = [
   {icon = "linkedin", icon_pack = "fab", name = "Linkedin Me", link = "https://www.linkedin.com/in/nhu-hoang/"},
   {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "hoang.anh.quynh.nhu"},
-  # {icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
+  #{icon = "twitter", icon_pack = "fab", name = "Follow me", link = "https://twitter.com/nhu_hoang"},
   # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
   ]
 

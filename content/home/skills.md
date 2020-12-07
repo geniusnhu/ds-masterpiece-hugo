@@ -15,16 +15,17 @@ subtitle = ""
 # For available icons, see: https://sourcethemes.com/academic/docs/widgets/#icons
 
 [[feature]]
+  icon = "python"
+  icon_pack = "fab"
+  name = "Python"
+  description = "Deep learning, Machine Learning, Scikit-learn, Keras, Pytorch"  
+
+[[feature]]
   icon = "r-project"
   icon_pack = "fab"
   name = "R"
   description = "Analytics with Time Series, Classification, Machine learning models, Data Visualization"
-  
-[[feature]]
-  icon = "python"
-  icon_pack = "fab"
-  name = "Python"
-  description = "Classification, Segmentation, Scikit-learn, Keras"  
+
   
 [[feature]]
   icon = "database"
