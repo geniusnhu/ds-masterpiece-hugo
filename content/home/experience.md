@@ -22,13 +22,18 @@ date_format = "Jan 2006"
   company = "White Narwhal Japan"
   company_url = "https://www.whitenarwhal.com/"
   location = "Tokyo"
-  date_start = "2020-09-01"
+  date_start = "2020-08-01"
   date_end = ""
   description = """
   Responsibilities include:
   
-  * In charge of developing, maintaining and optimizing Recommendation Engine, using both Machine Learning Matrix Factorization model and Deep learning Embedding deep neural network algorithm.
+  * In charge of developing, maintaining and optimizing AI Recommendation Engine for 2 platforms of the company.
+  * Developing NLP recommendation engine for company services, utilizing 
+  * Develop hybrid model by testing and stacking several best performed models, including statistical machine learning, and SOTA deep learning.
+  * Optimizing current engine by researching and fine-tuning SOTA models.
   * Creating, maintaining and improving AI engine pipeline, Data preprocessing pipeline; ensuring Data quality and model performance.
+  
+  Area: Recommendation system, Time series, Machine learning, Deep learning
   """
 
 [[experience]]
@@ -43,6 +48,8 @@ date_format = "Jan 2006"
   
   * Portfolio planning: managing portfolio planning, performance tracking, financial forecasting.
   * Marketing analytics including post campaign evaluation, KPI reporting.
+  
+  Area: Time series, Forecasting, Statistical Machine learning, Marketing analytics
   """
 
 [[experience]]
@@ -55,6 +62,8 @@ date_format = "Jan 2006"
   description = """
   * Conducted demand forecasting using statistical models (Hierarchical forecast, ARIMA) and LSTM; Developed different customer segmentation methods to improve forecast model. 
   * Designed monthly tracking dashboard; Conducted customer survey to gather customer's comment on company product and areas for improvement.
+  
+  Area: Time series, Forecasting, Marketing insights, Market development
   """
   
 [[experience]]
@@ -70,6 +79,8 @@ date_format = "Jan 2006"
   * Sales forecast: Conducted long-term and short-term demand forecasting, using Hierarchical forecast, ARIMA and LSTM models
   * Customer segmentation: Optimized customer groups and marketing/sales approach through customer segmentation using
 k-means, kNN, and hierarchical cluster.
+
+  Area: Time series, Forecasting, Marketing insights
   """
 
 +++

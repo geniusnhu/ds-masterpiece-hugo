@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Support Vector Machine | Nhu Hoang</title>
-    <link>/categories/support-vector-machine/</link>
-      <atom:link href="/categories/support-vector-machine/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/categories/support-vector-machine/</link>
+      <atom:link href="https://geniusnhu.netlify.com/categories/support-vector-machine/index.xml" rel="self" type="application/rss+xml" />
     <description>Support Vector Machine</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Support Vector Machine</title>
-      <link>/categories/support-vector-machine/</link>
+      <link>https://geniusnhu.netlify.com/categories/support-vector-machine/</link>
     </image>
     
     <item>
       <title>Support Vector Machine explanation and application</title>
-      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
       <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
 &lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
@@ -68,7 +68,7 @@
   &lt;figcaption&gt;After quadratic feature added, instances  are now distintively separated into 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;hr&gt;
-&lt;p&gt;Let&#39;s use data to further understand this.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s use data to further understand this.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import random
 np.random.seed(42)
 m = 500
@@ -99,7 +99,7 @@ plt.show();
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h2 id=&#34;polynomial-kernel&#34;&gt;Polynomial kernel&lt;/h2&gt;
-&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;quot;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
+&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;ldquo;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
 &lt;p&gt;If you have very large dataset, go ahead with $LinearSVC$ because it is faster than $SVC$ in handling big data.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;One thing to remember, always scaling data before training SVM&lt;/strong&gt;&lt;/p&gt;
@@ -147,7 +147,7 @@ plt.show()
   &lt;img src=&#34;poly_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&#39;s measure its performance on test set.&lt;/p&gt;
+&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&amp;rsquo;s measure its performance on test set.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
 model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
 
@@ -199,7 +199,7 @@ plt.show();
   &lt;img src=&#34;RBF_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;2 values of C seems to produce similar model. Let&#39;s predict test set and evaluate with metrics.&lt;/p&gt;
+&lt;p&gt;2 values of C seems to produce similar model. Let&amp;rsquo;s predict test set and evaluate with metrics.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
 model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
 

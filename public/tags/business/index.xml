@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Business | Nhu Hoang</title>
-    <link>/tags/business/</link>
-      <atom:link href="/tags/business/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/business/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/business/index.xml" rel="self" type="application/rss+xml" />
     <description>Business</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 26 Jan 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Business</title>
-      <link>/tags/business/</link>
+      <link>https://geniusnhu.netlify.com/tags/business/</link>
     </image>
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
+      <link>https://geniusnhu.netlify.com/2020/01/26/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
+      <guid>https://geniusnhu.netlify.com/2020/01/26/practical-flow-of-a-data-science-project/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&amp;rsquo;s requests?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
 &lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;
 &lt;p&gt;It is a routine for a Data Scientist to saturate with &lt;strong&gt;technical models&lt;/strong&gt; while understates the role of &lt;strong&gt;business mindset&lt;/strong&gt;. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;strong&gt;understanding the business concept at first before any other activities&lt;/strong&gt;.&lt;/p&gt;
@@ -47,7 +47,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;p&gt;&lt;strong&gt;Ask about the background of the question&lt;/strong&gt;, why and how they come up with the request after you receive it.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&#39;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&amp;rsquo;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Engage with other teams in the company&lt;/strong&gt; to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as &lt;em&gt;&amp;ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&amp;quot;&lt;/em&gt;&lt;/p&gt;
@@ -61,7 +61,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;p&gt;This part is to place the methodology for the analysis&lt;/p&gt;
 &lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
 &lt;p&gt;With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/p&gt;
-&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&#39;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&#39;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
+&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&amp;rsquo;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&amp;rsquo;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
 &lt;p&gt;What you can do more:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -82,14 +82,14 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;/ul&gt;
 &lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
 &lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&#39;s birthday information for the task of predicting churn probability?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&amp;rsquo;s birthday information for the task of predicting churn probability?&lt;/p&gt;
 &lt;p&gt;Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: &lt;em&gt;Garbage in is Garbage out&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Two major problems that usually occur during Data Collection&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The unavailability of data&lt;/li&gt;
 &lt;li&gt;The bias of training data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&#39;s look at the unavailability of data&lt;/h4&gt;
+&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&amp;rsquo;s look at the unavailability of data&lt;/h4&gt;
 &lt;p&gt;This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the &lt;em&gt;time spent in cooking at home&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
 &lt;p&gt;Therefore, the solution for this case is to &lt;strong&gt;defer inaccessible data&lt;/strong&gt; and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
@@ -107,7 +107,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;/ol&gt;
 &lt;h4 id=&#34;32-second-the-bias-of-data&#34;&gt;3.2 Second, the bias of data&lt;/h4&gt;
 &lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
-&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
+&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&amp;rsquo;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
 &lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
 &lt;p&gt;What you can do more to eliminate the bias:&lt;/p&gt;
 &lt;ol&gt;
@@ -135,14 +135,14 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
     
     <item>
       <title>Quick deep dive at Data Scientist Skill set</title>
-      <link>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
+      <link>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
       <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
+      <guid>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
       <description>&lt;p&gt;One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Frankly saying, what are the skills that a Data Scientist needs?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.&lt;/p&gt;
-&lt;p&gt;Actually, I can share some of my experiences with them, but as you&#39;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
+&lt;p&gt;Actually, I can share some of my experiences with them, but as you&amp;rsquo;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;What you learn today will be the old of tomorrow!&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -189,7 +189,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr&gt;
-&lt;p&gt;Now, let&#39;s explore the result.&lt;/p&gt;
+&lt;p&gt;Now, let&amp;rsquo;s explore the result.&lt;/p&gt;
 &lt;h3 id=&#34;role-and-responsibilities&#34;&gt;&lt;strong&gt;Role and Responsibilities:&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;A Data scientist is responsible for many tasks but the Top 3 includes:&lt;/p&gt;
 &lt;ul&gt;

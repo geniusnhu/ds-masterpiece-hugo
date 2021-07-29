@@ -2,103 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories | Nhu Hoang</title>
-    <link>/categories/</link>
-      <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/categories/</link>
+      <atom:link href="https://geniusnhu.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <description>Categories</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Categories</title>
-      <link>/categories/</link>
+      <link>https://geniusnhu.netlify.com/categories/</link>
     </image>
-    
-    <item>
-      <title>Data Science</title>
-      <link>/categories/data-science/</link>
-      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/data-science/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Deep learning</title>
-      <link>/categories/deep-learning/</link>
-      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/deep-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Classification</title>
-      <link>/categories/classification/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/classification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Support Vector Machine</title>
-      <link>/categories/support-vector-machine/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/support-vector-machine/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Analytics</title>
-      <link>/categories/analytics/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/analytics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Visualization</title>
-      <link>/categories/visualization/</link>
-      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Time Series</title>
-      <link>/categories/time-series/</link>
-      <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/time-series/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Machine Learning</title>
-      <link>/categories/machine-learning/</link>
-      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>NLP</title>
-      <link>/categories/nlp/</link>
-      <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/nlp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ARIMA</title>
-      <link>/categories/arima/</link>
-      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/arima/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Forecasting</title>
-      <link>/categories/forecasting/</link>
-      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/categories/forecasting/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>

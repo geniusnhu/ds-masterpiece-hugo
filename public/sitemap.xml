@@ -1,299 +1,175 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
-    <loc>/authors/admin/</loc>
+    <loc>https://geniusnhu.netlify.com/authors/admin/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/authors/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/authors/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/data-science/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/data-science/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/data-science/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/data-science/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/deep-learning/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/deep-learning/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/deep-learning/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/deep-learning/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/hyperparameter-tuning/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/hyperparameter-tuning/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-06-14-optimization-and-neural-network-performance/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/optimization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/optimization/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/tensorflow/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/tensorflow/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/activation-function/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/activation-function/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/batch-normalization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/batch-normalization/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/initialization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/initialization/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</loc>
     <lastmod>2020-05-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/application/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/application/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/classification/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/classification/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/classification/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/classification/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/support-vector-machine/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/support-vector-machine/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/support-vector-machine/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/support-vector-machine/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-04-30-support-vector-machine-explanation-and-application/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-04-30-support-vector-machine-explanation-and-application/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/analytics/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/analytics/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/analytics/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/analytics/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/post/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/trend/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/trend/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2020/04/02/useful-visualization-with-source-code/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/2020/04/02/useful-visualization-with-source-code/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/visualization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/visualization/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/visualization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/visualization/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-03-30-complete-guide-for-time-series-visualization/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/forecasting/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/forecasting/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/seasonality/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/seasonality/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/spurious-correlation/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/spurious-correlation/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/time-series/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/time-series/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/time-series/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/time-series/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/concept/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/concept/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/machine-learning/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/machine-learning/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/machine-learning/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/machine-learning/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/nlp/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/nlp/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/nlp/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/nlp/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</loc>
     <lastmod>2020-02-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/arima/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/arima/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/arima/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/arima/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-03-05-time-series-forecasting/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/forecasting/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/categories/forecasting/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/retail-sales/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/retail-sales/</loc>
     <lastmod>2020-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</loc>
     <lastmod>2020-03-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/business/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/business/</loc>
     <lastmod>2020-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2020/01/26/practical-flow-of-a-data-science-project/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/2020/01/26/practical-flow-of-a-data-science-project/</loc>
     <lastmod>2020-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/process/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/process/</loc>
     <lastmod>2020-01-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</loc>
     <lastmod>2020-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/skill/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/skill/</loc>
     <lastmod>2020-01-28T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/slides/example/</loc>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/publication_types/</loc>
   </url>
-  
-  <url>
-    <loc>/privacy/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/terms/</loc>
-    <lastmod>2018-06-28T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/publication_types/</loc>
-  </url>
-  
 </urlset>

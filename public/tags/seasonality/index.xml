@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Seasonality | Nhu Hoang</title>
-    <link>/tags/seasonality/</link>
-      <atom:link href="/tags/seasonality/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/seasonality/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/seasonality/index.xml" rel="self" type="application/rss+xml" />
     <description>Seasonality</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Seasonality</title>
-      <link>/tags/seasonality/</link>
+      <link>https://geniusnhu.netlify.com/tags/seasonality/</link>
     </image>
     
     <item>
       <title>Complete guide for Time series Visualization</title>
-      <link>/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
       <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
-&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&#39; trend, seasonality or cyclic.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>NLP | Nhu Hoang</title>
-    <link>/categories/nlp/</link>
-      <atom:link href="/categories/nlp/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/categories/nlp/</link>
+      <atom:link href="https://geniusnhu.netlify.com/categories/nlp/index.xml" rel="self" type="application/rss+xml" />
     <description>NLP</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Wed, 12 Feb 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>NLP</title>
-      <link>/categories/nlp/</link>
+      <link>https://geniusnhu.netlify.com/categories/nlp/</link>
     </image>
     
     <item>
       <title>The beauty of Transformer in bringing more applications to life</title>
-      <link>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
+      <link>https://geniusnhu.netlify.com/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</link>
       <pubDate>Wed, 12 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
+      <guid>https://geniusnhu.netlify.com/2020/02/12/the-beauty-of-transformer-in-bringing-more-applications-to-life/</guid>
       <description>&lt;p&gt;My 2020 started awesomely with a Machine Learning Forum @Google Japan and followed with 2 Meetups about Natural Language Processing application. NLP has been the focus of the Machine Learning society for the last decade and it is reaching to its ultimate point with several outbreak of innovations and application.&lt;/p&gt;
 &lt;p&gt;At this moment, 2020, NLP is heading towards &lt;strong&gt;speed and big data&lt;/strong&gt;, which means that the increasing of the speed and size of data is the key objective of future NLP innovations. At the moment, I am impressed with &lt;strong&gt;BERT - Bidirectional Encoder Representations from Transformers&lt;/strong&gt;, a powerful state-of-the-art NPL model introduced by Google in 2018; and *&lt;strong&gt;Google Meena&lt;/strong&gt;, a lift toward dealing with big-NLP database using the Transformer base introducted on Jan 28, 2020.&lt;/p&gt;
 &lt;h3 id=&#34;1why-are-bert-and-transformer-being-called-the-revolution-of-the-nlp-world&#34;&gt;1.	Why are BERT and Transformer being called the revolution of the NLP world?&lt;/h3&gt;
@@ -49,12 +49,12 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Word&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Q vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;K vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;V vector&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Score&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Softmax&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Sum&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Q vector&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;K vector&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;V vector&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Score&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Softmax&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Sum&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -69,39 +69,39 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q1xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q1xK1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S1=Q1xK1/8xV1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q1xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z1 = S1+S2+S3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q1xK2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S2=Q1xK2/8xV2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Z1 = S1+S2+S3&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q1xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q1xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q1xK3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S3=Q1xK3/8xV3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Second word&lt;/strong&gt;&lt;/td&gt;
@@ -114,39 +114,39 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q2xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q2xK1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S1=Q2xK1/8xV1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q2xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z2 = S1+S2+S3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q2xK2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S2=Q2xK2/8xV2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Z2 = S1+S2+S3&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q2xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q2xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q2xK3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S3=Q2xK3/8xV3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;strong&gt;Third word&lt;/strong&gt;&lt;/td&gt;
@@ -159,41 +159,41 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;I&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S1=Q3xK1/8xV1&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q3xK1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S1=Q3xK1/8xV1&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;love&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S2=Q3xK2/8xV2&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Z3 = S1+S2+S3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q3xK2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S2=Q3xK2/8xV2&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Z3 = S1+S2+S3&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;data&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;K3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;V3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Q3xK3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;S3=Q3xK3/8xV3&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;K3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;V3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Q3xK3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;S3=Q3xK3/8xV3&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;blockquote&gt;
-&lt;p&gt;One example of this model application is the suggestion of relevant words when typing sentence. Gmail can suggest &lt;strong&gt;&amp;ldquo;message&amp;rdquo;, &amp;ldquo;reply&amp;rdquo;, &amp;ldquo;call&amp;rdquo;&lt;/strong&gt; at the same time based on the typed sentence &lt;strong&gt;&amp;ldquo;Thank you for your&lt;/strong&gt;&amp;quot;.&lt;/p&gt;
+&lt;p&gt;One example of this model application is the suggestion of relevant words when typing sentence. Gmail can suggest &lt;strong&gt;&amp;ldquo;message&amp;rdquo;, &amp;ldquo;reply&amp;rdquo;, &amp;ldquo;call&amp;rdquo;&lt;/strong&gt; at the same time based on the typed sentence &lt;strong&gt;&amp;ldquo;Thank you for your&lt;/strong&gt;&amp;rdquo;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;This is a brief introduction on the transition from Seq2Seq to Transformer and how the &lt;strong&gt;Transformer model&lt;/strong&gt; outstands &lt;strong&gt;Seq2Seq&lt;/strong&gt; at the moment.&lt;/p&gt;
 &lt;h3 id=&#34;2-business-applications-of-nlp&#34;&gt;2. Business Applications of NLP&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Chatbot&lt;/strong&gt;: This is obviously the forefront application of NLP, which can be seen across all industries and companies. Given its popularity, there are several tools to support building a chatbot such as Google DialogFlow, Microsoft LUIS. These tools can be customized based on the user&#39;s needs; however, they can only deal with simple requests.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Chatbot&lt;/strong&gt;: This is obviously the forefront application of NLP, which can be seen across all industries and companies. Given its popularity, there are several tools to support building a chatbot such as Google DialogFlow, Microsoft LUIS. These tools can be customized based on the user&amp;rsquo;s needs; however, they can only deal with simple requests.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Machine translation&lt;/strong&gt;: such as Google translate or pocket translator device.&lt;/p&gt;
@@ -220,14 +220,14 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Information extraction&lt;/strong&gt;: extract dynamic required information that is sleeping in the database system.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Resume reviews&lt;/strong&gt;: use NLP to scan the applicants&amp;rsquo; resume to figure out potential candidate for the interview. This application sticks with Amazon big scandal. Amazon used to use this to scan the resume which led to the inequality between male and female with the result preferred male than female. This is due to 0the bias toward male in the training set of the model.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Resume reviews&lt;/strong&gt;: use NLP to scan the applicants&#39; resume to figure out potential candidate for the interview. This application sticks with Amazon big scandal. Amazon used to use this to scan the resume which led to the inequality between male and female with the result preferred male than female. This is due to 0the bias toward male in the training set of the model.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Voice command&lt;/strong&gt;: an emerging technology in recent years with the appearance of smart device such as Siri in Iphone, Alexa of Amazone, Google home or Cortana of Microsoft.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Beside the major technological trends mentioned above, the application trend is heading toward diversity in languages and translation efficacy. Moreover, not only applying NLP alone, there are more applications combining NLP and Voice recognition or Computer Vision.&lt;/p&gt;
-&lt;p&gt;NLP is a powerful Machine Learning area and its application is supporting human&#39;s life even more than we can expect. Therefore, NLP is one of the most used Machine Learning fields by Data Scienctist.&lt;/p&gt;
+&lt;p&gt;NLP is a powerful Machine Learning area and its application is supporting human&amp;rsquo;s life even more than we can expect. Therefore, NLP is one of the most used Machine Learning fields by Data Scienctist.&lt;/p&gt;
 </description>
     </item>
     

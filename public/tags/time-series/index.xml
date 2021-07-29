@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Time series | Nhu Hoang</title>
-    <link>/tags/time-series/</link>
-      <atom:link href="/tags/time-series/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/time-series/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/time-series/index.xml" rel="self" type="application/rss+xml" />
     <description>Time series</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Mon, 30 Mar 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Time series</title>
-      <link>/tags/time-series/</link>
+      <link>https://geniusnhu.netlify.com/tags/time-series/</link>
     </image>
     
     <item>
       <title>Complete guide for Time series Visualization</title>
-      <link>/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
       <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
@@ -29,7 +29,7 @@
 &lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
-&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&#39; trend, seasonality or cyclic.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
@@ -198,9 +198,9 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
     
     <item>
       <title>Comprehensive understanding on Time Series forecasting</title>
-      <link>/project/2020-03-05-time-series-forecasting/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</link>
       <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-05-time-series-forecasting/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</guid>
       <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
 &lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
 &lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
@@ -338,7 +338,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data&#34;&gt;One question emerged, does this model truly capture the values of the time series data?&lt;/h4&gt;
-&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&#39;s residual with other periods&amp;rsquo; ones.&lt;/p&gt;
+&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&amp;rsquo;s residual with other periods&#39; ones.&lt;/p&gt;
 &lt;p&gt;The Residuals of a &lt;strong&gt;good time series forecasting model&lt;/strong&gt; have the following properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are &lt;strong&gt;uncorrelated&lt;/strong&gt;&lt;/li&gt;
@@ -347,7 +347,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;Residuals should have &lt;strong&gt;constant variance&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If the result is lack of any of the above attributes, the forecasting model can be further improved.&lt;/p&gt;
-&lt;p&gt;Let&#39;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Compute Residual
 train_pred = stepwise_model.predict(n_periods=106)
 r_train = train - train_pred
@@ -393,7 +393,7 @@ plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles=&#39;dashed&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;residual_variance.png&#34;
 style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Let&#39;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.&lt;/li&gt;
 &lt;li&gt;Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.&lt;/li&gt;

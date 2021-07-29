@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Skill | Nhu Hoang</title>
-    <link>/tags/skill/</link>
-      <atom:link href="/tags/skill/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/skill/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/skill/index.xml" rel="self" type="application/rss+xml" />
     <description>Skill</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Skill</title>
-      <link>/tags/skill/</link>
+      <link>https://geniusnhu.netlify.com/tags/skill/</link>
     </image>
     
     <item>
       <title>Quick deep dive at Data Scientist Skill set</title>
-      <link>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
+      <link>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
       <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
+      <guid>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
       <description>&lt;p&gt;One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Frankly saying, what are the skills that a Data Scientist needs?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.&lt;/p&gt;
-&lt;p&gt;Actually, I can share some of my experiences with them, but as you&#39;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
+&lt;p&gt;Actually, I can share some of my experiences with them, but as you&amp;rsquo;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;What you learn today will be the old of tomorrow!&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -68,134 +68,7 @@
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr&gt;
-&lt;p&gt;Now, let&#39;s explore the result.&lt;/p&gt;
-&lt;h3 id=&#34;role-and-responsibilities&#34;&gt;&lt;strong&gt;Role and Responsibilities:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;A Data scientist is responsible for many tasks but the Top 3 includes:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Analyzing data&lt;/strong&gt; to influence product or to support business decisions&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Explore new areas of Machine learning&lt;/strong&gt; through builidng prototypes&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Experiment to &lt;strong&gt;improve company existing Machine learning models&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/responsibility.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;programming-skills&#34;&gt;&lt;strong&gt;Programming skills:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Python, SQL and R&lt;/strong&gt; are all the programming languages that are essential for Data Scientist as they stand in the Top 3 respectively.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/PL.png&#34; width=&#34;300&#34; height=&#34;450&#34; &gt;&lt;/p&gt;
-&lt;h3 id=&#34;machine-learning-skills&#34;&gt;&lt;strong&gt;Machine Learning skills:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;It is not a surprise if all Data Scientists use Machine Learning in their daily job but I was amazed that almost all of them use both Natural Language Processing and Computer Vision. These 2 fields has no longer been specified areas to some groups of users but expanded to much wider application and require Data Scientist to own these skills.&lt;/p&gt;
-&lt;h3 id=&#34;machine-learning-algorithm-skills&#34;&gt;&lt;strong&gt;Machine Learning algorithm skills:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Regression&lt;/strong&gt; and &lt;strong&gt;Tree-based algorithms&lt;/strong&gt; are the models used by Data Scientist. With the long history in statistics and analytics, these models are still being favor in analyzing data. Another advantage of these traditional models is that they are easy to explain to business partner. Other models such as Neuron network, or Deep learning is hard to explain the result.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/ML.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Another interesting thing is that 51% of Data scientists is applying &lt;strong&gt;Boosting method&lt;/strong&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;python-skills&#34;&gt;&lt;strong&gt;Python skills:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Scikit-learn, Keras, Xgboost, TensorFlow and RandomForest libraries&lt;/strong&gt; are the top used frameworks given their benefit and convenience.&lt;/p&gt;
-&lt;img src=&#34;https://raw.githubusercontent.com/geniusnhu/ds-masterpiece-hugo/master/content/post/2020-01-17-quick-deep-dive-at-data-scientist-skill-set/package.png&#34; width=&#34;300&#34; height=&#34;450&#34;&gt;
-&lt;h3 id=&#34;data-scientist-credential&#34;&gt;&lt;strong&gt;Data Scientist Credential:&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Foundation skills&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Writing code&lt;/strong&gt; is an important skill of a good Data scientist. Being an excellent coder is not required but preferable to have, especially big companies have the tendency to hire Data Scientist Engineer with coding skill.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;It is essential to &lt;strong&gt;build up your business skills&lt;/strong&gt; in addition to technical skills. Many data scientists, especially the junior may excel at machine learning and algorithm but usually cry out for business point of view. Their recommendations are getting off the track from what the company is doing. That is the worst thing you want to face in the world of Data science when no one values your idea..&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;Specialized skills&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Build expertise in &lt;strong&gt;Python, SQL and/or R&lt;/strong&gt; on various online/offline platforms.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Fluency in using Local development environments and Intergrated development Environment, including but not limited to Jupyter, RStudio, Pycharm. Try to &lt;strong&gt;learn on job&lt;/strong&gt; or &lt;strong&gt;learn on practice&lt;/strong&gt;.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Strong in foundation and rich in practical experience&lt;/strong&gt;. Develop side projects within your interested fields with proper models showcase. The model can be either traditional Linear regression, Decision Tree/Random Forest, or cutting-edge XGBoost, Recurrent Neural Network.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Enrich your knowledge and application in convenient frameworks&lt;/strong&gt; such as Scikit-learn, Keras, Tensorflow, Xgboost. Working on your own project/cooperating project is a good choice to get practical experience if you have not obtained the chance in a company.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Computer Visio&lt;/strong&gt;n and &lt;strong&gt;NLP&lt;/strong&gt; are the booming areas in Data science so it is beneficial to prepare yourself with these skills.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Although &lt;strong&gt;AutoML&lt;/strong&gt; is a newly emerging field, it will probably become one of the important tools and skills for Data Scientist, including Automated hyperparameter tuning, Data augmentation, Feature engineering/selection and Auto ML pipelines.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Skills in working with &lt;strong&gt;Big data&lt;/strong&gt; and Big data products e.g Google Bigquerry, Databricks, Redshift are the must to own.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;This is the same with usage of &lt;strong&gt;cloud computing skills&lt;/strong&gt;. In big company, it is a common to work on cloud so if you do not know how to conduct machine learning on cloud, it will become your minus comparing to other candidates.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And one last important thing: &lt;strong&gt;Always believe in yourself, your choice and never give up&lt;/strong&gt;&lt;/p&gt;
-&lt;h4 id=&#34;end-notes&#34;&gt;End notes&lt;/h4&gt;
-&lt;p&gt;As the big survey focusing on the Data science / Machine Learning areas, it appeared as a great source for me to gain valuable information.&lt;/p&gt;
-&lt;p&gt;Beside understanding which typical skills requiring to advance in the Data Science field, I want to tbuild a model to predict the salary range and I will update on that in upcoming days.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Quick deep dive at Data Scientist Skill set</title>
-      <link>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
-      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
-      <description>&lt;p&gt;One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Frankly saying, what are the skills that a Data Scientist needs?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.&lt;/p&gt;
-&lt;p&gt;Actually, I can share some of my experiences with them, but as you&#39;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;What you learn today will be the old of tomorrow!&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Luckily, when I was known of the Kaggle dataset on Survey of Data Science and Machine learning, this data will definitely give me some insights for my questions.&lt;/p&gt;
-&lt;p&gt;The Data source is &lt;a href=&#34;https://www.kaggle.com/c/kaggle-survey-2019&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;In this post, I will summary my key findings from the survey. The complete analysis can be found through this &lt;a href=&#34;https://www.kaggle.com/geninhu/direction-toward-a-great-data-scientist/data&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;This analysis uses R language with tidyverse package for the best insight visualization.&lt;/em&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;Before looking at the result, below are the data cleaning and preparation for the analysis.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Feature selection:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;This dataset includes the written answer of the respondents if they picked &lt;code&gt;&amp;quot;Other&amp;quot;&lt;/code&gt; choice for some questions. However, the written answers are stored in another &lt;em&gt;csv&lt;/em&gt; file so that all the variables containing &lt;code&gt;&amp;quot;Other&amp;quot;&lt;/code&gt; will not a valuable variable for the analysis, therefore they will be excluded from the dataset.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;For this analysis, the &lt;code&gt;&amp;quot;Duration&amp;quot;&lt;/code&gt; variable is not the factor that I want to explore so it will be excluded as well.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;2&#34;&gt;
-&lt;li&gt;Other data cleaning:&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;Shorten some typical column names for easier understanding.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Set level for values in the variables that require level later on, such as &lt;em&gt;Company size, Compensation/Salary, year of experience with machine learning&lt;/em&gt;&amp;hellip;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;ol start=&#34;3&#34;&gt;
-&lt;li&gt;Create functions for plotting (Example is as below)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plot_df_ds &amp;lt;- function (df_draw_ds, columnName1, columnName2) {
-    names(df_draw_ds)[columnName1] &amp;lt;- paste(&amp;quot;value&amp;quot;)
-    names(df_draw_ds)[columnName2] &amp;lt;- paste(&amp;quot;value2&amp;quot;)
-    df_draw_ds &amp;lt;- df_draw_ds %&amp;gt;% 
-    select (value, value2) %&amp;gt;%
-    group_by(value, value2) %&amp;gt;%
-    filter(value != &amp;quot;Not employed&amp;quot;,value != &amp;quot;Other&amp;quot;) %&amp;gt;% 
-    summarise(count=n()) %&amp;gt;% 
-    mutate(perc= prop.table(count))
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;hr&gt;
-&lt;p&gt;Now, let&#39;s explore the result.&lt;/p&gt;
+&lt;p&gt;Now, let&amp;rsquo;s explore the result.&lt;/p&gt;
 &lt;h3 id=&#34;role-and-responsibilities&#34;&gt;&lt;strong&gt;Role and Responsibilities:&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;A Data scientist is responsible for many tasks but the Top 3 includes:&lt;/p&gt;
 &lt;ul&gt;

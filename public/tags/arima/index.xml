@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ARIMA | Nhu Hoang</title>
-    <link>/tags/arima/</link>
-      <atom:link href="/tags/arima/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/arima/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/arima/index.xml" rel="self" type="application/rss+xml" />
     <description>ARIMA</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Thu, 06 Feb 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>ARIMA</title>
-      <link>/tags/arima/</link>
+      <link>https://geniusnhu.netlify.com/tags/arima/</link>
     </image>
     
     <item>
       <title>Comprehensive understanding on Time Series forecasting</title>
-      <link>/project/2020-03-05-time-series-forecasting/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</link>
       <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-05-time-series-forecasting/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</guid>
       <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
 &lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
 &lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
@@ -154,7 +154,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data&#34;&gt;One question emerged, does this model truly capture the values of the time series data?&lt;/h4&gt;
-&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&#39;s residual with other periods&amp;rsquo; ones.&lt;/p&gt;
+&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&amp;rsquo;s residual with other periods&#39; ones.&lt;/p&gt;
 &lt;p&gt;The Residuals of a &lt;strong&gt;good time series forecasting model&lt;/strong&gt; have the following properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are &lt;strong&gt;uncorrelated&lt;/strong&gt;&lt;/li&gt;
@@ -163,7 +163,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;Residuals should have &lt;strong&gt;constant variance&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If the result is lack of any of the above attributes, the forecasting model can be further improved.&lt;/p&gt;
-&lt;p&gt;Let&#39;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Compute Residual
 train_pred = stepwise_model.predict(n_periods=106)
 r_train = train - train_pred
@@ -209,7 +209,7 @@ plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles=&#39;dashed&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;residual_variance.png&#34;
 style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Let&#39;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.&lt;/li&gt;
 &lt;li&gt;Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.&lt;/li&gt;
@@ -237,12 +237,12 @@ def ts_train_test_split(X, y, test_size):
     
     <item>
       <title>ARIMA Autoregressive Integrated Moving Average model family</title>
-      <link>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
-&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
+&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&amp;rsquo;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
 &lt;p&gt;There are 3 parts in the ARIMA model: &lt;strong&gt;Auto Regressive (AR)&lt;/strong&gt; $p$, &lt;strong&gt;Integrated (I)&lt;/strong&gt; $d$, &lt;strong&gt;Moving Average (MA)&lt;/strong&gt; $q$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -273,7 +273,7 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 &lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
 &lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
 &lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
-&lt;p&gt;Let&#39;s work with some data.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s work with some data.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
 data.plot()
 &lt;/code&gt;&lt;/pre&gt;
@@ -289,7 +289,7 @@ data.plot()
 &lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
 &lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
-&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&#39;s Stationarity&lt;/h2&gt;
+&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&amp;rsquo;s Stationarity&lt;/h2&gt;
 &lt;p&gt;It is essential to confirm the data to be stationary or not because this impacts directly to your model selection for the highest accuracy.&lt;/p&gt;
 &lt;p&gt;There are several methods to examine the data. One of the most statistical accurate way is the &lt;strong&gt;Augmented Dicky-Fuller&lt;/strong&gt; method in which it tests the data with 2 hypothesis. The &lt;strong&gt;Null hypothesis&lt;/strong&gt; is not staionary and the &lt;strong&gt;alternative hypothese&lt;/strong&gt; is stationary.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Run test
@@ -311,7 +311,7 @@ Critical Values:
 &lt;p&gt;p-value is higher than 0.05 so we fail to reject the Null hypothesis which means the data is stationary.&lt;/p&gt;
 &lt;h2 id=&#34;4-differencing-the-data&#34;&gt;4. Differencing the data&lt;/h2&gt;
 &lt;p&gt;Differencing is the methid to stationarize the time series data.&lt;/p&gt;
-&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&#39;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
+&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&amp;rsquo;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Difference the orginal sales data
 plt.figure(figsize=(15,8));
 train_diff_seasonal = train - train.shift(3)
@@ -338,7 +338,7 @@ Critical Values:
   &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
-Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
+Let&amp;rsquo;s examine ACF and PACF of the data&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
 train = data[:84]
 validation = data[84:108]
@@ -357,7 +357,7 @@ plt.show()
 &lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
-Let&#39;s set the parameters for SARIMA&lt;/p&gt;
+Let&amp;rsquo;s set the parameters for SARIMA&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$p$ is most probably 3 as this is the last significant lag on the PACF.&lt;/li&gt;
 &lt;li&gt;$d$ should equal 0 as we do not have differencing (only seasonal differencing and this will be reflected later on)&lt;/li&gt;

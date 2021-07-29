@@ -2,26 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors | Nhu Hoang</title>
-    <link>/authors/</link>
-      <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/authors/</link>
+      <atom:link href="https://geniusnhu.netlify.com/authors/index.xml" rel="self" type="application/rss+xml" />
     <description>Authors</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Authors</title>
-      <link>/authors/</link>
+      <link>https://geniusnhu.netlify.com/authors/</link>
     </image>
-    
-    <item>
-      <title></title>
-      <link>/authors/admin/</link>
-      <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/authors/admin/</guid>
-      <description>&lt;h3 id=&#34;about-me&#34;&gt;&lt;strong&gt;About me&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;I&#39;m Nhu Hoang, Data Scientist at White Narwhal Japan with specialized in recommendation system, deep learning and other SOTA fields. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on forecasting Wind power price using MLP and improving the learning curve.&lt;/p&gt;
-&lt;p&gt;I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus are Recommendation system, Deep learning and machine learning models.&lt;/p&gt;
-</description>
-    </item>
     
   </channel>
 </rss>

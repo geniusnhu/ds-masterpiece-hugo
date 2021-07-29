@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Specialized in Time series forecast, Recommendation system; Machine learning and Deep learning. Exploiting is my gut and exploring is my drive. 
+bio: Specialized in Recommendation system; Time series; Machine learning and Deep learning. Exploiting is my gut and exploring is my drive. 
 
 education:
   courses:
@@ -17,10 +17,10 @@ education:
 email: ""
 interests:
 - Recommendation system
-- Time series forecasting
-- Embedding, Deep learning
-- Machine learning
-- Recurrent Neuron Network, Sequencial models
+- Time series
+- Machine learning, Deep learning
+- Computer Vision
+- Data mining
 name: Nhu Hoang
 organizations:
 - name: Download completed CV here
@@ -46,6 +46,8 @@ user_groups:
 ---
 
 ### **About me**
-I'm Nhu Hoang, Data Scientist at White Narwhal Japan with specialized in recommendation system, deep learning and other SOTA fields. I earned Master Degree in Interdisciplinary Studies from Tohoku University, Japan with research on forecasting Wind power price using MLP and improving the learning curve. 
+Nhu Hoang is a Data Scientist with 5 years experience in Artificial Intelligence, Recommendation system, Time series, deep learning and other SOTA fields. Since August 2020, she become lead Data Scientist at White Narwhal Japan to develop AI solutions and applications for regional and internation clients. She also owns decent experience in Marketing Analytics at Unilever Vietnam (2014-2016) before moved to Japan to pursue higher education.
 
-I own decent foundation and acquired rich experience in Data Science, Analytics within various industries. My current focus are Recommendation system, Deep learning and machine learning models.
+She received here Master degree from Tohoku University, Japan in September 2018 and received several awards during her study including MEXT full scholarship for researcher award by The Ministry of Education, Culture, Sports, Science and Technology of Japan from 2016 to 2018; and the best oral presentation award in the 11th Vietnam-Japan Scientific Exchange Meeting in Japan.
+
+Her research interests include Artificial Intelligence; Recommendation and Personalization system; Forecasting; Statistical machine learning; Computer Vision; and data mining.

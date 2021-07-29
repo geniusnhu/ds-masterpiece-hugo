@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Optimization | Nhu Hoang</title>
-    <link>/tags/optimization/</link>
-      <atom:link href="/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/tags/optimization/</link>
+      <atom:link href="https://geniusnhu.netlify.com/tags/optimization/index.xml" rel="self" type="application/rss+xml" />
     <description>Optimization</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Optimization</title>
-      <link>/tags/optimization/</link>
+      <link>https://geniusnhu.netlify.com/tags/optimization/</link>
     </image>
     
     <item>
       <title>Improve deep neural network training speed and performance with Optimization</title>
-      <link>/project/2020-06-14-optimization-and-neural-network-performance/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</link>
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-06-14-optimization-and-neural-network-performance/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://geniusnhu.netlify.app/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/&#34;&gt;Part 1: Initialization, Activation function and Batch Normalization/Gradient Clipping&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Part 2: Optimizer&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Training a deep neural network is an extremely time-consuming task especially with complex problems. Using a faster optimizer for the network is an efficient way to speed up the training speed, rather than simply using the regular Gradient Descent optimizer. Below, I will discuss and show training results/speed of 5 popular Optimizer approaches: &lt;strong&gt;Gradient Descent with momentum and Nesterov Accelerated Gradient, AdaGrad, RMSProp, Adam, and Nadam optimizer&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;One of the dangers of using inappropriate optimizers is that the model takes a long time to converge to a global minimum or it will be stuck at a local minimum, resulting in a worse model. Therefore, knowing which Optimizer suits mostly on the problem will save you tons of training hours.
-The main purpose of tuning Optimizer is to speed up the training speed but it also helps to improve the model&#39;s performance.&lt;/p&gt;
+The main purpose of tuning Optimizer is to speed up the training speed but it also helps to improve the model&amp;rsquo;s performance.&lt;/p&gt;
 &lt;h2 id=&#34;1-gradient-descent&#34;&gt;1. Gradient Descent&lt;/h2&gt;
 &lt;p&gt;Computing the gradient of the associated cost function with regard to each theta and getting the gradient vector pointing uphill, then going in the opposite direction with the vector direction (downhill) using the below equation:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -38,7 +38,7 @@ The main purpose of tuning Optimizer is to speed up the training speed but it al
 &lt;p&gt;The loss declined gradually and will be closer and closer to global minimum after several more epochs.&lt;/p&gt;
 &lt;p&gt;There are other versions of Gradient Descent such as &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; (running on a full dataset), &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; (running on random subsets of a dataset), &lt;strong&gt;Stochastic Gradient Descent - SGD&lt;/strong&gt; (picking a random instance at each step), and all have pros and cons. &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; can reach the global minimum at a terribly slow pace. &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; gets to the global minimum faster than BGD but it is easier to get stuck in the local minimum, and &lt;strong&gt;SGD&lt;/strong&gt; is usually harder to get to the global minimum compared to the other two.&lt;/p&gt;
 &lt;h2 id=&#34;2-momentum-optimization&#34;&gt;2. Momentum Optimization&lt;/h2&gt;
-&lt;p&gt;Let&#39;s imagine, when a ball rolls from the summit, downward the sloping side to the foot of the hill, it will start slowly then increase the speed as the momentum picks up and eventually reaches a fast pace toward the minimum. This is how &lt;strong&gt;Momentum Optimization&lt;/strong&gt; works. This is enabled by adding a momentum vector m and update the theta parameter with this new weight from &lt;em&gt;momentum vector&lt;/em&gt; $m$&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s imagine, when a ball rolls from the summit, downward the sloping side to the foot of the hill, it will start slowly then increase the speed as the momentum picks up and eventually reaches a fast pace toward the minimum. This is how &lt;strong&gt;Momentum Optimization&lt;/strong&gt; works. This is enabled by adding a momentum vector m and update the theta parameter with this new weight from &lt;em&gt;momentum vector&lt;/em&gt; $m$&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;$m$ ← $\beta m - \eta * \nabla_{\theta}J(\theta)$&lt;/p&gt;
 &lt;p&gt;$\theta_{next step}$ ← $\theta + m$&lt;/p&gt;
@@ -137,53 +137,53 @@ optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999)
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Optimizer&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Training speed&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Converge quality&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Note&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Training speed&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Converge quality&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Note&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Gradient Descent / SGD&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Medium for simple model&lt;br&gt;Slow for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Risk of converging to local minimum.&lt;br&gt;Can be controled by assigning the correct learning rate&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Medium for simple model&lt;br&gt;Slow for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Risk of converging to local minimum.&lt;br&gt;Can be controled by assigning the correct learning rate&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Momentum&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Nesterov Accelerated&lt;br&gt;Gradient&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;AdaGrad&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Usually miss global minimum&lt;br&gt;due to early stopping&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for simple quadratic problem, not NN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Usually miss global minimum&lt;br&gt;due to early stopping&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for simple quadratic problem, not NN&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;RMSProp&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for complex NN&lt;br&gt;Need to tune Decay rate for better performance&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for complex NN&lt;br&gt;Need to tune Decay rate for better performance&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Adam&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Nadam&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

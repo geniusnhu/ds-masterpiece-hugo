@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Data Science | Nhu Hoang</title>
-    <link>/categories/data-science/</link>
-      <atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geniusnhu.netlify.com/categories/data-science/</link>
+      <atom:link href="https://geniusnhu.netlify.com/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
     <description>Data Science</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_2.png</url>
+      <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Data Science</title>
-      <link>/categories/data-science/</link>
+      <link>https://geniusnhu.netlify.com/categories/data-science/</link>
     </image>
     
     <item>
       <title>Improve deep neural network training speed and performance with Optimization</title>
-      <link>/project/2020-06-14-optimization-and-neural-network-performance/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</link>
       <pubDate>Sun, 14 Jun 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-06-14-optimization-and-neural-network-performance/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://geniusnhu.netlify.app/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/&#34;&gt;Part 1: Initialization, Activation function and Batch Normalization/Gradient Clipping&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Part 2: Optimizer&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Training a deep neural network is an extremely time-consuming task especially with complex problems. Using a faster optimizer for the network is an efficient way to speed up the training speed, rather than simply using the regular Gradient Descent optimizer. Below, I will discuss and show training results/speed of 5 popular Optimizer approaches: &lt;strong&gt;Gradient Descent with momentum and Nesterov Accelerated Gradient, AdaGrad, RMSProp, Adam, and Nadam optimizer&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;One of the dangers of using inappropriate optimizers is that the model takes a long time to converge to a global minimum or it will be stuck at a local minimum, resulting in a worse model. Therefore, knowing which Optimizer suits mostly on the problem will save you tons of training hours.
-The main purpose of tuning Optimizer is to speed up the training speed but it also helps to improve the model&#39;s performance.&lt;/p&gt;
+The main purpose of tuning Optimizer is to speed up the training speed but it also helps to improve the model&amp;rsquo;s performance.&lt;/p&gt;
 &lt;h2 id=&#34;1-gradient-descent&#34;&gt;1. Gradient Descent&lt;/h2&gt;
 &lt;p&gt;Computing the gradient of the associated cost function with regard to each theta and getting the gradient vector pointing uphill, then going in the opposite direction with the vector direction (downhill) using the below equation:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -38,7 +38,7 @@ The main purpose of tuning Optimizer is to speed up the training speed but it al
 &lt;p&gt;The loss declined gradually and will be closer and closer to global minimum after several more epochs.&lt;/p&gt;
 &lt;p&gt;There are other versions of Gradient Descent such as &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; (running on a full dataset), &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; (running on random subsets of a dataset), &lt;strong&gt;Stochastic Gradient Descent - SGD&lt;/strong&gt; (picking a random instance at each step), and all have pros and cons. &lt;strong&gt;Batch Gradient Descent&lt;/strong&gt; can reach the global minimum at a terribly slow pace. &lt;strong&gt;Mini-batch Gradient Descent&lt;/strong&gt; gets to the global minimum faster than BGD but it is easier to get stuck in the local minimum, and &lt;strong&gt;SGD&lt;/strong&gt; is usually harder to get to the global minimum compared to the other two.&lt;/p&gt;
 &lt;h2 id=&#34;2-momentum-optimization&#34;&gt;2. Momentum Optimization&lt;/h2&gt;
-&lt;p&gt;Let&#39;s imagine, when a ball rolls from the summit, downward the sloping side to the foot of the hill, it will start slowly then increase the speed as the momentum picks up and eventually reaches a fast pace toward the minimum. This is how &lt;strong&gt;Momentum Optimization&lt;/strong&gt; works. This is enabled by adding a momentum vector m and update the theta parameter with this new weight from &lt;em&gt;momentum vector&lt;/em&gt; $m$&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s imagine, when a ball rolls from the summit, downward the sloping side to the foot of the hill, it will start slowly then increase the speed as the momentum picks up and eventually reaches a fast pace toward the minimum. This is how &lt;strong&gt;Momentum Optimization&lt;/strong&gt; works. This is enabled by adding a momentum vector m and update the theta parameter with this new weight from &lt;em&gt;momentum vector&lt;/em&gt; $m$&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;$m$ ← $\beta m - \eta * \nabla_{\theta}J(\theta)$&lt;/p&gt;
 &lt;p&gt;$\theta_{next step}$ ← $\theta + m$&lt;/p&gt;
@@ -137,53 +137,53 @@ optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999)
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Optimizer&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Training speed&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Converge quality&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Note&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Training speed&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Converge quality&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Note&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Gradient Descent / SGD&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Medium for simple model&lt;br&gt;Slow for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Risk of converging to local minimum.&lt;br&gt;Can be controled by assigning the correct learning rate&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Medium for simple model&lt;br&gt;Slow for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Risk of converging to local minimum.&lt;br&gt;Can be controled by assigning the correct learning rate&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Momentum&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Nesterov Accelerated&lt;br&gt;Gradient&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast for simple model&lt;br&gt;Medium for complex model&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for less complex NN with small number of features&lt;br&gt;Need to consider tuning the momentum hyperparameter&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;AdaGrad&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Usually miss global minimum&lt;br&gt;due to early stopping&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for simple quadratic problem, not NN&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Usually miss global minimum&lt;br&gt;due to early stopping&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for simple quadratic problem, not NN&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;RMSProp&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for complex NN&lt;br&gt;Need to tune Decay rate for better performance&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for complex NN&lt;br&gt;Need to tune Decay rate for better performance&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Adam&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Acceptable&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Acceptable&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Nadam&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Fast&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Good&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Fast&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Good&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Suitable for sparse gradients on complex model&lt;br&gt;with a large number of features&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -195,19 +195,19 @@ optimizer=keras.optimizers.Nadam(lr=0.001, beta_1=0.9, beta_2=0.999)
     
     <item>
       <title>Speed up training and improve performance in deep neural net</title>
-      <link>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</link>
       <pubDate>Sat, 30 May 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
-      <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&#39;s discuss it here!&lt;/p&gt;
+      <guid>https://geniusnhu.netlify.com/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/</guid>
+      <description>&lt;p&gt;Training a large and deep neural network is a time and computation consuming task and was the main reason for the unpopularity of DNN 20 years ago. As several techniques have been found out to push up the training speed, Deep learning has come back to the light. So which technique to use, how and when to use which? Let&amp;rsquo;s discuss it here!&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Performance summary is shown at the end of the post for Classification &amp;amp; Regression examples&lt;/em&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;1-applying-initialization&#34;&gt;1. Applying Initialization&lt;/h2&gt;
-&lt;p&gt;Initialization is one of the first technique used to fasten the training time of Neuron Network (as well as improve performance). Let&#39;s briefly explain its importance. In Artificial Neural Network (ANN), there are numerous connections between different neurons. One neuron in the current layer connects to several neurons in the next layer and is attached to various ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one.&lt;/p&gt;
-&lt;p&gt;However, one problem with the ANN is that if the weights aren&#39;t specified from the beginning of training, the connection weights can be either too small or too large which makes them too tiny or too massive to use further in the network. In other words, the network will fall into &lt;strong&gt;Vanishing Gradients&lt;/strong&gt; or &lt;strong&gt;Exploding Gradients&lt;/strong&gt; problems.&lt;/p&gt;
+&lt;p&gt;Initialization is one of the first technique used to fasten the training time of Neuron Network (as well as improve performance). Let&amp;rsquo;s briefly explain its importance. In Artificial Neural Network (ANN), there are numerous connections between different neurons. One neuron in the current layer connects to several neurons in the next layer and is attached to various ones in the previous layer. If 2 neurons interact frequently than another pair, their connection (i.e the weights) will be stronger than the other one.&lt;/p&gt;
+&lt;p&gt;However, one problem with the ANN is that if the weights aren&amp;rsquo;t specified from the beginning of training, the connection weights can be either too small or too large which makes them too tiny or too massive to use further in the network. In other words, the network will fall into &lt;strong&gt;Vanishing Gradients&lt;/strong&gt; or &lt;strong&gt;Exploding Gradients&lt;/strong&gt; problems.&lt;/p&gt;
 &lt;p&gt;So if the weights are set at suitable random values from the beginning of the training, these problem can be avoided. This technique was proposed by &lt;a href=&#34;http://www.jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf&#34;&gt;Glorot and Bengio&lt;/a&gt;, which then significantly lifted these unstable problems. This initialization strategy is called &lt;em&gt;Xavier initialization&lt;/em&gt; or &lt;em&gt;Glorot initialization&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;In this strategy, the connection weights between neurons are initialized randomly using the Normal distribution with $mean=0$ and variance $\sigma^2 = \frac{2}{fan_{in}+fan_{out}}$ , in which $fan_{in}$ is the number of input neurons and $fan_{out}$ is the number of output neurons.&lt;/p&gt;
 &lt;p&gt;There are 2 other popular initialization techniques beside &lt;strong&gt;Glorot&lt;/strong&gt; (used in Keras as default): &lt;strong&gt;He&lt;/strong&gt; and &lt;strong&gt;LeCun&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Let&#39;s examine different initialization techniques&amp;rsquo; effect on model performance and training time with &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s examine different initialization techniques&#39; effect on model performance and training time with &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(10, 10))
 for row in range(5):
   for col in range(5):
@@ -222,7 +222,7 @@ plt.show()
   &lt;img src=&#34;fashion_set.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
   &lt;figcaption&gt;Here is the example of Fashion MNIST, in which the predictors are a set of values in the shape of [28,28] representing the image; and the target value is 10 types of cloth and shoes (denoted from 0 to 9)&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;First, let&#39;s start with the default setting of Keras on a network consisting of 5 hidden layers and 300, 100, 50, 50, 50 neurons each.&lt;/p&gt;
+&lt;p&gt;First, let&amp;rsquo;s start with the default setting of Keras on a network consisting of 5 hidden layers and 300, 100, 50, 50, 50 neurons each.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;tf.random.set_seed(50)
 np.random.seed(50)
 
@@ -270,7 +270,7 @@ Epoch 20/20
 &lt;p&gt;There are also discussions about the performance of &lt;strong&gt;normal distribution&lt;/strong&gt; and &lt;strong&gt;uniform distribution&lt;/strong&gt; in initialization technique, but there is indeed no one shows better performance than the other one. The result of &lt;code&gt;init = keras.initializers.VarianceScaling(scale=2.,mode=&#39;fan_avg&#39;,distribution=&#39;uniform&#39;)&lt;/code&gt; does not improve for this data set (Train set accuracy: 87.05%, Val set: 86.27% and took 100.82 seconds to run)&lt;/p&gt;
 &lt;h2 id=&#34;2-get-along-with-the-right-activation-function&#34;&gt;2. Get along with the right Activation function&lt;/h2&gt;
 &lt;p&gt;Choosing an unfit activation function is one of the reasons leading to poor model performance. &lt;code&gt;sigmoid&lt;/code&gt; might be a good choice but I prefer to use &lt;strong&gt;SELU, ReLU, or its variants&lt;/strong&gt; instead.&lt;/p&gt;
-&lt;p&gt;Let&#39;s talk about &lt;strong&gt;ReLU&lt;/strong&gt; first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of a large learning rate.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s talk about &lt;strong&gt;ReLU&lt;/strong&gt; first. Simply saying, if the value is larger than 0, the function returns the value itself; else it returns 0. This activation is fast to compute but in return there will be a case that it stops outputting anything other than 0 (i.e neurons were died). This issue usually happens in case of a large learning rate.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;relu_and_lrelu.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;ReLU, Leaky ReLU and SELU&lt;/figcaption&gt;
@@ -282,7 +282,7 @@ Epoch 20/20
 else:
   return ax
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;in which a is $\alpha$, the slope of the $x$ given $x&amp;lt;0$. $\alpha$ is usually set at 0.01, serving as a small leak (that&#39;s why this technique is called LeakyReLU). Using $\alpha$ helps to stop the dying problem (i.e. slope=0).&lt;/p&gt;
+&lt;p&gt;in which a is $\alpha$, the slope of the $x$ given $x&amp;lt;0$. $\alpha$ is usually set at 0.01, serving as a small leak (that&amp;rsquo;s why this technique is called LeakyReLU). Using $\alpha$ helps to stop the dying problem (i.e. slope=0).&lt;/p&gt;
 &lt;p&gt;In case of &lt;strong&gt;Randomized LeakyReLU&lt;/strong&gt;, $\alpha$ is selected randomly given a range. This method can reduce the Overfitting issue but requires more running time due to extra computation.&lt;/p&gt;
 &lt;p&gt;One of the outperformed activation function for DNN is &lt;strong&gt;Scaled ReLU (SELU)&lt;/strong&gt;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;if x&amp;gt;0:
@@ -290,13 +290,13 @@ else:
 else:
   return Lambda*(alpha*exp(x)-alpha)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this function, each layer outputs&amp;rsquo; mean is 0 and standard deviation is 1. Note when using this activation function:&lt;/p&gt;
+&lt;p&gt;In this function, each layer outputs&#39; mean is 0 and standard deviation is 1. Note when using this activation function:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;It must be used with &lt;code&gt;kernel_initializer=&amp;quot;lecun_normal&amp;quot;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The input features must be standardized&lt;/li&gt;
-&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt;The NN&#39;s architecture must be sequential&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; It must be used with &lt;code&gt;kernel_initializer=&amp;quot;lecun_normal&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; The input features must be standardized&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; The NN&amp;rsquo;s architecture must be sequential&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Let&#39;s try different Activation functions on the &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s try different Activation functions on the &lt;code&gt;fashion MNIST&lt;/code&gt; dataset.&lt;/p&gt;
 &lt;p&gt;Result of &lt;strong&gt;LeakyReLU&lt;/strong&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Show the highest accuracy epoch
 Epoch 20/20
@@ -362,75 +362,75 @@ Epoch 20/20
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Initialization&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Train set accuracy&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Val set accuracy&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Train set accuracy&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Val set accuracy&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Running time (seconds)&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Glorot - Zeros/Ones&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;10.08%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.25%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;69.43/67.22&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10.08%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.25%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;69.43/67.22&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Glorot&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;85.32%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;84.95%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;104.5&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;None&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;85.32%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;84.95%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;104.5&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;85.26%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;85.18%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;99.03&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;85.26%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;85.18%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;99.03&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.72%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.37%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;99.76&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.72%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.37%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;99.76&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Uniform  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;87.05%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.27%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;100.82&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;87.05%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.27%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;100.82&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.7%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.15%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;101.87&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.7%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.15%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;101.87&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.67%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.3%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;113.58&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.67%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.3%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;113.58&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;LeCun&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;87.63%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.47%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;106.25&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;SELU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;87.63%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.47%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;106.25&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.45%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;86.85%&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;167.618&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.45%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;86.85%&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;167.618&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -439,61 +439,61 @@ Epoch 20/20
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th&gt;Initialization&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Activation fuction&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Train set MSE&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Val set MSE&lt;/th&gt;
-&lt;th align=&#34;center&#34;&gt;Running time (seconds)&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Activation fuction&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Train set MSE&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Val set MSE&lt;/th&gt;
+&lt;th style=&#34;text-align:center&#34;&gt;Running time (seconds)&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;Glorot&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;None&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3985&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3899&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.34&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;None&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3985&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3899&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.34&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Glorot - Normal Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3779&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3819&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.36&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3779&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3819&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.36&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.19&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.35&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.19&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Leaky ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.48&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Leaky ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.35&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.48&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3517&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.35&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;10.71&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;Randomized LeakyReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3517&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.35&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;10.71&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;LeCun&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;SELU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.3423&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.326&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;9.38&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;SELU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.3423&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.326&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;9.38&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;Batch normalization He - Normal  Dist&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;ReLU&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.4365&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;0.5728&lt;/td&gt;
-&lt;td align=&#34;center&#34;&gt;13.64&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;ReLU&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.4365&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;0.5728&lt;/td&gt;
+&lt;td style=&#34;text-align:center&#34;&gt;13.64&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -508,7 +508,7 @@ Epoch 20/20
 &lt;/figure&gt;
 &lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;div&gt;
-    These performances are subject to change depending on the dataset and NN&#39;s architecture
+    These performances are subject to change depending on the dataset and NN&amp;rsquo;s architecture
   &lt;/div&gt;
 &lt;/div&gt;
 &lt;h1 id=&#34;final-thoughts-on-this-part-&#34;&gt;Final thoughts on this part 🔆&lt;/h1&gt;
@@ -516,7 +516,7 @@ Epoch 20/20
 &lt;li&gt;Glorot Initialization is the good starting point for most of the cases. He Initialization technique sometimes performs better than Glorot (slower in the above Classification example while faster in Regression example).&lt;/li&gt;
 &lt;li&gt;ReLU or Leaky ReLU are great choices if running time is the priority.&lt;/li&gt;
 &lt;li&gt;ReLU should be avoided if high Learning rate is used.&lt;/li&gt;
-&lt;li&gt;SELU is the good choice for complex dataset and deep neural network but might be traded off by running time. However, if the NN&#39;s architecture does not allow &lt;em&gt;self-normalization&lt;/em&gt;, use ELU instead of SELU.&lt;/li&gt;
+&lt;li&gt;SELU is the good choice for complex dataset and deep neural network but might be traded off by running time. However, if the NN&amp;rsquo;s architecture does not allow &lt;em&gt;self-normalization&lt;/em&gt;, use ELU instead of SELU.&lt;/li&gt;
 &lt;li&gt;SELU and Batch Normalization cannot be applied in RNN. Gradient Clipping is the alternative strategy for Batch Normalization in RNN.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
@@ -528,7 +528,7 @@ Epoch 20/20
 &lt;ol&gt;
 &lt;li&gt;Glorot, X., &amp;amp; Bengio, Y. (2010). Understanding the difficulty of training deep feedforward neural networks. PMLR&lt;/li&gt;
 &lt;li&gt;He, K., Zhang, X., Ren,S., &amp;amp; Sun, J. (2015). Delving Deep into Rectifiers: Surpassing Human-Level Performance on ImageNet Classification. In Proceedings of the 2015 IEEE International Conference on Computer Vision (ICCV)&lt;/li&gt;
-&lt;li&gt;Geron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. O&#39;Reilly Media, Inc.,&lt;/li&gt;
+&lt;li&gt;Geron, A. (2019). Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow. O&amp;rsquo;Reilly Media, Inc.,&lt;/li&gt;
 &lt;li&gt;Xu, B., Wang, N., Chen, T., &amp;amp; Li, M. (2015). Empirical Evaluation of Rectified Activations in Convolutional Network. Retrieved from &lt;a href=&#34;https://arxiv.org/abs/1505.00853&#34;&gt;https://arxiv.org/abs/1505.00853&lt;/a&gt; on May 5, 2020.&lt;/li&gt;
 &lt;li&gt;Klambauer, G., Unterthiner, T., Mayr, A., &amp;amp; Hochreiter, S. (2017). Self-Normalizing Neural Networks. Advances in Neural Information Processing Systems 30 (NIPS 2017)&lt;/li&gt;
 &lt;/ol&gt;
@@ -537,9 +537,9 @@ Epoch 20/20
     
     <item>
       <title>Support Vector Machine explanation and application</title>
-      <link>/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-04-30-support-vector-machine-explanation-and-application/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-04-30-support-vector-machine-explanation-and-application/</guid>
       <description>&lt;p&gt;In a classification task, there are several ways to do the trick. It can be solved by separating classes by linear (straight) line, or using a tree to split up attributes according to certain thresholds until reaching to the expected level, or calculating the probability of the event to belong to which class.&lt;/p&gt;
 &lt;p&gt;Support Vector Machine is a &lt;strong&gt;non-probabilistic binary linear classifier&lt;/strong&gt; and a versatile Machine Learning algorithm that can perform both &lt;strong&gt;classification and regression tasks&lt;/strong&gt;. Another advantages of SVM is its ability to solve on both &lt;strong&gt;linear and non-linear datasets&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;Given these numerous benefits, there are many concepts and solutions in SVM that I found just a few articles/videos really gives an easily understandable explanation, especially targeting ones who are new to SVM. I hope this post reach you in the most comprehensive way.&lt;/p&gt;
@@ -591,7 +591,7 @@ Epoch 20/20
   &lt;figcaption&gt;After quadratic feature added, instances  are now distintively separated into 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;hr&gt;
-&lt;p&gt;Let&#39;s use data to further understand this.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s use data to further understand this.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import random
 np.random.seed(42)
 m = 500
@@ -622,7 +622,7 @@ plt.show();
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;h2 id=&#34;polynomial-kernel&#34;&gt;Polynomial kernel&lt;/h2&gt;
-&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;quot;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
+&lt;p&gt;I used &lt;em&gt;SVC&lt;/em&gt; class in scikit-learn with polynomial kernel at 3 degree with $coef$ hyperparameter equals to 1 (it controls how much the model is influenced by high-degree vs low-degree polynomials). $LinearSVC(loss=&amp;ldquo;hinge&amp;rdquo;)$ with an prior $PolynomialFeatures(degree=3)$ transformer will do the same trick.&lt;/p&gt;
 &lt;p&gt;If you have very large dataset, go ahead with $LinearSVC$ because it is faster than $SVC$ in handling big data.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;One thing to remember, always scaling data before training SVM&lt;/strong&gt;&lt;/p&gt;
@@ -670,7 +670,7 @@ plt.show()
   &lt;img src=&#34;poly_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&#39;s measure its performance on test set.&lt;/p&gt;
+&lt;p&gt;The model with value of C equals to 10 seems to get to the point quite well, let&amp;rsquo;s measure its performance on test set.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
 model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
 
@@ -722,7 +722,7 @@ plt.show();
   &lt;img src=&#34;RBF_kernel.png&#34; alt=&#34;&#34; style=&#34;width:100%&#34;&gt;
   &lt;figcaption&gt;Vizualize data with 2 classes&lt;/figcaption&gt;
 &lt;/figure&gt;
-&lt;p&gt;2 values of C seems to produce similar model. Let&#39;s predict test set and evaluate with metrics.&lt;/p&gt;
+&lt;p&gt;2 values of C seems to produce similar model. Let&amp;rsquo;s predict test set and evaluate with metrics.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from sklearn.metrics import f1_score
 model_list = [rbf_kernel_svm_clf,rbf_kernel_svm_clf10]
 
@@ -740,9 +740,9 @@ for model in model_list:
     
     <item>
       <title>Complete guide for Time series Visualization</title>
-      <link>/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</link>
       <pubDate>Mon, 30 Mar 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</guid>
       <description>&lt;p&gt;When visualizing time series data, there are several things to be set in mind:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Although we use the same plotting technique as for non-time-series one, but it will not work with the same implication. &lt;strong&gt;Reshaped data&lt;/strong&gt; (aka lag, difference extraction, downsampling, upsampling, etc) is essential.&lt;/li&gt;
@@ -755,7 +755,7 @@ for model in model_list:
 &lt;h2 id=&#34;1-time-series-patterns&#34;&gt;1. Time series patterns&lt;/h2&gt;
 &lt;p&gt;Time series can be describe as the combination of 3 terms: &lt;strong&gt;Trend&lt;/strong&gt;, &lt;strong&gt;Seasonality&lt;/strong&gt; and &lt;strong&gt;Cyclic&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Trend&lt;/strong&gt; is the changeing direction of the series. &lt;strong&gt;Seasonality&lt;/strong&gt; occurs when there is a seasonal factor is seen in the series. &lt;strong&gt;Cyclic&lt;/strong&gt; is similar with Seasonality in term of the repeating cycle of a similar pattern but differs in term of the length nd frequency of the pattern.&lt;/p&gt;
-&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&amp;rsquo; trend, seasonality or cyclic.&lt;/p&gt;
+&lt;p&gt;The below graph was plot simply with &lt;code&gt;plot&lt;/code&gt; function of &lt;code&gt;matplotlib&lt;/code&gt;, one of the most common way to observe the series&#39; trend, seasonality or cyclic.&lt;/p&gt;
 &lt;figure&gt;
   &lt;img src=&#34;total_sales.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
   &lt;figcaption&gt;&lt;/figcaption&gt;
@@ -924,9 +924,9 @@ plotModelResults(linear, X_train, X_test, y_train, y_test,
     
     <item>
       <title>Comprehensive understanding on Time Series forecasting</title>
-      <link>/project/2020-03-05-time-series-forecasting/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</link>
       <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-03-05-time-series-forecasting/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-03-05-time-series-forecasting/</guid>
       <description>&lt;h2 id=&#34;1-what-is-time-series&#34;&gt;1. What is Time Series&lt;/h2&gt;
 &lt;p&gt;Time series is a sequence of value corresponding with time. Retail sales data, Daily temperature, production, demand, natural reserves are time series data because the later values depend on their historical values.&lt;/p&gt;
 &lt;h2 id=&#34;2-what-makes-up-time-series&#34;&gt;2. What makes up Time Series&lt;/h2&gt;
@@ -1064,7 +1064,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;The ARIMA model seems to perform well in early predicted value and gets worse in later predicted values.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id=&#34;one-question-emerged-does-this-model-truly-capture-the-values-of-the-time-series-data&#34;&gt;One question emerged, does this model truly capture the values of the time series data?&lt;/h4&gt;
-&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&#39;s residual with other periods&amp;rsquo; ones.&lt;/p&gt;
+&lt;p&gt;It is helpful to take a look at the &lt;strong&gt;Residual&lt;/strong&gt; of the model (or the &lt;strong&gt;diference between predicted values and actual values&lt;/strong&gt;). Examining the residuals of the forecasting model is suggested to evaluate whether the specified model has adequately captured the information of the data. This can be done through exploring the correlation of one period&amp;rsquo;s residual with other periods&#39; ones.&lt;/p&gt;
 &lt;p&gt;The Residuals of a &lt;strong&gt;good time series forecasting model&lt;/strong&gt; have the following properties:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are &lt;strong&gt;uncorrelated&lt;/strong&gt;&lt;/li&gt;
@@ -1073,7 +1073,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 &lt;li&gt;Residuals should have &lt;strong&gt;constant variance&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;If the result is lack of any of the above attributes, the forecasting model can be further improved.&lt;/p&gt;
-&lt;p&gt;Let&#39;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s compute the Residuals Autocorrelation and judge the result.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Compute Residual
 train_pred = stepwise_model.predict(n_periods=106)
 r_train = train - train_pred
@@ -1119,7 +1119,7 @@ plt.hlines(y=0, xmin=0, xmax=len(residual), linestyles=&#39;dashed&#39;)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;residual_variance.png&#34;
 style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Let&#39;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s judge the Autocorrelation of Residual based on the following criteria:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Residuals are uncorrelated: the Residual series is still observed some correlations with its lags.&lt;/li&gt;
 &lt;li&gt;Residuals have zero or nearly-zero mean (which means the model is unbiased in any directions): the mean is -6308833.905274585. So this criteria is not met.&lt;/li&gt;
@@ -1147,12 +1147,12 @@ def ts_train_test_split(X, y, test_size):
     
     <item>
       <title>ARIMA Autoregressive Integrated Moving Average model family</title>
-      <link>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
+      <link>https://geniusnhu.netlify.com/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
+      <guid>https://geniusnhu.netlify.com/project/2020-01-26-arima-autoregressive-intergreated-moving-average/</guid>
       <description>&lt;h2 id=&#34;1concept-introduction&#34;&gt;1.	Concept Introduction&lt;/h2&gt;
 &lt;p&gt;Auto Regressive Integrated Moving Average: &amp;lsquo;explains&amp;rsquo; a given time series based on its own past values. ARIMA is expressed as $ARIMA(p,d,q)$&lt;/p&gt;
-&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&#39;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
+&lt;p&gt;The evolution of ARIMA started with the model ARMA or Auto Regressive Moving Average. However, this model does not include the &lt;strong&gt;Integrated term&lt;/strong&gt;, or differencing order (I&amp;rsquo;ll talk about this later on) so this model can only be used with &lt;strong&gt;Stationary data&lt;/strong&gt;. For &lt;strong&gt;non-stationary data&lt;/strong&gt;, we will use ARIMA.&lt;/p&gt;
 &lt;p&gt;There are 3 parts in the ARIMA model: &lt;strong&gt;Auto Regressive (AR)&lt;/strong&gt; $p$, &lt;strong&gt;Integrated (I)&lt;/strong&gt; $d$, &lt;strong&gt;Moving Average (MA)&lt;/strong&gt; $q$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -1183,7 +1183,7 @@ $Y_{t}=m_1\xi_{t-1}+\xi_t$&lt;/p&gt;
 &lt;p&gt;$\hat{Y_{t}}-Y_{t-1}=\mu$&lt;/p&gt;
 &lt;p&gt;In other word, &lt;strong&gt;Random walk&lt;/strong&gt; is the $AR(1)$ model with coefficient $\beta_1=0$.&lt;/p&gt;
 &lt;p&gt;Therefore, to test this hypothesis, we use hypothesis testing with &lt;em&gt;null hypothesis&lt;/em&gt; $H_0 = 1$ vs. $H_1 \neq 1 $. The $AR(1)$ model is fitted to the data and we examine the coefficient. If the coefficient is statistically significantly different than 1, we can conclude that the data is predictable and vice versa.&lt;/p&gt;
-&lt;p&gt;Let&#39;s work with some data.&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s work with some data.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;plt.figure(figsize=(15,8));
 data.plot()
 &lt;/code&gt;&lt;/pre&gt;
@@ -1199,7 +1199,7 @@ data.plot()
 &lt;p&gt;These plots show a high probability that the data is not &lt;strong&gt;Stationary&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;On the other hand, this data shows a seasonlity trend so instead of ARIMA, wI will use SARIMA, another seasonal-detected ARIMA model.&lt;/p&gt;
 &lt;p&gt;SARIMA is denoted as $SARIMA(p,d,q)(P,D,Q)m$&lt;/p&gt;
-&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&#39;s Stationarity&lt;/h2&gt;
+&lt;h2 id=&#34;3-confirm-the-datas-stationarity&#34;&gt;3. Confirm the data&amp;rsquo;s Stationarity&lt;/h2&gt;
 &lt;p&gt;It is essential to confirm the data to be stationary or not because this impacts directly to your model selection for the highest accuracy.&lt;/p&gt;
 &lt;p&gt;There are several methods to examine the data. One of the most statistical accurate way is the &lt;strong&gt;Augmented Dicky-Fuller&lt;/strong&gt; method in which it tests the data with 2 hypothesis. The &lt;strong&gt;Null hypothesis&lt;/strong&gt; is not staionary and the &lt;strong&gt;alternative hypothese&lt;/strong&gt; is stationary.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Run test
@@ -1221,7 +1221,7 @@ Critical Values:
 &lt;p&gt;p-value is higher than 0.05 so we fail to reject the Null hypothesis which means the data is stationary.&lt;/p&gt;
 &lt;h2 id=&#34;4-differencing-the-data&#34;&gt;4. Differencing the data&lt;/h2&gt;
 &lt;p&gt;Differencing is the methid to stationarize the time series data.&lt;/p&gt;
-&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&#39;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
+&lt;p&gt;There is quite a clear 3-month seasonality with this data so I&amp;rsquo;ll conduct 3 month seasonaliry differencing.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Difference the orginal sales data
 plt.figure(figsize=(15,8));
 train_diff_seasonal = train - train.shift(3)
@@ -1248,7 +1248,7 @@ Critical Values:
   &lt;figcaption&gt;Figure 3: Seasonal differencing with order of 3&lt;/figcaption&gt;
 &lt;/figure&gt;
 &lt;p&gt;The data became stationary with p-value of the test is less than 0.05.
-Let&#39;s examine ACF and PACF of the data&lt;/p&gt;
+Let&amp;rsquo;s examine ACF and PACF of the data&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Split train, validation and test sets
 train = data[:84]
 validation = data[84:108]
@@ -1267,7 +1267,7 @@ plt.show()
 &lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;Some observation&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;With the p-value from the test is now significantly lower than 0.05, and the number of significantly peaks in ACF has dropped, the data has become stationary.
-Let&#39;s set the parameters for SARIMA&lt;/p&gt;
+Let&amp;rsquo;s set the parameters for SARIMA&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$p$ is most probably 3 as this is the last significant lag on the PACF.&lt;/li&gt;
 &lt;li&gt;$d$ should equal 0 as we do not have differencing (only seasonal differencing and this will be reflected later on)&lt;/li&gt;
@@ -1361,10 +1361,10 @@ metrics.mean_absolute_error(y_test, y_pred)
     
     <item>
       <title>Practical flow of a Data Science Project</title>
-      <link>/2020/01/26/practical-flow-of-a-data-science-project/</link>
+      <link>https://geniusnhu.netlify.com/2020/01/26/practical-flow-of-a-data-science-project/</link>
       <pubDate>Sun, 26 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/26/practical-flow-of-a-data-science-project/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&#39;s requests?&lt;/strong&gt;&lt;/p&gt;
+      <guid>https://geniusnhu.netlify.com/2020/01/26/practical-flow-of-a-data-science-project/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Have you ever wondered why you, a talented Data Scientist, is not an adviser or a consultant for business, but just a normal employee spending time solving other&amp;rsquo;s requests?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;This is such a common complaint that I heard so many times from my friends, my fellows and especially from the junior. Years ago during the beginning of my career, I was also a victim of this trap. Now, I realized that this is a real &lt;strong&gt;bottleneck&lt;/strong&gt; of Data Scientist and I want to share my experience to others so that it will help other Data Scientist achieving a brighter career.&lt;/p&gt;
 &lt;p&gt;Whenever I meet other Data Science fellows, most of the time was spent talking about RNN, NLP, Deep learning, or Machine learning algorithms. But when I called on a question of why they used RNN instead of Deep learning or how their model supports the business, they could either provide an unconvincing reason or stay on a lengthy explanation of concept, algorithm without a comprehensive business thinking.&lt;/p&gt;
 &lt;p&gt;It is a routine for a Data Scientist to saturate with &lt;strong&gt;technical models&lt;/strong&gt; while understates the role of &lt;strong&gt;business mindset&lt;/strong&gt;. However, I totally do not deny the integral role of technical work of a data scientist, I only want to emphasize the importance of &lt;strong&gt;understanding the business concept at first before any other activities&lt;/strong&gt;.&lt;/p&gt;
@@ -1394,7 +1394,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;p&gt;&lt;strong&gt;Ask about the background of the question&lt;/strong&gt;, why and how they come up with the request after you receive it.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&#39;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Be sure that the request is your responsibility to answer&lt;/strong&gt;. If your company has several Data teams such as Data Scientist, Data Analyst and BI, make sure to understand the Role &amp;amp; Responsibility of each team and know when to jump in and when to leap out. However, don&amp;rsquo;t ever say &lt;em&gt;&amp;ldquo;This is not my job. Ask BI&amp;rdquo;&lt;/em&gt;. Instead, show them that you know everything about company and data &lt;em&gt;&amp;ldquo;With your request, the BI team has already got the data that can help with your question, I suggest you to meet BI and ask for sales and churn rate data of the last 3 years&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Engage with other teams in the company&lt;/strong&gt; to frequently get updates about other things happened within your company. Moreover, it is extremely important to always raise up questions such as &lt;em&gt;&amp;ldquo;What are the latest company strategy, calendar, current key projects and recent performance?&amp;quot;&lt;/em&gt; or &lt;em&gt;&amp;ldquo;Do I understand the vision and objectives of the projects that are critical to my company?&amp;quot;&lt;/em&gt;&lt;/p&gt;
@@ -1408,7 +1408,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;p&gt;This part is to place the methodology for the analysis&lt;/p&gt;
 &lt;p&gt;This step requires a broad knowledge on either &lt;strong&gt;statistical models&lt;/strong&gt; or &lt;strong&gt;machine learning&lt;/strong&gt; approached. In some companies, especially non-tech savvy ones, a data scientist is in charge of both analytics and data science work stream.&lt;/p&gt;
 &lt;p&gt;With a mixed role of Analytics and Data Science, the approaches for the problem will also diversified with various concepts and models. For example: Linear Regression cannot be used to segment customers or Descriptive analysis cannot predict customer churn.&lt;/p&gt;
-&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&#39;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&#39;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
+&lt;p&gt;At first, choosing methodology seems to be effortless but indeed always drives you crazy. If the Sales Director asked Data Science team to &lt;strong&gt;forecast the sales for next year based on the amount of budget spending while putting online appearance as company&amp;rsquo;s focus&lt;/strong&gt;, then which approach/model should be used? If the business wanted the &lt;strong&gt;forecast based on the market movement with the outlook of maintaining the current company&amp;rsquo;s leadership position&lt;/strong&gt;, which approach is correct?&lt;/p&gt;
 &lt;p&gt;What you can do more:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1429,14 +1429,14 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;/ul&gt;
 &lt;h3 id=&#34;3-acquire-the-appropriate-data&#34;&gt;3. Acquire the appropriate data&lt;/h3&gt;
 &lt;p&gt;After identifying the business questions and the approach above, set up data requirement and extract the appropriate data from the data warehouse are the next thing.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&#39;s birthday information for the task of predicting churn probability?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Data selection&lt;/strong&gt; sounds to be straightforward but indeed complicated. To solve the business questions, which kind of data is in need of. For example, is it necessary to have customer&amp;rsquo;s birthday information for the task of predicting churn probability?&lt;/p&gt;
 &lt;p&gt;Ingest sufficient data will save you tons of effort afterward. Bear in mind the unspoken truth: &lt;em&gt;Garbage in is Garbage out&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Two major problems that usually occur during Data Collection&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;The unavailability of data&lt;/li&gt;
 &lt;li&gt;The bias of training data&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&#39;s look at the unavailability of data&lt;/h4&gt;
+&lt;h4 id=&#34;31-first-lets-look-at-the-unavailability-of-data&#34;&gt;3.1 First, let&amp;rsquo;s look at the unavailability of data&lt;/h4&gt;
 &lt;p&gt;This problem is very common globally in which data is unable to capture at the moment of collection due to the limitation of current digital connection. For instance, it is merely impossible to acquire the &lt;em&gt;time spent in cooking at home&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;As a common sense, when the data is nonexistent, you will instantly think of way to get the data. However, you have to consider the consequences of unavailability data including cost, time, resources and if the data is indeed not too important to your model, all the effort you put into it will be down the drain.&lt;/p&gt;
 &lt;p&gt;Therefore, the solution for this case is to &lt;strong&gt;defer inaccessible data&lt;/strong&gt; and in case the model requires this data for a better result, you will have more resources and confident to invest in obtaining it in the future.&lt;/p&gt;
@@ -1454,7 +1454,7 @@ This post was written based on my experience. Hence, take it as your reference a
 &lt;/ol&gt;
 &lt;h4 id=&#34;32-second-the-bias-of-data&#34;&gt;3.2 Second, the bias of data&lt;/h4&gt;
 &lt;p&gt;This problem is serious especially &lt;strong&gt;when the training set gets bias from the beginning, the model will learnt accordingly to that bias and results into an inaccuracy prediction&lt;/strong&gt; when comparing to the real world.&lt;/p&gt;
-&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&#39;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
+&lt;p&gt;One of the most famous flaws of bias in data is the Amazon recruiting AI tool that showed bias against women. The tool reviewed candidate&amp;rsquo;s resumes in order to pick the top talents within them. The tool showed an obvious bias against women because its training data is &lt;strong&gt;not gender-neutral&lt;/strong&gt; from the beginning.&lt;/p&gt;
 &lt;p&gt;Therefore, at first hand, be careful with data and its natural distribution are critical responsibility of every Data Scientist.&lt;/p&gt;
 &lt;p&gt;What you can do more to eliminate the bias:&lt;/p&gt;
 &lt;ol&gt;
@@ -1482,14 +1482,14 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
     
     <item>
       <title>Quick deep dive at Data Scientist Skill set</title>
-      <link>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
+      <link>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</link>
       <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
+      <guid>https://geniusnhu.netlify.com/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/</guid>
       <description>&lt;p&gt;One year ago, when I truly and seriously considered improving my skill in Data Science, two questions were always lingering in my mind:&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Frankly saying, what are the skills that a Data Scientist needs?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;What skill will support me in the future and How do I improve myself in the right direction at the most efficacy?&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Moreover, some friends, acquaintances of mine reached out to me for a thought of what they should learn to develop their career as a Data Scientist.&lt;/p&gt;
-&lt;p&gt;Actually, I can share some of my experiences with them, but as you&#39;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
+&lt;p&gt;Actually, I can share some of my experiences with them, but as you&amp;rsquo;ve already known, this field evolves unpreceedingly fast, technology and new required skills change on the yearly basis at the slowest.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;What you learn today will be the old of tomorrow!&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1536,7 +1536,7 @@ style=&#34;float: left; margin-right: 10px;&#34; /&gt;&lt;/p&gt;
 }
 &lt;/code&gt;&lt;/pre&gt;
 &lt;hr&gt;
-&lt;p&gt;Now, let&#39;s explore the result.&lt;/p&gt;
+&lt;p&gt;Now, let&amp;rsquo;s explore the result.&lt;/p&gt;
 &lt;h3 id=&#34;role-and-responsibilities&#34;&gt;&lt;strong&gt;Role and Responsibilities:&lt;/strong&gt;&lt;/h3&gt;
 &lt;p&gt;A Data scientist is responsible for many tasks but the Top 3 includes:&lt;/p&gt;
 &lt;ul&gt;
