@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.7.0">
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Nhu Hoang">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Tracking, managing, and optimizing memory usage in Python is a well-understood matter but lacks a comprehensive summary of methods. This post presents the most common and efficient approaches to enhance memory utilization">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#01395e">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/agate.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa:700%7CWork+Sans&display=swap">
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-158640946-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           document.location = url;
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target);  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'UA-158640946-1', {});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+  
+
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_32x32_fill_lanczos_center_3.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hubeb4088d9e1ef3a12a3be812bce5943c_42313_192x192_fill_lanczos_center_3.png">
+
+  <link rel="canonical" href="https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/">
+
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@nhu_hoang">
+  <meta property="twitter:creator" content="@nhu_hoang">
+  
+  <meta property="og:site_name" content="Nhu Hoang">
+  <meta property="og:url" content="https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/">
+  <meta property="og:title" content="Optimize Memory Tips in Python | Nhu Hoang">
+  <meta property="og:description" content="Tracking, managing, and optimizing memory usage in Python is a well-understood matter but lacks a comprehensive summary of methods. This post presents the most common and efficient approaches to enhance memory utilization"><meta property="og:image" content="https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/featured.jpg">
+  <meta property="twitter:image" content="https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2022-01-01T00:00:00&#43;00:00">
+    
+    <meta property="article:modified_time" content="2022-01-01T00:00:00&#43;00:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/"
+  },
+  "headline": "Optimize Memory Tips in Python",
+  
+  "image": [
+    "https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/featured.jpg"
+  ],
+  
+  "datePublished": "2022-01-01T00:00:00Z",
+  "dateModified": "2022-01-01T00:00:00Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Nhu Hoang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nhu Hoang",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "img/https://geniusnhu.netlify.com/"
+    }
+  },
+  "description": "Tracking, managing, and optimizing memory usage in Python is a well-understood matter but lacks a comprehensive summary of methods. This post presents the most common and efficient approaches to enhance memory utilization"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Optimize Memory Tips in Python | Nhu Hoang</title>
+
+
+
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    
+
+</head>
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+  
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_3.png" alt="Nhu Hoang"></a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/"><img src="/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_0x70_resize_lanczos_3.png" alt="Nhu Hoang"></a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>About</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#portfolios"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#posts"><span>Posts/News</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#skills"><span>Experience/Skill</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/files/cv.pdf"><span>CV</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>Optimize Memory Tips in Python</h1>
+
+  
+  <p class="page-subtitle">Optimize Memory Effectively in Python</p>
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+
+
+  
+  <span><a href="/authors/admin/">Nhu Hoang</a></span>
+
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Jan 1, 2022
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/project/2022-01-01-optimize-memory-tips-in-python/#disqus_thread"></a>
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/categories/data-science/">Data Science</a></span>
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 1200px; max-height: 764px;">
+  <div style="position: relative">
+    <img src="/project/2022-01-01-optimize-memory-tips-in-python/featured_hu8c91cc3237540672477bfa716bf7981a_96398_1200x0_resize_q90_lanczos.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p>Memory management in Python is not a simple issue to solve, it requires a decent understanding of Python objects and data structures. Unlike in C/C++, users have no control over memory management. It is taken over by Python itself. However, with some insights about how Python works and memory support modules, we can somehow seed some light on how to control this issue.</p>
+<hr>
+<h2 id="how-much-memory-is-being-allocated">How much memory is being allocated?</h2>
+<p>There are several ways to get the size of an object in Python. You can use <code>sys.getsizeof()</code> to get the exact size of the object, <code>objgraph.show_refs()</code> to visualize the structure of an object or <code>psutil.Process().memory_info().rss</code> to get all memory is allocated at the moment.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; import objgraph
+&gt;&gt;&gt; import psutil
+&gt;&gt;&gt; import pandas as pd
+
+
+&gt;&gt;&gt; ob = np.ones((1024, 1024, 1024, 3), dtype=np.uint8)
+
+### Check object 'ob' size
+&gt;&gt;&gt; sys.getsizeof(ob) / (1024 * 1024)
+3072.0001373291016
+
+### Check current memory usage of whole process (include ob and installed packages, ...)
+&gt;&gt;&gt; psutil.Process().memory_info().rss / (1024 * 1024)
+3234.19140625
+
+### Check structure of 'ob' (Useful for class object)
+&gt;&gt;&gt; objgraph.show_refs([ob], filename='sample-graph.png')
+
+### Check memory for pandas.DataFrame
+&gt;&gt;&gt; from sklearn.datasets import load_boston
+&gt;&gt;&gt; data = load_boston()
+&gt;&gt;&gt; data = pd.DataFrame(data['data'])
+&gt;&gt;&gt; print(data.info(verbose=False, memory_usage='deep'))
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 506 entries, 0 to 505
+Columns: 13 entries, 0 to 12
+dtypes: float64(13)
+memory usage: 51.5 KB
+  
+### Check memory for pandas.Series
+&gt;&gt;&gt; data[0].memory_usage(deep=True)   # deep=True to include all the memory used by underlying parts that construct the pd.Series
+4176
+
+#### deep=True to include all the memory used by underlying parts that construct the pd.Series ###
+
+</code></pre>
+<figure>
+  <img src="sample-graph.png" alt="" style="width:80%">
+  <figcaption> Structure of ‘ob’ </figcaption>
+</figure>
+<p><a href="https://docs.python.org/3/library/tracemalloc.html">tracemalloc</a> is also another choice. It is included in the Python standard library and provides block-level traces of memory allocation, statistics for the overall memory behavior of a program.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; import tracemalloc
+&gt;&gt;&gt; import numpy as np
+
+&gt;&gt;&gt; def create_array(x, y):
+&gt;&gt;&gt;     x = x**2
+&gt;&gt;&gt;     y = y**3
+&gt;&gt;&gt;     return np.ones((x, y, 1024, 3), dtype=np.uint8)
+
+&gt;&gt;&gt; tracemalloc.start()
+&gt;&gt;&gt; ### Run application
+&gt;&gt;&gt; arr = create_array(30,10)
+&gt;&gt;&gt; ### take memory usage snapshot
+&gt;&gt;&gt; snapshot = tracemalloc.take_snapshot()
+&gt;&gt;&gt; top_stats = snapshot.statistics('lineno')
+
+&gt;&gt;&gt; ### Print top 10 files allocating the most memory
+&gt;&gt;&gt; print(&quot;[ Top 10 ]&quot;)
+&gt;&gt;&gt; for stat in top_stats[:10]:
+&gt;&gt;&gt;     print(stat)
+
+
+[ Top 10 ]
+/usr/local/lib/python3.7/dist-packages/numpy/core/numeric.py:192: size=2637 MiB, count=2, average=1318 MiB
+/usr/lib/python3.7/threading.py:289: size=216 B, count=6, average=36 B
+/usr/lib/python3.7/codeop.py:141: size=189 B, count=2, average=94 B
+/usr/local/lib/python3.7/dist-packages/debugpy/_vendored/pydevd/pydevd.py:1532: size=144 B, count=2, average=72 B
+/usr/local/lib/python3.7/dist-packages/IPython/core/interactiveshell.py:2820: size=112 B, count=3, average=37 B
+/usr/lib/python3.7/queue.py:182: size=80 B, count=1, average=80 B
+/usr/lib/python3.7/queue.py:107: size=80 B, count=1, average=80 B
+/usr/lib/python3.7/threading.py:1264: size=72 B, count=1, average=72 B
+    
+## ==================================================================================
+##### Explanation #####
+## count: Number of memory blocks (int)
+## size: Total size of memory blocks in bytes (int)
+## traceback: Traceback where the memory block was allocated, Traceback instance
+
+</code></pre>
+<p>The most used file is the arr object which takes up 2 memory blocks with a total size of 2637 MiB. Other objects are minimal.</p>
+<p>Another important technique is to estimate how much memory is needed for the process to run. This can be guessed through monitoring the peak memory usage of the process. To measure peak memory, you can use the below code at the end of the process.</p>
+<pre><code class="language-python">
+### For Linux (in KiB) and MacOS (in bytes)
+from resource import getrusage, RUSAGE_SELF
+print(getrusage(RUSAGE_SELF).ru_maxrss)
+### For Windows
+import psutil
+print(psutil.Process().memory_info().peak_wset)
+
+</code></pre>
+<p>Having the peak number and the amount of data put in the process, you can, by some means, judge the amount of memory to be consumed for your next process.</p>
+<hr>
+<h1 id="optimize-memory">Optimize memory</h1>
+<h2 id="1-utilize-pytorch-dataloader">1. Utilize Pytorch DataLoader</h2>
+<p>Training a large dataset is a bottleneck for your memory and you will never be able to train a complete model given the whole dataset never fits in your memory at the same time, especially for unstructured data such as image, text, voice,… However, with Pytorch DataLoader, you manage to set up various mini-batches for the whole dataset and each is loaded uninterruptedly into your model (the number of samples depends on your memory capability). You can see <a href="https://pytorch.org/tutorials/beginner/data_loading_tutorial.html">here</a> the tutorial on using Pytorch DataLoader.</p>
+<p>However, if you want to train a Machine Learning model on tabular data without using Deep learning (hence, not using Pytorch) or you don’t have access to a Database and have to work solely on the memory, what will be the choice for memory optimization?</p>
+<h2 id="2-optimized-data-type">2. Optimized data type</h2>
+<p>By understanding how data is stored and manipulated and using the optimal data type for the tasks, it will save you huge space in memory and computation time. In Numpy, there are multiple types, including boolean (bool), integer (int), Unsigned integer (uint), float, complex, datetime64, timedelta64, object_, etc…</p>
+<pre><code class="language-python">
+### Check numpy integer
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; ii16 = np.iinfo(np.int16)
+&gt;&gt;&gt; ii16
+iinfo(min=-32768, max=32767, dtype=int16)
+### Access min value
+&gt;&gt;&gt; ii16.min
+-32768
+
+</code></pre>
+<p>I narrow them down to <strong>uint, int, and float</strong> given these are the most common when training models, handling data in Python. Depending on different needs and objectives, using sufficient data types becomes vital know-how. To check type minimum and maximum values, you can use function <code>numpy.iinfo()</code>, <code>and numpy.finfo()</code> for float.</p>
+<p>Below is the summary information for each type.</p>
+<figure>
+  <img src="number_memory.png" alt="" style="width:80%">
+  <figcaption>  </figcaption>
+</figure>
+<p>The CSV file size doubles if the data type is converted to <code>numpy.float64</code>, which is the default type of numpy.array, compared to <code>numpy.float32</code>. Therefore, <strong>float32</strong> is one of the optimal ones to use (Pytorch datatype is also <strong>float32</strong>).</p>
+<p>As the default data type <code>numpy.float()</code> is <strong>float64</strong> and <code>numpy.int()</code> is <strong>int64</strong>, remember to define the dtype when creating numpy array will save a huge amount of memory space.</p>
+<p>When working with DataFrame, there will be another usual type which is <strong>“object”</strong>. Converting from object to category for feature having various repetitions will help computation time faster.</p>
+<p>Below is an example function to optimize the pd.DataFrame data type for scalars and strings.</p>
+<pre><code class="language-python">
+def data_optimize(df, object_option=False):
+    &quot;&quot;&quot;Reduce the size of the input dataframe
+    Parameters
+    ----------
+    df: pd.DataFrame
+        input DataFrame
+    object_option : bool, default=False
+        if true, try to convert object to category
+    Returns
+    -------
+    df: pd.DataFrame
+        data type optimized output dataframe
+    &quot;&quot;&quot;
+
+    # loop columns in the dataframe to downcast the dtype
+    for col in df.columns:
+        # process the int columns
+        if df[col].dtype == 'int':
+            col_min = df[col].min()
+            col_max = df[col].max()
+            # if all are non-negative, change to uint
+            if col_min &gt;= 0:
+                if col_max &lt; np.iinfo(np.uint8).max:
+                    df[col] = df[col].astype(np.uint8)
+                elif col_max &lt; np.iinfo(np.uint16).max:
+                    df[col] = df[col].astype(np.uint16)
+                elif col_max &lt; np.iinfo(np.uint32).max:
+                    df[col] = df[col].astype(np.uint32)
+                else:
+                    df[col] = df[col]
+            else:
+                # if it has negative values, downcast based on the min and max
+                if col_max &lt; np.iinfo(np.int8).max and col_min &gt; np.iinfo(np.int8).min:
+                    df[col] = df[col].astype(np.int8)
+                elif col_max &lt; np.iinfo(np.int16).max and col_min &gt; np.iinfo(np.int16).min:
+                    df[col] = df[col].astype(np.int16)
+                elif col_max &lt; np.iinfo(np.int32).max and col_min &gt; np.iinfo(np.int32).min:
+                    df[col] = df[col].astype(np.int32)
+                else:
+                    df[col] = df[col]
+                    
+        # process the float columns
+        elif df[col].dtype == 'float':
+            col_min = df[col].min()
+            col_max = df[col].max()
+            # downcast based on the min and max
+            if col_min &gt; np.finfo(np.float32).min and col_max &lt; np.finfo(np.float32).max:
+                df[col] = df[col].astype(np.float32)
+            else:
+                df[col] = df[col]
+
+        if object_option:
+            if df[col].dtype == 'object':
+                if len(df[col].value_counts()) &lt; 0.5 * df.shape[0]:
+                    df[col] = df[col].astype('category')
+
+    return df
+
+</code></pre>
+<p>Another way to easily and efficiently reduce <code>pd.DataFrame</code> memory footprint is to import data with specific columns using <code>usercols</code> parameters in <code>pd.read_csv()</code></p>
+<h2 id="3-avoid-using-global-variables-instead-utilize-local-objects">3. Avoid using global variables, instead utilize local objects</h2>
+<p>Python is faster at retrieving a local variable than a global one. Moreover, declaring too many variables as global leads to Out of Memory issue as these remain in the memory till program execution is completed while local variables are deleted as soon as the function is over and release the memory space which it occupies. Read more at <a href="https://towardsdatascience.com/the-real-life-skill-set-that-data-scientists-must-master-8746876d5b2e">The real-life skill set that data scientists must master</a></p>
+<h2 id="4-use-yield-keyword">4. Use yield keyword</h2>
+<p>Python yield returns a generator object, which converts the expression given into a generator function. To get the values of the object, it has to be iterated to read the values given to the yield. To read the generator’s values, you can use <code>list()</code>, for loop, or <code>next()</code>.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; def say_hello():
+&gt;&gt;&gt;    yield &quot;HELLO!&quot;
+&gt;&gt;&gt; SENTENCE = say_hello()
+&gt;&gt;&gt; print(next(SENTENCE))
+HELLO!
+
+</code></pre>
+<p>However, generators are for one-time use objects. If you access it the second time, it returns empty.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; def say_hello():
+&gt;&gt;&gt;    yield &quot;HELLO!&quot;
+&gt;&gt;&gt; SENTENCE = say_hello()
+&gt;&gt;&gt; print(next(SENTENCE))
+HELLO!
+&gt;&gt;&gt; print(&quot;calling the generator again: &quot;, list(SENTENCE))
+calling the generator again: []
+
+</code></pre>
+<p>As there is no value returned unless the generator object is iterated, no memory is used when the Yield function is defined, while calling Return in a function leads to the allocation in memory.</p>
+<p>Hence, <strong>Yield</strong> is suitable for large dataset, or when you don’t need to store all the output values but just one value for each iteration of the main function.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; my_generator_list = (i*2 for i in range(100000))
+&gt;&gt;&gt; print(f&quot;My generator is {sys.getsizeof(my_generator_list)} bytes&quot;)
+My generator is 128 bytes
+&gt;&gt;&gt; timeit(my_generator_list)
+10000000 loops, best of 5: 32 ns per loop
+  
+&gt;&gt;&gt; my_list = [i*2 for i in range(1000000)]
+&gt;&gt;&gt; print(f&quot;My list is {sys.getsizeof(my_list)} bytes&quot;)
+My list is 824472 bytes
+&gt;&gt;&gt; timeit(my_list)
+10000000 loops, best of 5: 34.5 ns per loop
+
+</code></pre>
+<p>Looking at the above code, the list comprehension is 6441 times heavier than the generator and runs slower than the other generator.</p>
+<h2 id="5-built-in-optimizing-methods-of-python">5. Built-in Optimizing methods of Python</h2>
+<p>Use Python Built-in Functions to improve code performance. Check the <a href="https://docs.python.org/3/library/functions.html">list</a> of functions.</p>
+<h3 id="utilize-__slots__-in-defining-class">Utilize <strong>slots</strong> in defining class</h3>
+<p>Python class objects’ attributes are stored in the form of a dictionary. Thus, defining thousands of objects is the same as allocating thousands of dictionaries to the memory space. And adding <code>__slots__</code> (which reduces the wastage of space and speeds up the program by allocating space for a fixed amount of attributes.)</p>
+<pre><code class="language-python">
+import numpy as np
+import pandas as pd
+import objgraph
+
+### class without __slots__
+class PointWithDict():
+    def __init__(self, iters):
+        self.iters = iters
+    def convert(self):
+        s = [&quot;xyz&quot;]*self.iters
+        s = &quot;&quot;.join(s)
+        assert len(s) == 3*iters
+        
+w_dict = PointWithDict(10000)
+objgraph.show_refs([w_dict], filename='PointWithDict_structure.png')
+
+### class using __slots__
+class PointWithSlots():
+    __slots__ = &quot;iters&quot;
+    def __init__(self, iters):
+        self.iters = iters
+    def convert(self):
+        s = [&quot;xyz&quot;]*self.iters
+        s = &quot;&quot;.join(s)
+        assert len(s) == 3*iters
+        
+w_slots = PointWithSlots(10000)
+objgraph.show_refs([w_slots],filename='PointWithSlots_structure.png')
+
+### Check memory footprint
+&gt;&gt;&gt; print(sys.getsizeof(w_dict), sys.getsizeof(w_dict.__weakref__), sys.getsizeof(w_dict.__dict__))
+64 16 120
+&gt;&gt;&gt; print(sys.getsizeof(ob))
+56
+
+</code></pre>
+<figure>
+  <img src="PointWithDict_structure.png" alt="" style="width:80%">
+  <figcaption> Structure of Point module without __slots__  </figcaption>
+</figure>
+<figure>
+  <img src="PointWithSlots_structure.png" alt="" style="width:80%">
+  <figcaption> Structure of Point module with __slots__, there is no __dict__ anymore </figcaption>
+</figure>
+<p>Regarding memory usage, given there is no longer <code>__dict__</code> in a class object, the memory space reduces noticeably from (64+16+120)=200 to 56 bytes.</p>
+<h3 id="use-join-instead-of--to-concatenate-string">Use join() instead of ‘+’ to concatenate string</h3>
+<p>As strings are immutable, every time you add an element to a string by the “+” operator, a new string will be allocated in memory space. The longer the string, the more memory consumed, the less efficient the code becomes. Using <code>join()</code> can improve speed &gt;30% vs ‘+’ operator.</p>
+<pre><code class="language-python">
+### Concatenate string using '+' operation
+def add_string_with_plus(iters):
+    s = &quot;&quot;
+    for i in range(iters):
+        s += &quot;abc&quot;
+    assert len(s) == 3*iters
+    
+### Concatenate strings using join() function
+def add_string_with_join(iters):
+    l = []
+    for i in range(iters):
+        l.append(&quot;abc&quot;)
+    s = &quot;&quot;.join(l)
+    assert len(s) == 3*iters
+    
+### Compare speed
+&gt;&gt;&gt; timeit(add_string_with_plus(10000))
+100 loops, best of 5: 3.74 ms per loop
+&gt;&gt;&gt; timeit(add_string_with_join(10000))
+100 loops, best of 5: 2.3 ms per loop
+
+</code></pre>
+<p>There are other methods to improve speed and save memory, check details <a href="https://wiki.python.org/moin/PythonSpeed">here</a>.</p>
+<h3 id="itertools">itertools</h3>
+<pre><code class="language-python">import numpy as np
+import itertools
+import sys
+
+def append_matrix_with_itertools(X, Y):
+  
+    &quot;&quot;&quot; Loop matrix using itertools.product()
+    &quot;&quot;&quot;
+    
+    MTX = np.zeros((X, Y))
+    for i, j in itertools.product(range(X), range(Y)):
+        if (i%2==0) &amp; (i%3==1):
+            MTX[i, j] = i**2/10
+            
+    return MTX
+
+def append_matrix_with_loop(X, Y):
+  
+    &quot;&quot;&quot; Loop matrix using normal for loop
+    &quot;&quot;&quot;
+    
+     MTX = np.zeros((X, Y))
+    for i in range(X):
+        for j in range(Y):
+            if (i%2==0) &amp; (i%3==1):
+                MTX[i, j] = i**2/10
+    return MTX
+
+
+&gt;&gt;&gt; MTX_itertools = append_matrix_with_itertools(MTX.shape[0], MTX.shape[1])
+&gt;&gt;&gt; MTX_loop = append_matrix_with_loop(MTX.shape[0], MTX.shape[1])
+
+### Matrix size
+&gt;&gt;&gt; print(sys.getsizeof(MTX_itertools)/ (1024 * 1024))
+&gt;&gt;&gt; print(sys.getsizeof(MTX_loop)/ (1024 * 1024))
+7.6295013427734375
+7.6295013427734375
+
+### Run time
+&gt;&gt;&gt; timeit(append_matrix_with_itertools(1000, 1000))
+1 loop, best of 5: 234 ms per loop
+&gt;&gt;&gt; timeit(append_matrix_with_loop(1000, 1000))
+1 loop, best of 5: 347 ms per loop
+
+</code></pre>
+<p>Or flatten a list with <code>itertools.chain()</code></p>
+<pre><code class="language-python">
+### Concatenate string using '+' operation
+def add_string_with_plus(iters):
+    s = &quot;&quot;
+    for i in range(iters):
+        s += &quot;abc&quot;
+    assert len(s) == 3*iters
+    
+### Concatenate strings using join() function
+def add_string_with_join(iters):
+    l = []
+    for i in range(iters):
+        l.append(&quot;abc&quot;)
+    s = &quot;&quot;.join(l)
+    assert len(s) == 3*iters
+    
+### Compare speed
+&gt;&gt;&gt; timeit(add_string_with_plus(10000))
+100 loops, best of 5: 3.74 ms per loop
+&gt;&gt;&gt; timeit(add_string_with_join(10000))
+100 loops, best of 5: 2.3 ms per loop
+
+</code></pre>
+<p>Check out <a href="https://docs.python.org/3/library/itertools.html#module-itertools">itertools documentation</a> for more methods. I recommend exploring:</p>
+<ul>
+<li>
+<p><code>itertools.accumulate(iterable , func)</code>: accumulate through iterable. func can be an operator.func or default Python functions such as max, min…</p>
+</li>
+<li>
+<p><code>itertools.compress(iterable, selectors)</code>: filters the iterable with another (the other object can be treated as a condition)</p>
+</li>
+<li>
+<p><code>itertools.filterfalse(predicate, iterable)</code>: filter and drop values that satisfy the predicate. This is useful and fast for filtering a list object.</p>
+</li>
+<li>
+<p><code>itertools.repeat(object[, times])</code>: repeat a object value N times. However, I prefer using list multiplication <code>['hi']*1000</code> to repeat ‘hi’ 1000 times than using <code>itertools.repeat('hi', 1000)</code> (12.2 µs per loop vs 162 µs per loop respectively)</p>
+</li>
+<li>
+<p><code>itertools.zip_longest(*iterables, fillvalue=None)</code>: zip multiple iterables into tuples and fill None value with the value specified in fillvalue.</p>
+</li>
+</ul>
+<h2 id="6-import-statement-overhead">6. Import Statement Overhead</h2>
+<p><code>import</code> statement can be executed from anywhere. However, executing outside of a function will run much faster than the inside one, even though the package is declared as a global variable (doit2), but in return, takes up more memory space than the other one.</p>
+<figure>
+  <img src="figure.png" alt="" style="width:80%">
+  <figcaption> Comparison of import execution position </figcaption>
+</figure>
+<h2 id="7-data-chunk">7. Data chunk</h2>
+<p>I’m confident to say that most of the time you don’t use all of your data all at once and loading them in 1 big batch may crash the memory. Therefore, chunking data or load in small chunks, process the chunk of data, and save the result is one of the most useful techniques to prevent memory error.</p>
+<p>pandas lets you do that with the help of <code>chunksize</code> or <code>iterator</code> parameters in <code>pandas.read_csv()</code> and <code>pandas.read_sql()</code>. sklearn also supports training in small chunks with <code>partial_fit()</code> method for most models.</p>
+<pre><code class="language-python">
+&gt;&gt;&gt; from sklearn.linear_model import SGDRegressor
+&gt;&gt;&gt; from sklearn.datasets import make_regression
+&gt;&gt;&gt; import numpy as np
+&gt;&gt;&gt; import pandas as pd
+
+&gt;&gt;&gt; ### Load original data
+&gt;&gt;&gt; original_data = pd.read_csv('sample.csv')
+&gt;&gt;&gt; print(f'Shape of original data {original_data.shape:.f02}')
+Shape of original data (100000, 21)
+
+
+&gt;&gt;&gt; ### Load in chunk
+&gt;&gt;&gt; chunksize = 1000
+&gt;&gt;&gt; reg = SGDRegressor()
+&gt;&gt;&gt; features_columns = [str(i) for i in range(20)]
+
+&gt;&gt;&gt; ### Fit each chunk
+&gt;&gt;&gt; for train_df in pd.read_csv(&quot;sample.csv&quot;, chunksize=chunksize, iterator=True):
+&gt;&gt;&gt;     X = train_df[features_columns]
+&gt;&gt;&gt;     Y = train_df[&quot;target&quot;]
+&gt;&gt;&gt;     reg.partial_fit(X, Y)
+
+### The reg.partial_fit() method fit each chunk at a time and update weights accordingly after each the next chunk is loaded 
+
+</code></pre>
+<h1 id="take-aways-">Take-aways 📖</h1>
+<p>Handling Memory Error in Python is a tricky task and the root cause might be never been detected if you go another way around.</p>
+<ul>
+<li>
+<p>First, investigate which process/variable is the core reason leading to the memory overflown problem.
+Second, apply the applicable memory optimization methods for that object, estimate the new memory footprint and examine if the new one solves the issue.</p>
+</li>
+<li>
+<p>If not, try to optimize related processes (such as reducing whole process memory consumption to save more space for the core object).</p>
+</li>
+<li>
+<p>Try the above tips and if the trouble remains, consider building the process with chunk/batch operation with the support of an outside database service.</p>
+</li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/data-science/">Data Science</a>
+  
+  <a class="badge badge-light" href="/tags/skill/">Skill</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/&amp;text=Optimize%20Memory%20Tips%20in%20Python" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/&amp;t=Optimize%20Memory%20Tips%20in%20Python" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Optimize%20Memory%20Tips%20in%20Python&amp;body=https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/&amp;title=Optimize%20Memory%20Tips%20in%20Python" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Optimize%20Memory%20Tips%20in%20Python%20https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/&amp;title=Optimize%20Memory%20Tips%20in%20Python" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <img class="portrait mr-3" src="/authors/admin/avatar_hueadf2c06d268c6c318a52f80e38ba7bf_8103393_250x250_fill_q90_lanczos_center.JPG" alt="Avatar">
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://geniusnhu.netlify.com/">Nhu Hoang</a></h5>
+      <h6 class="card-subtitle">Data Scientist at White Narwhal Japan</h6>
+      <p class="card-text">Specialized in Recommendation system; Time series; Machine learning and Deep learning. Exploiting is my gut and exploring is my drive.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/nhu-hoang/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/geniusnhu" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://medium.com/@hoanganhquynhnhu" target="_blank" rel="noopener">
+        <i class="fab fa-medium"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+<section id="comments">
+  
+    
+
+  
+</section>
+
+
+
+
+<div class="article-widget">
+  
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/project/2021-07-30-daistats-analytics/" rel="prev">Monitor MakerDao status using Daistats statistics</a>
+  </div>
+  
+</div>
+
+</div>
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/2020/01/17/quick-deep-dive-at-data-scientist-skill-set/">Quick deep dive at Data Scientist Skill set</a></li>
+      
+      <li><a href="/project/2021-07-30-daistats-analytics/">Monitor MakerDao status using Daistats statistics</a></li>
+      
+      <li><a href="/project/2020-06-14-optimization-and-neural-network-performance/">Improve deep neural network training speed and performance with Optimization</a></li>
+      
+      <li><a href="/project/2020-05-30-speed-up-training-time-in-deep-neuron-net/">Speed up training and improve performance in deep neural net</a></li>
+      
+      <li><a href="/project/2020-03-30-complete-guide-for-time-series-visualization/">Complete guide for Time series Visualization</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.4.3/mermaid.min.js" integrity="" crossorigin="anonymous" title="mermaid"></script>
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/markdown.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.698d5460343a47b95445028aef908a41.js"></script>
+
+    
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    © 2019 Nhu Hoang<br/>Served by <a href="https://geniusnhu.netlify.app/">Netlify</a> &middot; 
+
+    Powered by the
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+    <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+<div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "nhu-hoang" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

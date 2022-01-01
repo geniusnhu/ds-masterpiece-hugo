@@ -5,12 +5,462 @@
     <link>https://geniusnhu.netlify.com/project/</link>
       <atom:link href="https://geniusnhu.netlify.com/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Recent Posts</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Recent Posts</title>
       <link>https://geniusnhu.netlify.com/project/</link>
     </image>
+    
+    <item>
+      <title>Optimize Memory Tips in Python</title>
+      <link>https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/</link>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://geniusnhu.netlify.com/project/2022-01-01-optimize-memory-tips-in-python/</guid>
+      <description>&lt;p&gt;Memory management in Python is not a simple issue to solve, it requires a decent understanding of Python objects and data structures. Unlike in C/C++, users have no control over memory management. It is taken over by Python itself. However, with some insights about how Python works and memory support modules, we can somehow seed some light on how to control this issue.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;how-much-memory-is-being-allocated&#34;&gt;How much memory is being allocated?&lt;/h2&gt;
+&lt;p&gt;There are several ways to get the size of an object in Python. You can use &lt;code&gt;sys.getsizeof()&lt;/code&gt; to get the exact size of the object, &lt;code&gt;objgraph.show_refs()&lt;/code&gt; to visualize the structure of an object or &lt;code&gt;psutil.Process().memory_info().rss&lt;/code&gt; to get all memory is allocated at the moment.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; import numpy as np
+&amp;gt;&amp;gt;&amp;gt; import sys
+&amp;gt;&amp;gt;&amp;gt; import objgraph
+&amp;gt;&amp;gt;&amp;gt; import psutil
+&amp;gt;&amp;gt;&amp;gt; import pandas as pd
+
+
+&amp;gt;&amp;gt;&amp;gt; ob = np.ones((1024, 1024, 1024, 3), dtype=np.uint8)
+
+### Check object &#39;ob&#39; size
+&amp;gt;&amp;gt;&amp;gt; sys.getsizeof(ob) / (1024 * 1024)
+3072.0001373291016
+
+### Check current memory usage of whole process (include ob and installed packages, ...)
+&amp;gt;&amp;gt;&amp;gt; psutil.Process().memory_info().rss / (1024 * 1024)
+3234.19140625
+
+### Check structure of &#39;ob&#39; (Useful for class object)
+&amp;gt;&amp;gt;&amp;gt; objgraph.show_refs([ob], filename=&#39;sample-graph.png&#39;)
+
+### Check memory for pandas.DataFrame
+&amp;gt;&amp;gt;&amp;gt; from sklearn.datasets import load_boston
+&amp;gt;&amp;gt;&amp;gt; data = load_boston()
+&amp;gt;&amp;gt;&amp;gt; data = pd.DataFrame(data[&#39;data&#39;])
+&amp;gt;&amp;gt;&amp;gt; print(data.info(verbose=False, memory_usage=&#39;deep&#39;))
+&amp;lt;class &#39;pandas.core.frame.DataFrame&#39;&amp;gt;
+RangeIndex: 506 entries, 0 to 505
+Columns: 13 entries, 0 to 12
+dtypes: float64(13)
+memory usage: 51.5 KB
+  
+### Check memory for pandas.Series
+&amp;gt;&amp;gt;&amp;gt; data[0].memory_usage(deep=True)   # deep=True to include all the memory used by underlying parts that construct the pd.Series
+4176
+
+#### deep=True to include all the memory used by underlying parts that construct the pd.Series ###
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;sample-graph.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt; Structure of ‘ob’ &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.python.org/3/library/tracemalloc.html&#34;&gt;tracemalloc&lt;/a&gt; is also another choice. It is included in the Python standard library and provides block-level traces of memory allocation, statistics for the overall memory behavior of a program.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; import tracemalloc
+&amp;gt;&amp;gt;&amp;gt; import numpy as np
+
+&amp;gt;&amp;gt;&amp;gt; def create_array(x, y):
+&amp;gt;&amp;gt;&amp;gt;     x = x**2
+&amp;gt;&amp;gt;&amp;gt;     y = y**3
+&amp;gt;&amp;gt;&amp;gt;     return np.ones((x, y, 1024, 3), dtype=np.uint8)
+
+&amp;gt;&amp;gt;&amp;gt; tracemalloc.start()
+&amp;gt;&amp;gt;&amp;gt; ### Run application
+&amp;gt;&amp;gt;&amp;gt; arr = create_array(30,10)
+&amp;gt;&amp;gt;&amp;gt; ### take memory usage snapshot
+&amp;gt;&amp;gt;&amp;gt; snapshot = tracemalloc.take_snapshot()
+&amp;gt;&amp;gt;&amp;gt; top_stats = snapshot.statistics(&#39;lineno&#39;)
+
+&amp;gt;&amp;gt;&amp;gt; ### Print top 10 files allocating the most memory
+&amp;gt;&amp;gt;&amp;gt; print(&amp;quot;[ Top 10 ]&amp;quot;)
+&amp;gt;&amp;gt;&amp;gt; for stat in top_stats[:10]:
+&amp;gt;&amp;gt;&amp;gt;     print(stat)
+
+
+[ Top 10 ]
+/usr/local/lib/python3.7/dist-packages/numpy/core/numeric.py:192: size=2637 MiB, count=2, average=1318 MiB
+/usr/lib/python3.7/threading.py:289: size=216 B, count=6, average=36 B
+/usr/lib/python3.7/codeop.py:141: size=189 B, count=2, average=94 B
+/usr/local/lib/python3.7/dist-packages/debugpy/_vendored/pydevd/pydevd.py:1532: size=144 B, count=2, average=72 B
+/usr/local/lib/python3.7/dist-packages/IPython/core/interactiveshell.py:2820: size=112 B, count=3, average=37 B
+/usr/lib/python3.7/queue.py:182: size=80 B, count=1, average=80 B
+/usr/lib/python3.7/queue.py:107: size=80 B, count=1, average=80 B
+/usr/lib/python3.7/threading.py:1264: size=72 B, count=1, average=72 B
+    
+## ==================================================================================
+##### Explanation #####
+## count: Number of memory blocks (int)
+## size: Total size of memory blocks in bytes (int)
+## traceback: Traceback where the memory block was allocated, Traceback instance
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The most used file is the arr object which takes up 2 memory blocks with a total size of 2637 MiB. Other objects are minimal.&lt;/p&gt;
+&lt;p&gt;Another important technique is to estimate how much memory is needed for the process to run. This can be guessed through monitoring the peak memory usage of the process. To measure peak memory, you can use the below code at the end of the process.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+### For Linux (in KiB) and MacOS (in bytes)
+from resource import getrusage, RUSAGE_SELF
+print(getrusage(RUSAGE_SELF).ru_maxrss)
+### For Windows
+import psutil
+print(psutil.Process().memory_info().peak_wset)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Having the peak number and the amount of data put in the process, you can, by some means, judge the amount of memory to be consumed for your next process.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h1 id=&#34;optimize-memory&#34;&gt;Optimize memory&lt;/h1&gt;
+&lt;h2 id=&#34;1-utilize-pytorch-dataloader&#34;&gt;1. Utilize Pytorch DataLoader&lt;/h2&gt;
+&lt;p&gt;Training a large dataset is a bottleneck for your memory and you will never be able to train a complete model given the whole dataset never fits in your memory at the same time, especially for unstructured data such as image, text, voice,… However, with Pytorch DataLoader, you manage to set up various mini-batches for the whole dataset and each is loaded uninterruptedly into your model (the number of samples depends on your memory capability). You can see &lt;a href=&#34;https://pytorch.org/tutorials/beginner/data_loading_tutorial.html&#34;&gt;here&lt;/a&gt; the tutorial on using Pytorch DataLoader.&lt;/p&gt;
+&lt;p&gt;However, if you want to train a Machine Learning model on tabular data without using Deep learning (hence, not using Pytorch) or you don’t have access to a Database and have to work solely on the memory, what will be the choice for memory optimization?&lt;/p&gt;
+&lt;h2 id=&#34;2-optimized-data-type&#34;&gt;2. Optimized data type&lt;/h2&gt;
+&lt;p&gt;By understanding how data is stored and manipulated and using the optimal data type for the tasks, it will save you huge space in memory and computation time. In Numpy, there are multiple types, including boolean (bool), integer (int), Unsigned integer (uint), float, complex, datetime64, timedelta64, object_, etc…&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+### Check numpy integer
+&amp;gt;&amp;gt;&amp;gt; import numpy as np
+&amp;gt;&amp;gt;&amp;gt; ii16 = np.iinfo(np.int16)
+&amp;gt;&amp;gt;&amp;gt; ii16
+iinfo(min=-32768, max=32767, dtype=int16)
+### Access min value
+&amp;gt;&amp;gt;&amp;gt; ii16.min
+-32768
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I narrow them down to &lt;strong&gt;uint, int, and float&lt;/strong&gt; given these are the most common when training models, handling data in Python. Depending on different needs and objectives, using sufficient data types becomes vital know-how. To check type minimum and maximum values, you can use function &lt;code&gt;numpy.iinfo()&lt;/code&gt;, &lt;code&gt;and numpy.finfo()&lt;/code&gt; for float.&lt;/p&gt;
+&lt;p&gt;Below is the summary information for each type.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;number_memory.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;The CSV file size doubles if the data type is converted to &lt;code&gt;numpy.float64&lt;/code&gt;, which is the default type of numpy.array, compared to &lt;code&gt;numpy.float32&lt;/code&gt;. Therefore, &lt;strong&gt;float32&lt;/strong&gt; is one of the optimal ones to use (Pytorch datatype is also &lt;strong&gt;float32&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;As the default data type &lt;code&gt;numpy.float()&lt;/code&gt; is &lt;strong&gt;float64&lt;/strong&gt; and &lt;code&gt;numpy.int()&lt;/code&gt; is &lt;strong&gt;int64&lt;/strong&gt;, remember to define the dtype when creating numpy array will save a huge amount of memory space.&lt;/p&gt;
+&lt;p&gt;When working with DataFrame, there will be another usual type which is &lt;strong&gt;“object”&lt;/strong&gt;. Converting from object to category for feature having various repetitions will help computation time faster.&lt;/p&gt;
+&lt;p&gt;Below is an example function to optimize the pd.DataFrame data type for scalars and strings.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+def data_optimize(df, object_option=False):
+    &amp;quot;&amp;quot;&amp;quot;Reduce the size of the input dataframe
+    Parameters
+    ----------
+    df: pd.DataFrame
+        input DataFrame
+    object_option : bool, default=False
+        if true, try to convert object to category
+    Returns
+    -------
+    df: pd.DataFrame
+        data type optimized output dataframe
+    &amp;quot;&amp;quot;&amp;quot;
+
+    # loop columns in the dataframe to downcast the dtype
+    for col in df.columns:
+        # process the int columns
+        if df[col].dtype == &#39;int&#39;:
+            col_min = df[col].min()
+            col_max = df[col].max()
+            # if all are non-negative, change to uint
+            if col_min &amp;gt;= 0:
+                if col_max &amp;lt; np.iinfo(np.uint8).max:
+                    df[col] = df[col].astype(np.uint8)
+                elif col_max &amp;lt; np.iinfo(np.uint16).max:
+                    df[col] = df[col].astype(np.uint16)
+                elif col_max &amp;lt; np.iinfo(np.uint32).max:
+                    df[col] = df[col].astype(np.uint32)
+                else:
+                    df[col] = df[col]
+            else:
+                # if it has negative values, downcast based on the min and max
+                if col_max &amp;lt; np.iinfo(np.int8).max and col_min &amp;gt; np.iinfo(np.int8).min:
+                    df[col] = df[col].astype(np.int8)
+                elif col_max &amp;lt; np.iinfo(np.int16).max and col_min &amp;gt; np.iinfo(np.int16).min:
+                    df[col] = df[col].astype(np.int16)
+                elif col_max &amp;lt; np.iinfo(np.int32).max and col_min &amp;gt; np.iinfo(np.int32).min:
+                    df[col] = df[col].astype(np.int32)
+                else:
+                    df[col] = df[col]
+                    
+        # process the float columns
+        elif df[col].dtype == &#39;float&#39;:
+            col_min = df[col].min()
+            col_max = df[col].max()
+            # downcast based on the min and max
+            if col_min &amp;gt; np.finfo(np.float32).min and col_max &amp;lt; np.finfo(np.float32).max:
+                df[col] = df[col].astype(np.float32)
+            else:
+                df[col] = df[col]
+
+        if object_option:
+            if df[col].dtype == &#39;object&#39;:
+                if len(df[col].value_counts()) &amp;lt; 0.5 * df.shape[0]:
+                    df[col] = df[col].astype(&#39;category&#39;)
+
+    return df
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Another way to easily and efficiently reduce &lt;code&gt;pd.DataFrame&lt;/code&gt; memory footprint is to import data with specific columns using &lt;code&gt;usercols&lt;/code&gt; parameters in &lt;code&gt;pd.read_csv()&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-avoid-using-global-variables-instead-utilize-local-objects&#34;&gt;3. Avoid using global variables, instead utilize local objects&lt;/h2&gt;
+&lt;p&gt;Python is faster at retrieving a local variable than a global one. Moreover, declaring too many variables as global leads to Out of Memory issue as these remain in the memory till program execution is completed while local variables are deleted as soon as the function is over and release the memory space which it occupies. Read more at &lt;a href=&#34;https://towardsdatascience.com/the-real-life-skill-set-that-data-scientists-must-master-8746876d5b2e&#34;&gt;The real-life skill set that data scientists must master&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;4-use-yield-keyword&#34;&gt;4. Use yield keyword&lt;/h2&gt;
+&lt;p&gt;Python yield returns a generator object, which converts the expression given into a generator function. To get the values of the object, it has to be iterated to read the values given to the yield. To read the generator’s values, you can use &lt;code&gt;list()&lt;/code&gt;, for loop, or &lt;code&gt;next()&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; def say_hello():
+&amp;gt;&amp;gt;&amp;gt;    yield &amp;quot;HELLO!&amp;quot;
+&amp;gt;&amp;gt;&amp;gt; SENTENCE = say_hello()
+&amp;gt;&amp;gt;&amp;gt; print(next(SENTENCE))
+HELLO!
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, generators are for one-time use objects. If you access it the second time, it returns empty.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; def say_hello():
+&amp;gt;&amp;gt;&amp;gt;    yield &amp;quot;HELLO!&amp;quot;
+&amp;gt;&amp;gt;&amp;gt; SENTENCE = say_hello()
+&amp;gt;&amp;gt;&amp;gt; print(next(SENTENCE))
+HELLO!
+&amp;gt;&amp;gt;&amp;gt; print(&amp;quot;calling the generator again: &amp;quot;, list(SENTENCE))
+calling the generator again: []
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As there is no value returned unless the generator object is iterated, no memory is used when the Yield function is defined, while calling Return in a function leads to the allocation in memory.&lt;/p&gt;
+&lt;p&gt;Hence, &lt;strong&gt;Yield&lt;/strong&gt; is suitable for large dataset, or when you don’t need to store all the output values but just one value for each iteration of the main function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; import sys
+&amp;gt;&amp;gt;&amp;gt; my_generator_list = (i*2 for i in range(100000))
+&amp;gt;&amp;gt;&amp;gt; print(f&amp;quot;My generator is {sys.getsizeof(my_generator_list)} bytes&amp;quot;)
+My generator is 128 bytes
+&amp;gt;&amp;gt;&amp;gt; timeit(my_generator_list)
+10000000 loops, best of 5: 32 ns per loop
+  
+&amp;gt;&amp;gt;&amp;gt; my_list = [i*2 for i in range(1000000)]
+&amp;gt;&amp;gt;&amp;gt; print(f&amp;quot;My list is {sys.getsizeof(my_list)} bytes&amp;quot;)
+My list is 824472 bytes
+&amp;gt;&amp;gt;&amp;gt; timeit(my_list)
+10000000 loops, best of 5: 34.5 ns per loop
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Looking at the above code, the list comprehension is 6441 times heavier than the generator and runs slower than the other generator.&lt;/p&gt;
+&lt;h2 id=&#34;5-built-in-optimizing-methods-of-python&#34;&gt;5. Built-in Optimizing methods of Python&lt;/h2&gt;
+&lt;p&gt;Use Python Built-in Functions to improve code performance. Check the &lt;a href=&#34;https://docs.python.org/3/library/functions.html&#34;&gt;list&lt;/a&gt; of functions.&lt;/p&gt;
+&lt;h3 id=&#34;utilize-__slots__-in-defining-class&#34;&gt;Utilize &lt;strong&gt;slots&lt;/strong&gt; in defining class&lt;/h3&gt;
+&lt;p&gt;Python class objects’ attributes are stored in the form of a dictionary. Thus, defining thousands of objects is the same as allocating thousands of dictionaries to the memory space. And adding &lt;code&gt;__slots__&lt;/code&gt; (which reduces the wastage of space and speeds up the program by allocating space for a fixed amount of attributes.)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+import numpy as np
+import pandas as pd
+import objgraph
+
+### class without __slots__
+class PointWithDict():
+    def __init__(self, iters):
+        self.iters = iters
+    def convert(self):
+        s = [&amp;quot;xyz&amp;quot;]*self.iters
+        s = &amp;quot;&amp;quot;.join(s)
+        assert len(s) == 3*iters
+        
+w_dict = PointWithDict(10000)
+objgraph.show_refs([w_dict], filename=&#39;PointWithDict_structure.png&#39;)
+
+### class using __slots__
+class PointWithSlots():
+    __slots__ = &amp;quot;iters&amp;quot;
+    def __init__(self, iters):
+        self.iters = iters
+    def convert(self):
+        s = [&amp;quot;xyz&amp;quot;]*self.iters
+        s = &amp;quot;&amp;quot;.join(s)
+        assert len(s) == 3*iters
+        
+w_slots = PointWithSlots(10000)
+objgraph.show_refs([w_slots],filename=&#39;PointWithSlots_structure.png&#39;)
+
+### Check memory footprint
+&amp;gt;&amp;gt;&amp;gt; print(sys.getsizeof(w_dict), sys.getsizeof(w_dict.__weakref__), sys.getsizeof(w_dict.__dict__))
+64 16 120
+&amp;gt;&amp;gt;&amp;gt; print(sys.getsizeof(ob))
+56
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;PointWithDict_structure.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt; Structure of Point module without __slots__  &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;PointWithSlots_structure.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt; Structure of Point module with __slots__, there is no __dict__ anymore &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Regarding memory usage, given there is no longer &lt;code&gt;__dict__&lt;/code&gt; in a class object, the memory space reduces noticeably from (64+16+120)=200 to 56 bytes.&lt;/p&gt;
+&lt;h3 id=&#34;use-join-instead-of--to-concatenate-string&#34;&gt;Use join() instead of ‘+’ to concatenate string&lt;/h3&gt;
+&lt;p&gt;As strings are immutable, every time you add an element to a string by the “+” operator, a new string will be allocated in memory space. The longer the string, the more memory consumed, the less efficient the code becomes. Using &lt;code&gt;join()&lt;/code&gt; can improve speed &amp;gt;30% vs ‘+’ operator.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+### Concatenate string using &#39;+&#39; operation
+def add_string_with_plus(iters):
+    s = &amp;quot;&amp;quot;
+    for i in range(iters):
+        s += &amp;quot;abc&amp;quot;
+    assert len(s) == 3*iters
+    
+### Concatenate strings using join() function
+def add_string_with_join(iters):
+    l = []
+    for i in range(iters):
+        l.append(&amp;quot;abc&amp;quot;)
+    s = &amp;quot;&amp;quot;.join(l)
+    assert len(s) == 3*iters
+    
+### Compare speed
+&amp;gt;&amp;gt;&amp;gt; timeit(add_string_with_plus(10000))
+100 loops, best of 5: 3.74 ms per loop
+&amp;gt;&amp;gt;&amp;gt; timeit(add_string_with_join(10000))
+100 loops, best of 5: 2.3 ms per loop
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;There are other methods to improve speed and save memory, check details &lt;a href=&#34;https://wiki.python.org/moin/PythonSpeed&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;itertools&#34;&gt;itertools&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import itertools
+import sys
+
+def append_matrix_with_itertools(X, Y):
+  
+    &amp;quot;&amp;quot;&amp;quot; Loop matrix using itertools.product()
+    &amp;quot;&amp;quot;&amp;quot;
+    
+    MTX = np.zeros((X, Y))
+    for i, j in itertools.product(range(X), range(Y)):
+        if (i%2==0) &amp;amp; (i%3==1):
+            MTX[i, j] = i**2/10
+            
+    return MTX
+
+def append_matrix_with_loop(X, Y):
+  
+    &amp;quot;&amp;quot;&amp;quot; Loop matrix using normal for loop
+    &amp;quot;&amp;quot;&amp;quot;
+    
+     MTX = np.zeros((X, Y))
+    for i in range(X):
+        for j in range(Y):
+            if (i%2==0) &amp;amp; (i%3==1):
+                MTX[i, j] = i**2/10
+    return MTX
+
+
+&amp;gt;&amp;gt;&amp;gt; MTX_itertools = append_matrix_with_itertools(MTX.shape[0], MTX.shape[1])
+&amp;gt;&amp;gt;&amp;gt; MTX_loop = append_matrix_with_loop(MTX.shape[0], MTX.shape[1])
+
+### Matrix size
+&amp;gt;&amp;gt;&amp;gt; print(sys.getsizeof(MTX_itertools)/ (1024 * 1024))
+&amp;gt;&amp;gt;&amp;gt; print(sys.getsizeof(MTX_loop)/ (1024 * 1024))
+7.6295013427734375
+7.6295013427734375
+
+### Run time
+&amp;gt;&amp;gt;&amp;gt; timeit(append_matrix_with_itertools(1000, 1000))
+1 loop, best of 5: 234 ms per loop
+&amp;gt;&amp;gt;&amp;gt; timeit(append_matrix_with_loop(1000, 1000))
+1 loop, best of 5: 347 ms per loop
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Or flatten a list with &lt;code&gt;itertools.chain()&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+### Concatenate string using &#39;+&#39; operation
+def add_string_with_plus(iters):
+    s = &amp;quot;&amp;quot;
+    for i in range(iters):
+        s += &amp;quot;abc&amp;quot;
+    assert len(s) == 3*iters
+    
+### Concatenate strings using join() function
+def add_string_with_join(iters):
+    l = []
+    for i in range(iters):
+        l.append(&amp;quot;abc&amp;quot;)
+    s = &amp;quot;&amp;quot;.join(l)
+    assert len(s) == 3*iters
+    
+### Compare speed
+&amp;gt;&amp;gt;&amp;gt; timeit(add_string_with_plus(10000))
+100 loops, best of 5: 3.74 ms per loop
+&amp;gt;&amp;gt;&amp;gt; timeit(add_string_with_join(10000))
+100 loops, best of 5: 2.3 ms per loop
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Check out &lt;a href=&#34;https://docs.python.org/3/library/itertools.html#module-itertools&#34;&gt;itertools documentation&lt;/a&gt; for more methods. I recommend exploring:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;itertools.accumulate(iterable , func)&lt;/code&gt;: accumulate through iterable. func can be an operator.func or default Python functions such as max, min…&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;itertools.compress(iterable, selectors)&lt;/code&gt;: filters the iterable with another (the other object can be treated as a condition)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;itertools.filterfalse(predicate, iterable)&lt;/code&gt;: filter and drop values that satisfy the predicate. This is useful and fast for filtering a list object.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;itertools.repeat(object[, times])&lt;/code&gt;: repeat a object value N times. However, I prefer using list multiplication &lt;code&gt;[&#39;hi&#39;]*1000&lt;/code&gt; to repeat ‘hi’ 1000 times than using &lt;code&gt;itertools.repeat(&#39;hi&#39;, 1000)&lt;/code&gt; (12.2 µs per loop vs 162 µs per loop respectively)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;itertools.zip_longest(*iterables, fillvalue=None)&lt;/code&gt;: zip multiple iterables into tuples and fill None value with the value specified in fillvalue.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;6-import-statement-overhead&#34;&gt;6. Import Statement Overhead&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;import&lt;/code&gt; statement can be executed from anywhere. However, executing outside of a function will run much faster than the inside one, even though the package is declared as a global variable (doit2), but in return, takes up more memory space than the other one.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;figure.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt; Comparison of import execution position &lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h2 id=&#34;7-data-chunk&#34;&gt;7. Data chunk&lt;/h2&gt;
+&lt;p&gt;I’m confident to say that most of the time you don’t use all of your data all at once and loading them in 1 big batch may crash the memory. Therefore, chunking data or load in small chunks, process the chunk of data, and save the result is one of the most useful techniques to prevent memory error.&lt;/p&gt;
+&lt;p&gt;pandas lets you do that with the help of &lt;code&gt;chunksize&lt;/code&gt; or &lt;code&gt;iterator&lt;/code&gt; parameters in &lt;code&gt;pandas.read_csv()&lt;/code&gt; and &lt;code&gt;pandas.read_sql()&lt;/code&gt;. sklearn also supports training in small chunks with &lt;code&gt;partial_fit()&lt;/code&gt; method for most models.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+&amp;gt;&amp;gt;&amp;gt; from sklearn.linear_model import SGDRegressor
+&amp;gt;&amp;gt;&amp;gt; from sklearn.datasets import make_regression
+&amp;gt;&amp;gt;&amp;gt; import numpy as np
+&amp;gt;&amp;gt;&amp;gt; import pandas as pd
+
+&amp;gt;&amp;gt;&amp;gt; ### Load original data
+&amp;gt;&amp;gt;&amp;gt; original_data = pd.read_csv(&#39;sample.csv&#39;)
+&amp;gt;&amp;gt;&amp;gt; print(f&#39;Shape of original data {original_data.shape:.f02}&#39;)
+Shape of original data (100000, 21)
+
+
+&amp;gt;&amp;gt;&amp;gt; ### Load in chunk
+&amp;gt;&amp;gt;&amp;gt; chunksize = 1000
+&amp;gt;&amp;gt;&amp;gt; reg = SGDRegressor()
+&amp;gt;&amp;gt;&amp;gt; features_columns = [str(i) for i in range(20)]
+
+&amp;gt;&amp;gt;&amp;gt; ### Fit each chunk
+&amp;gt;&amp;gt;&amp;gt; for train_df in pd.read_csv(&amp;quot;sample.csv&amp;quot;, chunksize=chunksize, iterator=True):
+&amp;gt;&amp;gt;&amp;gt;     X = train_df[features_columns]
+&amp;gt;&amp;gt;&amp;gt;     Y = train_df[&amp;quot;target&amp;quot;]
+&amp;gt;&amp;gt;&amp;gt;     reg.partial_fit(X, Y)
+
+### The reg.partial_fit() method fit each chunk at a time and update weights accordingly after each the next chunk is loaded 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;take-aways-&#34;&gt;Take-aways 📖&lt;/h1&gt;
+&lt;p&gt;Handling Memory Error in Python is a tricky task and the root cause might be never been detected if you go another way around.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;First, investigate which process/variable is the core reason leading to the memory overflown problem.
+Second, apply the applicable memory optimization methods for that object, estimate the new memory footprint and examine if the new one solves the issue.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If not, try to optimize related processes (such as reducing whole process memory consumption to save more space for the core object).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Try the above tips and if the trouble remains, consider building the process with chunk/batch operation with the support of an outside database service.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Monitor MakerDao status using Daistats statistics</title>

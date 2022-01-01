@@ -722,7 +722,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-categories">
-    <i class="fas fa-folder mr-1"></i><a href="/categories/visualization/">Visualization</a>, <a href="/categories/analytics/">Analytics</a></span>
+    <i class="fas fa-folder mr-1"></i><a href="/categories/tips/">Tips</a></span>
   
 
 </div>
@@ -745,7 +745,7 @@
 </div>
 
 
-<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 960px; max-height: 440px;">
+<div class="article-header container featured-image-wrapper mt-4 mb-4" style="max-width: 930px; max-height: 500px;">
   <div style="position: relative">
     <img src="/2020/04/02/automate-python-script-in-windows/featured.jpg" alt="" class="featured-image">
     
@@ -758,7 +758,7 @@
 
     <div class="article-style">
       <h3 id="step-1-create-python-script">Step 1. Create Python script</h3>
-<p>Create 2 simple scripts to print &ldquo;Hello !&rdquo; and &lsquo;How are you !&rsquo;.</p>
+<p>Create 2 simple scripts to print <strong>&ldquo;Hello !&quot;</strong> and <strong>&lsquo;How are you !'</strong></p>
 <p>Then save them in <code>C:\Users\***\Documents\python automate\</code> folder. (*** is the name of my computer)</p>
 <figure>
   <img src="1_create_script.png" alt="" style="width:60%">
@@ -766,9 +766,9 @@
 </figure>
 <h3 id="step-2-create-bash-file">Step 2. Create bash file</h3>
 <p>If only need to automate 1 python file, we can move to Step 3 directly but in case we have sevaral files needed to be run concurrently, creating a bash file is more efficient.</p>
-<p>However, in order to run bash file in Windows for python script, you should install Git for Windows. Download link is <a href="!https://gitforwindows.org/">here</a></p>
-<p>Remember to install Python and specify the path in the bash file so that the program knows where to run the scripts.</p>
-<p>Here is what it is written in the bash file.</p>
+<p>However, in order to run bash file in Windows for python script, you should install Git for Windows. Download link is <a href="https://gitforwindows.org/">here</a></p>
+<p>📒 Remember to install Python and specify the path in the bash file so that the program knows where to run the scripts.</p>
+<p>Here is what it is written in the bash file 📌</p>
 <pre><code class="language-bash">#!/bin/sh
 
 export PATH=&quot;$PATH:/c/Users/***/AppData/Local/Programs/Python/Python39&quot;
@@ -779,17 +779,17 @@ python script_2.py
 sleep 1s
 
 </code></pre>
-<p>We can move to the folder that the scripts are in (if needed) by specifying the path with <code>cd</code></p>
+<p>We can move to the folder that the scripts are in (if needed) by specifying the path with <code>cd</code> . In this case, the bash file is placed in the same folder with other 2 Python scripts.</p>
 <blockquote>
 <p>One way to confirm if the bash file works is to save and then doouble click on it. It will run the process that we set up before and if it executed correctedly, everything is on the job.</p>
 </blockquote>
 <figure>
   <img src="2_bash_run.png" alt="" style="width:60%">
-  <figcaption></figcaption>
+  <figcaption>🚦 CORRECTEDLY RUN ! CHECK ! 🚦</figcaption>
 </figure>
 <h3 id="step-3-create-a-task-to-run-in-task-scheduler">Step 3. Create a task to run in Task Scheduler</h3>
 <ol>
-<li>Type Task Scheduler in the search bar of Windows</li>
+<li>Type <strong>Task Scheduler</strong> in the search bar of Windows</li>
 <li>Click <strong>Create Basic Task</strong></li>
 <li>Set <strong>Name</strong>, <strong>Description</strong>, then <strong>Next</strong></li>
 <li>Set trigger time and frequency, then <strong>Next</strong></li>
@@ -808,9 +808,10 @@ sleep 1s
 <ol>
 <li>Recheck the path. After we set the automation, the Path is moved to <code>C:\WINDOWS\system32\</code> automatically, so we need re-specify the path to the python scripts in bash file.</li>
 </ol>
-<blockquote>
-<p>Add cd Users***\Documents&quot;python automate&quot;</p>
-</blockquote>
+<p>Add</p>
+<pre><code class="language-bash">cd C:
+cd Users\***\Documents\&quot;python automate&quot; 
+</code></pre>
 <p>New script ⬇️</p>
 <pre><code class="language-bash">#!/bin/sh
 
@@ -832,7 +833,7 @@ sleep 1s
 <p>Check if it outputs the same as one we had in Step 2</p>
 </li>
 </ol>
-<h2 id="thats-it---good-luck-">That&rsquo;s it  ! Good luck !</h2>
+<h2 id="thats-it---good-luck---">That&rsquo;s it  ! Good luck !  🔆</h2>
 
     </div>
 
