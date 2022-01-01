@@ -5,12 +5,37 @@
     <link>https://geniusnhu.netlify.com/authors/admin/</link>
       <atom:link href="https://geniusnhu.netlify.com/authors/admin/index.xml" rel="self" type="application/rss+xml" />
     <description>Nhu Hoang</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Nhu Hoang</title>
       <link>https://geniusnhu.netlify.com/authors/admin/</link>
     </image>
+    
+    <item>
+      <title>Monitor MakerDao status using Daistats statistics</title>
+      <link>https://geniusnhu.netlify.com/project/2021-07-30-daistats-analytics/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://geniusnhu.netlify.com/project/2021-07-30-daistats-analytics/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://oasis.app/&#34;&gt;MakerDAO&lt;/a&gt; is one of the 3 largest Decentralized Finance platforms in crypto currency market, which has been received a lot of attention since 2020. Maker is the place where you can deposit collateral and loan DAI (1 DAI = 1 USD).&lt;/p&gt;
+&lt;p&gt;In Maker, there are several types of vaults (loan plan in normal practice) in which accepts different cryptocurrencies and tokens as collateral. These vaults also vary in Stability Fee and Minimum collateral Ratio, which ranges from 102% to as high as 175%.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;maker_LP.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Firgure 1: Maker landing page&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;vaults.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Firgure 2: Different vaults in Maker (as of July 2021)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Now, to the main topic of this post.&lt;/p&gt;
+&lt;p&gt;Given DAI is generated as collateral is backed in Maker vault, and the total market cap of DAI is more than &lt;strong&gt;$5.5 Billion&lt;/strong&gt;, the movement of the DAI and the collateral in and out each vault tell a lot more stories than we expect. Therefore, several tracking websites and tools &lt;a href=&#34;https://github.com/makerdao/awesome-makerdao#analytics-and-metrics&#34;&gt;link&lt;/a&gt; for Maker, and one of the most useful one is &lt;a href=&#34;https://daistats.com/#/&#34;&gt;DaiStats&lt;/a&gt; . Personally, I prefer this page over others as it gives direct stats to each vault and provide other information such as amount of liquidation or auctions.&lt;/p&gt;
+&lt;p&gt;However, there is no tracking of historical data for the change corresponding to the vault throughout time, hence unable to determine the trend in overall of Maker. Thus, I created my own tracking website to observe the movement of the platform in term of Borrow.. Source of data is crawled directly from &lt;a href=&#34;https://daistats.com/#/&#34;&gt;DaiStats&lt;/a&gt; on a daily basis.&lt;/p&gt;
+&lt;p&gt;Here is the access link :&lt;/p&gt;
+&lt;h2 id=&#34;maker-tracking-apphttpsmaker-dai-statusherokuappcom&#34;&gt;&lt;a href=&#34;https://maker-dai-status.herokuapp.com/&#34;&gt;Maker tracking app&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Source code : &lt;a href=&#34;https://github.com/geniusnhu/daistats&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The app uses chart from &lt;a href=&#34;https://plotly.com/&#34;&gt;Plotly&lt;/a&gt; and serves by &lt;a href=&#34;https://streamlit.io/&#34;&gt;streamlit&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Improve deep neural network training speed and performance with Optimization</title>
@@ -735,6 +760,90 @@ for model in model_list:
 0.8544599213495534
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As expected, 2 models perform quite equivalent with C = 10 has slightly higher value and also slightly higher than the polynomial kernel model above. We can improve this with tuning hyperparameter, cross validation, add other type of feature transformation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Automate python script in Windows</title>
+      <link>https://geniusnhu.netlify.com/2020/04/02/automate-python-script-in-windows/</link>
+      <pubDate>Thu, 02 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>https://geniusnhu.netlify.com/2020/04/02/automate-python-script-in-windows/</guid>
+      <description>&lt;h3 id=&#34;step-1-create-python-script&#34;&gt;Step 1. Create Python script&lt;/h3&gt;
+&lt;p&gt;Create 2 simple scripts to print &amp;ldquo;Hello !&amp;rdquo; and &amp;lsquo;How are you !&amp;rsquo;.&lt;/p&gt;
+&lt;p&gt;Then save them in &lt;code&gt;C:\Users\***\Documents\python automate\&lt;/code&gt; folder. (*** is the name of my computer)&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;1_create_script.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;step-2-create-bash-file&#34;&gt;Step 2. Create bash file&lt;/h3&gt;
+&lt;p&gt;If only need to automate 1 python file, we can move to Step 3 directly but in case we have sevaral files needed to be run concurrently, creating a bash file is more efficient.&lt;/p&gt;
+&lt;p&gt;However, in order to run bash file in Windows for python script, you should install Git for Windows. Download link is &lt;a href=&#34;!https://gitforwindows.org/&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Remember to install Python and specify the path in the bash file so that the program knows where to run the scripts.&lt;/p&gt;
+&lt;p&gt;Here is what it is written in the bash file.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+
+export PATH=&amp;quot;$PATH:/c/Users/***/AppData/Local/Programs/Python/Python39&amp;quot;
+
+python script.py
+sleep 1s
+python script_2.py
+sleep 1s
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can move to the folder that the scripts are in (if needed) by specifying the path with &lt;code&gt;cd&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;One way to confirm if the bash file works is to save and then doouble click on it. It will run the process that we set up before and if it executed correctedly, everything is on the job.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;2_bash_run.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;h3 id=&#34;step-3-create-a-task-to-run-in-task-scheduler&#34;&gt;Step 3. Create a task to run in Task Scheduler&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Type Task Scheduler in the search bar of Windows&lt;/li&gt;
+&lt;li&gt;Click &lt;strong&gt;Create Basic Task&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Set &lt;strong&gt;Name&lt;/strong&gt;, &lt;strong&gt;Description&lt;/strong&gt;, then &lt;strong&gt;Next&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Set trigger time and frequency, then &lt;strong&gt;Next&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Specify Action with &lt;strong&gt;Start a program&lt;/strong&gt;, then &lt;strong&gt;Next&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;In &lt;strong&gt;Program/script&lt;/strong&gt;, specify path to the Git\bin\bash.exe (the bash is in the folder that we installed the Git for Windows)&lt;/li&gt;
+&lt;li&gt;In &lt;strong&gt;Add arguments (optional)&lt;/strong&gt;, write path to the above bash file (in this case is &lt;code&gt;&amp;quot;C:\Users\***\Documents\python automate\auto_commit.sh&amp;quot;&lt;/code&gt;), then &lt;strong&gt;Next&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;3_task_automation.png&#34; alt=&#34;&#34; style=&#34;width:60%&#34;&gt;
+  &lt;figcaption&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;ol start=&#34;8&#34;&gt;
+&lt;li&gt;Click &lt;strong&gt;Finish&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;step-4-check-the-run&#34;&gt;Step 4. Check the run&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Recheck the path. After we set the automation, the Path is moved to &lt;code&gt;C:\WINDOWS\system32\&lt;/code&gt; automatically, so we need re-specify the path to the python scripts in bash file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Add cd Users***\Documents&amp;quot;python automate&amp;quot;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;New script ⬇️&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;#!/bin/sh
+
+export PATH=&amp;quot;$PATH:/c/Users/***/AppData/Local/Programs/Python/Python39&amp;quot;
+
+cd C:
+cd Users/***/Documents/&amp;quot;python automate&amp;quot;/
+sleep 1s
+python script.py
+sleep 3s
+python script_2.py
+sleep 1s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;Choose the task that we has just set for the Python script and click &lt;strong&gt;Run&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Check if it outputs the same as one we had in Step 2&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;thats-it---good-luck-&#34;&gt;That&amp;rsquo;s it  ! Good luck !&lt;/h2&gt;
 </description>
     </item>
     

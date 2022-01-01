@@ -5,12 +5,37 @@
     <link>https://geniusnhu.netlify.com/categories/deep-learning/</link>
       <atom:link href="https://geniusnhu.netlify.com/categories/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <description>Deep learning</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Sun, 14 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><copyright>© 2019 Nhu HoangServed by [Netlify](https://geniusnhu.netlify.app/)</copyright><lastBuildDate>Fri, 30 Jul 2021 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://geniusnhu.netlify.com/images/logo_hubeb4088d9e1ef3a12a3be812bce5943c_42313_300x300_fit_lanczos_3.png</url>
       <title>Deep learning</title>
       <link>https://geniusnhu.netlify.com/categories/deep-learning/</link>
     </image>
+    
+    <item>
+      <title>Monitor MakerDao status using Daistats statistics</title>
+      <link>https://geniusnhu.netlify.com/project/2021-07-30-daistats-analytics/</link>
+      <pubDate>Fri, 30 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>https://geniusnhu.netlify.com/project/2021-07-30-daistats-analytics/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://oasis.app/&#34;&gt;MakerDAO&lt;/a&gt; is one of the 3 largest Decentralized Finance platforms in crypto currency market, which has been received a lot of attention since 2020. Maker is the place where you can deposit collateral and loan DAI (1 DAI = 1 USD).&lt;/p&gt;
+&lt;p&gt;In Maker, there are several types of vaults (loan plan in normal practice) in which accepts different cryptocurrencies and tokens as collateral. These vaults also vary in Stability Fee and Minimum collateral Ratio, which ranges from 102% to as high as 175%.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;maker_LP.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Firgure 1: Maker landing page&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;figure&gt;
+  &lt;img src=&#34;vaults.png&#34; alt=&#34;&#34; style=&#34;width:80%&#34;&gt;
+  &lt;figcaption&gt;Firgure 2: Different vaults in Maker (as of July 2021)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Now, to the main topic of this post.&lt;/p&gt;
+&lt;p&gt;Given DAI is generated as collateral is backed in Maker vault, and the total market cap of DAI is more than &lt;strong&gt;$5.5 Billion&lt;/strong&gt;, the movement of the DAI and the collateral in and out each vault tell a lot more stories than we expect. Therefore, several tracking websites and tools &lt;a href=&#34;https://github.com/makerdao/awesome-makerdao#analytics-and-metrics&#34;&gt;link&lt;/a&gt; for Maker, and one of the most useful one is &lt;a href=&#34;https://daistats.com/#/&#34;&gt;DaiStats&lt;/a&gt; . Personally, I prefer this page over others as it gives direct stats to each vault and provide other information such as amount of liquidation or auctions.&lt;/p&gt;
+&lt;p&gt;However, there is no tracking of historical data for the change corresponding to the vault throughout time, hence unable to determine the trend in overall of Maker. Thus, I created my own tracking website to observe the movement of the platform in term of Borrow.. Source of data is crawled directly from &lt;a href=&#34;https://daistats.com/#/&#34;&gt;DaiStats&lt;/a&gt; on a daily basis.&lt;/p&gt;
+&lt;p&gt;Here is the access link :&lt;/p&gt;
+&lt;h2 id=&#34;maker-tracking-apphttpsmaker-dai-statusherokuappcom&#34;&gt;&lt;a href=&#34;https://maker-dai-status.herokuapp.com/&#34;&gt;Maker tracking app&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Source code : &lt;a href=&#34;https://github.com/geniusnhu/daistats&#34;&gt;link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The app uses chart from &lt;a href=&#34;https://plotly.com/&#34;&gt;Plotly&lt;/a&gt; and serves by &lt;a href=&#34;https://streamlit.io/&#34;&gt;streamlit&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Improve deep neural network training speed and performance with Optimization</title>

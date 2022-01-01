@@ -3,24 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://geniusnhu.netlify.com/authors/admin/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/authors/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/categories/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/data-mining/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/tags/data-science/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/categories/data-science/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://geniusnhu.netlify.com/tags/deep-learning/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/categories/deep-learning/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/2021-07-30-daistats-analytics/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/</loc>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/project/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/project/</loc>
+    <lastmod>2020-07-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/</loc>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/deep-learning/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/tags/hyperparameter-tuning/</loc>
@@ -29,16 +47,7 @@
     <loc>https://geniusnhu.netlify.com/project/2020-06-14-optimization-and-neural-network-performance/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://geniusnhu.netlify.com/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://geniusnhu.netlify.com/tags/optimization/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://geniusnhu.netlify.com/project/</loc>
-    <lastmod>2020-06-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://geniusnhu.netlify.com/tags/</loc>
     <lastmod>2020-06-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/tags/tensorflow/</loc>
@@ -78,10 +87,16 @@
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/categories/analytics/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/2020/04/02/automate-python-script-in-windows/</loc>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://geniusnhu.netlify.com/tags/automation/</loc>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/post/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/tags/trend/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
@@ -93,7 +108,7 @@
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/categories/visualization/</loc>
-    <lastmod>2020-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://geniusnhu.netlify.com/project/2020-03-30-complete-guide-for-time-series-visualization/</loc>
     <lastmod>2020-03-30T00:00:00+00:00</lastmod>
